@@ -23,7 +23,7 @@ using namespace esp_matter;
 static const char *TAG = "app_driver";
 extern uint16_t fan_endpoint_id;
 
-#define PWM_FAN_GPIO            GPIO_NUM_5        // GPIO 5 as requested by user
+#define PWM_FAN_GPIO            GPIO_NUM_8        // GPIO 8 (matching working reference)
 #define PWM_LEDC_CHANNEL        LEDC_CHANNEL_0
 #define PWM_LEDC_TIMER          LEDC_TIMER_0
 #define PWM_LEDC_MODE           LEDC_LOW_SPEED_MODE
