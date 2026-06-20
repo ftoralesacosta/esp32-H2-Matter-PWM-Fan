@@ -14,6 +14,7 @@
 #include <app_priv.h>
 #include <common_macros.h>
 
+#include <driver/gpio.h>
 #include <driver/ledc.h>
 #include <iot_button.h>
 
@@ -121,6 +122,9 @@ esp_err_t app_driver_fan_set_defaults(uint16_t endpoint_id)
 
 app_driver_handle_t app_driver_fan_init()
 {
+    // Release the pin from JTAG/strapping and route it to the GPIO matrix
+    gpio_reset_pin(PWM_FAN_GPIO);
+
     // 1. Configure LEDC Timer
     ledc_timer_config_t ledc_timer = {
         .speed_mode       = PWM_LEDC_MODE,
