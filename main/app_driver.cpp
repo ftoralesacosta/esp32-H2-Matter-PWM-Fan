@@ -156,7 +156,7 @@ app_driver_handle_t app_driver_fan_init()
         .duty_resolution  = PWM_LEDC_RESOLUTION,
         .timer_num        = PWM_LEDC_TIMER,
         .freq_hz          = PWM_LEDC_FREQ,
-        .clk_cfg          = LEDC_AUTO_CLK
+        .clk_cfg          = LEDC_USE_XTAL_CLK
     };
     
     esp_err_t err = ledc_timer_config(&ledc_timer);
