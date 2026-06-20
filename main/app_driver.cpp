@@ -95,11 +95,35 @@ esp_err_t app_driver_attribute_update(app_driver_handle_t driver_handle, uint16_
                 // Matter percent setting is a nullable uint8 (0 to 100)
                 uint8_t speed = val->val.u8;
                 err = app_driver_fan_set_speed(speed);
+            }
+        }
+    }
+    return err;
+}
+
+esp_err_t app_driver_attribute_post_update(app_driver_handle_t driver_handle, uint16_t endpoint_id, uint32_t cluster_id,
+                                           uint32_t attribute_id, esp_matter_attr_val_t *val)
+{
+    esp_err_t err = ESP_OK;
+    if (endpoint_id == fan_endpoint_id) {
+        if (cluster_id == FanControl::Id) {
+            if (attribute_id == FanControl::Attributes::PercentSetting::Id) {
+                uint8_t speed = val->val.u8;
                 
-                // Also update the PercentCurrent attribute to match
-                if (err == ESP_OK) {
-                    esp_matter_attr_val_t current_val = esp_matter_uint8(speed);
-                    attribute::update(endpoint_id, FanControl::Id, FanControl::Attributes::PercentCurrent::Id, &current_val);
+                // Update PercentCurrent to match PercentSetting (now that the database is unlocked)
+                esp_matter_attr_val_t current_val = esp_matter_uint8(speed);
+                esp_err_t temp_err = attribute::update(endpoint_id, FanControl::Id, FanControl::Attributes::PercentCurrent::Id, &current_val);
+                if (temp_err != ESP_OK) {
+                    ESP_LOGE(TAG, "Failed to update PercentCurrent: %s", esp_err_to_name(temp_err));
+                }
+                
+                // Update FanMode to match PercentSetting (On if speed > 0, Off if speed == 0)
+                // In Matter FanControl: 0 is Off, 4 is On (kOn)
+                uint8_t mode = (speed > 0) ? 4 : 0;
+                esp_matter_attr_val_t mode_val = esp_matter_enum(mode);
+                temp_err = attribute::update(endpoint_id, FanControl::Id, FanControl::Attributes::FanMode::Id, &mode_val);
+                if (temp_err != ESP_OK) {
+                    ESP_LOGE(TAG, "Failed to update FanMode: %s", esp_err_to_name(temp_err));
                 }
             }
         }

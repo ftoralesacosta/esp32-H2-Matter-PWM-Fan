@@ -54,6 +54,15 @@ app_driver_handle_t app_driver_button_init();
 esp_err_t app_driver_attribute_update(app_driver_handle_t driver_handle, uint16_t endpoint_id, uint32_t cluster_id,
                                       uint32_t attribute_id, esp_matter_attr_val_t *val);
 
+/** Driver Post-Update
+ *
+ * This API is called after the attribute value is successfully updated in the database.
+ * Use this to synchronize dependent status attributes (like PercentCurrent or FanMode)
+ * once the main database transaction is unlocked.
+ */
+esp_err_t app_driver_attribute_post_update(app_driver_handle_t driver_handle, uint16_t endpoint_id, uint32_t cluster_id,
+                                           uint32_t attribute_id, esp_matter_attr_val_t *val);
+
 /** Set defaults for fan driver
  *
  * Set the attribute drivers to their default values from the created data model.
