@@ -1,208 +1,17 @@
-NOTICE: Skipping optional dependency: espressif/esp_wifi_remote
-NOTICE: Skipping optional dependency: espressif/esp_hosted
-NOTICE: Direct dependencies have changed, solving dependencies.
-..............NOTICE: Updating lock file at /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/dependencies.lock
-NOTICE: Deleting 11 unused components
-NOTICE:  espressif__esp_insights
-NOTICE:  espressif__rmaker_console
-NOTICE:  espressif__esp_diag_data_store
-NOTICE:  espressif__esp_diagnostics
-NOTICE:  espressif__rmaker_time_sync
-NOTICE:  espressif__cbor
-NOTICE:  espressif__rmaker_common
-NOTICE:  espressif__rmaker_cmd_resp
-NOTICE:  espressif__rmaker_system_ctrl
-NOTICE:  espressif__rmaker_work_queue
-NOTICE:  espressif__rmaker_common_events
-NOTICE: Processing 10 dependencies:
-NOTICE: [1/10] espressif/button (3.5.0)
-NOTICE: [2/10] espressif/cmake_utilities (0.5.3)
-NOTICE: [3/10] espressif/esp_delta_ota (1.1.4)
-NOTICE: [4/10] espressif/esp_encrypted_img (2.3.0)
-NOTICE: [5/10] espressif/esp_secure_cert_mgr (2.9.2)
-NOTICE: [6/10] espressif/jsmn (1.1.0)
-NOTICE: [7/10] espressif/json_generator (1.1.2)
-NOTICE: [8/10] espressif/json_parser (1.0.3)
-NOTICE: [9/10] espressif/mdns (1.11.2)
-NOTICE: [10/10] idf (5.1.7)
--- Found Python3: /opt/homebrew/Frameworks/Python.framework/Versions/3.14/bin/python3.14 (found version "3.14.3") found components: Interpreter
-NOTICE: Skipping optional dependency: espressif/esp_insights
-NOTICE: Skipping optional dependency: espressif/esp_wifi_remote
-NOTICE: Skipping optional dependency: espressif/esp_hosted
--- Project sdkconfig file /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/sdkconfig
-warning: default on the choice symbol SEC_CERT_DAC_PROVIDER (defined at /Users/fernando/Projects/esp32-H2/esp-matter/connectedhomeip/connectedhomeip/config/esp32/components/chip/Kconfig:852, /Users/fernando/Projects/esp32-H2/esp-matter/components/esp_matter/Kconfig:48) will have no effect, as defaults do not affect choice symbols
-warning: the choice symbol SEC_CERT_DAC_PROVIDER (defined at /Users/fernando/Projects/esp32-H2/esp-matter/connectedhomeip/connectedhomeip/config/esp32/components/chip/Kconfig:852, /Users/fernando/Projects/esp32-H2/esp-matter/components/esp_matter/Kconfig:48) is defined with a prompt outside the choice
-Loading defaults file /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/sdkconfig.defaults...
-Loading defaults file /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/sdkconfig.defaults.esp32h2...
-/Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/sdkconfig.defaults.esp32h2:10 CONFIG_BT_NIMBLE_HCI_EVT_BUF_SIZE was replaced with CONFIG_BT_NIMBLE_TRANSPORT_EVT_SIZE
--- Looking for sys/types.h
--- Looking for sys/types.h - found
--- Looking for stdint.h
--- Looking for stdint.h - found
--- Looking for stddef.h
--- Looking for stddef.h - found
--- Check size of time_t
--- Check size of time_t - done
--- Found Python3: /Users/fernando/.espressif/python_env/idf5.1_py3.12_env/bin/python (found version "3.12.0") found components: Interpreter
--- Performing Test CMAKE_HAVE_LIBC_PTHREAD
--- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Failed
--- Check if compiler accepts -pthread
--- Check if compiler accepts -pthread - no
--- Looking for pthread_create in pthreads
--- Looking for pthread_create in pthreads - not found
--- Looking for pthread_create in pthread
--- Looking for pthread_create in pthread - not found
--- Could NOT find Threads (missing: Threads_FOUND)
--- Performing Test C_COMPILER_SUPPORTS_WFORMAT_SIGNEDNESS
--- Performing Test C_COMPILER_SUPPORTS_WFORMAT_SIGNEDNESS - Success
--- USING O3
--- App "fan_controller" version: 1.0
--- Adding linker script /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/build/esp-idf/esp_system/ld/memory.ld
--- Adding linker script /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_system/ld/esp32h2/sections.ld.in
--- Adding linker script /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_rom/esp32h2/ld/esp32h2.rom.ld
--- Adding linker script /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_rom/esp32h2/ld/esp32h2.rom.api.ld
--- Adding linker script /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_rom/esp32h2/ld/esp32h2.rom.libgcc.ld
--- Adding linker script /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_rom/esp32h2/ld/esp32h2.rom.newlib.ld
--- Adding linker script /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_rom/esp32h2/ld/esp32h2.rom.version.ld
--- Adding linker script /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_rom/esp32h2/ld/esp32h2.rom.wdt.ld
--- Adding linker script /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_rom/esp32h2/ld/esp32h2.rom.heap.ld
--- Adding linker script /Users/fernando/Projects/esp32-H2/esp-idf/components/soc/esp32h2/ld/esp32h2.peripherals.ld
--- BUTTON: 3.5.0
--- Components: app_bridge app_reset app_trace app_update bootloader bootloader_support bt chip cmock console cxx driver efuse esp-tls esp_adc esp_app_format esp_coex esp_common esp_eth esp_event esp_gdbstub esp_hid esp_http_client esp_http_server esp_https_ota esp_https_server esp_hw_support esp_lcd esp_local_ctrl esp_matter esp_matter_bridge esp_matter_console esp_matter_controller esp_matter_ota_provider esp_matter_rainmaker esp_mm esp_netif esp_netif_stack esp_partition esp_phy esp_pm esp_psram esp_ringbuf esp_rom esp_system esp_timer esp_wifi espcoredump espressif__button espressif__cmake_utilities espressif__esp_delta_ota espressif__esp_encrypted_img espressif__esp_secure_cert_mgr espressif__jsmn espressif__json_generator espressif__json_parser espressif__mdns esptool_py fatfs freertos hal heap http_parser idf_test ieee802154 json log lwip main mbedtls mqtt newlib nvs_flash openthread partition_table protobuf-c protocomm pthread riscv sdmmc soc spi_flash spiffs tcp_transport ulp unity usb vfs wear_levelling wifi_provisioning wpa_supplicant
--- Component paths: /Users/fernando/Projects/esp32-H2/esp-matter/examples/common/app_bridge /Users/fernando/Projects/esp32-H2/esp-matter/examples/common/app_reset /Users/fernando/Projects/esp32-H2/esp-idf/components/app_trace /Users/fernando/Projects/esp32-H2/esp-idf/components/app_update /Users/fernando/Projects/esp32-H2/esp-idf/components/bootloader /Users/fernando/Projects/esp32-H2/esp-idf/components/bootloader_support /Users/fernando/Projects/esp32-H2/esp-idf/components/bt /Users/fernando/Projects/esp32-H2/esp-matter/connectedhomeip/connectedhomeip/config/esp32/components/chip /Users/fernando/Projects/esp32-H2/esp-idf/components/cmock /Users/fernando/Projects/esp32-H2/esp-idf/components/console /Users/fernando/Projects/esp32-H2/esp-idf/components/cxx /Users/fernando/Projects/esp32-H2/esp-idf/components/driver /Users/fernando/Projects/esp32-H2/esp-idf/components/efuse /Users/fernando/Projects/esp32-H2/esp-idf/components/esp-tls /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_adc /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_app_format /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_coex /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_common /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_eth /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_event /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_gdbstub /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_hid /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_http_client /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_http_server /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_https_ota /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_https_server /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_hw_support /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_lcd /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_local_ctrl /Users/fernando/Projects/esp32-H2/esp-matter/components/esp_matter /Users/fernando/Projects/esp32-H2/esp-matter/components/esp_matter_bridge /Users/fernando/Projects/esp32-H2/esp-matter/components/esp_matter_console /Users/fernando/Projects/esp32-H2/esp-matter/components/esp_matter_controller /Users/fernando/Projects/esp32-H2/esp-matter/components/esp_matter_ota_provider /Users/fernando/Projects/esp32-H2/esp-matter/components/esp_matter_rainmaker /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_mm /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_netif /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_netif_stack /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_partition /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_phy /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_pm /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_psram /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_ringbuf /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_rom /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_system /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_timer /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_wifi /Users/fernando/Projects/esp32-H2/esp-idf/components/espcoredump /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/managed_components/espressif__button /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/managed_components/espressif__cmake_utilities /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/managed_components/espressif__esp_delta_ota /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/managed_components/espressif__esp_encrypted_img /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/managed_components/espressif__esp_secure_cert_mgr /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/managed_components/espressif__jsmn /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/managed_components/espressif__json_generator /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/managed_components/espressif__json_parser /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/managed_components/espressif__mdns /Users/fernando/Projects/esp32-H2/esp-idf/components/esptool_py /Users/fernando/Projects/esp32-H2/esp-idf/components/fatfs /Users/fernando/Projects/esp32-H2/esp-idf/components/freertos /Users/fernando/Projects/esp32-H2/esp-idf/components/hal /Users/fernando/Projects/esp32-H2/esp-idf/components/heap /Users/fernando/Projects/esp32-H2/esp-idf/components/http_parser /Users/fernando/Projects/esp32-H2/esp-idf/components/idf_test /Users/fernando/Projects/esp32-H2/esp-idf/components/ieee802154 /Users/fernando/Projects/esp32-H2/esp-idf/components/json /Users/fernando/Projects/esp32-H2/esp-idf/components/log /Users/fernando/Projects/esp32-H2/esp-idf/components/lwip /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/main /Users/fernando/Projects/esp32-H2/esp-idf/components/mbedtls /Users/fernando/Projects/esp32-H2/esp-idf/components/mqtt /Users/fernando/Projects/esp32-H2/esp-idf/components/newlib /Users/fernando/Projects/esp32-H2/esp-idf/components/nvs_flash /Users/fernando/Projects/esp32-H2/esp-idf/components/openthread /Users/fernando/Projects/esp32-H2/esp-idf/components/partition_table /Users/fernando/Projects/esp32-H2/esp-idf/components/protobuf-c /Users/fernando/Projects/esp32-H2/esp-idf/components/protocomm /Users/fernando/Projects/esp32-H2/esp-idf/components/pthread /Users/fernando/Projects/esp32-H2/esp-idf/components/riscv /Users/fernando/Projects/esp32-H2/esp-idf/components/sdmmc /Users/fernando/Projects/esp32-H2/esp-idf/components/soc /Users/fernando/Projects/esp32-H2/esp-idf/components/spi_flash /Users/fernando/Projects/esp32-H2/esp-idf/components/spiffs /Users/fernando/Projects/esp32-H2/esp-idf/components/tcp_transport /Users/fernando/Projects/esp32-H2/esp-idf/components/ulp /Users/fernando/Projects/esp32-H2/esp-idf/components/unity /Users/fernando/Projects/esp32-H2/esp-idf/components/usb /Users/fernando/Projects/esp32-H2/esp-idf/components/vfs /Users/fernando/Projects/esp32-H2/esp-idf/components/wear_levelling /Users/fernando/Projects/esp32-H2/esp-idf/components/wifi_provisioning /Users/fernando/Projects/esp32-H2/esp-idf/components/wpa_supplicant
--- Configuring done (7.8s)
--- Generating done (0.9s)
--- Build files have been written to: /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/build
-Bonnie-MAir:esp32-H2-Matter-PWM-Fan fernando$ idf.py build
 Executing action: all (aliases: build)
 Running ninja in directory /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/build
 Executing "ninja all"...
-[5/1559] Generating ../../partition_table/partition-table.binPartition table binary generated. Contents:
-*******************************************************************************
-# ESP-IDF Partition Table
-# Name, Type, SubType, Offset, Size, Flags
-esp_secure_cert,63,6,0xd000,8K,encrypted
-nvs,data,nvs,0x10000,48K,
-nvs_keys,data,nvs_keys,0x1c000,4K,encrypted
-otadata,data,ota,0x1d000,8K,
-phy_init,data,phy,0x1f000,4K,
-ota_0,app,ota_0,0x20000,1920K,
-ota_1,app,ota_1,0x200000,1920K,
-fctry,data,nvs,0x3e0000,24K,
-*******************************************************************************
-[72/1559] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthrea[73/1559] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthrea[928/1559] Performing configure step for 'chip_gn'Done. Made 6012 targets from 507 files in 1928ms
-[995/1559] Building C object esp-idf/driver/CMakeFiles/__idf_driver.dir/uart/uhci.c.objIn file included from /Users/fernando/Projects/esp32-H2/esp-idf/components/driver/uart/uhci.c:17:
-/Users/fernando/Projects/esp32-H2/esp-idf/components/driver/uart/include/esp_private/uhci.h:26:9: note: '#pragma message: Disclaimer: This header is intended for internal use and authorized users only.'
-   26 | #pragma message("Disclaimer: This header is intended for internal use and authorized users only.")
-      |         ^~~~~~~
-/Users/fernando/Projects/esp32-H2/esp-idf/components/driver/uart/include/esp_private/uhci.h:27:9: note: '#pragma message: Any use by unauthorized parties is at their own risk.'
-   27 | #pragma message("Any use by unauthorized parties is at their own risk.")
-      |         ^~~~~~~
-/Users/fernando/Projects/esp32-H2/esp-idf/components/driver/uart/include/esp_private/uhci.h:28:9: note: '#pragma message: This file is not maintained for this version; external bug reports or feature requests will NOT be accepted.'
-   28 | #pragma message("This file is not maintained for this version; external bug reports or feature requests will NOT be accepted.")
-      |         ^~~~~~~
-/Users/fernando/Projects/esp32-H2/esp-idf/components/driver/uart/include/esp_private/uhci.h:29:9: note: '#pragma message: For formal UHCI functionality, please upgrade to version v5.3 or later.'
-   29 | #pragma message("For formal UHCI functionality, please upgrade to version v5.3 or later.")
-      |         ^~~~~~~
-[1015/1559] Performing configure step for 'bootloader'-- Found Git: /usr/bin/git (found version "2.39.3 (Apple Git-146)")
--- The C compiler identification is GNU 12.2.0
--- The CXX compiler identification is GNU 12.2.0
--- The ASM compiler identification is GNU
--- Found assembler: /Users/fernando/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20250801/riscv32-esp-elf/bin/riscv32-esp-elf-gcc
--- Detecting C compiler ABI info
--- Detecting C compiler ABI info - done
--- Check for working C compiler: /Users/fernando/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20250801/riscv32-esp-elf/bin/riscv32-esp-elf-gcc - skipped
--- Detecting C compile features
--- Detecting C compile features - done
--- Detecting CXX compiler ABI info
--- Detecting CXX compiler ABI info - done
--- Check for working CXX compiler: /Users/fernando/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20250801/riscv32-esp-elf/bin/riscv32-esp-elf-g++ - skipped
--- Detecting CXX compile features
--- Detecting CXX compile features - done
--- Building ESP-IDF components for target esp32h2
--- Project sdkconfig file /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/sdkconfig
--- Looking for sys/types.h
--- Looking for sys/types.h - found
--- Looking for stdint.h
--- Looking for stdint.h - found
--- Looking for stddef.h
--- Looking for stddef.h - found
--- Check size of time_t
--- Check size of time_t - done
--- Adding linker script /Users/fernando/Projects/esp32-H2/esp-idf/components/soc/esp32h2/ld/esp32h2.peripherals.ld
--- App "bootloader" version: 4b1ae71
--- Adding linker script /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_rom/esp32h2/ld/esp32h2.rom.ld
--- Adding linker script /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_rom/esp32h2/ld/esp32h2.rom.api.ld
--- Adding linker script /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_rom/esp32h2/ld/esp32h2.rom.libgcc.ld
--- Adding linker script /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_rom/esp32h2/ld/esp32h2.rom.newlib.ld
--- Adding linker script /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_rom/esp32h2/ld/esp32h2.rom.wdt.ld
--- Adding linker script /Users/fernando/Projects/esp32-H2/esp-idf/components/bootloader/subproject/main/ld/esp32h2/bootloader.ld
--- Adding linker script /Users/fernando/Projects/esp32-H2/esp-idf/components/bootloader/subproject/main/ld/esp32h2/bootloader.rom.ld
--- Components: bootloader bootloader_support efuse esp_app_format esp_common esp_hw_support esp_rom esp_system esptool_py freertos hal log main micro-ecc newlib partition_table riscv soc spi_flash
--- Component paths: /Users/fernando/Projects/esp32-H2/esp-idf/components/bootloader /Users/fernando/Projects/esp32-H2/esp-idf/components/bootloader_support /Users/fernando/Projects/esp32-H2/esp-idf/components/efuse /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_app_format /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_common /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_hw_support /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_rom /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_system /Users/fernando/Projects/esp32-H2/esp-idf/components/esptool_py /Users/fernando/Projects/esp32-H2/esp-idf/components/freertos /Users/fernando/Projects/esp32-H2/esp-idf/components/hal /Users/fernando/Projects/esp32-H2/esp-idf/components/log /Users/fernando/Projects/esp32-H2/esp-idf/components/bootloader/subproject/main /Users/fernando/Projects/esp32-H2/esp-idf/components/bootloader/subproject/components/micro-ecc /Users/fernando/Projects/esp32-H2/esp-idf/components/newlib /Users/fernando/Projects/esp32-H2/esp-idf/components/partition_table /Users/fernando/Projects/esp32-H2/esp-idf/components/riscv /Users/fernando/Projects/esp32-H2/esp-idf/components/soc /Users/fernando/Projects/esp32-H2/esp-idf/components/spi_flash
--- Configuring done (13.2s)
--- Generating done (0.6s)
--- Build files have been written to: /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/build/bootloader
-[1056/1559] Building C object esp-idf/bt/CM...t.dir/common/ble_log/ble_log_uhci_out.c.objIn file included from /Users/fernando/Projects/esp32-H2/esp-idf/components/bt/common/ble_log/include/ble_log/ble_log_uhci_out.h:11,
-                 from /Users/fernando/Projects/esp32-H2/esp-idf/components/bt/common/ble_log/ble_log_uhci_out.c:6:
-/Users/fernando/Projects/esp32-H2/esp-idf/components/driver/uart/include/esp_private/uhci.h:26:9: note: '#pragma message: Disclaimer: This header is intended for internal use and authorized users only.'
-   26 | #pragma message("Disclaimer: This header is intended for internal use and authorized users only.")
-      |         ^~~~~~~
-/Users/fernando/Projects/esp32-H2/esp-idf/components/driver/uart/include/esp_private/uhci.h:27:9: note: '#pragma message: Any use by unauthorized parties is at their own risk.'
-   27 | #pragma message("Any use by unauthorized parties is at their own risk.")
-      |         ^~~~~~~
-/Users/fernando/Projects/esp32-H2/esp-idf/components/driver/uart/include/esp_private/uhci.h:28:9: note: '#pragma message: This file is not maintained for this version; external bug reports or feature requests will NOT be accepted.'
-   28 | #pragma message("This file is not maintained for this version; external bug reports or feature requests will NOT be accepted.")
-      |         ^~~~~~~
-/Users/fernando/Projects/esp32-H2/esp-idf/components/driver/uart/include/esp_private/uhci.h:29:9: note: '#pragma message: For formal UHCI functionality, please upgrade to version v5.3 or later.'
-   29 | #pragma message("For formal UHCI functionality, please upgrade to version v5.3 or later.")
-      |         ^~~~~~~
-[107/108] Generating binary image from built executableesptool.py v4.11.0
-Creating esp32h2 image...
-Merged 2 ELF sections
-Successfully created esp32h2 image.
-Generated /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/build/bootloader/bootloader.bin
-[108/108] cd /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/build/bootloader/esp-idf/es...ader 0x0 /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/build/bootloader/bootloader.binBootloader binary size 0x5510 bytes. 0x6af0 bytes (56%) free.
-[1279/1559] Building CXX object esp-idf/esp..._idf_esp_matter.dir/esp_matter_core.cpp.obj/Users/fernando/Projects/esp32-H2/esp-matter/components/esp_matter/esp_matter_core.cpp: In function 'esp_err_t esp_matter::start(event_callback_t, intptr_t)':
-/Users/fernando/Projects/esp32-H2/esp-matter/components/esp_matter/esp_matter_core.cpp:391:35: warning: ignoring returned value of type 'CHIP_ERROR' {aka 'chip::ChipError'}, declared with attribute 'nodiscard' [-Wunused-result]
-  391 |         PlatformMgr().ScheduleWork([](intptr_t) {
-      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~
-  392 |             chip::app::DnssdServer::Instance().StartServer();
-      |             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  393 |         },
-      |         ~~
-  394 |         reinterpret_cast<intptr_t>(nullptr));
-      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-In file included from /Users/fernando/Projects/esp32-H2/esp-matter/connectedhomeip/connectedhomeip/src/include/platform/CHIPDeviceLayer.h:31,
-                 from /Users/fernando/Projects/esp32-H2/esp-matter/connectedhomeip/connectedhomeip/src/app/CASESessionManager.h:28,
-                 from /Users/fernando/Projects/esp32-H2/esp-matter/components/esp_matter/esp_matter_core.h:17,
-                 from /Users/fernando/Projects/esp32-H2/esp-matter/components/esp_matter/data_model/legacy/esp_matter_endpoint_impl.h:19,
-                 from /Users/fernando/Projects/esp32-H2/esp-matter/components/esp_matter/data_model/esp_matter_endpoint.h:20,
-                 from /Users/fernando/Projects/esp32-H2/esp-matter/components/esp_matter/esp_matter.h:31,
-                 from /Users/fernando/Projects/esp32-H2/esp-matter/components/esp_matter/esp_matter_core.cpp:17:
-/Users/fernando/Projects/esp32-H2/esp-matter/connectedhomeip/connectedhomeip/src/include/platform/PlatformManager.h:401:19: note: in call to 'CHIP_ERROR chip::DeviceLayer::PlatformManager::ScheduleWork(chip::DeviceLayer::AsyncWorkFunct, intptr_t)', declared here
-  401 | inline CHIP_ERROR PlatformManager::ScheduleWork(AsyncWorkFunct workFunct, intptr_t arg)
-      |                   ^~~~~~~~~~~~~~~
-In file included from /Users/fernando/Projects/esp32-H2/esp-matter/connectedhomeip/connectedhomeip/src/lib/core/TLVCommon.h:30,
-                 from /Users/fernando/Projects/esp32-H2/esp-matter/connectedhomeip/connectedhomeip/src/lib/core/TLV.h:30,
-                 from /Users/fernando/Projects/esp32-H2/esp-matter/connectedhomeip/connectedhomeip/src/lib/support/attribute-storage-null-handling.h:21,
-                 from /Users/fernando/Projects/esp32-H2/esp-matter/connectedhomeip/connectedhomeip/src/app/data-model/Nullable.h:21,
-                 from /Users/fernando/Projects/esp32-H2/esp-matter/components/esp_matter/data_model/esp_matter_attribute_utils.h:21,
-                 from /Users/fernando/Projects/esp32-H2/esp-matter/components/esp_matter/data_model/esp_matter_data_model.h:17,
-                 from /Users/fernando/Projects/esp32-H2/esp-matter/components/esp_matter/data_model/legacy/esp_matter_attribute_impl.h:17,
-                 from /Users/fernando/Projects/esp32-H2/esp-matter/components/esp_matter/data_model/esp_matter_attribute.h:20,
-                 from /Users/fernando/Projects/esp32-H2/esp-matter/components/esp_matter/esp_matter.h:27:
-/Users/fernando/Projects/esp32-H2/esp-matter/connectedhomeip/connectedhomeip/src/lib/core/CHIPError.h:503:7: note: 'CHIP_ERROR' {aka 'chip::ChipError'} declared here
-  503 | using CHIP_ERROR = ::chip::ChipError;
-      |       ^~~~~~~~~~
-[1361/1559] Building CXX object esp-idf/esp_matter/CMakeFiles/__idf_esp_matter.dir/Users/...onnectedhomeip/connectedhomeip/src/app/clusters/door-lock-server/door-lock-server.cpp.obj/Users/fernando/Projects/esp32-H2/esp-matter/connectedhomeip/connectedhomeip/src/app/clusters/door-lock-server/door-lock-server.cpp: In member function 'bool DoorLockServer::HandleRemoteLockOperation(chip::app::CommandHandler*, const chip::app::ConcreteCommandPath&, chip::app::Clusters::DoorLock::LockOperationTypeEnum, RemoteLockOpHandler, const chip::Optional<chip::Span<const unsigned char> >&)':
-/Users/fernando/Projects/esp32-H2/esp-matter/connectedhomeip/connectedhomeip/src/app/clusters/door-lock-server/door-lock-server.cpp:3743:38: warning: '*(short unsigned int*)((char*)&pinCredIdx + offsetof(chip::Optional<short unsigned int>,chip::Optional<short unsigned int>::mValueHolder.chip::Optional<short unsigned int>::ValueHolder::<unnamed>.chip::Optional<short unsigned int>::TrivialDestructor::mValue))' may be used uninitialized [-Wmaybe-uninitialized]
- 3743 |         foundCred[0].credentialIndex = pinCredIdx.Value();
-      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~
-/Users/fernando/Projects/esp32-H2/esp-matter/connectedhomeip/connectedhomeip/src/app/clusters/door-lock-server/door-lock-server.cpp:3628:24: note: '*(short unsigned int*)((char*)&pinCredIdx + offsetof(chip::Optional<short unsigned int>,chip::Optional<short unsigned int>::mValueHolder.chip::Optional<short unsigned int>::ValueHolder::<unnamed>.chip::Optional<short unsigned int>::TrivialDestructor::mValue))' was declared here
- 3628 |     Optional<uint16_t> pinCredIdx; // Will get set to a value if the PIN is one we know about.
-      |                        ^~~~~~~~~~
-[1432/1559] Building CXX object esp-idf/esp_matter/CMakeFiles/__idf_esp_matter.dir/Users/fernando/Projects/esp32-H2/esp-matter/connectedhomeip/connectedhomeip/src/app/clusters/thermostat-server/thermostat-server.[1436/1559] Building CXX object esp-idf/esp_matter/CMakeFiles/__idf_esp_matter.dir/Users/fernando/Projec..[1437/1559] Building CXX object esp-idf/esp_matter/CMakeFiles/__idf_esp_matter...clusters/time-format-localization-server/TimeFormat[1546/1559] Building CXX object esp-idf/app...Files/__idf_app_reset.dir/app_reset.cpp.objFAILED: [code=1] esp-idf/app_reset/CMakeFiles/__idf_app_reset.dir/app_reset.cpp.obj
+[1/14] Performing build step for 'bootloader'
+[1/1] cd /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/build/bootloader/esp-idf/esptool_py && /Users/fernando/.espressif/python_env/idf5.1_py3.12_env/bin/python /Users/fernando/Projects/esp32-H2/esp-idf/components/partition_table/check_sizes.py --offset 0xc000 bootloader 0x0 /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/build/bootloader/bootloader.bin
+Bootloader binary size 0x5510 bytes. 0x6af0 bytes (56%) free.
+[2/14] No install step for 'bootloader'
+[3/14] Completed 'bootloader'
+[4/14] Performing build step for 'chip_gn'
+ninja: no work to do.
+[5/14] No install step for 'chip_gn'
+[6/14] Completed 'chip_gn'
+[7/14] Building CXX object esp-idf/app_reset/CMakeFiles/__idf_app_reset.dir/app_reset.cpp.obj
+FAILED: [code=1] esp-idf/app_reset/CMakeFiles/__idf_app_reset.dir/app_reset.cpp.obj 
 /Users/fernando/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20250801/riscv32-esp-elf/bin/riscv32-esp-elf-g++ -DESP_MDNS_VERSION_NUMBER=\"1.11.2\" -DESP_PLATFORM -DIDF_VER=\"4b1ae71\" -DMBEDTLS_CONFIG_FILE=\"mbedtls/esp_config.h\" -DOPENTHREAD_CONFIG_FILE=\"openthread-core-esp32x-ftd-config.h\" -DOPENTHREAD_FTD=1 -DOPENTHREAD_PROJECT_LIB_CONFIG_FILE=\"openthread-core-esp32x-ftd-config.h\" -DSOC_MMU_PAGE_SIZE=CONFIG_MMU_PAGE_SIZE -D_GNU_SOURCE -D_POSIX_READER_WRITER_LOCKS -I/Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/build/config -I/Users/fernando/Projects/esp32-H2/esp-matter/examples/common/app_reset -I/Users/fernando/Projects/esp32-H2/esp-idf/components/newlib/platform_include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/freertos/FreeRTOS-Kernel/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/freertos/FreeRTOS-Kernel/portable/riscv/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/freertos/esp_additions/include/freertos -I/Users/fernando/Projects/esp32-H2/esp-idf/components/freertos/esp_additions/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/freertos/esp_additions/arch/riscv/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/esp_hw_support/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/esp_hw_support/include/soc -I/Users/fernando/Projects/esp32-H2/esp-idf/components/esp_hw_support/include/soc/esp32h2 -I/Users/fernando/Projects/esp32-H2/esp-idf/components/esp_hw_support/port/esp32h2/. -I/Users/fernando/Projects/esp32-H2/esp-idf/components/esp_hw_support/port/esp32h2/private_include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/heap/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/log/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/soc/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/soc/esp32h2 -I/Users/fernando/Projects/esp32-H2/esp-idf/components/soc/esp32h2/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/hal/esp32h2/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/hal/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/hal/platform_port/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/esp_rom/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/esp_rom/include/esp32h2 -I/Users/fernando/Projects/esp32-H2/esp-idf/components/esp_rom/esp32h2 -I/Users/fernando/Projects/esp32-H2/esp-idf/components/esp_common/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/esp_system/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/esp_system/port/soc -I/Users/fernando/Projects/esp32-H2/esp-idf/components/esp_system/port/include/riscv -I/Users/fernando/Projects/esp32-H2/esp-idf/components/esp_system/port/include/private -I/Users/fernando/Projects/esp32-H2/esp-idf/components/riscv/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/lwip/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/lwip/include/apps -I/Users/fernando/Projects/esp32-H2/esp-idf/components/lwip/include/apps/sntp -I/Users/fernando/Projects/esp32-H2/esp-idf/components/lwip/lwip/src/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/lwip/port/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/lwip/port/freertos/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/lwip/port/esp32xx/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/lwip/port/esp32xx/include/arch -I/Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/managed_components/espressif__button/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/driver/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/driver/deprecated -I/Users/fernando/Projects/esp32-H2/esp-idf/components/driver/analog_comparator/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/driver/dac/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/driver/gpio/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/driver/gptimer/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/driver/i2c/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/driver/i2s/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/driver/ledc/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/driver/mcpwm/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/driver/parlio/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/driver/pcnt/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/driver/rmt/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/driver/sdio_slave/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/driver/sdmmc/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/driver/sigma_delta/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/driver/spi/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/driver/temperature_sensor/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/driver/touch_sensor/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/driver/twai/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/driver/uart/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/driver/usb_serial_jtag/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/esp_pm/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/esp_ringbuf/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/esp_adc/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/esp_adc/interface -I/Users/fernando/Projects/esp32-H2/esp-idf/components/esp_adc/esp32h2/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/esp_adc/deprecated/include -I/Users/fernando/Projects/esp32-H2/esp-matter/components/esp_matter -I/Users/fernando/Projects/esp32-H2/esp-matter/components/esp_matter/utils -I/Users/fernando/Projects/esp32-H2/esp-matter/components/esp_matter/utils/jsontlv -I/Users/fernando/Projects/esp32-H2/esp-matter/components/esp_matter/data_model_provider -I/Users/fernando/Projects/esp32-H2/esp-matter/connectedhomeip/connectedhomeip/zzz_generated/app-common -I/Users/fernando/Projects/esp32-H2/esp-matter/connectedhomeip/connectedhomeip/third_party/nlfaultinjection/include -I/Users/fernando/Projects/esp32-H2/esp-matter/connectedhomeip/connectedhomeip/third_party/uriparser/repo/include -I/Users/fernando/Projects/esp32-H2/esp-matter/connectedhomeip/connectedhomeip/src -I/Users/fernando/Projects/esp32-H2/esp-matter/components/esp_matter/zap_common -I/Users/fernando/Projects/esp32-H2/esp-matter/components/esp_matter/data_model -I/Users/fernando/Projects/esp32-H2/esp-matter/components/esp_matter/data_model/legacy -I/Users/fernando/Projects/esp32-H2/esp-matter/connectedhomeip/connectedhomeip/src/platform/ESP32 -I/Users/fernando/Projects/esp32-H2/esp-matter/connectedhomeip/connectedhomeip/src/platform/OpenThread -I/Users/fernando/Projects/esp32-H2/esp-matter/connectedhomeip/connectedhomeip/src/include -I/Users/fernando/Projects/esp32-H2/esp-matter/connectedhomeip/connectedhomeip/src/lib -I/Users/fernando/Projects/esp32-H2/esp-matter/connectedhomeip/connectedhomeip/examples/platform/esp32 -I/Users/fernando/Projects/esp32-H2/esp-matter/connectedhomeip/connectedhomeip/third_party/nlassert/repo/include -I/Users/fernando/Projects/esp32-H2/esp-matter/connectedhomeip/connectedhomeip/third_party/nlio/repo/include -I/Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/build/esp-idf/chip/src/include -I/Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/build/esp-idf/chip/include -I/Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/build/esp-idf/chip/gen/include -I/Users/fernando/Projects/esp32-H2/esp-matter/connectedhomeip/connectedhomeip/config/esp32 -I/Users/fernando/Projects/esp32-H2/esp-matter/connectedhomeip/connectedhomeip/config/esp32/../.. -I/Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/managed_components/espressif__esp_delta_ota/include -I/Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/managed_components/espressif__esp_encrypted_img/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/console -I/Users/fernando/Projects/esp32-H2/esp-idf/components/vfs/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/bt/include/esp32h2/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/bt/common/osi/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/bt/common/api/include/api -I/Users/fernando/Projects/esp32-H2/esp-idf/components/bt/common/btc/profile/esp/blufi/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/bt/common/btc/profile/esp/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/bt/common/hci_log/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/bt/common/ble_log/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/bt/porting/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/bt/porting/npl/freertos/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/bt/porting/transport/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/bt/host/nimble/nimble/nimble/host/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/bt/host/nimble/nimble/nimble/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/bt/host/nimble/nimble/nimble/host/services/ans/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/bt/host/nimble/nimble/nimble/host/services/bas/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/bt/host/nimble/nimble/nimble/host/services/dis/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/bt/host/nimble/nimble/nimble/host/services/gap/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/bt/host/nimble/nimble/nimble/host/services/gatt/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/bt/host/nimble/nimble/nimble/host/services/hr/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/bt/host/nimble/nimble/nimble/host/services/htp/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/bt/host/nimble/nimble/nimble/host/services/ias/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/bt/host/nimble/nimble/nimble/host/services/ipss/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/bt/host/nimble/nimble/nimble/host/services/lls/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/bt/host/nimble/nimble/nimble/host/services/prox/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/bt/host/nimble/nimble/nimble/host/services/cts/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/bt/host/nimble/nimble/nimble/host/services/tps/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/bt/host/nimble/nimble/nimble/host/services/hid/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/bt/host/nimble/nimble/nimble/host/services/sps/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/bt/host/nimble/nimble/nimble/host/services/cte/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/bt/host/nimble/nimble/nimble/host/util/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/bt/host/nimble/nimble/nimble/host/store/ram/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/bt/host/nimble/nimble/nimble/host/store/config/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/bt/host/nimble/nimble/nimble/host/services/ras/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/bt/host/nimble/nimble/porting/nimble/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/bt/host/nimble/port/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/bt/host/nimble/nimble/nimble/transport/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/esp_timer/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/esp_wifi/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/esp_wifi/wifi_apps/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/esp_event/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/esp_phy/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/esp_phy/esp32h2/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/esp_netif/include -I/Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/managed_components/espressif__mdns/include -I/Users/fernando/Projects/esp32-H2/esp-matter/components/esp_matter_console -I/Users/fernando/Projects/esp32-H2/esp-idf/components/nvs_flash/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/esp_partition/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/spi_flash/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/app_update/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/bootloader_support/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/bootloader_support/bootloader_flash/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/esp_app_format/include -I/Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/managed_components/espressif__esp_secure_cert_mgr/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/mbedtls/port/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/mbedtls/mbedtls/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/mbedtls/mbedtls/library -I/Users/fernando/Projects/esp32-H2/esp-idf/components/mbedtls/esp_crt_bundle/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/mbedtls/mbedtls/3rdparty/everest/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/mbedtls/mbedtls/3rdparty/p256-m -I/Users/fernando/Projects/esp32-H2/esp-idf/components/mbedtls/mbedtls/3rdparty/p256-m/p256-m -I/Users/fernando/Projects/esp32-H2/esp-idf/components/openthread/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/openthread/openthread/include -I/Users/fernando/Projects/esp32-H2/esp-idf/components/json/cJSON -march=rv32imac_zicsr_zifencei  -fdiagnostics-color=always -fdiagnostics-color=always -ffunction-sections -fdata-sections -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-variable -Wno-error=unused-but-set-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -Wno-enum-conversion -gdwarf-4 -ggdb -nostartfiles -Og -fmacro-prefix-map=/Users/fernando/Projects/esp32-H2-Matter-PWM-Fan=. -fmacro-prefix-map=/Users/fernando/Projects/esp32-H2/esp-idf=/IDF -fstrict-volatile-bitfields -fno-jump-tables -fno-tree-switch-conversion -DconfigENABLE_FREERTOS_DEBUG_OCDAWARE=1 -Wno-error=uninitialized -Wno-error=maybe-uninitialized -Wno-missing-field-initializers -Wno-error=array-bounds -Wno-write-strings -Wno-format-nonliteral -Wno-format-security -std=gnu++2b -fno-exceptions -fno-rtti -fuse-cxa-atexit -std=gnu++17 -Os -DCHIP_HAVE_CONFIG_H -Wno-overloaded-virtual -DBUTTON_VER_MAJOR=3 -DBUTTON_VER_MINOR=5 -DBUTTON_VER_PATCH=0 "-DCHIP_ADDRESS_RESOLVE_IMPL_INCLUDE_HEADER=<lib/address_resolve/AddressResolve_DefaultImpl.h>" -MD -MT esp-idf/app_reset/CMakeFiles/__idf_app_reset.dir/app_reset.cpp.obj -MF esp-idf/app_reset/CMakeFiles/__idf_app_reset.dir/app_reset.cpp.obj.d -o esp-idf/app_reset/CMakeFiles/__idf_app_reset.dir/app_reset.cpp.obj -c /Users/fernando/Projects/esp32-H2/esp-matter/examples/common/app_reset/app_reset.cpp
 /Users/fernando/Projects/esp32-H2/esp-matter/examples/common/app_reset/app_reset.cpp: In function 'esp_err_t app_reset_button_register(void*)':
 /Users/fernando/Projects/esp32-H2/esp-matter/examples/common/app_reset/app_reset.cpp:45:80: error: invalid conversion from 'void (*)(void*, void*)' to 'void*' [-fpermissive]
@@ -228,4 +37,5 @@ In file included from /Users/fernando/Projects/esp32-H2/esp-matter/examples/comm
 /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/managed_components/espressif__button/include/iot_button.h:173:11: note: declared here
   173 | esp_err_t iot_button_register_cb(button_handle_t btn_handle, button_event_t event, button_cb_t cb, void *usr_data);
       |           ^~~~~~~~~~~~~~~~~~~~~~
-[1549/1559] Linking C static library esp-idf/esp_matter/libesp_matter.aninja: build stopped: subcommand failed.
+ninja: build stopped: subcommand failed.
+ninja failed with exit code 1, output of the command is in the /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/build/log/idf_py_stderr_output_6268 and /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/build/log/idf_py_stdout_output_6268
