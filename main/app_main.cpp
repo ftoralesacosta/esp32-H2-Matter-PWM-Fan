@@ -86,25 +86,6 @@ static esp_err_t app_identification_cb(identification::callback_type_t type, uin
 // This callback is called for every attribute update. The callback implementation shall
 // handle the desired attributes and return an appropriate error code. If the attribute
 // is not of your interest, please do not return an error code and strictly return ESP_OK.
-#include <freertos/FreeRTOS.h>
-#include <freertos/task.h>
-#include <driver/gpio.h>
-
-static void gpio_test_task(void *pvParameters)
-{
-    ESP_LOGI("gpio_test", "Starting GPIO 5 toggle test task...");
-    gpio_reset_pin(GPIO_NUM_5);
-    gpio_set_direction(GPIO_NUM_5, GPIO_MODE_OUTPUT);
-    
-    bool level = false;
-    while (true) {
-        gpio_set_level(GPIO_NUM_5, level ? 1 : 0);
-        ESP_LOGI("gpio_test", "GPIO 5 level set to %d", level);
-        level = !level;
-        vTaskDelay(pdMS_TO_TICKS(1000));
-    }
-}
-
 static esp_err_t app_attribute_update_cb(callback_type_t type, uint16_t endpoint_id, uint32_t cluster_id,
                                          uint32_t attribute_id, esp_matter_attr_val_t *val, void *priv_data)
 {
@@ -124,9 +105,6 @@ static esp_err_t app_attribute_update_cb(callback_type_t type, uint16_t endpoint
 extern "C" void app_main()
 {
     esp_err_t err = ESP_OK;
-
-    // Launch the temporary GPIO 5 toggle test task
-    xTaskCreate(gpio_test_task, "gpio_test_task", 2048, NULL, 5, NULL);
 
     /* Initialize the ESP NVS layer */
     nvs_flash_init();
