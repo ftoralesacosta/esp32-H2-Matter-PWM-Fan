@@ -27,11 +27,12 @@
 #endif
 
 static const char *TAG = "app_main";
-uint16_t switch_endpoint_id = 0;
+uint16_t fan_endpoint_id = 0;
 
 using namespace esp_matter;
 using namespace esp_matter::attribute;
 using namespace esp_matter::endpoint;
+using namespace chip::app::Clusters;
 
 #if CONFIG_DYNAMIC_PASSCODE_COMMISSIONABLE_DATA_PROVIDER
 dynamic_commissionable_data_provider g_dynamic_passcode_provider;
@@ -90,6 +91,8 @@ static esp_err_t app_attribute_update_cb(callback_type_t type, uint16_t endpoint
 {
     if (type == PRE_UPDATE) {
         /* Handle the attribute updates here. */
+        app_driver_handle_t driver_handle = (app_driver_handle_t)priv_data;
+        return app_driver_attribute_update(driver_handle, endpoint_id, cluster_id, attribute_id, val);
     }
 
     return ESP_OK;
@@ -103,24 +106,31 @@ extern "C" void app_main()
     nvs_flash_init();
 
     /* Initialize driver */
-    app_driver_handle_t switch_handle = app_driver_switch_init();
-    //app_reset_button_register(switch_handle);
+    app_driver_handle_t fan_handle = app_driver_fan_init();
+    app_driver_handle_t button_handle = app_driver_button_init();
+    app_reset_button_register(button_handle);
 
     /* Create a Matter node and add the mandatory Root Node device type on endpoint 0 */
     node::config_t node_config;
     node_t *node = node::create(&node_config, app_attribute_update_cb, app_identification_cb);
     ABORT_APP_ON_FAILURE(node != nullptr, ESP_LOGE(TAG, "Failed to create Matter node"));
 
-    dimmer_switch::config_t switch_config;
-    endpoint_t *endpoint = dimmer_switch::create(node, &switch_config, ENDPOINT_FLAG_NONE, switch_handle);
-    ABORT_APP_ON_FAILURE(endpoint != nullptr, ESP_LOGE(TAG, "Failed to create on off switch endpoint"));
+    // Configure the Matter Fan endpoint
+    fan::config_t fan_config;
+    fan_config.fan_control.fan_mode = 0; // Off
+    fan_config.fan_control.percent_setting = DEFAULT_FAN_SPEED;
+    fan_config.fan_control.percent_current = DEFAULT_FAN_SPEED;
 
-    /* Add group cluster to the switch endpoint */
-    cluster::groups::config_t groups_config;
-    cluster::groups::create(endpoint, &groups_config, CLUSTER_FLAG_SERVER | CLUSTER_FLAG_CLIENT);
+    // Create the Fan device endpoint
+    endpoint_t *endpoint = fan::create(node, &fan_config, ENDPOINT_FLAG_NONE, fan_handle);
+    ABORT_APP_ON_FAILURE(endpoint != nullptr, ESP_LOGE(TAG, "Failed to create Matter Fan endpoint"));
 
-    switch_endpoint_id = endpoint::get_id(endpoint);
-    ESP_LOGI(TAG, "Switch created with endpoint_id %d", switch_endpoint_id);
+    fan_endpoint_id = endpoint::get_id(endpoint);
+    ESP_LOGI(TAG, "Fan created with endpoint_id %d", fan_endpoint_id);
+
+    /* Mark deferred persistence for some attributes that might be changed rapidly */
+    attribute_t *percent_setting_attribute = attribute::get(fan_endpoint_id, FanControl::Id, FanControl::Attributes::PercentSetting::Id);
+    attribute::set_deferred_persistence(percent_setting_attribute);
 
 #if CHIP_DEVICE_CONFIG_ENABLE_THREAD
     /* Set OpenThread platform config */
@@ -140,4 +150,7 @@ extern "C" void app_main()
     /* Matter start */
     err = esp_matter::start(app_event_cb);
     ABORT_APP_ON_FAILURE(err == ESP_OK, ESP_LOGE(TAG, "Failed to start Matter, err:%d", err));
+
+    /* Starting driver with default values */
+    app_driver_fan_set_defaults(fan_endpoint_id);
 }

@@ -6,242 +6,177 @@
    CONDITIONS OF ANY KIND, either express or implied.
 */
 
-#include "esp_matter_client.h"
-#include <cstddef>
-#include <cstdio>
 #include <esp_log.h>
 #include <stdlib.h>
 #include <string.h>
 
 #include <esp_matter.h>
-#include <esp_matter_console.h>
-
-#include <iot_button.h>
-
 #include <app_priv.h>
-#include <app_reset.h>
+#include <common_macros.h>
 
-#include <app/server/Server.h>
-#include <lib/core/Optional.h>
-
-using chip::kInvalidClusterId;
-static constexpr chip::CommandId kInvalidCommandId = 0xFFFF'FFFF;
+#include <driver/ledc.h>
+#include <iot_button.h>
 
 using namespace chip::app::Clusters;
 using namespace esp_matter;
-using namespace esp_matter::cluster;
 
 static const char *TAG = "app_driver";
-extern uint16_t switch_endpoint_id;
+extern uint16_t fan_endpoint_id;
 
-static void send_command_success_callback(void *context, const ConcreteCommandPath &command_path,
-                                          const chip::app::StatusIB &status, TLVReader *response_data)
+#define PWM_FAN_GPIO            GPIO_NUM_5        // GPIO 5 as requested by user
+#define PWM_LEDC_CHANNEL        LEDC_CHANNEL_0
+#define PWM_LEDC_TIMER          LEDC_TIMER_0
+#define PWM_LEDC_MODE           LEDC_LOW_SPEED_MODE
+#define PWM_LEDC_RESOLUTION     LEDC_TIMER_10_BIT // 10-bit resolution (0 to 1023)
+#define PWM_LEDC_FREQ           25000             // 25 kHz PWM frequency for Noctua fan
+
+static uint8_t current_speed_percentage = 0;
+
+static esp_err_t app_driver_fan_set_speed(uint8_t speed_percentage)
 {
-    ESP_LOGI(TAG, "Send command success");
+    if (speed_percentage > 100) {
+        speed_percentage = 100;
+    }
+
+    // Map speed percentage (0-100) to LEDC duty cycle (0-1023)
+    uint32_t duty = (speed_percentage * 1023) / 100;
+
+    esp_err_t err = ledc_set_duty(PWM_LEDC_MODE, PWM_LEDC_CHANNEL, duty);
+    if (err != ESP_OK) {
+        ESP_LOGE(TAG, "Failed to set LEDC duty: %s", esp_err_to_name(err));
+        return err;
+    }
+
+    err = ledc_update_duty(PWM_LEDC_MODE, PWM_LEDC_CHANNEL);
+    if (err != ESP_OK) {
+        ESP_LOGE(TAG, "Failed to update LEDC duty: %s", esp_err_to_name(err));
+        return err;
+    }
+
+    current_speed_percentage = speed_percentage;
+    ESP_LOGI(TAG, "Fan speed updated to %d%% (Duty: %ld)", speed_percentage, duty);
+    return ESP_OK;
 }
 
-static void send_command_failure_callback(void *context, CHIP_ERROR error)
+static void app_driver_button_toggle_cb(void *arg, void *data)
 {
-    ESP_LOGI(TAG, "Send command failure: err :%" CHIP_ERROR_FORMAT, error.Format());
-}
+    ESP_LOGI(TAG, "Toggle button pressed");
+    uint16_t endpoint_id = fan_endpoint_id;
+    uint32_t cluster_id = FanControl::Id;
+    uint32_t attribute_id = FanControl::Attributes::PercentSetting::Id;
 
-LevelControl::StepModeEnum current_step_direction = LevelControl::StepModeEnum::kUp;
-
-void app_driver_client_invoke_command_callback(client::peer_device_t *peer_device, client::request_handle_t *req_handle,
-                                               void *priv_data)
-{
-    if (req_handle->type != esp_matter::client::INVOKE_CMD)
-    {
+    attribute_t *attribute = attribute::get(endpoint_id, cluster_id, attribute_id);
+    if (!attribute) {
+        ESP_LOGE(TAG, "Failed to get PercentSetting attribute");
         return;
     }
-    char command_data_str[256];
-    // on_off light switch should support on_off cluster and identify cluster commands sending.
-    if (req_handle->command_path.mClusterId == OnOff::Id)
-    {
-        strcpy(command_data_str, "{}");
+
+    esp_matter_attr_val_t val = esp_matter_invalid(NULL);
+    attribute::get_val(attribute, &val);
+
+    // Toggle: if running, turn off; if off, turn on at DEFAULT_FAN_SPEED
+    if (val.val.u8 > 0) {
+        val.val.u8 = 0;
+    } else {
+        val.val.u8 = DEFAULT_FAN_SPEED;
     }
-    else if (req_handle->command_path.mClusterId == LevelControl::Id)
-    {
-        LevelControl::Commands::Step::Type *stepCommand = (LevelControl::Commands::Step::Type *)req_handle->request_data;
-        sprintf(command_data_str, "{\"0:U8\": %d, \"1:U8\": %d, \"2:U16\": 0, \"3:U8\": 0, \"4:U8\": 0}", (uint8_t)stepCommand->stepMode, stepCommand->stepSize);
-    }
-    else if (req_handle->command_path.mClusterId == Identify::Id)
-    {
-        if (req_handle->command_path.mCommandId == Identify::Commands::Identify::Id)
-        {
-            if (((char *)req_handle->request_data)[0] != 1)
-            {
-                ESP_LOGE(TAG, "Number of parameters error");
-                return;
+
+    attribute::update(endpoint_id, cluster_id, attribute_id, &val);
+}
+
+esp_err_t app_driver_attribute_update(app_driver_handle_t driver_handle, uint16_t endpoint_id, uint32_t cluster_id,
+                                      uint32_t attribute_id, esp_matter_attr_val_t *val)
+{
+    esp_err_t err = ESP_OK;
+    if (endpoint_id == fan_endpoint_id) {
+        if (cluster_id == FanControl::Id) {
+            if (attribute_id == FanControl::Attributes::PercentSetting::Id) {
+                // Matter percent setting is a nullable uint8 (0 to 100)
+                uint8_t speed = val->val.u8;
+                err = app_driver_fan_set_speed(speed);
+                
+                // Also update the PercentCurrent attribute to match
+                if (err == ESP_OK) {
+                    esp_matter_attr_val_t current_val = esp_matter_uint8(speed);
+                    attribute::update(endpoint_id, FanControl::Id, FanControl::Attributes::PercentCurrent::Id, &current_val);
+                }
             }
-            sprintf(command_data_str, "{\"0:U16\": %ld}", strtoul((const char *)(req_handle->request_data) + 1, NULL, 16));
-        }
-        else
-        {
-            ESP_LOGE(TAG, "Unsupported command");
-            return;
         }
     }
-    else
-    {
-        ESP_LOGE(TAG, "Unsupported cluster: %ld", req_handle->command_path.mClusterId);
-        return;
-    }
-
-    client::interaction::invoke::send_request(NULL,
-                                              peer_device,
-                                              req_handle->command_path,
-                                              command_data_str,
-                                              send_command_success_callback,
-                                              send_command_failure_callback,
-                                              chip::NullOptional);
+    return err;
 }
 
-void app_driver_client_group_invoke_command_callback(uint8_t fabric_index, client::request_handle_t *req_handle, void *priv_data)
+esp_err_t app_driver_fan_set_defaults(uint16_t endpoint_id)
 {
-    if (req_handle->type != esp_matter::client::INVOKE_CMD)
-    {
-        return;
-    }
-    char command_data_str[32];
-    // on_off light switch should support on_off cluster and identify cluster commands sending.
-    if (req_handle->command_path.mClusterId == OnOff::Id)
-    {
-        strcpy(command_data_str, "{}");
-    }
-    else if (req_handle->command_path.mClusterId == LevelControl::Id)
-    {
-        strcpy(command_data_str, "{}");
-    }
-    else if (req_handle->command_path.mClusterId == Identify::Id)
-    {
-        if (req_handle->command_path.mCommandId == Identify::Commands::Identify::Id)
-        {
-            if (((char *)req_handle->request_data)[0] != 1)
-            {
-                ESP_LOGE(TAG, "Number of parameters error");
-                return;
-            }
-            sprintf(command_data_str, "{\"0:U16\": %ld}",
-                    strtoul((const char *)(req_handle->request_data) + 1, NULL, 16));
-        }
-        else
-        {
-            ESP_LOGE(TAG, "Unsupported command");
-            return;
-        }
-    }
-    else
-    {
-        ESP_LOGE(TAG, "Unsupported cluster: %ld", req_handle->command_path.mClusterId);
-        return;
-    }
+    esp_err_t err = ESP_OK;
+    esp_matter_attr_val_t val = esp_matter_invalid(NULL);
 
-    client::interaction::invoke::send_group_request(fabric_index, req_handle->command_path, command_data_str);
+    attribute_t *attribute = attribute::get(endpoint_id, FanControl::Id, FanControl::Attributes::PercentSetting::Id);
+    if (attribute) {
+        attribute::get_val(attribute, &val);
+        err = app_driver_fan_set_speed(val.val.u8);
+    }
+    return err;
 }
 
-static void swap_dimmer_direction() 
+app_driver_handle_t app_driver_fan_init()
 {
-    // Swap the direction of the Step Command
-    //
-    if(current_step_direction == LevelControl::StepModeEnum::kUp) 
-    {
-        current_step_direction = LevelControl::StepModeEnum::kDown;
+    // 1. Configure LEDC Timer
+    ledc_timer_config_t ledc_timer = {
+        .speed_mode       = PWM_LEDC_MODE,
+        .duty_resolution  = PWM_LEDC_RESOLUTION,
+        .timer_num        = PWM_LEDC_TIMER,
+        .freq_hz          = PWM_LEDC_FREQ,
+        .clk_cfg          = LEDC_AUTO_CLK
+    };
+    
+    esp_err_t err = ledc_timer_config(&ledc_timer);
+    if (err != ESP_OK) {
+        ESP_LOGE(TAG, "LEDC timer config failed: %s", esp_err_to_name(err));
+        return NULL;
     }
-    else 
-    {
-        current_step_direction = LevelControl::StepModeEnum::kUp;
+
+    // 2. Configure LEDC Channel
+    ledc_channel_config_t ledc_channel = {
+        .gpio_num       = PWM_FAN_GPIO,
+        .speed_mode     = PWM_LEDC_MODE,
+        .channel        = PWM_LEDC_CHANNEL,
+        .intr_type      = LEDC_INTR_DISABLE,
+        .timer_sel      = PWM_LEDC_TIMER,
+        .duty           = 0,
+        .hpoint         = 0
+    };
+
+    err = ledc_channel_config(&ledc_channel);
+    if (err != ESP_OK) {
+        ESP_LOGE(TAG, "LEDC channel config failed: %s", esp_err_to_name(err));
+        return NULL;
     }
 
-    ESP_LOGI(TAG, "Dimmer Direction is now: %d", (int)current_step_direction);
+    ESP_LOGI(TAG, "Noctua Fan LEDC PWM initialized at 25kHz on GPIO %d", PWM_FAN_GPIO);
+    return (app_driver_handle_t)1; // Return non-null handle to indicate success
 }
 
-static void app_driver_button_press_up_cb(void *arg, void *data)
-{
-    ESP_LOGI(TAG, "Button Press Up");
-
-    if (iot_button_get_ticks_time((button_handle_t)arg) < 1000)
-    {
-        ESP_LOGI(TAG, "Single Click");
-        client::request_handle_t req_handle;
-        req_handle.type = esp_matter::client::INVOKE_CMD;
-        req_handle.command_path.mClusterId = OnOff::Id;
-        req_handle.command_path.mCommandId = OnOff::Commands::Toggle::Id;
-
-        lock::chip_stack_lock(portMAX_DELAY);
-        client::cluster_update(switch_endpoint_id, &req_handle);
-        lock::chip_stack_unlock();
-    }
-    else
-    {
-        ESP_LOGI(TAG, "Long Press");
-        swap_dimmer_direction();
-    }
-}
-
-static void app_driver_button_dimming_cb(void *arg, void *data)
-{
-    ESP_LOGI(TAG, "Long Press Hold");
-
-    uint16_t hold_count = iot_button_get_long_press_hold_cnt((button_handle_t)arg);
-    uint32_t hold_time = iot_button_get_ticks_time((button_handle_t)arg);
-
-    ESP_LOGI(TAG, "Long Press Hold Count: %d", hold_count);
-    ESP_LOGI(TAG, "Long Press Hold Time: %ld", hold_time);
-
-    LevelControl::Commands::Step::Type stepCommand;
-    stepCommand.stepMode = current_step_direction;
-    stepCommand.stepSize = 3;
-    stepCommand.transitionTime.SetNonNull(0);
-    stepCommand.optionsMask = static_cast<chip::BitMask<chip::app::Clusters::LevelControl::LevelControlOptions>>(0U);
-    stepCommand.optionsOverride = static_cast<chip::BitMask<chip::app::Clusters::LevelControl::LevelControlOptions>>(0U);
-
-    client::request_handle_t req_handle;
-    req_handle.type = esp_matter::client::INVOKE_CMD;
-    req_handle.command_path.mClusterId = LevelControl::Id;
-    req_handle.command_path.mCommandId = LevelControl::Commands::Step::Id;
-    req_handle.request_data = &stepCommand;
-
-    lock::chip_stack_lock(portMAX_DELAY);
-    client::cluster_update(switch_endpoint_id, &req_handle);
-    lock::chip_stack_unlock();
-}
-
-static void app_driver_button_long_press_up_cb(void *arg, void *data)
-{
-    ESP_LOGI(TAG, "Long Press Up");
-    swap_dimmer_direction();
-}
-
-static void app_driver_button_long_press_start_cb(void *arg, void *data)
-{
-    ESP_LOGI(TAG, "Long Press Started");
-}
-
-app_driver_handle_t app_driver_switch_init()
+app_driver_handle_t app_driver_button_init()
 {
     button_config_t config;
     memset(&config, 0, sizeof(button_config_t));
 
     config.type = BUTTON_TYPE_GPIO;
-    config.gpio_button_config.gpio_num = GPIO_NUM_2;
-    config.gpio_button_config.active_level = 1;
-
-    // To enable powersafe, a setting must be set first via menuconfig
-    // config.gpio_button_config.enable_power_save = true;
+    config.gpio_button_config.gpio_num = GPIO_NUM_2; // Changed back to GPIO 2 for consistency with original repo
+    config.gpio_button_config.active_level = 1;      // Active high (1)
 
     button_handle_t handle = iot_button_create(&config);
+    if (!handle) {
+        ESP_LOGE(TAG, "Failed to create button device");
+        return NULL;
+    }
 
-    ESP_ERROR_CHECK(iot_button_register_cb(handle, BUTTON_PRESS_UP, app_driver_button_press_up_cb, NULL));
-    ESP_ERROR_CHECK(iot_button_register_cb(handle, BUTTON_LONG_PRESS_START, app_driver_button_long_press_start_cb, NULL));
-    ESP_ERROR_CHECK(iot_button_register_cb(handle, BUTTON_LONG_PRESS_HOLD, app_driver_button_dimming_cb, NULL));
-
-    // This event never seems to get raised.
-    ESP_ERROR_CHECK(iot_button_register_cb(handle, BUTTON_LONG_PRESS_UP, app_driver_button_long_press_up_cb, NULL));
-
-    /* Other initializations */
-    client::set_request_callback(app_driver_client_invoke_command_callback,
-                                 app_driver_client_group_invoke_command_callback, NULL);
+    esp_err_t err = iot_button_register_cb(handle, BUTTON_PRESS_DOWN, app_driver_button_toggle_cb, NULL);
+    if (err != ESP_OK) {
+        ESP_LOGE(TAG, "Failed to register button callback");
+        return NULL;
+    }
 
     return (app_driver_handle_t)handle;
 }
