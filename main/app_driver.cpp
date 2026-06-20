@@ -120,7 +120,7 @@ esp_err_t app_driver_attribute_post_update(app_driver_handle_t driver_handle, ui
                 // Update FanMode to match PercentSetting (On if speed > 0, Off if speed == 0)
                 // In Matter FanControl: 0 is Off, 4 is On (kOn)
                 uint8_t mode = (speed > 0) ? 4 : 0;
-                esp_matter_attr_val_t mode_val = esp_matter_enum(mode);
+                esp_matter_attr_val_t mode_val = esp_matter_enum8(mode);
                 temp_err = attribute::update(endpoint_id, FanControl::Id, FanControl::Attributes::FanMode::Id, &mode_val);
                 if (temp_err != ESP_OK) {
                     ESP_LOGE(TAG, "Failed to update FanMode: %s", esp_err_to_name(temp_err));
