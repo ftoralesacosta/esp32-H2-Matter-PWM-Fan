@@ -148,6 +148,7 @@ app_driver_handle_t app_driver_fan_init()
 {
     // Release the pin from JTAG/strapping and route it to the GPIO matrix
     gpio_reset_pin(PWM_FAN_GPIO);
+    gpio_set_direction(PWM_FAN_GPIO, GPIO_MODE_OUTPUT);
 
     // 1. Configure LEDC Timer
     ledc_timer_config_t ledc_timer = {
