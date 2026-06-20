@@ -1,0 +1,108 @@
+      |         ^~~~~~~
+/Users/fernando/Projects/esp32-H2/esp-idf/components/driver/uart/include/esp_private/uhci.h:27:9: note: '#pragma message: Any use by unauthorized parties is at their own risk.'
+   27 | #pragma message("Any use by unauthorized parties is at their own risk.")
+      |         ^~~~~~~
+/Users/fernando/Projects/esp32-H2/esp-idf/components/driver/uart/include/esp_private/uhci.h:28:9: note: '#pragma message: This file is not maintained for this version; external bug reports or feature requests will NOT be accepted.'
+   28 | #pragma message("This file is not maintained for this version; external bug reports or feature requests will NOT be accepted.")
+      |         ^~~~~~~
+/Users/fernando/Projects/esp32-H2/esp-idf/components/driver/uart/include/esp_private/uhci.h:29:9: note: '#pragma message: For formal UHCI functionality, please upgrade to version v5.3 or later.'
+   29 | #pragma message("For formal UHCI functionality, please upgrade to version v5.3 or later.")
+      |         ^~~~~~~
+[1015/1559] Performing configure step for 'bootloader'-- Found Git: /usr/bin/git (found version "2.39.3 (Apple Git-146)")
+-- The C compiler identification is GNU 12.2.0
+-- The CXX compiler identification is GNU 12.2.0
+-- The ASM compiler identification is GNU
+-- Found assembler: /Users/fernando/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20250801/riscv32-esp-elf/bin/riscv32-esp-elf-gcc
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /Users/fernando/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20250801/riscv32-esp-elf/bin/riscv32-esp-elf-gcc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /Users/fernando/.espressif/tools/riscv32-esp-elf/esp-12.2.0_20250801/riscv32-esp-elf/bin/riscv32-esp-elf-g++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Building ESP-IDF components for target esp32h2
+-- Project sdkconfig file /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/sdkconfig
+-- Looking for sys/types.h
+-- Looking for sys/types.h - found
+-- Looking for stdint.h
+-- Looking for stdint.h - found
+-- Looking for stddef.h
+-- Looking for stddef.h - found
+-- Check size of time_t
+-- Check size of time_t - done
+-- Adding linker script /Users/fernando/Projects/esp32-H2/esp-idf/components/soc/esp32h2/ld/esp32h2.peripherals.ld
+-- App "bootloader" version: 4b1ae71
+-- Adding linker script /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_rom/esp32h2/ld/esp32h2.rom.ld
+-- Adding linker script /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_rom/esp32h2/ld/esp32h2.rom.api.ld
+-- Adding linker script /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_rom/esp32h2/ld/esp32h2.rom.libgcc.ld
+-- Adding linker script /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_rom/esp32h2/ld/esp32h2.rom.newlib.ld
+-- Adding linker script /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_rom/esp32h2/ld/esp32h2.rom.wdt.ld
+-- Adding linker script /Users/fernando/Projects/esp32-H2/esp-idf/components/bootloader/subproject/main/ld/esp32h2/bootloader.ld
+-- Adding linker script /Users/fernando/Projects/esp32-H2/esp-idf/components/bootloader/subproject/main/ld/esp32h2/bootloader.rom.ld
+-- Components: bootloader bootloader_support efuse esp_app_format esp_common esp_hw_support esp_rom esp_system esptool_py freertos hal log main micro-ecc newlib partition_table riscv soc spi_flash
+-- Component paths: /Users/fernando/Projects/esp32-H2/esp-idf/components/bootloader /Users/fernando/Projects/esp32-H2/esp-idf/components/bootloader_support /Users/fernando/Projects/esp32-H2/esp-idf/components/efuse /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_app_format /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_common /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_hw_support /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_rom /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_system /Users/fernando/Projects/esp32-H2/esp-idf/components/esptool_py /Users/fernando/Projects/esp32-H2/esp-idf/components/freertos /Users/fernando/Projects/esp32-H2/esp-idf/components/hal /Users/fernando/Projects/esp32-H2/esp-idf/components/log /Users/fernando/Projects/esp32-H2/esp-idf/components/bootloader/subproject/main /Users/fernando/Projects/esp32-H2/esp-idf/components/bootloader/subproject/components/micro-ecc /Users/fernando/Projects/esp32-H2/esp-idf/components/newlib /Users/fernando/Projects/esp32-H2/esp-idf/components/partition_table /Users/fernando/Projects/esp32-H2/esp-idf/components/riscv /Users/fernando/Projects/esp32-H2/esp-idf/components/soc /Users/fernando/Projects/esp32-H2/esp-idf/components/spi_flash
+-- Configuring done (13.2s)
+-- Generating done (0.6s)
+-- Build files have been written to: /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/build/bootloader
+[1056/1559] Building C object esp-idf/bt/CM...t.dir/common/ble_log/ble_log_uhci_out.c.objIn file included from /Users/fernando/Projects/esp32-H2/esp-idf/components/bt/common/ble_log/include/ble_log/ble_log_uhci_out.h:11,
+                 from /Users/fernando/Projects/esp32-H2/esp-idf/components/bt/common/ble_log/ble_log_uhci_out.c:6:
+/Users/fernando/Projects/esp32-H2/esp-idf/components/driver/uart/include/esp_private/uhci.h:26:9: note: '#pragma message: Disclaimer: This header is intended for internal use and authorized users only.'
+   26 | #pragma message("Disclaimer: This header is intended for internal use and authorized users only.")
+      |         ^~~~~~~
+/Users/fernando/Projects/esp32-H2/esp-idf/components/driver/uart/include/esp_private/uhci.h:27:9: note: '#pragma message: Any use by unauthorized parties is at their own risk.'
+   27 | #pragma message("Any use by unauthorized parties is at their own risk.")
+      |         ^~~~~~~
+/Users/fernando/Projects/esp32-H2/esp-idf/components/driver/uart/include/esp_private/uhci.h:28:9: note: '#pragma message: This file is not maintained for this version; external bug reports or feature requests will NOT be accepted.'
+   28 | #pragma message("This file is not maintained for this version; external bug reports or feature requests will NOT be accepted.")
+      |         ^~~~~~~
+/Users/fernando/Projects/esp32-H2/esp-idf/components/driver/uart/include/esp_private/uhci.h:29:9: note: '#pragma message: For formal UHCI functionality, please upgrade to version v5.3 or later.'
+   29 | #pragma message("For formal UHCI functionality, please upgrade to version v5.3 or later.")
+      |         ^~~~~~~
+[107/108] Generating binary image from built executableesptool.py v4.11.0
+Creating esp32h2 image...
+Merged 2 ELF sections
+Successfully created esp32h2 image.
+Generated /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/build/bootloader/bootloader.bin
+[108/108] cd /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/build/bootloader/esp-idf/es...ader 0x0 /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/build/bootloader/bootloader.binBootloader binary size 0x5510 bytes. 0x6af0 bytes (56%) free.
+[1279/1559] Building CXX object esp-idf/esp..._idf_esp_matter.dir/esp_matter_core.cpp.obj/Users/fernando/Projects/esp32-H2/esp-matter/components/esp_matter/esp_matter_core.cpp: In function 'esp_err_t esp_matter::start(event_callback_t, intptr_t)':
+/Users/fernando/Projects/esp32-H2/esp-matter/components/esp_matter/esp_matter_core.cpp:391:35: warning: ignoring returned value of type 'CHIP_ERROR' {aka 'chip::ChipError'}, declared with attribute 'nodiscard' [-Wunused-result]
+  391 |         PlatformMgr().ScheduleWork([](intptr_t) {
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~
+  392 |             chip::app::DnssdServer::Instance().StartServer();
+      |             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  393 |         },
+      |         ~~
+  394 |         reinterpret_cast<intptr_t>(nullptr));
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from /Users/fernando/Projects/esp32-H2/esp-matter/connectedhomeip/connectedhomeip/src/include/platform/CHIPDeviceLayer.h:31,
+                 from /Users/fernando/Projects/esp32-H2/esp-matter/connectedhomeip/connectedhomeip/src/app/CASESessionManager.h:28,
+                 from /Users/fernando/Projects/esp32-H2/esp-matter/components/esp_matter/esp_matter_core.h:17,
+                 from /Users/fernando/Projects/esp32-H2/esp-matter/components/esp_matter/data_model/legacy/esp_matter_endpoint_impl.h:19,
+                 from /Users/fernando/Projects/esp32-H2/esp-matter/components/esp_matter/data_model/esp_matter_endpoint.h:20,
+                 from /Users/fernando/Projects/esp32-H2/esp-matter/components/esp_matter/esp_matter.h:31,
+                 from /Users/fernando/Projects/esp32-H2/esp-matter/components/esp_matter/esp_matter_core.cpp:17:
+/Users/fernando/Projects/esp32-H2/esp-matter/connectedhomeip/connectedhomeip/src/include/platform/PlatformManager.h:401:19: note: in call to 'CHIP_ERROR chip::DeviceLayer::PlatformManager::ScheduleWork(chip::DeviceLayer::AsyncWorkFunct, intptr_t)', declared here
+  401 | inline CHIP_ERROR PlatformManager::ScheduleWork(AsyncWorkFunct workFunct, intptr_t arg)
+      |                   ^~~~~~~~~~~~~~~
+In file included from /Users/fernando/Projects/esp32-H2/esp-matter/connectedhomeip/connectedhomeip/src/lib/core/TLVCommon.h:30,
+                 from /Users/fernando/Projects/esp32-H2/esp-matter/connectedhomeip/connectedhomeip/src/lib/core/TLV.h:30,
+                 from /Users/fernando/Projects/esp32-H2/esp-matter/connectedhomeip/connectedhomeip/src/lib/support/attribute-storage-null-handling.h:21,
+                 from /Users/fernando/Projects/esp32-H2/esp-matter/connectedhomeip/connectedhomeip/src/app/data-model/Nullable.h:21,
+                 from /Users/fernando/Projects/esp32-H2/esp-matter/components/esp_matter/data_model/esp_matter_attribute_utils.h:21,
+                 from /Users/fernando/Projects/esp32-H2/esp-matter/components/esp_matter/data_model/esp_matter_data_model.h:17,
+                 from /Users/fernando/Projects/esp32-H2/esp-matter/components/esp_matter/data_model/legacy/esp_matter_attribute_impl.h:17,
+                 from /Users/fernando/Projects/esp32-H2/esp-matter/components/esp_matter/data_model/esp_matter_attribute.h:20,
+                 from /Users/fernando/Projects/esp32-H2/esp-matter/components/esp_matter/esp_matter.h:27:
+/Users/fernando/Projects/esp32-H2/esp-matter/connectedhomeip/connectedhomeip/src/lib/core/CHIPError.h:503:7: note: 'CHIP_ERROR' {aka 'chip::ChipError'} declared here
+  503 | using CHIP_ERROR = ::chip::ChipError;
+      |       ^~~~~~~~~~
+[1361/1559] Building CXX object esp-idf/esp_matter/CMakeFiles/__idf_esp_matter.dir/Users/...onnectedhomeip/connectedhomeip/src/app/clusters/door-lock-server/door-lock-server.cpp.obj/Users/fernando/Projects/esp32-H2/esp-matter/connectedhomeip/connectedhomeip/src/app/clusters/door-lock-server/door-lock-server.cpp: In member function 'bool DoorLockServer::HandleRemoteLockOperation(chip::app::CommandHandler*, const chip::app::ConcreteCommandPath&, chip::app::Clusters::DoorLock::LockOperationTypeEnum, RemoteLockOpHandler, const chip::Optional<chip::Span<const unsigned char> >&)':
+/Users/fernando/Projects/esp32-H2/esp-matter/connectedhomeip/connectedhomeip/src/app/clusters/door-lock-server/door-lock-server.cpp:3743:38: warning: '*(short unsigned int*)((char*)&pinCredIdx + offsetof(chip::Optional<short unsigned int>,chip::Optional<short unsigned int>::mValueHolder.chip::Optional<short unsigned int>::ValueHolder::<unnamed>.chip::Optional<short unsigned int>::TrivialDestructor::mValue))' may be used uninitialized [-Wmaybe-uninitialized]
+ 3743 |         foundCred[0].credentialIndex = pinCredIdx.Value();
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~
+/Users/fernando/Projects/esp32-H2/esp-matter/connectedhomeip/connectedhomeip/src/app/clusters/door-lock-server/door-lock-server.cpp:3628:24: note: '*(short unsigned int*)((char*)&pinCredIdx + offsetof(chip::Optional<short unsigned int>,chip::Optional<short unsigned int>::mValueHolder.chip::Optional<short unsigned int>::ValueHolder::<unnamed>.chip::Optional<short unsigned int>::TrivialDestructor::mValue))' was declared here
+ 3628 |     Optional<uint16_t> pinCredIdx; // Will get set to a value if the PIN is one we know about.
+      |                        ^~~~~~~~~~
