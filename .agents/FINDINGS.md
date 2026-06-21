@@ -97,11 +97,14 @@ We have investigated an issue where the device disconnects shortly after pairing
 
 ### C. Active Hypotheses for the Proximity Failures
 
-1. **Conducted EMI / Ground Noise (PRIMARY SUSPECT):** 
-   * *The Mechanism:* Although the USB-PD wall block and battery power break the laptop ground loop, the ESP still shares a physical GND wire with the 12V wall-powered fan board. The brushless DC fan motor generates significant high-frequency electrical switching noise (EMI) on the shared GND and PWM lines. This noise travels directly into the ESP's ground plane, swamping the onboard ceramic antenna's RF counterpoise and **blinding the 2.4GHz receiver**. 
-   * *Why it fits:* The chip is fully powered and running the fan at 50% (1.7V on Pin 3), but because its receiver is blinded by the motor's conducted noise, it cannot hear the Apple TV's keep-alive packets or commands, leading to a permanent "No Response" lockout.
-   * *Verification Test:* Keep the ESP powered by the USB-PD wall block next to the Apple TV, but **unplug the 12V fan power supply from the wall** (so the fan is completely unpowered and silent). If the ESP/accessory remains online and responsive in HomeKit indefinitely, it **proves 100%** that conducted motor noise is swamping the radio.
-2. **Thread Stack / Supervision Timeouts:** The OpenThread stack running on the ESP-IDF might be failing its Child Supervision poll requests or losing its parent router lease due to minor packet loss, failing to re-attach properly.
+1. **Sleepy End Device (SED) vs Minimal End Device (MED) Issue (Active Investigation):**
+   * *The Theory:* The user suspects the device might be running as a Sleepy End Device (SED), turning off its receiver and failing to poll the parent router frequently enough, leading to HomeKit timeouts ("No Response").
+   * *Log Evidence:* In the previous successful log, the Matter stack explicitly printed: `Setting OpenThread device type to MINIMAL END DEVICE`. This indicates it is configured as an MED (Rx on when idle, not sleeping). However, we need to inspect the latest log to confirm if it is still running as an MED and if there are any polling or child table timeouts.
+2. **Conducted EMI / Ground Noise (Downgraded):**
+   * *Setup:* The user unplugged the 12V fan power supply from the wall completely, leaving the fan unpowered and silent (drawing 0 current, generating 0 noise).
+   * *Result:* The chip **still went to "No Response"** in HomeKit after a few minutes.
+   * *Status:* **Downgraded.** This proves that conducted motor/electrical noise from the fan is *not* the sole cause of the permanent "No Response" state, pointing towards a deeper Thread routing, parenting, or software stack issue.
+3. **Thread Stack / Supervision Timeouts:** The OpenThread stack running on the ESP-IDF might be failing its Child Supervision poll requests or losing its parent router lease, causing the parent to evict it from the child table, resulting in an orphaned state.
 
 ### D. Question: "Is it possible it connects via Bluetooth and Thread isn't working?"
 * **Answer:** **No, it is not possible for HomeKit control to run over Bluetooth.** 
