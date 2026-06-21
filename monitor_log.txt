@@ -1,379 +1,21 @@
 Executing action: flash
+Serial port /dev/cu.usbmodem101
+Connecting....
+Detecting chip type... ESP32-C6
 Running ninja in directory /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/build
 Executing "ninja flash"...
-[0/1] Re-running CMake...
--- Component directory /Users/fernando/Projects/esp32-H2/esp-matter/examples/common/blemesh_platform does not contain a CMakeLists.txt file. No component will be added
--- Component directory /Users/fernando/Projects/esp32-H2/esp-matter/examples/common/cmake_common does not contain a CMakeLists.txt file. No component will be added
--- Component directory /Users/fernando/Projects/esp32-H2/esp-matter/examples/common/external_platform does not contain a CMakeLists.txt file. No component will be added
--- Component directory /Users/fernando/Projects/esp32-H2/esp-matter/examples/common/manufacturing_data_provider does not contain a CMakeLists.txt file. No component will be added
--- Component directory /Users/fernando/Projects/esp32-H2/esp-matter/examples/common/relinker does not contain a CMakeLists.txt file. No component will be added
--- Component directory /Users/fernando/Projects/esp32-H2/esp-matter/examples/common/utils does not contain a CMakeLists.txt file. No component will be added
--- Building ESP-IDF components for target esp32c6
-NOTICE: Skipping optional dependency: espressif/mqtt
-NOTICE: Skipping optional dependency: espressif/esp_wifi_remote
-NOTICE: Skipping optional dependency: espressif/esp_hosted
-NOTICE: Processing 21 dependencies:
-NOTICE: [1/21] espressif/button (3.5.0)
-NOTICE: [2/21] espressif/cbor (0.6.1~4)
-NOTICE: [3/21] espressif/cmake_utilities (0.5.3)
-NOTICE: [4/21] espressif/esp_delta_ota (1.1.4)
-NOTICE: [5/21] espressif/esp_diag_data_store (1.1.0)
-NOTICE: [6/21] espressif/esp_diagnostics (1.3.3)
-NOTICE: [7/21] espressif/esp_encrypted_img (2.3.0)
-NOTICE: [8/21] espressif/esp_insights (1.3.3)
-NOTICE: [9/21] espressif/esp_secure_cert_mgr (2.9.2)
-NOTICE: [10/21] espressif/jsmn (1.1.0)
-NOTICE: [11/21] espressif/json_generator (1.1.2)
-NOTICE: [12/21] espressif/json_parser (1.0.3)
-NOTICE: [13/21] espressif/mdns (1.11.2)
-NOTICE: [14/21] espressif/rmaker_cmd_resp (1.0.0)
-NOTICE: [15/21] espressif/rmaker_common (1.8.3)
-NOTICE: [16/21] espressif/rmaker_common_events (1.0.0)
-NOTICE: [17/21] espressif/rmaker_console (1.0.0)
-NOTICE: [18/21] espressif/rmaker_system_ctrl (1.0.0)
-NOTICE: [19/21] espressif/rmaker_time_sync (1.0.0)
-NOTICE: [20/21] espressif/rmaker_work_queue (1.0.0)
-NOTICE: [21/21] idf (5.1.7)
--- Found Python3: /opt/homebrew/Frameworks/Python.framework/Versions/3.14/bin/python3.14 (found version "3.14.3") found components: Interpreter
-NOTICE: Skipping optional dependency: espressif/mqtt
-NOTICE: Skipping optional dependency: espressif/esp_wifi_remote
-NOTICE: Skipping optional dependency: espressif/esp_hosted
--- Project sdkconfig file /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/sdkconfig
-Loading defaults file /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/sdkconfig.defaults...
-Loading defaults file /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/sdkconfig.defaults.esp32c6...
-/Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/sdkconfig.defaults.esp32c6:10 CONFIG_BT_NIMBLE_HCI_EVT_BUF_SIZE was replaced with CONFIG_BT_NIMBLE_TRANSPORT_EVT_SIZE
--- Could NOT find Threads (missing: Threads_FOUND) 
--- USING O3
--- App "fan_controller" version: 1.0
--- Adding linker script /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/build/esp-idf/esp_system/ld/memory.ld
--- Adding linker script /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_system/ld/esp32c6/sections.ld.in
--- Adding linker script /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_rom/esp32c6/ld/esp32c6.rom.ld
--- Adding linker script /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_rom/esp32c6/ld/esp32c6.rom.api.ld
--- Adding linker script /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_rom/esp32c6/ld/esp32c6.rom.rvfp.ld
--- Adding linker script /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_rom/esp32c6/ld/esp32c6.rom.newlib.ld
--- Adding linker script /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_rom/esp32c6/ld/esp32c6.rom.version.ld
--- Adding linker script /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_rom/esp32c6/ld/esp32c6.rom.phy.ld
--- Adding linker script /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_rom/esp32c6/ld/esp32c6.rom.coexist.ld
--- Adding linker script /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_rom/esp32c6/ld/esp32c6.rom.net80211.ld
--- Adding linker script /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_rom/esp32c6/ld/esp32c6.rom.pp.ld
--- Adding linker script /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_rom/esp32c6/ld/esp32c6.rom.wdt.ld
--- Adding linker script /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_rom/esp32c6/ld/esp32c6.rom.newlib-normal.ld
--- Adding linker script /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_rom/esp32c6/ld/esp32c6.rom.heap.ld
--- Adding linker script /Users/fernando/Projects/esp32-H2/esp-idf/components/soc/esp32c6/ld/esp32c6.peripherals.ld
--- BUTTON: 3.5.0
--- Components: app_bridge app_reset app_trace app_update bootloader bootloader_support bt chip cmock console cxx driver efuse esp-tls esp_adc esp_app_format esp_coex esp_common esp_eth esp_event esp_gdbstub esp_hid esp_http_client esp_http_server esp_https_ota esp_https_server esp_hw_support esp_lcd esp_local_ctrl esp_matter esp_matter_bridge esp_matter_console esp_matter_controller esp_matter_ota_provider esp_matter_rainmaker esp_mm esp_netif esp_netif_stack esp_partition esp_phy esp_pm esp_psram esp_ringbuf esp_rom esp_system esp_timer esp_wifi espcoredump espressif__button espressif__cbor espressif__cmake_utilities espressif__esp_delta_ota espressif__esp_diag_data_store espressif__esp_diagnostics espressif__esp_encrypted_img espressif__esp_insights espressif__esp_secure_cert_mgr espressif__jsmn espressif__json_generator espressif__json_parser espressif__mdns espressif__rmaker_cmd_resp espressif__rmaker_common espressif__rmaker_common_events espressif__rmaker_console espressif__rmaker_system_ctrl espressif__rmaker_time_sync espressif__rmaker_work_queue esptool_py fatfs freertos hal heap http_parser idf_test ieee802154 json log lwip main mbedtls mqtt newlib nvs_flash openthread partition_table protobuf-c protocomm pthread riscv sdmmc soc spi_flash spiffs tcp_transport ulp unity usb vfs wear_levelling wifi_provisioning wpa_supplicant
--- Component paths: /Users/fernando/Projects/esp32-H2/esp-matter/examples/common/app_bridge /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/components/app_reset /Users/fernando/Projects/esp32-H2/esp-idf/components/app_trace /Users/fernando/Projects/esp32-H2/esp-idf/components/app_update /Users/fernando/Projects/esp32-H2/esp-idf/components/bootloader /Users/fernando/Projects/esp32-H2/esp-idf/components/bootloader_support /Users/fernando/Projects/esp32-H2/esp-idf/components/bt /Users/fernando/Projects/esp32-H2/esp-matter/connectedhomeip/connectedhomeip/config/esp32/components/chip /Users/fernando/Projects/esp32-H2/esp-idf/components/cmock /Users/fernando/Projects/esp32-H2/esp-idf/components/console /Users/fernando/Projects/esp32-H2/esp-idf/components/cxx /Users/fernando/Projects/esp32-H2/esp-idf/components/driver /Users/fernando/Projects/esp32-H2/esp-idf/components/efuse /Users/fernando/Projects/esp32-H2/esp-idf/components/esp-tls /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_adc /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_app_format /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_coex /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_common /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_eth /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_event /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_gdbstub /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_hid /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_http_client /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_http_server /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_https_ota /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_https_server /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_hw_support /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_lcd /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_local_ctrl /Users/fernando/Projects/esp32-H2/esp-matter/components/esp_matter /Users/fernando/Projects/esp32-H2/esp-matter/components/esp_matter_bridge /Users/fernando/Projects/esp32-H2/esp-matter/components/esp_matter_console /Users/fernando/Projects/esp32-H2/esp-matter/components/esp_matter_controller /Users/fernando/Projects/esp32-H2/esp-matter/components/esp_matter_ota_provider /Users/fernando/Projects/esp32-H2/esp-matter/components/esp_matter_rainmaker /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_mm /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_netif /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_netif_stack /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_partition /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_phy /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_pm /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_psram /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_ringbuf /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_rom /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_system /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_timer /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_wifi /Users/fernando/Projects/esp32-H2/esp-idf/components/espcoredump /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/managed_components/espressif__button /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/managed_components/espressif__cbor /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/managed_components/espressif__cmake_utilities /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/managed_components/espressif__esp_delta_ota /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/managed_components/espressif__esp_diag_data_store /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/managed_components/espressif__esp_diagnostics /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/managed_components/espressif__esp_encrypted_img /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/managed_components/espressif__esp_insights /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/managed_components/espressif__esp_secure_cert_mgr /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/managed_components/espressif__jsmn /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/managed_components/espressif__json_generator /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/managed_components/espressif__json_parser /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/managed_components/espressif__mdns /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/managed_components/espressif__rmaker_cmd_resp /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/managed_components/espressif__rmaker_common /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/managed_components/espressif__rmaker_common_events /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/managed_components/espressif__rmaker_console /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/managed_components/espressif__rmaker_system_ctrl /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/managed_components/espressif__rmaker_time_sync /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/managed_components/espressif__rmaker_work_queue /Users/fernando/Projects/esp32-H2/esp-idf/components/esptool_py /Users/fernando/Projects/esp32-H2/esp-idf/components/fatfs /Users/fernando/Projects/esp32-H2/esp-idf/components/freertos /Users/fernando/Projects/esp32-H2/esp-idf/components/hal /Users/fernando/Projects/esp32-H2/esp-idf/components/heap /Users/fernando/Projects/esp32-H2/esp-idf/components/http_parser /Users/fernando/Projects/esp32-H2/esp-idf/components/idf_test /Users/fernando/Projects/esp32-H2/esp-idf/components/ieee802154 /Users/fernando/Projects/esp32-H2/esp-idf/components/json /Users/fernando/Projects/esp32-H2/esp-idf/components/log /Users/fernando/Projects/esp32-H2/esp-idf/components/lwip /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/main /Users/fernando/Projects/esp32-H2/esp-idf/components/mbedtls /Users/fernando/Projects/esp32-H2/esp-idf/components/mqtt /Users/fernando/Projects/esp32-H2/esp-idf/components/newlib /Users/fernando/Projects/esp32-H2/esp-idf/components/nvs_flash /Users/fernando/Projects/esp32-H2/esp-idf/components/openthread /Users/fernando/Projects/esp32-H2/esp-idf/components/partition_table /Users/fernando/Projects/esp32-H2/esp-idf/components/protobuf-c /Users/fernando/Projects/esp32-H2/esp-idf/components/protocomm /Users/fernando/Projects/esp32-H2/esp-idf/components/pthread /Users/fernando/Projects/esp32-H2/esp-idf/components/riscv /Users/fernando/Projects/esp32-H2/esp-idf/components/sdmmc /Users/fernando/Projects/esp32-H2/esp-idf/components/soc /Users/fernando/Projects/esp32-H2/esp-idf/components/spi_flash /Users/fernando/Projects/esp32-H2/esp-idf/components/spiffs /Users/fernando/Projects/esp32-H2/esp-idf/components/tcp_transport /Users/fernando/Projects/esp32-H2/esp-idf/components/ulp /Users/fernando/Projects/esp32-H2/esp-idf/components/unity /Users/fernando/Projects/esp32-H2/esp-idf/components/usb /Users/fernando/Projects/esp32-H2/esp-idf/components/vfs /Users/fernando/Projects/esp32-H2/esp-idf/components/wear_levelling /Users/fernando/Projects/esp32-H2/esp-idf/components/wifi_provisioning /Users/fernando/Projects/esp32-H2/esp-idf/components/wpa_supplicant
--- Configuring done (20.6s)
--- Generating done (0.9s)
--- Build files have been written to: /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/build
-[1/296] Building C object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/src/esp_openthread_lock.c.obj
-[2/296] Building C object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/src/port/esp_openthread_memory.c.obj
-[3/296] Building C object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/src/port/esp_openthread_logging.c.obj
-[4/296] Building C object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/src/port/esp_openthread_alarm.c.obj
-[5/296] Building C object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/src/esp_openthread_cli.c.obj
-[6/296] Building C object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/src/esp_openthread_task_queue.c.obj
-[7/296] Building C object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/src/esp_openthread_lwip_netif.c.obj
-[8/296] Building C object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/src/port/esp_openthread_misc.c.obj
-[9/296] Building C object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/src/port/esp_openthread_settings.c.obj
-[10/296] Building C object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/src/esp_openthread_netif_glue.c.obj
-[11/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/src/esp_openthread.cpp.obj
-[12/296] Building C object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/src/port/esp_openthread_spi_slave.c.obj
-[13/296] Building C object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/examples/platforms/utils/debug_uart.c.obj
-[14/296] Building C object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/src/port/esp_openthread_uart.c.obj
-[15/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/examples/platforms/utils/otns_utils.cpp.obj
-[16/296] Building C object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/src/port/esp_openthread_state.c.obj
-[17/296] Building C object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/examples/platforms/utils/uart_rtt.c.obj
-[18/296] Building C object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/examples/platforms/utils/settings_ram.c.obj
-[19/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/backbone_router_ftd_api.cpp.obj
-[20/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/border_agent_tracker_api.cpp.obj
-[21/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/border_agent_api.cpp.obj
-[22/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/ble_secure_api.cpp.obj
-[23/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/examples/platforms/utils/link_metrics.cpp.obj
-[24/296] Building C object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/src/port/esp_openthread_radio.c.obj
-[25/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/border_routing_api.cpp.obj
-[26/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/border_agent_txt_data_api.cpp.obj
-[27/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/channel_manager_api.cpp.obj
-[28/296] Building C object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/src/port/esp_openthread_udp.c.obj
-[29/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/channel_monitor_api.cpp.obj
-[30/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/examples/platforms/utils/mac_frame.cpp.obj
-[31/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/coap_secure_api.cpp.obj
-[32/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/commissioner_api.cpp.obj
-[33/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/dataset_updater_api.cpp.obj
-[34/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/src/esp_openthread_platform.cpp.obj
-[35/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/backbone_router_api.cpp.obj
-[36/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/error_api.cpp.obj
-[37/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/border_router_api.cpp.obj
-[38/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/child_supervision_api.cpp.obj
-[39/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/heap_api.cpp.obj
-[40/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/history_tracker_api.cpp.obj
-[41/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/crypto_api.cpp.obj
-[42/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/dataset_ftd_api.cpp.obj
-[43/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/diags_api.cpp.obj
-[44/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/dataset_api.cpp.obj
-[45/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/jam_detection_api.cpp.obj
-[46/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/coap_api.cpp.obj
-[47/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/joiner_api.cpp.obj
-[48/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/link_metrics_api.cpp.obj
-[49/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/mdns_api.cpp.obj
-[50/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/dns_api.cpp.obj
-[51/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/mesh_diag_api.cpp.obj
-[52/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/multi_radio_api.cpp.obj
-[53/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/dns_server_api.cpp.obj
-[54/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/netdata_publisher_api.cpp.obj
-[55/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/icmp6_api.cpp.obj
-[56/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/network_time_api.cpp.obj
-[57/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/instance_api.cpp.obj
-[58/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/ip6_api.cpp.obj
-[59/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/p2p_api.cpp.obj
-[60/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/logging_api.cpp.obj
-[61/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/link_raw_api.cpp.obj
-[62/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/random_crypto_api.cpp.obj
-[63/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/link_api.cpp.obj
-[64/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/random_noncrypto_api.cpp.obj
-[65/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/sntp_api.cpp.obj
-[66/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/srp_server_api.cpp.obj
-[67/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/nat64_api.cpp.obj
-[68/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/message_api.cpp.obj
-[69/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/netdata_api.cpp.obj
-[70/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/tcp_api.cpp.obj
-[71/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/tcp_ext_api.cpp.obj
-[72/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/trel_api.cpp.obj
-[73/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/netdiag_api.cpp.obj
-[74/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/verhoeff_checksum_api.cpp.obj
-[75/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/common/appender.cpp.obj
-[76/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/radio_stats_api.cpp.obj
-[77/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/common/binary_search.cpp.obj
-[78/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/common/bit_utils.cpp.obj
-[79/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/ping_sender_api.cpp.obj
-[80/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/common/data.cpp.obj
-[81/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/common/error.cpp.obj
-[82/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/server_api.cpp.obj
-[83/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/common/crc.cpp.obj
-[84/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/common/frame_data.cpp.obj
-[85/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/srp_client_buffers_api.cpp.obj
-[86/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/common/heap_string.cpp.obj
-[87/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/tasklet_api.cpp.obj
-[88/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/srp_client_api.cpp.obj
-[89/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/common/frame_builder.cpp.obj
-[90/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/common/preference.cpp.obj
-[91/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/common/heap_data.cpp.obj
-[92/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/udp_api.cpp.obj
-[93/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/common/offset_range.cpp.obj
-[94/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/common/random.cpp.obj
-[95/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/thread_ftd_api.cpp.obj
-[96/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/thread_api.cpp.obj
-[97/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/common/string.cpp.obj
-[98/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/common/heap.cpp.obj
-[99/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/common/trickle_timer.cpp.obj
-[100/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/common/tlvs.cpp.obj
-[101/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/common/log.cpp.obj
-[102/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/crypto/aes_ecb.cpp.obj
-[103/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/crypto/hkdf_sha256.cpp.obj
-[104/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/common/notifier.cpp.obj
-[105/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/crypto/aes_ccm.cpp.obj
-[106/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/common/time_ticker.cpp.obj
-[107/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/common/tasklet.cpp.obj
-[108/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/common/settings.cpp.obj
-[109/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/crypto/storage.cpp.obj
-[110/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/crypto/hmac_sha256.cpp.obj
-[111/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/crypto/mbedtls.cpp.obj
-[112/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/crypto/sha256.cpp.obj
-[113/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/mac/channel_mask.cpp.obj
-[114/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/common/timer.cpp.obj
-[115/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/common/message.cpp.obj
-[116/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/mac/link_raw.cpp.obj
-[117/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/mac/mac_filter.cpp.obj
-[118/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/common/uptime.cpp.obj
-[119/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/mac/mac_header_ie.cpp.obj
-[120/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/mac/mac_types.cpp.obj
-[121/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/crypto/crypto_platform.cpp.obj
-[122/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/mac/mac_frame.cpp.obj
-[123/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/mac/sub_mac_csl_receiver.cpp.obj
-[124/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/instance/instance.cpp.obj
-[125/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/mac/data_poll_handler.cpp.obj
-[126/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/mac/wakeup_tx_scheduler.cpp.obj
-[127/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/radio/ble_secure.cpp.obj
-[128/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/mac/sub_mac_wed.cpp.obj
-[129/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/mac/data_poll_sender.cpp.obj
-[130/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/radio/trel_interface.cpp.obj
-[131/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/radio/trel_link.cpp.obj
-[132/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/mac/mac_links.cpp.obj
-[133/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/radio/trel_packet.cpp.obj
-[134/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/radio/trel_peer.cpp.obj
-[135/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/radio/trel_peer_discoverer.cpp.obj
-[136/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/diags/factory_diags.cpp.obj
-[137/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/anycast_locator.cpp.obj
-[138/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/mac/sub_mac_callbacks.cpp.obj
-[139/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/mac/sub_mac.cpp.obj
-[140/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/mac/mac.cpp.obj
-[141/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/radio/radio_callbacks.cpp.obj
-[142/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/radio/radio.cpp.obj
-[143/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/radio/radio_platform.cpp.obj
-[144/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/announce_begin_server.cpp.obj
-[145/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/announce_sender.cpp.obj
-[146/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/child_supervision.cpp.obj
-[147/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/child.cpp.obj
-[148/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/address_resolver.cpp.obj
-[149/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/link_metrics.cpp.obj
-[150/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/link_metrics_types.cpp.obj
-[151/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/child_table.cpp.obj
-[152/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/csl_tx_scheduler.cpp.obj
-[153/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/energy_scan_server.cpp.obj
-[154/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/discover_scanner.cpp.obj
-[155/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/indirect_sender.cpp.obj
-[156/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/dua_manager.cpp.obj
-[157/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/key_manager.cpp.obj
-[158/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/mesh_forwarder_mtd.cpp.obj
-[159/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/mle_tlvs.cpp.obj
-[160/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/mle_types.cpp.obj
-[161/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/mle_p2p.cpp.obj
-[162/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/link_quality.cpp.obj
-[163/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/message_framer.cpp.obj
-[164/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/mesh_forwarder_ftd.cpp.obj
-[165/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/lowpan.cpp.obj
-[166/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/mesh_forwarder.cpp.obj
-[167/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/neighbor_table.cpp.obj
-[168/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/neighbor.cpp.obj
-[169/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/mlr_manager.cpp.obj
-[170/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/network_data_publisher.cpp.obj
-[171/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/network_data_tlvs.cpp.obj
-[172/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/network_data.cpp.obj
-[173/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/network_data_leader.cpp.obj
-[174/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/network_data_local.cpp.obj
-[175/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/peer.cpp.obj
-[176/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/network_data_notifier.cpp.obj
-[177/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/peer_table.cpp.obj
-[178/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/radio_selector.cpp.obj
-[179/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/network_diagnostic_tlvs.cpp.obj
-[180/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/mle_ftd.cpp.obj
-[181/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/network_data_leader_ftd.cpp.obj
-[182/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/thread_link_info.cpp.obj
-[183/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/network_data_types.cpp.obj
-[184/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/network_data_service.cpp.obj
-[185/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/time_sync_service.cpp.obj
-[186/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/version.cpp.obj
-[187/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/utils/channel_manager.cpp.obj
-[188/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/utils/channel_monitor.cpp.obj
-[189/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/utils/flash.cpp.obj
-[190/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/panid_query_server.cpp.obj
-[191/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/mle.cpp.obj
-[192/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/utils/heap.cpp.obj
-[193/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/utils/history_tracker.cpp.obj
-[194/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/utils/jam_detector.cpp.obj
-[195/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/utils/link_metrics_manager.cpp.obj
-[196/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/router.cpp.obj
-[197/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/utils/mesh_diag.cpp.obj
-[198/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/utils/otns.cpp.obj
-[199/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/utils/power_calibration.cpp.obj
-[200/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/network_diagnostic.cpp.obj
-[201/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/utils/verhoeff_checksum.cpp.obj
-[202/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/lib/spinel/example_vendor_hook.cpp.obj
-[203/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/src_match_controller.cpp.obj
-[204/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/utils/parse_cmdline.cpp.obj
-[205/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/lib/hdlc/hdlc.cpp.obj
-[206/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/thread_netif.cpp.obj
-[207/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/tmf.cpp.obj
-[208/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/router_table.cpp.obj
-[209/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/lib/spinel/logger.cpp.obj
-[210/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/lib/spinel/spinel_buffer.cpp.obj
-[211/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/uri_paths.cpp.obj
-[212/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/lib/spinel/spinel_helper.cpp.obj
-[213/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/lib/spinel/spinel_decoder.cpp.obj
-[214/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/lib/spinel/spinel_encoder.cpp.obj
-[215/296] Building C object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/lib/spinel/spinel.c.obj
-[216/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/backbone_router/backbone_tmf.cpp.obj
-[217/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/backbone_router/bbr_manager.cpp.obj
-[218/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/backbone_router/bbr_local.cpp.obj
-[219/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/backbone_router/multicast_listeners_table.cpp.obj
-[220/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/lib/spinel/spinel_driver.cpp.obj
-[221/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/lib/spinel/spinel_prop_codec.cpp.obj
-[222/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/backbone_router/ndproxy_table.cpp.obj
-[223/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/coap/coap_secure.cpp.obj
-[224/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/meshcop/announce_begin_client.cpp.obj
-[225/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/meshcop/border_agent_tracker.cpp.obj
-[226/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/meshcop/border_agent.cpp.obj
-[227/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/meshcop/commissioner.cpp.obj
-[228/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/utils/srp_client_buffers.cpp.obj
-[229/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/meshcop/dataset_updater.cpp.obj
-[230/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/utils/ping_sender.cpp.obj
-[231/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/meshcop/energy_scan_client.cpp.obj
-[232/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/meshcop/joiner.cpp.obj
-[233/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/lib/spinel/radio_spinel.cpp.obj
-[234/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/backbone_router/bbr_leader.cpp.obj
-[235/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/meshcop/border_agent_txt_data.cpp.obj
-[236/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/coap/coap_message.cpp.obj
-[237/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/meshcop/extended_panid.cpp.obj
-[238/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/meshcop/dataset_manager_ftd.cpp.obj
-[239/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/meshcop/panid_query_client.cpp.obj
-[240/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/coap/coap.cpp.obj
-[241/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/meshcop/dataset.cpp.obj
-[242/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/meshcop/tcat_agent.cpp.obj
-[243/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/meshcop/dataset_manager.cpp.obj
-[244/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/meshcop/meshcop.cpp.obj
-[245/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/meshcop/joiner_router.cpp.obj
-[246/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/meshcop/timestamp.cpp.obj
-[247/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/net/dns_dso.cpp.obj
-[248/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/net/dns_platform.cpp.obj
-[249/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/meshcop/meshcop_tlvs.cpp.obj
-[250/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/meshcop/meshcop_leader.cpp.obj
-[251/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/net/checksum.cpp.obj
-[252/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/net/dnssd.cpp.obj
-[253/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/net/dhcp6_types.cpp.obj
-[254/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/net/dnssd_server.cpp.obj
-[255/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/meshcop/network_name.cpp.obj
-[256/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/meshcop/secure_transport.cpp.obj
-[257/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/net/ip4_types.cpp.obj
-[258/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/net/ip6_headers.cpp.obj
-[259/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/net/dhcp6_server.cpp.obj
-[260/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/net/dhcp6_client.cpp.obj
-[261/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/net/mdns.cpp.obj
-[262/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/net/nd6.cpp.obj
-[263/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/net/nd_agent.cpp.obj
-[264/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/net/nat64_translator.cpp.obj
-[265/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/net/icmp6.cpp.obj
-[266/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/net/sntp_client.cpp.obj
-[267/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/net/srp_advertising_proxy.cpp.obj
-[268/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/net/socket.cpp.obj
-[269/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/net/srp_server.cpp.obj
-[270/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/net/ip6_address.cpp.obj
-[271/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/net/ip6_filter.cpp.obj
-[272/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/net/dns_client.cpp.obj
-[273/296] Building C object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/lib/platform/exit_code.c.obj
-[274/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/net/dns_types.cpp.obj
-[275/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/net/tcp6.cpp.obj
-[276/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/net/tcp6_ext.cpp.obj
-[277/296] Generating args.gn
-[278/296] Performing build step for 'bootloader'
+[1/10] Performing build step for 'bootloader'
 [1/1] cd /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/build/bootloader/esp-idf/esptool_py && /Users/fernando/.espressif/python_env/idf5.1_py3.12_env/bin/python /Users/fernando/Projects/esp32-H2/esp-idf/components/partition_table/check_sizes.py --offset 0xc000 bootloader 0x0 /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/build/bootloader/bootloader.bin
 Bootloader binary size 0x55c0 bytes. 0x6a40 bytes (55%) free.
-[279/296] No install step for 'bootloader'
-[280/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/net/ip6_mpl.cpp.obj
-[281/296] Completed 'bootloader'
-[282/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/net/ip6.cpp.obj
-[283/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/net/netif.cpp.obj
-[284/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/net/slaac_address.cpp.obj
-[285/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/net/udp6.cpp.obj
-[286/296] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/net/srp_client.cpp.obj
-[287/296] Performing build step for 'chip_gn'
-[0/1] Regenerating ninja files
+[2/10] No install step for 'bootloader'
+[3/10] Completed 'bootloader'
+[4/10] Performing build step for 'chip_gn'
 ninja: no work to do.
-[288/296] No install step for 'chip_gn'
-[289/296] Completed 'chip_gn'
-[290/296] Linking C static library esp-idf/openthread/libopenthread.a
-[291/296] Generating ld/sections.ld
-warning: default on the choice symbol SEC_CERT_DAC_PROVIDER (defined at /Users/fernando/Projects/esp32-H2/esp-matter/connectedhomeip/connectedhomeip/config/esp32/components/chip/Kconfig:852, /Users/fernando/Projects/esp32-H2/esp-matter/components/esp_matter/Kconfig:48) will have no effect, as defaults do not affect choice symbols
-warning: the choice symbol SEC_CERT_DAC_PROVIDER (defined at /Users/fernando/Projects/esp32-H2/esp-matter/connectedhomeip/connectedhomeip/config/esp32/components/chip/Kconfig:852, /Users/fernando/Projects/esp32-H2/esp-matter/components/esp_matter/Kconfig:48) is defined with a prompt outside the choice
-[292/296] Linking CXX executable fan_controller.elf
-[293/296] Generating binary image from built executable
-esptool.py v4.11.0
-Creating esp32c6 image...
-MMU page size not specified, set to 64 KB
-Merged 3 ELF sections
-Successfully created esp32c6 image.
-Generated /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/build/fan_controller.bin
-[294/296] cd /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/build/esp-idf/esptool_py && /Users/fernando/.espressif/python_env/idf5.1_py3.12_env/bin/python /Users/fernando/Projects/esp32-H2/esp-idf/components/partition_table/check_sizes.py --offset 0xc000 partition --type app /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/build/partition_table/partition-table.bin /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/build/fan_controller.bin
-fan_controller.bin binary size 0x18c700 bytes. Smallest app partition is 0x1e0000 bytes. 0x53900 bytes (17%) free.
-[294/296] cd /Users/fernando/Projects/esp32-H2/esp-idf/components/esptool_py && /opt/homebrew/bin/cmake -D IDF_PATH=/Users/fernando/Projects/esp32-H2/esp-idf -D "SERIAL_TOOL=/Users/fernando/.espressif/python_env/idf5.1_py3.12_env/bin/python;;/Users/fernando/Projects/esp32-H2/esp-idf/components/esptool_py/esptool/esptool.py;--chip;esp32c6" -D "SERIAL_TOOL_ARGS=--before=default_reset;--after=hard_reset;write_flash;@flash_args" -D WORKING_DIRECTORY=/Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/build -P /Users/fernando/Projects/esp32-H2/esp-idf/components/esptool_py/run_serial_tool.cmake
+[5/8] No install step for 'chip_gn'
+[6/8] Completed 'chip_gn'
+[7/8] cd /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/build/esp-idf/esptool_py && /Users/fernando/.espressif/python_env/idf5.1_py3.12_env/bin/python /Users/fernando/Projects/esp32-H2/esp-idf/components/partition_table/check_sizes.py --offset 0xc000 partition --type app /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/build/partition_table/partition-table.bin /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/build/fan_controller.bin
+fan_controller.bin binary size 0x1795a0 bytes. Smallest app partition is 0x1e0000 bytes. 0x66a60 bytes (21%) free.
+[7/8] cd /Users/fernando/Projects/esp32-H2/esp-idf/components/esptool_py && /opt/homebrew/bin/cmake -D IDF_PATH=/Users/fernando/Projects/esp32-H2/esp-idf -D "SERIAL_TOOL=/Users/fernando/.espressif/python_env/idf5.1_py3.12_env/bin/python;;/Users/fernando/Projects/esp32-H2/esp-idf/components/esptool_py/esptool/esptool.py;--chip;esp32c6" -D "SERIAL_TOOL_ARGS=--before=default_reset;--after=hard_reset;write_flash;@flash_args" -D WORKING_DIRECTORY=/Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/build -P /Users/fernando/Projects/esp32-H2/esp-idf/components/esptool_py/run_serial_tool.cmake
 esptool.py --chip esp32c6 -p /dev/cu.usbmodem101 -b 460800 --before=default_reset --after=hard_reset write_flash --flash_mode dio --flash_freq 80m --flash_size 4MB 0x0 bootloader/bootloader.bin 0x20000 fan_controller.bin 0xc000 partition_table/partition-table.bin 0x1d000 ota_data_initial.bin
 esptool.py v4.11.0
 Serial port /dev/cu.usbmodem101
@@ -392,95 +34,92 @@ Changing baud rate to 460800
 Changed.
 Configuring flash size...
 Flash will be erased from 0x00000000 to 0x00005fff...
-Flash will be erased from 0x00020000 to 0x001acfff...
+Flash will be erased from 0x00020000 to 0x00199fff...
 Flash will be erased from 0x0000c000 to 0x0000cfff...
 Flash will be erased from 0x0001d000 to 0x0001efff...
 SHA digest in image updated
-Compressed 21952 bytes to 13288...
+Compressed 21952 bytes to 13290...
 Writing at 0x00000000... (100 %)
-Wrote 21952 bytes (13288 compressed) at 0x00000000 in 0.2 seconds (effective 949.3 kbit/s)...
+Wrote 21952 bytes (13290 compressed) at 0x00000000 in 0.1 seconds (effective 1931.8 kbit/s)...
 Hash of data verified.
-Compressed 1623808 bytes to 975209...
+Compressed 1545632 bytes to 924684...
 Writing at 0x00020000... (1 %)
-Writing at 0x0002c97a... (3 %)
-Writing at 0x00036ba3... (5 %)
-Writing at 0x00043050... (6 %)
-Writing at 0x0004ef18... (8 %)
-Writing at 0x000587cd... (10 %)
-Writing at 0x0005e8a7... (11 %)
-Writing at 0x000647a0... (13 %)
-Writing at 0x0006b21f... (15 %)
-Writing at 0x000715e6... (16 %)
-Writing at 0x00077e74... (18 %)
-Writing at 0x0007e312... (20 %)
-Writing at 0x00084518... (21 %)
-Writing at 0x0008d75c... (23 %)
-Writing at 0x000932de... (25 %)
-Writing at 0x00099249... (26 %)
-Writing at 0x0009f617... (28 %)
-Writing at 0x000a60c4... (30 %)
-Writing at 0x000abcd2... (31 %)
-Writing at 0x000b1b8a... (33 %)
-Writing at 0x000b7fe5... (35 %)
-Writing at 0x000bdc50... (36 %)
-Writing at 0x000c413e... (38 %)
-Writing at 0x000cb660... (40 %)
-Writing at 0x000d0fca... (41 %)
-Writing at 0x000d6e08... (43 %)
-Writing at 0x000dd430... (45 %)
-Writing at 0x000e3eb3... (46 %)
-Writing at 0x000ea0fa... (48 %)
-Writing at 0x000f01e3... (50 %)
-Writing at 0x000f63a1... (51 %)
-Writing at 0x000fc360... (53 %)
-Writing at 0x00102801... (55 %)
-Writing at 0x00108b26... (56 %)
-Writing at 0x0010f02c... (58 %)
-Writing at 0x00114f4d... (60 %)
-Writing at 0x0011af73... (61 %)
-Writing at 0x00121d4b... (63 %)
-Writing at 0x00128a2d... (65 %)
-Writing at 0x0012ead8... (66 %)
-Writing at 0x00134d3d... (68 %)
-Writing at 0x0013b1ec... (70 %)
-Writing at 0x00141175... (71 %)
-Writing at 0x0014783b... (73 %)
-Writing at 0x0014d948... (75 %)
-Writing at 0x001537bb... (76 %)
-Writing at 0x001595d2... (78 %)
-Writing at 0x0015f1ba... (80 %)
-Writing at 0x0016558c... (81 %)
-Writing at 0x0016b624... (83 %)
-Writing at 0x001716ca... (85 %)
-Writing at 0x001776dd... (86 %)
-Writing at 0x0017d7f3... (88 %)
-Writing at 0x00183a0c... (90 %)
-Writing at 0x001895b5... (91 %)
-Writing at 0x0018f84d... (93 %)
-Writing at 0x001955b0... (95 %)
-Writing at 0x0019b5a6... (96 %)
-Writing at 0x001a17f6... (98 %)
-Writing at 0x001a8054... (100 %)
-Wrote 1623808 bytes (975209 compressed) at 0x00020000 in 5.6 seconds (effective 2312.7 kbit/s)...
+Writing at 0x0002c97e... (3 %)
+Writing at 0x00036ba7... (5 %)
+Writing at 0x00043049... (7 %)
+Writing at 0x0004ed35... (8 %)
+Writing at 0x000581e3... (10 %)
+Writing at 0x0005e2a0... (12 %)
+Writing at 0x00064175... (14 %)
+Writing at 0x0006ad33... (15 %)
+Writing at 0x00071115... (17 %)
+Writing at 0x00077978... (19 %)
+Writing at 0x0007de84... (21 %)
+Writing at 0x00084035... (22 %)
+Writing at 0x0008c927... (24 %)
+Writing at 0x00092a20... (26 %)
+Writing at 0x000989da... (28 %)
+Writing at 0x0009ed1f... (29 %)
+Writing at 0x000a5838... (31 %)
+Writing at 0x000ab430... (33 %)
+Writing at 0x000b12b9... (35 %)
+Writing at 0x000b77f2... (36 %)
+Writing at 0x000bd424... (38 %)
+Writing at 0x000c38fc... (40 %)
+Writing at 0x000cae28... (42 %)
+Writing at 0x000d0850... (43 %)
+Writing at 0x000d6579... (45 %)
+Writing at 0x000dcb26... (47 %)
+Writing at 0x000e3684... (49 %)
+Writing at 0x000e9769... (50 %)
+Writing at 0x000ef945... (52 %)
+Writing at 0x000f5bb7... (54 %)
+Writing at 0x000fbb2e... (56 %)
+Writing at 0x00101efe... (57 %)
+Writing at 0x00108288... (59 %)
+Writing at 0x0010e6aa... (61 %)
+Writing at 0x00114748... (63 %)
+Writing at 0x0011a717... (64 %)
+Writing at 0x0012146f... (66 %)
+Writing at 0x001280d3... (68 %)
+Writing at 0x0012e248... (70 %)
+Writing at 0x00134511... (71 %)
+Writing at 0x0013a806... (73 %)
+Writing at 0x00140853... (75 %)
+Writing at 0x00146f0a... (77 %)
+Writing at 0x0014cff0... (78 %)
+Writing at 0x00152d01... (80 %)
+Writing at 0x00158e0d... (82 %)
+Writing at 0x0015ee89... (84 %)
+Writing at 0x00164f1e... (85 %)
+Writing at 0x0016af41... (87 %)
+Writing at 0x00171281... (89 %)
+Writing at 0x00176dae... (91 %)
+Writing at 0x0017d026... (92 %)
+Writing at 0x00182c8f... (94 %)
+Writing at 0x00188d05... (96 %)
+Writing at 0x0018f048... (98 %)
+Writing at 0x0019579f... (100 %)
+Wrote 1545632 bytes (924684 compressed) at 0x00020000 in 3.6 seconds (effective 3482.1 kbit/s)...
 Hash of data verified.
 Compressed 3072 bytes to 181...
 Writing at 0x0000c000... (100 %)
-Wrote 3072 bytes (181 compressed) at 0x0000c000 in 0.0 seconds (effective 599.6 kbit/s)...
+Wrote 3072 bytes (181 compressed) at 0x0000c000 in 0.0 seconds (effective 615.1 kbit/s)...
 Hash of data verified.
 Compressed 8192 bytes to 31...
 Writing at 0x0001d000... (100 %)
-Wrote 8192 bytes (31 compressed) at 0x0001d000 in 0.1 seconds (effective 1236.6 kbit/s)...
+Wrote 8192 bytes (31 compressed) at 0x0001d000 in 0.0 seconds (effective 1638.5 kbit/s)...
 Hash of data verified.
 
 Leaving...
 Hard resetting via RTS pin...
 Executing action: monitor
 Running idf_monitor in directory /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan
-Executing "/Users/fernando/.espressif/python_env/idf5.1_py3.12_env/bin/python /Users/fernando/Projects/esp32-H2/esp-idf/tools/idf_monitor.py -p /dev/cu.usbmodem101 -b 115200 --toolchain-prefix riscv32-esp-elf- --target esp32c6 --revision 0 --decode-panic backtrace /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/build/fan_controller.elf -m '/Users/fernando/.espressif/python_env/idf5.1_py3.12_env/bin/python' '/Users/fernando/Projects/esp32-H2/esp-idf/tools/idf.py' '-p' '/dev/cu.usbmodem101'"...
+Executing "/Users/fernando/.espressif/python_env/idf5.1_py3.12_env/bin/python /Users/fernando/Projects/esp32-H2/esp-idf/tools/idf_monitor.py -p /dev/cu.usbmodem101 -b 115200 --toolchain-prefix riscv32-esp-elf- --target esp32c6 --revision 0 --decode-panic backtrace /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/build/fan_controller.elf -m '/Users/fernando/.espressif/python_env/idf5.1_py3.12_env/bin/python' '/Users/fernando/Projects/esp32-H2/esp-idf/tools/idf.py'"...
 ESP-ROM:esp32c6-20220919
 Build:Sep 19 2022
 rst:0x15 (USB_UART_HPSYS),boot:0x1e (SPI_FAST_FLASH_BOOT)
-Saved PC:0x4001a378
+Saved PC:0x4001a336
 SPIWP:0xee
 mode:DIO, clock div:2
 load:0x4086c410,len:0xdbc
@@ -488,7 +127,7 @@ load:0x4086e610,len:0x2f20
 load:0x40875728,len:0x1890
 entry 0x4086c410
 [0;32mI (23) boot: ESP-IDF 4b1ae71 2nd stage bootloader[0m
-[0;32mI (23) boot: compile time Jun 20 2026 11:09:25[0m
+[0;32mI (23) boot: compile time Jun 21 2026 16:58:53[0m
 [0;32mI (24) boot: chip revision: v0.2[0m
 [0;32mI (26) boot: efuse block revision: v0.3[0m
 [0;32mI (30) boot.esp32c6: SPI Speed      : 80MHz[0m
@@ -507,163 +146,700 @@ entry 0x4086c410
 [0;32mI (113) boot:  7 fctry            WiFi data        01 02 003e0000 00006000[0m
 [0;32mI (121) boot: End of partition table[0m
 [0;32mI (125) boot: No factory image, trying OTA 0[0m
-[0;32mI (130) esp_image: segment 0: paddr=00020020 vaddr=42140020 size=37e68h (228968) map[0m
-[0;32mI (185) esp_image: segment 1: paddr=00057e90 vaddr=40800000 size=08188h ( 33160) load[0m
-[0;32mI (194) esp_image: segment 2: paddr=00060020 vaddr=42000020 size=13d048h (1298504) map[0m
-[0;32mI (458) esp_image: segment 3: paddr=0019d070 vaddr=40808188 size=0f65ch ( 63068) load[0m
-[0;32mI (473) esp_image: segment 4: paddr=001ac6d4 vaddr=50000000 size=00004h (     4) load[0m
-[0;32mI (479) boot: Loaded app from partition at offset 0x20000[0m
-[0;32mI (484) boot: Set actual ota_seq=1 in otadata[0][0m
-[0;32mI (485) boot: Disabling RNG early entropy source...[0m
-[0;32mI (499) cpu_start: Unicore app[0m
-[0;32mI (500) cpu_start: Pro cpu up.[0m
-[0;33mW (508) clk: esp_perip_clk_init() has not been implemented yet[0m
-[0;32mI (515) cpu_start: Pro cpu start user code[0m
-[0;32mI (515) cpu_start: cpu freq: 160000000 Hz[0m
-[0;32mI (516) cpu_start: Application information:[0m
-[0;32mI (518) cpu_start: Project name:     fan_controller[0m
-[0;32mI (524) cpu_start: App version:      1.0[0m
-[0;32mI (528) cpu_start: Compile time:     Jun 20 2026 11:08:41[0m
-[0;32mI (534) cpu_start: ELF file SHA256:  ec5c600c07fa427f...[0m
-[0;32mI (540) cpu_start: ESP-IDF:          4b1ae71[0m
-[0;32mI (545) cpu_start: Min chip rev:     v0.0[0m
-[0;32mI (550) cpu_start: Max chip rev:     v0.99 [0m
-[0;32mI (555) cpu_start: Chip rev:         v0.2[0m
-[0;32mI (560) heap_init: Initializing. RAM available for dynamic allocation:[0m
-[0;32mI (567) heap_init: At 40830130 len 0004C4E0 (305 KiB): D/IRAM[0m
-[0;32mI (573) heap_init: At 4087C610 len 00002F54 (11 KiB): STACK/DIRAM[0m
-[0;32mI (580) heap_init: At 50000004 len 00003FE4 (15 KiB): RTCRAM[0m
-[0;32mI (587) spi_flash: detected chip: generic[0m
-[0;32mI (591) spi_flash: flash io: dio[0m
-[0;32mI (597) sleep: Configure to isolate all GPIO pins in sleep state[0m
-[0;32mI (602) sleep: Enable automatic switching of GPIO sleep configuration[0m
-[0;32mI (619) app_start: Starting scheduler on CPU0[0m
-[0;32mI (624) main_task: Started on CPU0[0m
-[0;32mI (624) main_task: Calling app_main()[0m
-[0;32mI (654) gpio: GPIO[3]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
-[0;32mI (654) app_driver: Noctua Fan LEDC PWM initialized at 25kHz on GPIO 3[0m
-[0;32mI (654) button: IoT Button Version: 3.5.0[0m
-[0;32mI (664) gpio: GPIO[2]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 0| Pulldown: 1| Intr:0 [0m
-[0;31mE (674) esp_matter_feature: Feature map attribute cannot be null[0m
-[0;32mI (674) app_main: Fan created with endpoint_id 1[0m
-[0;31mE (684) data_model: Attribute should be non-volatile to set a deferred persistence time[0m
-[0;32mI (714) chip[DL]: NVS set: chip-counters/reboot-count = 2 (0x2)[0m
-[0;32mI (714) BLE_INIT: Using main XTAL as clock source, chip ver: 2[0m
-[0;32mI (714) BLE_INIT: ble controller commit:[b6027ae][0m
-[0;32mI (714) OPENTHREAD: Host connection mode none[0m
-[0;32mI (724) phy_init: phy_version 343,b513b46,Nov 14 2025,16:34:12[0m
-[0;32mI (744) BLE_INIT: Bluetooth MAC: 58:e6:c5:16:46:5e[0m
-[0;32mI (784) phy: libbtbb version: c493933, Nov 14 2025, 16:34:25[0m
-[0;32mI (794) NimBLE: GAP procedure initiated: stop advertising.
+[0;32mI (130) esp_image: segment 0: paddr=00020020 vaddr=42130020 size=373e0h (226272) map[0m
+[0;32mI (185) esp_image: segment 1: paddr=00057408 vaddr=40800000 size=08c10h ( 35856) load[0m
+[0;32mI (194) esp_image: segment 2: paddr=00060020 vaddr=42000020 size=12a974h (1223028) map[0m
+[0;32mI (443) esp_image: segment 3: paddr=0018a99c vaddr=40808c10 size=0ebd4h ( 60372) load[0m
+[0;32mI (458) esp_image: segment 4: paddr=00199578 vaddr=50000000 size=00004h (     4) load[0m
+[0;32mI (463) boot: Loaded app from partition at offset 0x20000[0m
+[0;32mI (468) boot: Set actual ota_seq=1 in otadata[0][0m
+[0;32mI (469) boot: Disabling RNG early entropy source...[0m
+[0;32mI (483) cpu_start: Unicore app[0m
+[0;32mI (484) cpu_start: Pro cpu up.[0m
+[0;33mW (493) clk: esp_perip_clk_init() has not been implemented yet[0m
+[0;32mI (499) cpu_start: Pro cpu start user code[0m
+[0;32mI (499) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (500) cpu_start: Application information:[0m
+[0;32mI (502) cpu_start: Project name:     fan_controller[0m
+[0;32mI (508) cpu_start: App version:      1.0[0m
+[0;32mI (512) cpu_start: Compile time:     Jun 21 2026 16:58:11[0m
+[0;32mI (518) cpu_start: ELF file SHA256:  b06fa46d955acc53...[0m
+[0;32mI (524) cpu_start: ESP-IDF:          4b1ae71[0m
+[0;32mI (529) cpu_start: Min chip rev:     v0.0[0m
+[0;32mI (534) cpu_start: Max chip rev:     v0.99 [0m
+[0;32mI (539) cpu_start: Chip rev:         v0.2[0m
+[0;32mI (544) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (551) heap_init: At 4082E9E0 len 0004DC30 (311 KiB): D/IRAM[0m
+[0;32mI (557) heap_init: At 4087C610 len 00002F54 (11 KiB): STACK/DIRAM[0m
+[0;32mI (564) heap_init: At 50000004 len 00003FE4 (15 KiB): RTCRAM[0m
+[0;32mI (571) spi_flash: detected chip: generic[0m
+[0;32mI (575) spi_flash: flash io: dio[0m
+[0;32mI (581) sleep: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (586) sleep: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (603) app_start: Starting scheduler on CPU0[0m
+[0;32mI (608) main_task: Started on CPU0[0m
+[0;32mI (608) main_task: Calling app_main()[0m
+[0;32mI (618) gpio: GPIO[21]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
+[0;32mI (628) app_driver: Noctua Fan LEDC PWM initialized at 25kHz on physical pin D3 (GPIO 21)[0m
+[0;32mI (628) button: IoT Button Version: 3.5.0[0m
+[0;32mI (638) gpio: GPIO[2]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 0| Pulldown: 1| Intr:0 [0m
+[0;31mE (648) esp_matter_feature: Feature map attribute cannot be null[0m
+[0;32mI (648) app_main: Fan created with endpoint_id 1[0m
+[0;31mE (658) data_model: Attribute should be non-volatile to set a deferred persistence time[0m
+[0;32mI (678) chip[DL]: NVS set: chip-counters/reboot-count = 1 (0x1)[0m
+[0;32mI (678) chip[DL]: NVS set: chip-config/unique-id = "EBFBACE8A66C6B73"[0m
+[0;32mI (678) BLE_INIT: Using main XTAL as clock source, chip ver: 2[0m
+[0;32mI (688) BLE_INIT: ble controller commit:[b6027ae][0m
+[0;32mI (688) OPENTHREAD: Host connection mode none[0m
+[0;32mI (698) phy_init: phy_version 343,b513b46,Nov 14 2025,16:34:12[0m
+[0;33mW (698) phy_init: failed to load RF calibration data (0x1102), falling back to full calibration[0m
+[0;32mI (718) BLE_INIT: Bluetooth MAC: 58:e6:c5:16:46:5e[0m
+[0;32mI (788) phy_init: Saving new calibration data due to checksum failure or outdated calibration data, mode(2)[0m
+[0;32mI (798) phy: libbtbb version: c493933, Nov 14 2025, 16:34:25[0m
+[0;32mI (808) NimBLE: GAP procedure initiated: stop advertising.
 [0m
-[0;32mI (794) CHIP[DL]: BLE host-controller synced[0m
-[0;32mI (814) OPENTHREAD: OpenThread attached to netif[0m
-[0;32mI(814) OPENTHREAD:[N] Mle-----------: Role disabled -> detached[0m
-[0;32mI (824) chip[DL]: OpenThread ifconfig up and thread start[0m
-[0;32mI (824) chip[DL]: OpenThread started: OK[0m
-[0;32mI (824) chip[DL]: Posting ESPSystemEvent: IP Event with eventId : 3[0m
-[0;32mI (834) chip[DL]: Posting ESPSystemEvent: IP Event with eventId : 3[0m
-[0;32mI (844) chip[DL]: Posting ESPSystemEvent: IP Event with eventId : 3[0m
-[0;32mI (844) chip[DL]: Posting ESPSystemEvent: IP Event with eventId : 3[0m
-[0;32mI (854) chip[DL]: Setting OpenThread device type to ROUTER[0m
-[0;32mI (894) OT_STATE: netif up[0m
-[0;32mI (1314) chip[SVR]: Initializing session resumption storage...[0m
-[0;32mI (1314) chip[SVR]: Server initializing...[0m
-[0;32mI (1314) chip[TS]: Last Known Good Time: 2026-06-20T18:25:28[0m
-[0;32mI (1324) chip[FP]: Fabric index 0x1 was retrieved from storage. Compressed FabricId 0x3B2C559852478B73, FabricId 0x00000000F9466150, NodeId 0x0000000057ACC35A, VendorId 0x1349[0m
-[0;32mI (1334) chip[FP]: Fabric index 0x2 was retrieved from storage. Compressed FabricId 0x1B9ADABA3627A66D, FabricId 0x00000000499BFCF0, NodeId 0x00000000F51204A7, VendorId 0x1384[0m
-[0;32mI (1344) chip[DMG]: AccessControl: initializing[0m
-[0;32mI (1354) chip[DMG]: Examples::AccessControlDelegate::Init[0m
-[0;32mI (1364) chip[DMG]: AccessControl: setting[0m
-[0;32mI (1364) chip[DMG]: DefaultAclStorage: initializing[0m
-[0;32mI (1374) chip[DMG]: DefaultAclStorage: 3 entries loaded[0m
-[0;32mI (1374) chip[SVR]: WARNING: mTestEventTriggerDelegate is null[0m
-[0;32mI (1404) chip[DMG]: AccessControlCluster: initializing[0m
-[0;32mI (1404) chip[SVR]: Fabric already commissioned. Disabling BLE advertisement[0m
-[0;32mI (1404) chip[IN]: CASE Server enabling CASE session setups[0m
-[0;32mI (1414) chip[SVR]: Joining Multicast groups[0m
-[0;32mI (1414) chip[SVR]: Server Listening...[0m
-[0;32mI (1424) app_driver: Fan speed updated to 50% (Duty: 511)[0m
-[0;32mI (1424) main_task: Returned from app_main()[0m
-[0;32mI (1434) chip[DIS]: Updating services using commissioning mode 0[0m
-[0;31mE (1434) chip[DIS]: Failed to remove advertised services: 3[0m
-[0;32mI (1444) chip[DIS]: Advertise operational node 3B2C559852478B73-0000000057ACC35A[0m
-[0;31mE (1454) chip[DIS]: Failed to advertise operational node: 3[0m
-[0;32mI (1454) chip[DIS]: Advertise commission parameter vendorID=65521 productID=32768 discriminator=3840/15 cm=0 cp=0 jf=0[0m
-[0;31mE (1464) chip[DIS]: Failed to advertise extended commissionable node: 3[0m
-[0;31mE (1474) chip[DIS]: Failed to finalize service update: 3[0m
-[0;32mI(28794) OPENTHREAD:[N] Mle-----------: RLOC16 dc00 -> fffe[0m
-[0;32mI(29104) OPENTHREAD:[N] Mle-----------: Attach attempt 1, AnyPartition reattaching with Active Dataset[0m
-[0;32mI(29924) OPENTHREAD:[N] Mle-----------: RLOC16 fffe -> 940f[0m
-[0;32mI(29924) OPENTHREAD:[N] Mle-----------: Role detached -> child[0m
-[0;32mI (29934) chip[DL]: SRP Client was started, detected server: fd16:04ae:d5c4:0000:0000:00ff:fe00:fc11[0m
-[0;32mI (29944) chip[DL]: Posting ESPSystemEvent: IP Event with eventId : 3[0m
-[0;32mI (29944) chip[DL]: Posting ESPSystemEvent: IP Event with eventId : 3[0m
-[0;32mI (29954) chip[ZCL]: ThdDiag: Conn, PAN: 0xba10[0m
-[0;32mI (30504) chip[DIS]: Updating services using commissioning mode 0[0m
-[0;32mI (30504) chip[DIS]: Advertise operational node 3B2C559852478B73-0000000057ACC35A[0m
-[0;32mI (30514) chip[DL]: advertising srp service: 3B2C559852478B73-0000000057ACC35A._matter._tcp[0m
-[0;32mI (30514) chip[DIS]: Advertise operational node 1B9ADABA3627A66D-00000000F51204A7[0m
-[0;32mI (30524) chip[DL]: advertising srp service: 1B9ADABA3627A66D-00000000F51204A7._matter._tcp[0m
-[0;32mI (30534) chip[DIS]: Advertise commission parameter vendorID=65521 productID=32768 discriminator=3840/15 cm=0 cp=0 jf=0[0m
-[0;32mI (30544) chip[DL]: advertising srp service: BE64425E16E3D0F2._matterc._udp[0m
-[0;32mI (30554) chip[SVR]: Server initialization complete[0m
-[0;32mI (30564) chip[SWU]: Stopping the watchdog timer[0m
-[0;32mI (30564) chip[SWU]: Starting the periodic query timer, timeout: 86400 seconds[0m
-[0;33mW(38054) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(38064) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(47404) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(47414) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(62714) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(62714) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;32mI (64844) chip[EM]: >>> [E:19070r S:0 M:162413857] (U) Msg RX from 0:190B8A2C4276B82D [0000] to 0000000000000000 --- Type 0000:30 (SecureChannel:CASE_Sigma1) (B:234)[0m
-[0;32mI (64854) chip[IN]: CASE Server received Sigma1 message . Starting handshake. EC 0x4081c6c0[0m
-[0;32mI (64864) chip[EM]: <<< [E:19070r S:0 M:239976205 (Ack:162413857)] (U) Msg TX from 0000000000000000 to 0:190B8A2C4276B82D [0000] [UDP:[FD73:986F:53CE:0:E8F4:C998:519F:D1A5]:64422] --- Type 0000:10 (SecureChannel:StandaloneAck) (B:26)[0m
-[0;32mI (64884) chip[SC]: Received Sigma1 msg[0m
-[0;32mI (64894) chip[EM]: <<< [E:19070r S:0 M:239976206 (Ack:162413857)] (U) Msg TX from 0000000000000000 to 0:190B8A2C4276B82D [0000] [UDP:[FD73:986F:53CE:0:E8F4:C998:519F:D1A5]:64422] --- Type 0000:33 (SecureChannel:CASE_Sigma2Resume) (B:100)[0m
-[0;32mI (64904) chip[EM]: ??1 [E:19070r S:0 M:239976206] (U) Msg Retransmission to 0:0000000000000000 scheduled for 5390ms from now [State:Active II:500 AI:300 AT:4000][0m
-[0;32mI (64924) chip[SC]: Sent Sigma2Resume msg[0m
-[0;32mI (65104) chip[EM]: >>> [E:19070r S:0 M:162413858 (Ack:239976206)] (U) Msg RX from 0:190B8A2C4276B82D [0000] to 0000000000000000 --- Type 0000:40 (SecureChannel:StatusReport) (B:34)[0m
-[0;32mI (65114) chip[SC]: Success status report received. Session was established[0m
-[0;32mI (65134) chip[SC]: SecureSession[0x4081ac60, LSID:62740]: State change 'kEstablishing' --> 'kActive'[0m
-[0;32mI (65134) chip[IN]: CASE Session established to peer: <00000000559F0421, 1>[0m
-[0;32mI (65144) chip[EM]: <<< [E:19070r S:0 M:239976207 (Ack:162413858)] (U) Msg TX from 0000000000000000 to 0:190B8A2C4276B82D [0000] [UDP:[FD73:986F:53CE:0:E8F4:C998:519F:D1A5]:64422] --- Type 0000:10 (SecureChannel:StandaloneAck) (B:26)[0m
-[0;32mI (65164) chip[EM]: >>> [E:19071r S:62740 M:43277966] (S) Msg RX from 1:00000000559F0421 [8B73] to 0000000057ACC35A --- Type 0001:06 (IM:WriteRequest) (B:62)[0m
-[0;32mI (65174) app_driver: Fan speed updated to 100% (Duty: 1023)[0m
-[0;32mI (65184) esp_matter_attribute: ********** W : Endpoint 0x0001's Cluster 0x00000202's Attribute 0x00000003 is 100 **********[0m
-[0;32mI (65194) esp_matter_attribute: ********** W : Endpoint 0x0001's Cluster 0x00000202's Attribute 0x00000000 is 4 **********[0m
-[0;32mI (65204) chip[EM]: <<< [E:19071r S:62740 M:211034753 (Ack:43277966)] (S) Msg TX from 0000000057ACC35A to 1:00000000559F0421 [8B73] [UDP:[FD73:986F:53CE:0:E8F4:C998:519F:D1A5]:64422] --- Type 0001:07 (IM:WriteResponse) (B:63)[0m
-[0;32mI (65224) chip[EM]: ??1 [E:19071r S:62740 M:211034753] (S) Msg Retransmission to 1:00000000559F0421 scheduled for 5375ms from now [State:Active II:500 AI:300 AT:4000][0m
-[0;32mI (70604) chip[EM]: <<1 [E:19071r S:62740 M:211034753] (S) Msg Retransmission to 1:00000000559F0421[0m
-[0;32mI (70604) chip[EM]: ??2 [E:19071r S:62740 M:211034753] (S) Msg Retransmission to 1:00000000559F0421 scheduled for 5365ms from now [State:Idle II:500 AI:300 AT:4000][0m
-[0;32mI(71134) OPENTHREAD:[N] MeshForwarder-: Failed to send IPv6 UDP msg, len:111, chksum:51fb, ecn:no, to:0x9400, sec:yes, error:NoAck, prio:normal[0m
-[0;32mI(71134) OPENTHREAD:[N] MeshForwarder-:     src:[fd73:986f:53ce:0:9c46:5a36:23d8:7f0f]:5540[0m
-[0;32mI(71144) OPENTHREAD:[N] MeshForwarder-:     dst:[fd73:986f:53ce:0:e8f4:c998:519f:d1a5]:64422[0m
-[0;32mI (75964) chip[EM]: <<2 [E:19071r S:62740 M:211034753] (S) Msg Retransmission to 1:00000000559F0421[0m
-[0;32mI (75974) chip[EM]: ??3 [E:19071r S:62740 M:211034753] (S) Msg Retransmission to 1:00000000559F0421 scheduled for 5554ms from now [State:Idle II:500 AI:300 AT:4000][0m
-[0;32mI(76534) OPENTHREAD:[N] MeshForwarder-: Failed to send IPv6 UDP msg, len:111, chksum:51fb, ecn:no, to:0x9400, sec:yes, error:NoAck, prio:normal[0m
-[0;32mI(76534) OPENTHREAD:[N] MeshForwarder-:     src:[fd73:986f:53ce:0:9c46:5a36:23d8:7f0f]:5540[0m
-[0;32mI(76544) OPENTHREAD:[N] MeshForwarder-:     dst:[fd73:986f:53ce:0:e8f4:c998:519f:d1a5]:64422[0m
-[0;32mI (81524) chip[EM]: <<3 [E:19071r S:62740 M:211034753] (S) Msg Retransmission to 1:00000000559F0421[0m
-[0;32mI (81524) chip[EM]: ??4 [E:19071r S:62740 M:211034753] (S) Msg Retransmission to 1:00000000559F0421 scheduled for 5903ms from now [State:Idle II:500 AI:300 AT:4000][0m
-[0;32mI(82074) OPENTHREAD:[N] MeshForwarder-: Failed to send IPv6 UDP msg, len:111, chksum:51fb, ecn:no, to:0x9400, sec:yes, error:NoAck, prio:normal[0m
-[0;32mI(82074) OPENTHREAD:[N] MeshForwarder-:     src:[fd73:986f:53ce:0:9c46:5a36:23d8:7f0f]:5540[0m
-[0;32mI(82084) OPENTHREAD:[N] MeshForwarder-:     dst:[fd73:986f:53ce:0:e8f4:c998:519f:d1a5]:64422[0m
-[0;31mE (87434) chip[EM]: <<4 [E:19071r S:62740 M:211034753] (S) Msg Retransmission to 1:00000000559F0421 failure (max retries:3)[0m
-[0;32mI (87434) chip[SC]: SecureSession[0x4081ac60, LSID:62740]: State change 'kActive' --> 'kDefunct'[0m
-[0;32mI(94164) OPENTHREAD:[N] Mle-----------: Role child -> detached[0m
-[0;32mI(94164) OPENTHREAD:[N] Mle-----------: RLOC16 940f -> fffe[0m
-[0;32mI(94164) OPENTHREAD:[N] MeshForwarder-: Failed to send IPv6 UDP msg, len:77, chksum:6ab8, ecn:no, to:0x9400, sec:yes, error:NoAck, prio:net[0m
-[0;32mI(94184) OPENTHREAD:[N] MeshForwarder-:     src:[fd16:4ae:d5c4:0:0:ff:fe00:940f]:61631[0m
-[0;32mI(94194) OPENTHREAD:[N] MeshForwarder-:     dst:[fd16:4ae:d5c4:0:0:ff:fe00:9400]:61631[0m
-[0;32mI (94204) chip[ZCL]: ThdDiag: Disconn[0m
-[0;32mI(94454) OPENTHREAD:[N] Mle-----------: Attach attempt 1, AnyPartition [0m
-[0;32mI(101074) OPENTHREAD:[N] RouterTable---: Allocate router id 55[0m
-[0;32mI(101074) OPENTHREAD:[N] Mle-----------: RLOC16 fffe -> dc00[0m
-[0;32mI(101074) OPENTHREAD:[N] Mle-----------: Role detached -> leader[0m
-[0;32mI(101084) OPENTHREAD:[N] Mle-----------: Partition ID 0x74d8c289[0m
-[0;32mI (101104) chip[DL]: SRP Client was stopped, because current server is no longer detected.[0m
-[0;32mI (101104) chip[DL]: Posting ESPSystemEvent: IP Event with eventId : 3[0m
-[0;32mI (101104) chip[DL]: Posting ESPSystemEvent: IP Event with eventId : 3[0m
-[0;32mI (101124) chip[ZCL]: ThdDiag: Conn, PAN: 0xba10[0m
-Done
+[0;32mI (808) CHIP[DL]: BLE host-controller synced[0m
+[0;32mI (808) OPENTHREAD: OpenThread attached to netif[0m
+[0;32mI (818) chip[DL]: OpenThread started: OK[0m
+[0;32mI (818) chip[DL]: Setting OpenThread device type to MINIMAL END DEVICE[0m
+[0;32mI (1328) chip[SVR]: Initializing session resumption storage...[0m
+[0;32mI (1328) chip[SVR]: Server initializing...[0m
+[0;32mI (1328) chip[TS]: Last Known Good Time: [unknown][0m
+[0;32mI (1328) chip[TS]: Setting Last Known Good Time to firmware build time 2023-10-14T01:16:48[0m
+[0;32mI (1338) chip[DMG]: AccessControl: initializing[0m
+[0;32mI (1348) chip[DMG]: Examples::AccessControlDelegate::Init[0m
+[0;32mI (1348) chip[DMG]: AccessControl: setting[0m
+[0;32mI (1358) chip[DMG]: DefaultAclStorage: initializing[0m
+[0;32mI (1358) chip[DMG]: DefaultAclStorage: 0 entries loaded[0m
+[0;32mI (1368) chip[SVR]: WARNING: mTestEventTriggerDelegate is null[0m
+[0;32mI (1378) chip[DMG]: AccessControlCluster: initializing[0m
+[0;32mI (1388) chip[DIS]: Updating services using commissioning mode 1[0m
+[0;31mE (1388) chip[DIS]: Failed to remove advertised services: 3[0m
+[0;32mI (1388) chip[DIS]: Advertise commission parameter vendorID=65521 productID=32768 discriminator=3840/15 cm=1 cp=0 jf=0[0m
+[0;31mE (1398) chip[DIS]: Failed to advertise commissionable node: 3[0m
+[0;31mE (1408) chip[DIS]: Failed to finalize service update: 3[0m
+[0;32mI (1418) chip[IN]: CASE Server enabling CASE session setups[0m
+[0;32mI (1418) chip[SVR]: Joining Multicast groups[0m
+[0;32mI (1428) chip[SVR]: Server Listening...[0m
+[0;32mI (1428) data_model: Cannot find minimum unused endpoint_id, try to find in the previous namespace[0m
+[0;32mI (1438) data_model: Failed to open node namespace[0m
+[0;32mI (1448) app_driver: Fan speed updated to 50% (Duty: 511)[0m
+[0;32mI (1448) main_task: Returned from app_main()[0m
+[0;32mI (1438) chip[DL]: Configuring CHIPoBLE advertising (interval 25 ms, connectable)[0m
+[0;32mI (1468) NimBLE: GAP procedure initiated: advertise; [0m
+[0;32mI (1468) NimBLE: disc_mode=2[0m
+[0;32mI (1478) NimBLE:  adv_channel_map=0 own_addr_type=1 adv_filter_policy=0 adv_itvl_min=40 adv_itvl_max=40[0m
+[0;32mI (1488) NimBLE: 
+[0m
+[0;32mI (1488) chip[DL]: CHIPoBLE advertising started[0m
+[0;32mI (1488) app_main: Commissioning window opened[0m
+[0;32mI (31388) chip[DL]: bleAdv Timeout : Start slow advertisement[0m
+[0;32mI (31388) chip[DL]: Configuring CHIPoBLE advertising (interval 500 ms, connectable)[0m
+[0;32mI (31388) chip[DL]: Device already advertising, stop active advertisement and restart[0m
+[0;32mI (31398) NimBLE: GAP procedure initiated: stop advertising.
+[0m
+[0;32mI (31398) NimBLE: GAP procedure initiated: advertise; [0m
+[0;32mI (31408) NimBLE: disc_mode=2[0m
+[0;32mI (31408) NimBLE:  adv_channel_map=0 own_addr_type=1 adv_filter_policy=0 adv_itvl_min=800 adv_itvl_max=800[0m
+[0;32mI (31418) NimBLE: 
+[0m
+[0;32mI (61768) chip[DL]: BLE GAP connection established (con 0)[0m
+[0;32mI (61768) chip[DL]: CHIPoBLE advertising stopped[0m
+[0;32mI (62608) CHIP[DL]: Write request received for CHIPoBLE RX characteristic con 0 16[0m
+[0;32mI (62608) chip[BLE]: local and remote recv window sizes = 5[0m
+[0;32mI (62608) chip[BLE]: selected BTP version 4[0m
+[0;32mI (62608) chip[BLE]: using BTP fragment sizes rx 244 / tx 244.[0m
+[0;32mI (62788) chip[DL]: Write request/command received for CHIPoBLE TX CCCD characteristic (con 0 ) indicate = 1[0m
+[0;32mI (62788) chip[DL]: CHIPoBLE subscribe received[0m
+[0;32mI (62788) NimBLE: GATT procedure initiated: indicate; [0m
+[0;32mI (62798) NimBLE: att_handle=18
+[0m
+[0;32mI (62848) chip[DL]: Confirm received for CHIPoBLE TX characteristic indication (con 0) status= 14 [0m
+[0;32mI (62848) CHIP[DL]: Write request received for CHIPoBLE RX characteristic con 0 16[0m
+[0;32mI (62858) chip[EM]: >>> [E:9481r S:0 M:236199977] (U) Msg RX from 0:7E4C78702EBE3195 [0000] to 0000000000000000 --- Type 0000:20 (SecureChannel:PBKDFParamRequest) (B:98)[0m
+[0;32mI (62868) chip[EM]: <<< [E:9481r S:0 M:18862429] (U) Msg TX from 0000000000000000 to 0:7E4C78702EBE3195 [0000] [BLE] --- Type 0000:21 (SecureChannel:PBKDFParamResponse) (B:154)[0m
+[0;32mI (62888) NimBLE: GATT procedure initiated: indicate; [0m
+[0;32mI (62888) NimBLE: att_handle=18
+[0m
+[0;32mI (62898) chip[SVR]: Commissioning session establishment step started[0m
+[0;32mI (62938) chip[DL]: Confirm received for CHIPoBLE TX characteristic indication (con 0) status= 14 [0m
+[0;32mI (62938) CHIP[DL]: Write request received for CHIPoBLE RX characteristic con 0 16[0m
+[0;32mI (62948) chip[EM]: >>> [E:9481r S:0 M:236199978] (U) Msg RX from 0:7E4C78702EBE3195 [0000] to 0000000000000000 --- Type 0000:22 (SecureChannel:PASE_Pake1) (B:92)[0m
+[0;32mI (63028) chip[EM]: <<< [E:9481r S:0 M:18862430] (U) Msg TX from 0000000000000000 to 0:7E4C78702EBE3195 [0000] [BLE] --- Type 0000:23 (SecureChannel:PASE_Pake2) (B:127)[0m
+[0;32mI (63038) NimBLE: GATT procedure initiated: indicate; [0m
+[0;32mI (63038) NimBLE: att_handle=18
+[0m
+[0;32mI (63088) chip[DL]: Confirm received for CHIPoBLE TX characteristic indication (con 0) status= 14 [0m
+[0;32mI (63088) CHIP[DL]: Write request received for CHIPoBLE RX characteristic con 0 16[0m
+[0;32mI (63098) chip[EM]: >>> [E:9481r S:0 M:236199979] (U) Msg RX from 0:7E4C78702EBE3195 [0000] to 0000000000000000 --- Type 0000:24 (SecureChannel:PASE_Pake3) (B:59)[0m
+[0;32mI (63108) chip[EM]: <<< [E:9481r S:0 M:18862431] (U) Msg TX from 0000000000000000 to 0:7E4C78702EBE3195 [0000] [BLE] --- Type 0000:40 (SecureChannel:StatusReport) (B:30)[0m
+[0;32mI (63128) NimBLE: GATT procedure initiated: indicate; [0m
+[0;32mI (63128) NimBLE: att_handle=18
+[0m
+[0;32mI (63138) chip[SC]: SecureSession[0x4081ac60, LSID:32403]: State change 'kEstablishing' --> 'kActive'[0m
+[0;32mI (63138) chip[SVR]: Commissioning completed session establishment step[0m
+[0;32mI (63148) chip[DIS]: Updating services using commissioning mode 0[0m
+[0;31mE (63158) chip[DIS]: Failed to remove advertised services: 3[0m
+[0;32mI (63168) chip[DIS]: Advertise commission parameter vendorID=65521 productID=32768 discriminator=3840/15 cm=0 cp=0 jf=0[0m
+[0;31mE (63178) chip[DIS]: Failed to advertise extended commissionable node: 3[0m
+[0;31mE (63178) chip[DIS]: Failed to finalize service update: 3[0m
+[0;32mI (63188) chip[SVR]: Device completed Rendezvous process[0m
+[0;32mI (63178) chip[DL]: Confirm received for CHIPoBLE TX characteristic indication (con 0) status= 14 [0m
+[0;32mI (63208) CHIP[DL]: Write request received for CHIPoBLE RX characteristic con 0 16[0m
+[0;32mI (63208) app_main: Commissioning session started[0m
+[0;32mI (63218) app_main: Commissioning window closed[0m
+[0;32mI (63228) chip[EM]: >>> [E:9482r S:32403 M:191024190] (S) Msg RX from 0:FFFFFFFB00000000 [0000] to 0000000000000000 --- Type 0001:02 (IM:ReadRequest) (B:136)[0m
+[0;31mE (63238) chip[DMG]: Fail to retrieve data, roll back and encode status on clusterId: 0x0000_0030, attributeId: 0x0000_000Cerr = 586[0m
+[0;32mI (63248) chip[DL]: NVS set: chip-config/reg-location = 0 (0x0)[0m
+[0;32mI (63258) chip[EM]: <<< [E:9482r S:32403 M:29660093] (S) Msg TX from 0000000000000000 to 0:FFFFFFFB00000000 [0000] [BLE] --- Type 0001:05 (IM:ReportData) (B:253)[0m
+[0;32mI (63268) NimBLE: GATT procedure initiated: indicate; [0m
+[0;32mI (63278) NimBLE: att_handle=18
+[0m
+[0;32mI (63328) chip[DL]: Confirm received for CHIPoBLE TX characteristic indication (con 0) status= 14 [0m
+[0;32mI (63328) NimBLE: GATT procedure initiated: indicate; [0m
+[0;32mI (63328) NimBLE: att_handle=18
+[0m
+[0;32mI (63388) chip[DL]: Confirm received for CHIPoBLE TX characteristic indication (con 0) status= 14 [0m
+[0;32mI (63388) CHIP[DL]: Write request received for CHIPoBLE RX characteristic con 0 16[0m
+[0;32mI (63398) chip[EM]: >>> [E:9483r S:32403 M:191024191] (S) Msg RX from 0:FFFFFFFB00000000 [0000] to 0000000000000000 --- Type 0001:02 (IM:ReadRequest) (B:137)[0m
+[0;31mE (63408) chip[DMG]: Read request on unknown cluster - no data version available[0m
+[0;31mE (63418) chip[DMG]: Fail to retrieve data, roll back and encode status on clusterId: 0x1349_FC00, attributeId: 0x0000_0001err = 5c3[0m
+[0;31mE (63428) chip[DMG]: Read request on unknown cluster - no data version available[0m
+[0;31mE (63438) chip[DMG]: Fail to retrieve data, roll back and encode status on clusterId: 0x0000_0046, attributeId: 0x0000_0002err = 5c3[0m
+[0;31mE (63448) chip[DMG]: Read request on unknown cluster - no data version available[0m
+[0;31mE (63458) chip[DMG]: Fail to retrieve data, roll back and encode status on clusterId: 0x0000_0046, attributeId: 0x0000_0001err = 5c3[0m
+[0;31mE (63468) chip[DMG]: Read request on unknown cluster - no data version available[0m
+[0;31mE (63478) chip[DMG]: Fail to retrieve data, roll back and encode status on clusterId: 0x0000_0046, attributeId: 0x0000_0000err = 5c3[0m
+[0;31mE (63488) chip[DMG]: Read request on unknown cluster - no data version available[0m
+[0;31mE (63498) chip[DMG]: Fail to retrieve data, roll back and encode status on clusterId: 0x0000_0046, attributeId: 0x0000_0007err = 5c3[0m
+[0;31mE (63508) chip[DMG]: Read request on unknown cluster - no data version available[0m
+[0;31mE (63518) chip[DMG]: Fail to retrieve data, roll back and encode status on clusterId: 0x0000_0046, attributeId: 0x0000_0006err = 5c3[0m
+[0;32mI (63538) chip[EM]: <<< [E:9483r S:32403 M:29660094] (S) Msg TX from 0000000000000000 to 0:FFFFFFFB00000000 [0000] [BLE] --- Type 0001:05 (IM:ReportData) (B:303)[0m
+[0;32mI (63548) NimBLE: GATT procedure initiated: indicate; [0m
+[0;32mI (63548) NimBLE: att_handle=18
+[0m
+[0;32mI (63598) chip[DL]: Confirm received for CHIPoBLE TX characteristic indication (con 0) status= 14 [0m
+[0;32mI (63598) NimBLE: GATT procedure initiated: indicate; [0m
+[0;32mI (63598) NimBLE: att_handle=18
+[0m
+[0;32mI (63658) chip[DL]: Confirm received for CHIPoBLE TX characteristic indication (con 0) status= 14 [0m
+[0;32mI (63658) CHIP[DL]: Write request received for CHIPoBLE RX characteristic con 0 16[0m
+[0;32mI (63668) chip[EM]: >>> [E:9484r S:32403 M:191024192] (S) Msg RX from 0:FFFFFFFB00000000 [0000] to 0000000000000000 --- Type 0001:02 (IM:ReadRequest) (B:48)[0m
+[0;32mI (63678) chip[EM]: <<< [E:9484r S:32403 M:29660095] (S) Msg TX from 0000000000000000 to 0:FFFFFFFB00000000 [0000] [BLE] --- Type 0001:05 (IM:ReportData) (B:66)[0m
+[0;32mI (63688) NimBLE: GATT procedure initiated: indicate; [0m
+[0;32mI (63698) NimBLE: att_handle=18
+[0m
+[0;32mI (63808) chip[DL]: Confirm received for CHIPoBLE TX characteristic indication (con 0) status= 14 [0m
+[0;32mI (63808) CHIP[DL]: Write request received for CHIPoBLE RX characteristic con 0 16[0m
+[0;32mI (63818) chip[EM]: >>> [E:9485r S:32403 M:191024193] (S) Msg RX from 0:FFFFFFFB00000000 [0000] to 0000000000000000 --- Type 0001:08 (IM:InvokeCommandRequest) (B:65)[0m
+[0;32mI (63828) chip[FS]: GeneralCommissioning: Received ArmFailSafe (60s)[0m
+[0;32mI (63838) chip[EM]: <<< [E:9485r S:32403 M:29660096] (S) Msg TX from 0000000000000000 to 0:FFFFFFFB00000000 [0000] [BLE] --- Type 0001:09 (IM:InvokeCommandResponse) (B:66)[0m
+[0;32mI (63848) NimBLE: GATT procedure initiated: indicate; [0m
+[0;32mI (63858) NimBLE: att_handle=18
+[0m
+[0;32mI (63958) chip[DL]: Confirm received for CHIPoBLE TX characteristic indication (con 0) status= 14 [0m
+[0;32mI (63958) CHIP[DL]: Write request received for CHIPoBLE RX characteristic con 0 16[0m
+[0;32mI (63968) chip[EM]: >>> [E:9486r S:32403 M:191024194] (S) Msg RX from 0:FFFFFFFB00000000 [0000] to 0000000000000000 --- Type 0001:08 (IM:InvokeCommandRequest) (B:70)[0m
+[0;32mI (63978) chip[DL]: NVS set: chip-config/reg-location = 0 (0x0)[0m
+[0;32mI (63998) chip[DL]: NVS set: chip-config/country-code = "US"[0m
+[0;32mI (63998) chip[EM]: <<< [E:9486r S:32403 M:29660097] (S) Msg TX from 0000000000000000 to 0:FFFFFFFB00000000 [0000] [BLE] --- Type 0001:09 (IM:InvokeCommandResponse) (B:66)[0m
+[0;32mI (64008) NimBLE: GATT procedure initiated: indicate; [0m
+[0;32mI (64008) NimBLE: att_handle=18
+[0m
+[0;32mI (64078) chip[DL]: Confirm received for CHIPoBLE TX characteristic indication (con 0) status= 14 [0m
+[0;32mI (64078) CHIP[DL]: Write request received for CHIPoBLE RX characteristic con 0 16[0m
+[0;32mI (64088) chip[EM]: >>> [E:9487r S:32403 M:191024195] (S) Msg RX from 0:FFFFFFFB00000000 [0000] to 0000000000000000 --- Type 0001:08 (IM:InvokeCommandRequest) (B:62)[0m
+[0;32mI (64098) chip[ZCL]: OpCreds: Certificate Chain request received for PAI[0m
+[0;32mI (64108) chip[EM]: <<< [E:9487r S:32403 M:29660098] (S) Msg TX from 0000000000000000 to 0:FFFFFFFB00000000 [0000] [BLE] --- Type 0001:09 (IM:InvokeCommandResponse) (B:527)[0m
+[0;32mI (64118) NimBLE: GATT procedure initiated: indicate; [0m
+[0;32mI (64128) NimBLE: att_handle=18
+[0m
+[0;32mI (64168) chip[DL]: Confirm received for CHIPoBLE TX characteristic indication (con 0) status= 14 [0m
+[0;32mI (64168) NimBLE: GATT procedure initiated: indicate; [0m
+[0;32mI (64168) NimBLE: att_handle=18
+[0m
+[0;32mI (64228) chip[DL]: Confirm received for CHIPoBLE TX characteristic indication (con 0) status= 14 [0m
+[0;32mI (64228) NimBLE: GATT procedure initiated: indicate; [0m
+[0;32mI (64228) NimBLE: att_handle=18
+[0m
+[0;32mI (64288) chip[DL]: Confirm received for CHIPoBLE TX characteristic indication (con 0) status= 14 [0m
+[0;32mI (64288) CHIP[DL]: Write request received for CHIPoBLE RX characteristic con 0 16[0m
+[0;32mI (64298) chip[EM]: >>> [E:9488r S:32403 M:191024196] (S) Msg RX from 0:FFFFFFFB00000000 [0000] to 0000000000000000 --- Type 0001:08 (IM:InvokeCommandRequest) (B:62)[0m
+[0;32mI (64308) chip[ZCL]: OpCreds: Certificate Chain request received for DAC[0m
+[0;32mI (64318) chip[EM]: <<< [E:9488r S:32403 M:29660099] (S) Msg TX from 0000000000000000 to 0:FFFFFFFB00000000 [0000] [BLE] --- Type 0001:09 (IM:InvokeCommandResponse) (B:557)[0m
+[0;32mI (64328) NimBLE: GATT procedure initiated: indicate; [0m
+[0;32mI (64338) NimBLE: att_handle=18
+[0m
+[0;32mI (64378) chip[DL]: Confirm received for CHIPoBLE TX characteristic indication (con 0) status= 14 [0m
+[0;32mI (64378) NimBLE: GATT procedure initiated: indicate; [0m
+[0;32mI (64378) NimBLE: att_handle=18
+[0m
+[0;32mI (64468) chip[DL]: Confirm received for CHIPoBLE TX characteristic indication (con 0) status= 14 [0m
+[0;32mI (64468) NimBLE: GATT procedure initiated: indicate; [0m
+[0;32mI (64468) NimBLE: att_handle=18
+[0m
+[0;32mI (64528) chip[DL]: Confirm received for CHIPoBLE TX characteristic indication (con 0) status= 14 [0m
+[0;32mI (64528) CHIP[DL]: Write request received for CHIPoBLE RX characteristic con 0 16[0m
+[0;32mI (64538) chip[EM]: >>> [E:9489r S:32403 M:191024197] (S) Msg RX from 0:FFFFFFFB00000000 [0000] to 0000000000000000 --- Type 0001:08 (IM:InvokeCommandRequest) (B:94)[0m
+[0;32mI (64548) chip[ZCL]: OpCreds: Received an AttestationRequest command[0m
+[0;32mI (64578) chip[ZCL]: OpCreds: AttestationRequest successful.[0m
+[0;32mI (64578) chip[EM]: <<< [E:9489r S:32403 M:29660100] (S) Msg TX from 0000000000000000 to 0:FFFFFFFB00000000 [0000] [BLE] --- Type 0001:09 (IM:InvokeCommandResponse) (B:714)[0m
+[0;32mI (64588) NimBLE: GATT procedure initiated: indicate; [0m
+[0;32mI (64598) NimBLE: att_handle=18
+[0m
+[0;32mI (64648) chip[DL]: Confirm received for CHIPoBLE TX characteristic indication (con 0) status= 14 [0m
+[0;32mI (64648) NimBLE: GATT procedure initiated: indicate; [0m
+[0;32mI (64648) NimBLE: att_handle=18
+[0m
+[0;32mI (64708) chip[DL]: Confirm received for CHIPoBLE TX characteristic indication (con 0) status= 14 [0m
+[0;32mI (64708) NimBLE: GATT procedure initiated: indicate; [0m
+[0;32mI (64708) NimBLE: att_handle=18
+[0m
+[0;32mI (64798) chip[DL]: Confirm received for CHIPoBLE TX characteristic indication (con 0) status= 14 [0m
+[0;32mI (64798) CHIP[DL]: Write request received for CHIPoBLE RX characteristic con 0 16[0m
+[0;32mI (64808) chip[EM]: >>> [E:9490r S:32403 M:191024198] (S) Msg RX from 0:FFFFFFFB00000000 [0000] to 0000000000000000 --- Type 0001:08 (IM:InvokeCommandRequest) (B:65)[0m
+[0;32mI (64818) chip[FS]: GeneralCommissioning: Received ArmFailSafe (60s)[0m
+[0;32mI (64828) chip[EM]: <<< [E:9490r S:32403 M:29660101] (S) Msg TX from 0000000000000000 to 0:FFFFFFFB00000000 [0000] [BLE] --- Type 0001:09 (IM:InvokeCommandResponse) (B:66)[0m
+[0;32mI (64838) NimBLE: GATT procedure initiated: indicate; [0m
+[0;32mI (64848) NimBLE: att_handle=18
+[0m
+[0;32mI (64888) chip[DL]: Confirm received for CHIPoBLE TX characteristic indication (con 0) status= 14 [0m
+[0;32mI (66058) CHIP[DL]: Write request received for CHIPoBLE RX characteristic con 0 16[0m
+[0;32mI (66058) chip[EM]: >>> [E:9491r S:32403 M:191024199] (S) Msg RX from 0:FFFFFFFB00000000 [0000] to 0000000000000000 --- Type 0001:08 (IM:InvokeCommandRequest) (B:94)[0m
+[0;32mI (66068) chip[ZCL]: OpCreds: Received a CSRRequest command[0m
+[0;32mI (66108) chip[ZCL]: OpCreds: AllocatePendingOperationalKey succeeded[0m
+[0;32mI (66128) chip[ZCL]: OpCreds: CSRRequest successful.[0m
+[0;32mI (66138) chip[EM]: <<< [E:9491r S:32403 M:29660102] (S) Msg TX from 0000000000000000 to 0:FFFFFFFB00000000 [0000] [BLE] --- Type 0001:09 (IM:InvokeCommandResponse) (B:373)[0m
+[0;32mI (66138) NimBLE: GATT procedure initiated: indicate; [0m
+[0;32mI (66148) NimBLE: att_handle=18
+[0m
+[0;32mI (66208) chip[DL]: Confirm received for CHIPoBLE TX characteristic indication (con 0) status= 14 [0m
+[0;32mI (66208) NimBLE: GATT procedure initiated: indicate; [0m
+[0;32mI (66208) NimBLE: att_handle=18
+[0m
+[0;32mI (66268) chip[DL]: Confirm received for CHIPoBLE TX characteristic indication (con 0) status= 14 [0m
+[0;32mI (66448) CHIP[DL]: Write request received for CHIPoBLE RX characteristic con 0 16[0m
+[0;32mI (66508) CHIP[DL]: Write request received for CHIPoBLE RX characteristic con 0 16[0m
+[0;32mI (66508) chip[EM]: >>> [E:9492r S:32403 M:191024200] (S) Msg RX from 0:FFFFFFFB00000000 [0000] to 0000000000000000 --- Type 0001:08 (IM:InvokeCommandRequest) (B:308)[0m
+[0;32mI (66518) chip[ZCL]: OpCreds: Received an AddTrustedRootCertificate command[0m
+[0;32mI (66568) chip[ZCL]: OpCreds: AddTrustedRootCertificate successful.[0m
+[0;32mI (66568) chip[EM]: <<< [E:9492r S:32403 M:29660103] (S) Msg TX from 0000000000000000 to 0:FFFFFFFB00000000 [0000] [BLE] --- Type 0001:09 (IM:InvokeCommandResponse) (B:63)[0m
+[0;32mI (66578) NimBLE: GATT procedure initiated: indicate; [0m
+[0;32mI (66588) NimBLE: att_handle=18
+[0m
+[0;32mI (66628) chip[DL]: Confirm received for CHIPoBLE TX characteristic indication (con 0) status= 14 [0m
+[0;32mI (66628) CHIP[DL]: Write request received for CHIPoBLE RX characteristic con 0 16[0m
+[0;32mI (66718) CHIP[DL]: Write request received for CHIPoBLE RX characteristic con 0 16[0m
+[0;32mI (66718) chip[EM]: >>> [E:9493r S:32403 M:191024201] (S) Msg RX from 0:FFFFFFFB00000000 [0000] to 0000000000000000 --- Type 0001:08 (IM:InvokeCommandRequest) (B:347)[0m
+[0;32mI (66728) chip[ZCL]: OpCreds: Received an AddNOC command[0m
+[0;32mI (66738) chip[FP]: Validating NOC chain[0m
+[0;32mI (66788) chip[FP]: NOC chain validation successful[0m
+[0;32mI (66788) chip[FP]: Added new fabric at index: 0x1[0m
+[0;32mI (66788) chip[FP]: Assigned compressed fabric ID: 0x3B2C559852478B73, node ID: 0x0000000006BC098E[0m
+[0;32mI (66798) chip[TS]: Last Known Good Time: 2023-10-14T01:16:48[0m
+[0;32mI (66798) chip[TS]: New proposed Last Known Good Time: 2026-06-21T21:30:29[0m
+[0;32mI (66808) chip[TS]: Updating pending Last Known Good Time to 2026-06-21T21:30:29[0m
+[0;32mI (66818) chip[ZCL]: OpCreds: ACL entry created for Fabric index 0x1 CASE Admin Subject 0x000000003BDEF7D9[0m
+[0;32mI (66828) chip[DIS]: Advertise operational node 3B2C559852478B73-0000000006BC098E[0m
+[0;31mE (66838) chip[SVR]: Operational advertising failed: 3[0m
+[0;32mI (66838) chip[ZCL]: OpCreds: successfully created fabric index 0x1 via AddNOC[0m
+[0;32mI (66848) chip[EM]: <<< [E:9493r S:32403 M:29660104] (S) Msg TX from 0000000000000000 to 1:FFFFFFFB00000000 [8B73] [BLE] --- Type 0001:09 (IM:InvokeCommandResponse) (B:66)[0m
+[0;32mI (66868) NimBLE: GATT procedure initiated: indicate; [0m
+[0;32mI (66868) NimBLE: att_handle=18
+[0m
+[0;32mI (66928) chip[DL]: Confirm received for CHIPoBLE TX characteristic indication (con 0) status= 14 [0m
+[0;32mI (66928) CHIP[DL]: Write request received for CHIPoBLE RX characteristic con 0 16[0m
+[0;32mI (66938) chip[EM]: >>> [E:9494r S:32403 M:191024202] (S) Msg RX from 1:FFFFFFFB00000000 [8B73] to 0000000000000000 --- Type 0001:08 (IM:InvokeCommandRequest) (B:163)[0m
+[0;32mI (66948) chip[EM]: <<< [E:9494r S:32403 M:29660105] (S) Msg TX from 0000000000000000 to 1:FFFFFFFB00000000 [8B73] [BLE] --- Type 0001:09 (IM:InvokeCommandResponse) (B:66)[0m
+[0;32mI (66968) NimBLE: GATT procedure initiated: indicate; [0m
+[0;32mI (66968) NimBLE: att_handle=18
+[0m
+[0;32mI (67018) chip[DL]: Confirm received for CHIPoBLE TX characteristic indication (con 0) status= 14 [0m
+[0;32mI (67018) CHIP[DL]: Write request received for CHIPoBLE RX characteristic con 0 16[0m
+[0;32mI (67028) chip[EM]: >>> [E:9495r S:32403 M:191024203] (S) Msg RX from 1:FFFFFFFB00000000 [8B73] to 0000000000000000 --- Type 0001:08 (IM:InvokeCommandRequest) (B:65)[0m
+[0;32mI (67038) chip[FS]: GeneralCommissioning: Received ArmFailSafe (136s)[0m
+[0;32mI (67048) chip[EM]: <<< [E:9495r S:32403 M:29660106] (S) Msg TX from 0000000000000000 to 1:FFFFFFFB00000000 [8B73] [BLE] --- Type 0001:09 (IM:InvokeCommandResponse) (B:66)[0m
+[0;32mI (67058) NimBLE: GATT procedure initiated: indicate; [0m
+[0;32mI (67068) NimBLE: att_handle=18
+[0m
+[0;32mI (67108) chip[DL]: Confirm received for CHIPoBLE TX characteristic indication (con 0) status= 14 [0m
+[0;32mI (67108) CHIP[DL]: Write request received for CHIPoBLE RX characteristic con 0 16[0m
+[0;32mI (67118) chip[EM]: >>> [E:9496r S:32403 M:191024204] (S) Msg RX from 1:FFFFFFFB00000000 [8B73] to 0000000000000000 --- Type 0001:08 (IM:InvokeCommandRequest) (B:73)[0m
+[0;32mI(67138) OPENTHREAD:[N] Mle-----------: Role disabled -> detached[0m
+[0;32mI (67138) chip[DL]: Posting ESPSystemEvent: IP Event with eventId : 3[0m
+[0;32mI (67138) chip[DL]: Posting ESPSystemEvent: IP Event with eventId : 3[0m
+[0;32mI (67148) chip[DL]: Posting ESPSystemEvent: IP Event with eventId : 3[0m
+[0;32mI (67158) chip[DL]: Posting ESPSystemEvent: IP Event with eventId : 3[0m
+[0;32mI (67168) OT_STATE: netif up[0m
+[0;32mI (67178) chip[DL]: Updating advertising data[0m
+[0;32mI(67378) OPENTHREAD:[N] Mle-----------: Attach attempt 1, AnyPartition reattaching with Active Dataset[0m
+[0;32mI(68178) OPENTHREAD:[N] Mle-----------: RLOC16 fffe -> 9415[0m
+[0;32mI(68178) OPENTHREAD:[N] Mle-----------: Role detached -> child[0m
+[0;32mI (68188) chip[DL]: Posting ESPSystemEvent: IP Event with eventId : 3[0m
+[0;32mI (68188) chip[DL]: Posting ESPSystemEvent: IP Event with eventId : 3[0m
+[0;32mI (68198) chip[DL]: SRP Client was started, detected server: fd16:04ae:d5c4:0000:0000:00ff:fe00:fc11[0m
+[0;32mI (68208) chip[ZCL]: ThdDiag: Conn, PAN: 0xba10[0m
+[0;32mI (68218) chip[EM]: <<< [E:9496r S:32403 M:29660107] (S) Msg TX from 0000000000000000 to 1:FFFFFFFB00000000 [8B73] [BLE] --- Type 0001:09 (IM:InvokeCommandResponse) (B:65)[0m
+[0;32mI (68228) NimBLE: GATT procedure initiated: indicate; [0m
+[0;32mI (68228) NimBLE: att_handle=18
+[0m
+[0;32mI (68238) chip[DIS]: Advertise operational node 3B2C559852478B73-0000000006BC098E[0m
+[0;31mE (68248) chip[SVR]: Operational advertising failed: 3[0m
+[0;32mI (68308) chip[DL]: Confirm received for CHIPoBLE TX characteristic indication (con 0) status= 14 [0m
+[0;32mI (68968) chip[SVR]: Server initialization complete[0m
+[0;32mI (68968) chip[DIS]: Updating services using commissioning mode 0[0m
+[0;32mI (68968) chip[DIS]: Advertise operational node 3B2C559852478B73-0000000006BC098E[0m
+[0;32mI (68978) chip[DL]: advertising srp service: 3B2C559852478B73-0000000006BC098E._matter._tcp[0m
+[0;32mI (68988) chip[DIS]: Advertise commission parameter vendorID=65521 productID=32768 discriminator=3840/15 cm=0 cp=0 jf=0[0m
+[0;32mI (68998) chip[DL]: advertising srp service: 5A7B6F5268A0C12F._matterc._udp[0m
+[0;32mI (69008) chip[SWU]: Stopping the watchdog timer[0m
+[0;32mI (69008) chip[SWU]: Starting the periodic query timer, timeout: 86400 seconds[0m
+[0;32mI (69898) chip[EM]: >>> [E:9497r S:0 M:236199980] (U) Msg RX from 0:714863C194ECEB34 [0000] to 0000000000000000 --- Type 0000:30 (SecureChannel:CASE_Sigma1) (B:196)[0m
+[0;32mI (69908) chip[IN]: CASE Server received Sigma1 message . Starting handshake. EC 0x4081c6c0[0m
+[0;32mI (69918) chip[EM]: <<< [E:9497r S:0 M:18862432 (Ack:236199980)] (U) Msg TX from 0000000000000000 to 0:714863C194ECEB34 [0000] [UDP:[FD07:D539:E997:1:1870:727B:E2C8:2AA7]:54378] --- Type 0000:10 (SecureChannel:StandaloneAck) (B:26)[0m
+[0;32mI (69938) chip[SC]: Received Sigma1 msg[0m
+[0;32mI (69948) chip[SC]: CASE matched destination ID: fabricIndex 1, NodeID 0x0000000006BC098E[0m
+[0;32mI (69998) chip[EM]: <<< [E:9497r S:0 M:18862433 (Ack:236199980)] (U) Msg TX from 0000000000000000 to 0:714863C194ECEB34 [0000] [UDP:[FD07:D539:E997:1:1870:727B:E2C8:2AA7]:54378] --- Type 0000:31 (SecureChannel:CASE_Sigma2) (B:529)[0m
+[0;32mI (70008) chip[EM]: ??1 [E:9497r S:0 M:18862433] (U) Msg Retransmission to 0:0000000000000000 scheduled for 5375ms from now [State:Active II:500 AI:300 AT:4000][0m
+[0;32mI (70018) chip[SC]: Sent Sigma2 msg[0m
+[0;32mI (70238) chip[EM]: >>> [E:9497r S:0 M:236199981 (Ack:18862433)] (U) Msg RX from 0:714863C194ECEB34 [0000] to 0000000000000000 --- Type 0000:32 (SecureChannel:CASE_Sigma3) (B:380)[0m
+[0;32mI (70248) chip[EM]: <<< [E:9497r S:0 M:18862434 (Ack:236199981)] (U) Msg TX from 0000000000000000 to 0:714863C194ECEB34 [0000] [UDP:[FD07:D539:E997:1:1870:727B:E2C8:2AA7]:54378] --- Type 0000:10 (SecureChannel:StandaloneAck) (B:26)[0m
+[0;32mI (70268) chip[SC]: Received Sigma3 msg[0m
+[0;31mE (70278) chip[SC]: The device does not support GetClock_RealTimeMS() API: 6c.  Falling back to Last Known Good UTC Time[0m
+[0;32mI (70378) chip[EM]: <<< [E:9497r S:0 M:18862435 (Ack:236199981)] (U) Msg TX from 0000000000000000 to 0:714863C194ECEB34 [0000] [UDP:[FD07:D539:E997:1:1870:727B:E2C8:2AA7]:54378] --- Type 0000:40 (SecureChannel:StatusReport) (B:34)[0m
+[0;32mI (70388) chip[EM]: ??1 [E:9497r S:0 M:18862435] (U) Msg Retransmission to 0:0000000000000000 scheduled for 5396ms from now [State:Active II:500 AI:300 AT:4000][0m
+[0;32mI (70408) chip[SC]: SecureSession[0x4081ad38, LSID:32404]: State change 'kEstablishing' --> 'kActive'[0m
+[0;32mI (70418) chip[IN]: CASE Session established to peer: <000000003BDEF7D9, 1>[0m
+[0;32mI (70798) CHIP[DL]: Write request received for CHIPoBLE RX characteristic con 0 16[0m
+[0;32mI (71278) chip[EM]: >>> [E:9498r S:32404 M:120496836] (S) Msg RX from 1:000000003BDEF7D9 [8B73] to 0000000006BC098E --- Type 0001:08 (IM:InvokeCommandRequest) (B:59)[0m
+[0;32mI (71288) chip[FS]: GeneralCommissioning: Received CommissioningComplete[0m
+[0;32mI (71298) chip[FP]: Metadata for Fabric 0x1 persisted to storage.[0m
+[0;32mI (71308) chip[TS]: Committing Last Known Good Time to storage: 2026-06-21T21:30:29[0m
+[0;32mI (71308) chip[ZCL]: OpCreds: Fabric index 0x1 was committed to storage. Compressed Fabric Id 0x3B2C559852478B73, FabricId 00000000F9466150, NodeId 0000000006BC098E, VendorId 0x1349[0m
+[0;32mI (71338) chip[FS]: GeneralCommissioning: Successfully committed pending fabric data[0m
+[0;32mI (71338) chip[FS]: Fail-safe cleanly disarmed[0m
+[0;32mI (71338) chip[EM]: <<< [E:9498r S:32404 M:6311947 (Ack:120496836)] (S) Msg TX from 0000000006BC098E to 1:000000003BDEF7D9 [8B73] [UDP:[FD07:D539:E997:1:1870:727B:E2C8:2AA7]:54378] --- Type 0001:09 (IM:InvokeCommandResponse) (B:70)[0m
+[0;32mI (71358) chip[EM]: ??1 [E:9498r S:32404 M:6311947] (S) Msg Retransmission to 1:000000003BDEF7D9 scheduled for 5350ms from now [State:Active II:500 AI:300 AT:4000][0m
+[0;32mI (71378) chip[EM]: >>> [E:9497r S:0 M:236199982 (Ack:18862435)] (U) Msg RX from 0:714863C194ECEB34 [0000] to 0000000000000000 --- Type 0000:10 (SecureChannel:StandaloneAck) (B:26)[0m
+[0;32mI (71398) chip[SWU]: Device commissioned, schedule a default provider query[0m
+[0;32mI (71398) chip[SVR]: Commissioning completed successfully[0m
+[0;32mI (71408) chip[DIS]: Updating services using commissioning mode 0[0m
+[0;32mI (71418) chip[DIS]: Advertise operational node 3B2C559852478B73-0000000006BC098E[0m
+[0;32mI (71428) chip[DIS]: Advertise commission parameter vendorID=65521 productID=32768 discriminator=3840/15 cm=0 cp=0 jf=0[0m
+[0;32mI (71438) chip[SC]: SecureSession[0x4081ac60, LSID:32403]: State change 'kActive' --> 'kPendingEviction'[0m
+[0;32mI (71448) chip[BLE]: Releasing end point's BLE connection back to application.[0m
+[0;32mI (71448) chip[DL]: Closing BLE GATT connection (con 0)[0m
+[0;32mI (71458) NimBLE: GAP procedure initiated: terminate connection; conn_handle=0 hci_reason=19
+[0m
+[0;32mI (71478) app_main: Commissioning complete[0m
+[0;32mI (71478) esp_matter_core: Commissioning Complete[0m
+[0;32mI (71478) app_main: Commissioning window closed[0m
+[0;32mI (71488) chip[EM]: >>> [E:9498r S:32404 M:120496837 (Ack:6311947)] (S) Msg RX from 1:000000003BDEF7D9 [8B73] to 0000000006BC098E --- Type 0000:10 (SecureChannel:StandaloneAck) (B:34)[0m
+[0;32mI (71488) chip[DL]: Write request/command received for CHIPoBLE TX CCCD characteristic (con 0 ) indicate = 0[0m
+[0;32mI (71508) chip[DL]: CHIPoBLE unsubscribe received[0m
+[0;32mI (71518) chip[DL]: BLE GAP connection terminated (con 0 reason 0x213)[0m
+[0;32mI (71528) esp_matter_core: BLE Disconnected[0m
+[0;32mI (71528) chip[EM]: >>> [E:9499r S:32404 M:120496838] (S) Msg RX from 1:000000003BDEF7D9 [8B73] to 0000000006BC098E --- Type 0001:06 (IM:WriteRequest) (B:110)[0m
+[0;32mI (71558) chip[EM]: <<< [E:9499r S:32404 M:6311948 (Ack:120496838)] (S) Msg TX from 0000000006BC098E to 1:000000003BDEF7D9 [8B73] [UDP:[FD07:D539:E997:1:1870:727B:E2C8:2AA7]:54378] --- Type 0001:07 (IM:WriteResponse) (B:62)[0m
+[0;32mI (71568) chip[EM]: ??1 [E:9499r S:32404 M:6311948] (S) Msg Retransmission to 1:000000003BDEF7D9 scheduled for 5400ms from now [State:Active II:500 AI:300 AT:4000][0m
+[0;33mW(71738) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
+[0;33mW(71748) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
+[0;32mI (72238) chip[EM]: >>> [E:9499r S:32404 M:120496839 (Ack:6311948)] (S) Msg RX from 1:000000003BDEF7D9 [8B73] to 0000000006BC098E --- Type 0000:10 (SecureChannel:StandaloneAck) (B:34)[0m
+[0;32mI (72248) chip[EM]: >>> [E:9500r S:32404 M:120496840] (S) Msg RX from 1:000000003BDEF7D9 [8B73] to 0000000006BC098E --- Type 0001:03 (IM:SubscribeRequest) (B:58)[0m
+[0;32mI (72268) chip[DMG]: Final negotiated min/max parameters: Min = 0s, Max = 600s[0m
+[0;32mI (72268) chip[EM]: >>> [E:9501r S:32404 M:120496841] (S) Msg RX from 1:000000003BDEF7D9 [8B73] to 0000000006BC098E --- Type 0001:02 (IM:ReadRequest) (B:51)[0m
+[0;32mI (72298) chip[EM]: <<< [E:9500r S:32404 M:6311949 (Ack:120496840)] (S) Msg TX from 0000000006BC098E to 1:000000003BDEF7D9 [8B73] [UDP:[FD07:D539:E997:1:1870:727B:E2C8:2AA7]:54378] --- Type 0001:05 (IM:ReportData) (B:1195)[0m
+[0;32mI (72308) chip[EM]: ??1 [E:9500r S:32404 M:6311949] (S) Msg Retransmission to 1:000000003BDEF7D9 scheduled for 5393ms from now [State:Active II:500 AI:300 AT:4000][0m
+[0;32mI (72328) chip[EM]: <<< [E:9501r S:32404 M:6311950 (Ack:120496841)] (S) Msg TX from 0000000006BC098E to 1:000000003BDEF7D9 [8B73] [UDP:[FD07:D539:E997:1:1870:727B:E2C8:2AA7]:54378] --- Type 0001:05 (IM:ReportData) (B:162)[0m
+[0;32mI (72348) chip[EM]: ??1 [E:9501r S:32404 M:6311950] (S) Msg Retransmission to 1:000000003BDEF7D9 scheduled for 5333ms from now [State:Active II:500 AI:300 AT:4000][0m
+[0;32mI (73158) chip[EM]: >>> [E:9500r S:32404 M:120496842 (Ack:6311949)] (S) Msg RX from 1:000000003BDEF7D9 [8B73] to 0000000006BC098E --- Type 0001:01 (IM:StatusResponse) (B:42)[0m
+[0;32mI (73168) chip[IM]: Received status response, status is 0x00[0m
+[0;32mI (73188) chip[EM]: <<< [E:9500r S:32404 M:6311951 (Ack:120496842)] (S) Msg TX from 0000000006BC098E to 1:000000003BDEF7D9 [8B73] [UDP:[FD07:D539:E997:1:1870:727B:E2C8:2AA7]:54378] --- Type 0001:05 (IM:ReportData) (B:1180)[0m
+[0;32mI (73198) chip[EM]: ??1 [E:9500r S:32404 M:6311951] (S) Msg Retransmission to 1:000000003BDEF7D9 scheduled for 5406ms from now [State:Active II:500 AI:300 AT:4000][0m
+[0;32mI (73218) chip[EM]: >>> [E:9501r S:32404 M:120496843 (Ack:6311950)] (S) Msg RX from 1:000000003BDEF7D9 [8B73] to 0000000006BC098E --- Type 0000:10 (SecureChannel:StandaloneAck) (B:34)[0m
+[0;32mI (73518) chip[EM]: >>> [E:9500r S:32404 M:120496844 (Ack:6311951)] (S) Msg RX from 1:000000003BDEF7D9 [8B73] to 0000000006BC098E --- Type 0001:01 (IM:StatusResponse) (B:42)[0m
+[0;32mI (73518) chip[IM]: Received status response, status is 0x00[0m
+[0;32mI (73538) chip[EM]: <<< [E:9500r S:32404 M:6311952 (Ack:120496844)] (S) Msg TX from 0000000006BC098E to 1:000000003BDEF7D9 [8B73] [UDP:[FD07:D539:E997:1:1870:727B:E2C8:2AA7]:54378] --- Type 0001:05 (IM:ReportData) (B:1190)[0m
+[0;32mI (73548) chip[EM]: ??1 [E:9500r S:32404 M:6311952] (S) Msg Retransmission to 1:000000003BDEF7D9 scheduled for 5407ms from now [State:Active II:500 AI:300 AT:4000][0m
+[0;32mI (74028) chip[EM]: >>> [E:9500r S:32404 M:120496845 (Ack:6311952)] (S) Msg RX from 1:000000003BDEF7D9 [8B73] to 0000000006BC098E --- Type 0001:01 (IM:StatusResponse) (B:42)[0m
+[0;32mI (74038) chip[IM]: Received status response, status is 0x00[0m
+[0;32mI (74068) chip[EM]: <<< [E:9500r S:32404 M:6311953 (Ack:120496845)] (S) Msg TX from 0000000006BC098E to 1:000000003BDEF7D9 [8B73] [UDP:[FD07:D539:E997:1:1870:727B:E2C8:2AA7]:54378] --- Type 0001:05 (IM:ReportData) (B:1197)[0m
+[0;32mI (74078) chip[EM]: ??1 [E:9500r S:32404 M:6311953] (S) Msg Retransmission to 1:000000003BDEF7D9 scheduled for 5404ms from now [State:Active II:500 AI:300 AT:4000][0m
+[0;32mI (74428) chip[EM]: >>> [E:9500r S:32404 M:120496846 (Ack:6311953)] (S) Msg RX from 1:000000003BDEF7D9 [8B73] to 0000000006BC098E --- Type 0001:01 (IM:StatusResponse) (B:42)[0m
+[0;32mI (74428) chip[IM]: Received status response, status is 0x00[0m
+[0;32mI (74468) chip[EM]: <<< [E:9500r S:32404 M:6311954 (Ack:120496846)] (S) Msg TX from 0000000006BC098E to 1:000000003BDEF7D9 [8B73] [UDP:[FD07:D539:E997:1:1870:727B:E2C8:2AA7]:54378] --- Type 0001:05 (IM:ReportData) (B:1200)[0m
+[0;32mI (74478) chip[EM]: ??1 [E:9500r S:32404 M:6311954] (S) Msg Retransmission to 1:000000003BDEF7D9 scheduled for 5391ms from now [State:Active II:500 AI:300 AT:4000][0m
+[0;32mI (74848) chip[EM]: >>> [E:9500r S:32404 M:120496847 (Ack:6311954)] (S) Msg RX from 1:000000003BDEF7D9 [8B73] to 0000000006BC098E --- Type 0001:01 (IM:StatusResponse) (B:42)[0m
+[0;32mI (74848) chip[IM]: Received status response, status is 0x00[0m
+[0;32mI (74868) chip[EM]: <<< [E:9500r S:32404 M:6311955 (Ack:120496847)] (S) Msg TX from 0000000006BC098E to 1:000000003BDEF7D9 [8B73] [UDP:[FD07:D539:E997:1:1870:727B:E2C8:2AA7]:54378] --- Type 0001:05 (IM:ReportData) (B:986)[0m
+[0;32mI (74878) chip[EM]: ??1 [E:9500r S:32404 M:6311955] (S) Msg Retransmission to 1:000000003BDEF7D9 scheduled for 5357ms from now [State:Active II:500 AI:300 AT:4000][0m
+[0;32mI (75348) chip[EM]: >>> [E:9500r S:32404 M:120496848 (Ack:6311955)] (S) Msg RX from 1:000000003BDEF7D9 [8B73] to 0000000006BC098E --- Type 0001:01 (IM:StatusResponse) (B:42)[0m
+[0;32mI (75348) chip[IM]: Received status response, status is 0x00[0m
+[0;32mI (75358) chip[EM]: <<< [E:9500r S:32404 M:6311956 (Ack:120496848)] (S) Msg TX from 0000000006BC098E to 1:000000003BDEF7D9 [8B73] [UDP:[FD07:D539:E997:1:1870:727B:E2C8:2AA7]:54378] --- Type 0001:04 (IM:SubscribeResponse) (B:49)[0m
+[0;32mI (75378) chip[EM]: ??1 [E:9500r S:32404 M:6311956] (S) Msg Retransmission to 1:000000003BDEF7D9 scheduled for 5343ms from now [State:Active II:500 AI:300 AT:4000][0m
+[0;32mI (75388) chip[DMG]: Registered a ReadHandler that will schedule a report between system Timestamp: 0x0000000000012685 and system Timestamp 0x00000000000A4E45.[0m
+[0;32mI (75448) chip[EM]: >>> [E:9502r S:32404 M:120496849] (S) Msg RX from 1:000000003BDEF7D9 [8B73] to 0000000006BC098E --- Type 0001:02 (IM:ReadRequest) (B:51)[0m
+[0;32mI (75448) chip[EM]: <<< [E:9502r S:32404 M:6311957 (Ack:120496849)] (S) Msg TX from 0000000006BC098E to 1:000000003BDEF7D9 [8B73] [UDP:[FD07:D539:E997:1:1870:727B:E2C8:2AA7]:54378] --- Type 0001:05 (IM:ReportData) (B:162)[0m
+[0;32mI (75468) chip[EM]: ??1 [E:9502r S:32404 M:6311957] (S) Msg Retransmission to 1:000000003BDEF7D9 scheduled for 5383ms from now [State:Active II:500 AI:300 AT:4000][0m
+[0;32mI (75538) chip[EM]: >>> [E:9500r S:32404 M:120496850 (Ack:6311956)] (S) Msg RX from 1:000000003BDEF7D9 [8B73] to 0000000006BC098E --- Type 0000:10 (SecureChannel:StandaloneAck) (B:34)[0m
+[0;32mI (75558) chip[EM]: >>> [E:9502r S:32404 M:120496851 (Ack:6311957)] (S) Msg RX from 1:000000003BDEF7D9 [8B73] to 0000000006BC098E --- Type 0000:10 (SecureChannel:StandaloneAck) (B:34)[0m
+[0;32mI (75568) chip[EM]: >>> [E:9503r S:32404 M:120496852] (S) Msg RX from 1:000000003BDEF7D9 [8B73] to 0000000006BC098E --- Type 0001:08 (IM:InvokeCommandRequest) (B:65)[0m
+[0;32mI (75578) chip[FS]: GeneralCommissioning: Received ArmFailSafe (30s)[0m
+[0;32mI (75588) chip[EM]: <<< [E:9503r S:32404 M:6311958 (Ack:120496852)] (S) Msg TX from 0000000006BC098E to 1:000000003BDEF7D9 [8B73] [UDP:[FD07:D539:E997:1:1870:727B:E2C8:2AA7]:54378] --- Type 0001:09 (IM:InvokeCommandResponse) (B:70)[0m
+[0;32mI (75608) chip[EM]: ??1 [E:9503r S:32404 M:6311958] (S) Msg Retransmission to 1:000000003BDEF7D9 scheduled for 5389ms from now [State:Active II:500 AI:300 AT:4000][0m
+[0;32mI (75718) chip[EM]: >>> [E:9503r S:32404 M:120496853 (Ack:6311958)] (S) Msg RX from 1:000000003BDEF7D9 [8B73] to 0000000006BC098E --- Type 0000:10 (SecureChannel:StandaloneAck) (B:34)[0m
+[0;32mI (75738) chip[EM]: >>> [E:9504r S:32404 M:120496854] (S) Msg RX from 1:000000003BDEF7D9 [8B73] to 0000000006BC098E --- Type 0001:08 (IM:InvokeCommandRequest) (B:94)[0m
+[0;32mI (75738) chip[ZCL]: OpCreds: Received a CSRRequest command[0m
+[0;32mI (75778) chip[ZCL]: OpCreds: AllocatePendingOperationalKey succeeded[0m
+[0;32mI (75798) chip[ZCL]: OpCreds: CSRRequest successful.[0m
+[0;32mI (75808) chip[EM]: <<< [E:9504r S:32404 M:6311959 (Ack:120496854)] (S) Msg TX from 0000000006BC098E to 1:000000003BDEF7D9 [8B73] [UDP:[FD07:D539:E997:1:1870:727B:E2C8:2AA7]:54378] --- Type 0001:09 (IM:InvokeCommandResponse) (B:378)[0m
+[0;32mI (75818) chip[EM]: ??1 [E:9504r S:32404 M:6311959] (S) Msg Retransmission to 1:000000003BDEF7D9 scheduled for 5399ms from now [State:Active II:500 AI:300 AT:4000][0m
+[0;32mI (75988) chip[EM]: >>> [E:9504r S:32404 M:120496855 (Ack:6311959)] (S) Msg RX from 1:000000003BDEF7D9 [8B73] to 0000000006BC098E --- Type 0000:10 (SecureChannel:StandaloneAck) (B:34)[0m
+[0;32mI (76028) chip[EM]: >>> [E:9505r S:32404 M:120496856] (S) Msg RX from 1:000000003BDEF7D9 [8B73] to 0000000006BC098E --- Type 0001:08 (IM:InvokeCommandRequest) (B:316)[0m
+[0;32mI (76038) chip[ZCL]: OpCreds: Received an AddTrustedRootCertificate command[0m
+[0;32mI (76088) chip[ZCL]: OpCreds: AddTrustedRootCertificate successful.[0m
+[0;32mI (76088) chip[EM]: <<< [E:9505r S:32404 M:6311960 (Ack:120496856)] (S) Msg TX from 0000000006BC098E to 1:000000003BDEF7D9 [8B73] [UDP:[FD07:D539:E997:1:1870:727B:E2C8:2AA7]:54378] --- Type 0001:09 (IM:InvokeCommandResponse) (B:67)[0m
+[0;32mI (76108) chip[EM]: ??1 [E:9505r S:32404 M:6311960] (S) Msg Retransmission to 1:000000003BDEF7D9 scheduled for 5357ms from now [State:Active II:500 AI:300 AT:4000][0m
+[0;32mI (76198) chip[EM]: >>> [E:9505r S:32404 M:120496857 (Ack:6311960)] (S) Msg RX from 1:000000003BDEF7D9 [8B73] to 0000000006BC098E --- Type 0000:10 (SecureChannel:StandaloneAck) (B:34)[0m
+[0;32mI (76378) chip[EM]: >>> [E:9506r S:32404 M:120496858] (S) Msg RX from 1:000000003BDEF7D9 [8B73] to 0000000006BC098E --- Type 0001:08 (IM:InvokeCommandRequest) (B:349)[0m
+[0;32mI (76388) chip[ZCL]: OpCreds: Received an AddNOC command[0m
+[0;32mI (76388) chip[FP]: Validating NOC chain[0m
+[0;32mI (76438) chip[FP]: NOC chain validation successful[0m
+[0;32mI (76438) chip[FP]: Added new fabric at index: 0x2[0m
+[0;32mI (76438) chip[FP]: Assigned compressed fabric ID: 0x1B9ADABA3627A66D, node ID: 0x00000000569CB7E3[0m
+[0;32mI (76448) chip[TS]: Last Known Good Time: 2026-06-21T21:30:29[0m
+[0;32mI (76458) chip[TS]: New proposed Last Known Good Time: 2026-06-21T21:30:39[0m
+[0;32mI (76458) chip[TS]: Updating pending Last Known Good Time to 2026-06-21T21:30:39[0m
+[0;32mI (76478) chip[ZCL]: OpCreds: ACL entry created for Fabric index 0x2 CASE Admin Subject 0x00000000B1A79FA0[0m
+[0;32mI (76478) chip[DIS]: Advertise operational node 3B2C559852478B73-0000000006BC098E[0m
+[0;32mI (76488) chip[DIS]: Advertise operational node 1B9ADABA3627A66D-00000000569CB7E3[0m
+[0;32mI (76498) chip[DL]: advertising srp service: 1B9ADABA3627A66D-00000000569CB7E3._matter._tcp[0m
+[0;32mI (76508) chip[ZCL]: OpCreds: successfully created fabric index 0x2 via AddNOC[0m
+[0;32mI (76518) chip[EM]: <<< [E:9506r S:32404 M:6311961 (Ack:120496858)] (S) Msg TX from 0000000006BC098E to 1:000000003BDEF7D9 [8B73] [UDP:[FD07:D539:E997:1:1870:727B:E2C8:2AA7]:54378] --- Type 0001:09 (IM:InvokeCommandResponse) (B:70)[0m
+[0;32mI (76538) chip[EM]: ??1 [E:9506r S:32404 M:6311961] (S) Msg Retransmission to 1:000000003BDEF7D9 scheduled for 5350ms from now [State:Active II:500 AI:300 AT:4000][0m
+[0;32mI (76558) chip[EM]: <<< [E:14616i S:32404 M:6311962] (S) Msg TX from 0000000006BC098E to 1:000000003BDEF7D9 [8B73] [UDP:[FD07:D539:E997:1:1870:727B:E2C8:2AA7]:54378] --- Type 0001:05 (IM:ReportData) (B:335)[0m
+[0;32mI (76568) chip[EM]: ??1 [E:14616i S:32404 M:6311962] (S) Msg Retransmission to 1:000000003BDEF7D9 scheduled for 5367ms from now [State:Active II:500 AI:300 AT:4000][0m
+[0;32mI (76888) chip[EM]: >>> [E:9506r S:32404 M:120496859 (Ack:6311961)] (S) Msg RX from 1:000000003BDEF7D9 [8B73] to 0000000006BC098E --- Type 0000:10 (SecureChannel:StandaloneAck) (B:34)[0m
+[0;32mI (76898) chip[EM]: >>> [E:14616i S:32404 M:120496860 (Ack:6311962)] (S) Msg RX from 1:000000003BDEF7D9 [8B73] to 0000000006BC098E --- Type 0001:01 (IM:StatusResponse) (B:42)[0m
+[0;32mI (76918) chip[IM]: Received status response, status is 0x00[0m
+[0;32mI (76918) chip[EM]: <<< [E:14616i S:32404 M:6311963 (Ack:120496860)] (S) Msg TX from 0000000006BC098E to 1:000000003BDEF7D9 [8B73] [UDP:[FD07:D539:E997:1:1870:727B:E2C8:2AA7]:54378] --- Type 0000:10 (SecureChannel:StandaloneAck) (B:34)[0m
+[0;32mI (77188) chip[EM]: >>> [E:9507r S:0 M:236199983] (U) Msg RX from 0:C7F15A5C07CE205D [0000] to 0000000000000000 --- Type 0000:30 (SecureChannel:CASE_Sigma1) (B:196)[0m
+[0;32mI (77198) chip[IN]: CASE Server received Sigma1 message . Starting handshake. EC 0x4081c6c0[0m
+[0;32mI (77208) chip[EM]: <<< [E:9507r S:0 M:18862436 (Ack:236199983)] (U) Msg TX from 0000000000000000 to 0:C7F15A5C07CE205D [0000] [UDP:[FD07:D539:E997:1:1870:727B:E2C8:2AA7]:54378] --- Type 0000:10 (SecureChannel:StandaloneAck) (B:26)[0m
+[0;32mI (77228) chip[SC]: Received Sigma1 msg[0m
+[0;32mI (77228) chip[SC]: CASE matched destination ID: fabricIndex 2, NodeID 0x00000000569CB7E3[0m
+[0;32mI (77278) chip[EM]: <<< [E:9507r S:0 M:18862437 (Ack:236199983)] (U) Msg TX from 0000000000000000 to 0:C7F15A5C07CE205D [0000] [UDP:[FD07:D539:E997:1:1870:727B:E2C8:2AA7]:54378] --- Type 0000:31 (SecureChannel:CASE_Sigma2) (B:534)[0m
+[0;32mI (77298) chip[EM]: ??1 [E:9507r S:0 M:18862437] (U) Msg Retransmission to 0:0000000000000000 scheduled for 5369ms from now [State:Active II:500 AI:300 AT:4000][0m
+[0;32mI (77308) chip[SC]: Sent Sigma2 msg[0m
+[0;32mI (77498) chip[EM]: >>> [E:9507r S:0 M:236199984 (Ack:18862437)] (U) Msg RX from 0:C7F15A5C07CE205D [0000] to 0000000000000000 --- Type 0000:32 (SecureChannel:CASE_Sigma3) (B:378)[0m
+[0;32mI (77508) chip[EM]: <<< [E:9507r S:0 M:18862438 (Ack:236199984)] (U) Msg TX from 0000000000000000 to 0:C7F15A5C07CE205D [0000] [UDP:[FD07:D539:E997:1:1870:727B:E2C8:2AA7]:54378] --- Type 0000:10 (SecureChannel:StandaloneAck) (B:26)[0m
+[0;32mI (77528) chip[SC]: Received Sigma3 msg[0m
+[0;31mE (77528) chip[SC]: The device does not support GetClock_RealTimeMS() API: 6c.  Falling back to Last Known Good UTC Time[0m
+[0;32mI (77638) chip[EM]: <<< [E:9507r S:0 M:18862439 (Ack:236199984)] (U) Msg TX from 0000000000000000 to 0:C7F15A5C07CE205D [0000] [UDP:[FD07:D539:E997:1:1870:727B:E2C8:2AA7]:54378] --- Type 0000:40 (SecureChannel:StatusReport) (B:34)[0m
+[0;32mI (77648) chip[EM]: ??1 [E:9507r S:0 M:18862439] (U) Msg Retransmission to 0:0000000000000000 scheduled for 5355ms from now [State:Active II:500 AI:300 AT:4000][0m
+[0;32mI (77658) chip[SC]: SecureSession[0x4081ae10, LSID:32405]: State change 'kEstablishing' --> 'kActive'[0m
+[0;32mI (77668) chip[IN]: CASE Session established to peer: <00000000B1A79FA0, 2>[0m
+[0;32mI (78218) chip[EM]: >>> [E:9508r S:32405 M:13824324] (S) Msg RX from 2:00000000B1A79FA0 [A66D] to 00000000569CB7E3 --- Type 0001:02 (IM:ReadRequest) (B:51)[0m
+[0;32mI (78228) chip[EM]: >>> [E:9507r S:0 M:236199985 (Ack:18862439)] (U) Msg RX from 0:C7F15A5C07CE205D [0000] to 0000000000000000 --- Type 0000:10 (SecureChannel:StandaloneAck) (B:26)[0m
+[0;32mI (78238) chip[EM]: <<< [E:9508r S:32405 M:11441592 (Ack:13824324)] (S) Msg TX from 00000000569CB7E3 to 2:00000000B1A79FA0 [A66D] [UDP:[FD07:D539:E997:1:1870:727B:E2C8:2AA7]:54378] --- Type 0001:05 (IM:ReportData) (B:70)[0m
+[0;32mI (78258) chip[EM]: ??1 [E:9508r S:32405 M:11441592] (S) Msg Retransmission to 2:00000000B1A79FA0 scheduled for 5363ms from now [State:Active II:500 AI:300 AT:4000][0m
+[0;32mI (78368) chip[EM]: >>> [E:9509r S:32405 M:13824325] (S) Msg RX from 2:00000000B1A79FA0 [A66D] to 00000000569CB7E3 --- Type 0001:08 (IM:InvokeCommandRequest) (B:59)[0m
+[0;32mI (78368) chip[FS]: GeneralCommissioning: Received CommissioningComplete[0m
+[0;32mI (78378) chip[FP]: Metadata for Fabric 0x2 persisted to storage.[0m
+[0;32mI (78388) chip[TS]: Committing Last Known Good Time to storage: 2026-06-21T21:30:39[0m
+[0;32mI (78398) chip[ZCL]: OpCreds: Fabric index 0x2 was committed to storage. Compressed Fabric Id 0x1B9ADABA3627A66D, FabricId 00000000499BFCF0, NodeId 00000000569CB7E3, VendorId 0x1384[0m
+[0;32mI (78418) chip[FS]: GeneralCommissioning: Successfully committed pending fabric data[0m
+[0;32mI (78418) chip[FS]: Fail-safe cleanly disarmed[0m
+[0;32mI (78428) chip[EM]: <<< [E:9509r S:32405 M:11441593 (Ack:13824325)] (S) Msg TX from 00000000569CB7E3 to 2:00000000B1A79FA0 [A66D] [UDP:[FD07:D539:E997:1:1870:727B:E2C8:2AA7]:54378] --- Type 0001:09 (IM:InvokeCommandResponse) (B:70)[0m
+[0;32mI (78448) chip[EM]: ??1 [E:9509r S:32405 M:11441593] (S) Msg Retransmission to 2:00000000B1A79FA0 scheduled for 5362ms from now [State:Active II:500 AI:300 AT:4000][0m
+[0;32mI (78458) chip[EM]: >>> [E:9508r S:32405 M:13824326 (Ack:11441592)] (S) Msg RX from 2:00000000B1A79FA0 [A66D] to 00000000569CB7E3 --- Type 0000:10 (SecureChannel:StandaloneAck) (B:34)[0m
+[0;32mI (78478) chip[SWU]: Device commissioned, schedule a default provider query[0m
+[0;32mI (78488) app_main: Commissioning complete[0m
+[0;32mI (78488) esp_matter_core: Commissioning Complete[0m
+[0;32mI (78498) chip[EM]: >>> [E:9509r S:32405 M:13824327 (Ack:11441593)] (S) Msg RX from 2:00000000B1A79FA0 [A66D] to 00000000569CB7E3 --- Type 0000:10 (SecureChannel:StandaloneAck) (B:34)[0m
+[0;32mI (78508) chip[EM]: >>> [E:9510r S:32405 M:13824328] (S) Msg RX from 2:00000000B1A79FA0 [A66D] to 00000000569CB7E3 --- Type 0001:02 (IM:ReadRequest) (B:51)[0m
+[0;31mE (78528) chip[DMG]: Fail to retrieve data, roll back and encode status on clusterId: 0x0000_0028, attributeId: 0x0000_000Ferr = 586[0m
+[0;32mI (78538) chip[EM]: <<< [E:9510r S:32405 M:11441594 (Ack:13824328)] (S) Msg TX from 00000000569CB7E3 to 2:00000000B1A79FA0 [A66D] [UDP:[FD07:D539:E997:1:1870:727B:E2C8:2AA7]:54378] --- Type 0001:05 (IM:ReportData) (B:67)[0m
+[0;32mI (78558) chip[EM]: ??1 [E:9510r S:32405 M:11441594] (S) Msg Retransmission to 2:00000000B1A79FA0 scheduled for 5346ms from now [State:Active II:500 AI:300 AT:4000][0m
+[0;32mI (78898) chip[EM]: >>> [E:9510r S:32405 M:13824329 (Ack:11441594)] (S) Msg RX from 2:00000000B1A79FA0 [A66D] to 00000000569CB7E3 --- Type 0000:10 (SecureChannel:StandaloneAck) (B:34)[0m
+[0;32mI (79258) chip[EM]: >>> [E:19315r S:0 M:162413925] (U) Msg RX from 0:CAC754EEF9F9AC16 [0000] to 0000000000000000 --- Type 0000:30 (SecureChannel:CASE_Sigma1) (B:196)[0m
+[0;32mI (79258) chip[IN]: CASE Server received Sigma1 message . Starting handshake. EC 0x4081c6c0[0m
+[0;32mI (79268) chip[EM]: <<< [E:19315r S:0 M:18862440 (Ack:162413925)] (U) Msg TX from 0000000000000000 to 0:CAC754EEF9F9AC16 [0000] [UDP:[FD73:986F:53CE:0:E8F4:C998:519F:D1A5]:64422] --- Type 0000:10 (SecureChannel:StandaloneAck) (B:26)[0m
+[0;32mI (79288) chip[SC]: Received Sigma1 msg[0m
+[0;32mI (79298) chip[SC]: CASE matched destination ID: fabricIndex 1, NodeID 0x0000000006BC098E[0m
+[0;32mI (79348) chip[EM]: <<< [E:19315r S:0 M:18862441 (Ack:162413925)] (U) Msg TX from 0000000000000000 to 0:CAC754EEF9F9AC16 [0000] [UDP:[FD73:986F:53CE:0:E8F4:C998:519F:D1A5]:64422] --- Type 0000:31 (SecureChannel:CASE_Sigma2) (B:529)[0m
+[0;32mI (79358) chip[EM]: ??1 [E:19315r S:0 M:18862441] (U) Msg Retransmission to 0:0000000000000000 scheduled for 5338ms from now [State:Active II:500 AI:300 AT:4000][0m
+[0;32mI (79378) chip[SC]: Sent Sigma2 msg[0m
+[0;32mI (79378) chip[EM]: >>> [E:9511r S:32404 M:120496861] (S) Msg RX from 1:000000003BDEF7D9 [8B73] to 0000000006BC098E --- Type 0001:08 (IM:InvokeCommandRequest) (B:79)[0m
+[0;32mI (79398) chip[ZCL]: OpCreds: Received an UpdateFabricLabel command[0m
+[0;32mI (79408) chip[FP]: Metadata for Fabric 0x1 persisted to storage.[0m
+[0;32mI (79408) chip[EM]: <<< [E:9511r S:32404 M:6311964 (Ack:120496861)] (S) Msg TX from 0000000006BC098E to 1:000000003BDEF7D9 [8B73] [UDP:[FD07:D539:E997:1:1870:727B:E2C8:2AA7]:54378] --- Type 0001:09 (IM:InvokeCommandResponse) (B:70)[0m
+[0;32mI (79428) chip[EM]: ??1 [E:9511r S:32404 M:6311964] (S) Msg Retransmission to 1:000000003BDEF7D9 scheduled for 5338ms from now [State:Active II:500 AI:300 AT:4000][0m
+[0;32mI (79458) chip[EM]: <<< [E:14617i S:32404 M:6311965] (S) Msg TX from 0000000006BC098E to 1:000000003BDEF7D9 [8B73] [UDP:[FD07:D539:E997:1:1870:727B:E2C8:2AA7]:54378] --- Type 0001:05 (IM:ReportData) (B:271)[0m
+[0;32mI (79468) chip[EM]: ??1 [E:14617i S:32404 M:6311965] (S) Msg Retransmission to 1:000000003BDEF7D9 scheduled for 5333ms from now [State:Active II:500 AI:300 AT:4000][0m
+[0;32mI (79568) chip[EM]: >>> [E:19315r S:0 M:162413926 (Ack:18862441)] (U) Msg RX from 0:CAC754EEF9F9AC16 [0000] to 0000000000000000 --- Type 0000:32 (SecureChannel:CASE_Sigma3) (B:373)[0m
+[0;32mI (79578) chip[EM]: <<< [E:19315r S:0 M:18862442 (Ack:162413926)] (U) Msg TX from 0000000000000000 to 0:CAC754EEF9F9AC16 [0000] [UDP:[FD73:986F:53CE:0:E8F4:C998:519F:D1A5]:64422] --- Type 0000:10 (SecureChannel:StandaloneAck) (B:26)[0m
+[0;32mI (79598) chip[SC]: Received Sigma3 msg[0m
+[0;31mE (79598) chip[SC]: The device does not support GetClock_RealTimeMS() API: 6c.  Falling back to Last Known Good UTC Time[0m
+[0;32mI (79608) chip[EM]: >>> [E:9511r S:32404 M:120496862 (Ack:6311964)] (S) Msg RX from 1:000000003BDEF7D9 [8B73] to 0000000006BC098E --- Type 0000:10 (SecureChannel:StandaloneAck) (B:34)[0m
+[0;32mI (79728) chip[EM]: <<< [E:19315r S:0 M:18862443 (Ack:162413926)] (U) Msg TX from 0000000000000000 to 0:CAC754EEF9F9AC16 [0000] [UDP:[FD73:986F:53CE:0:E8F4:C998:519F:D1A5]:64422] --- Type 0000:40 (SecureChannel:StatusReport) (B:34)[0m
+[0;32mI (79738) chip[EM]: ??1 [E:19315r S:0 M:18862443] (U) Msg Retransmission to 0:0000000000000000 scheduled for 5370ms from now [State:Active II:500 AI:300 AT:4000][0m
+[0;32mI (79758) chip[SC]: SecureSession[0x4081ac60, LSID:32406]: State change 'kEstablishing' --> 'kActive'[0m
+[0;32mI (79758) chip[IN]: CASE Session established to peer: <00000000559F0421, 1>[0m
+[0;32mI (79868) chip[EM]: >>> [E:14617i S:32404 M:120496863 (Ack:6311965)] (S) Msg RX from 1:000000003BDEF7D9 [8B73] to 0000000006BC098E --- Type 0001:01 (IM:StatusResponse) (B:42)[0m
+[0;32mI (79868) chip[IM]: Received status response, status is 0x00[0m
+[0;32mI (79878) chip[EM]: <<< [E:14617i S:32404 M:6311966 (Ack:120496863)] (S) Msg TX from 0000000006BC098E to 1:000000003BDEF7D9 [8B73] [UDP:[FD07:D539:E997:1:1870:727B:E2C8:2AA7]:54378] --- Type 0000:10 (SecureChannel:StandaloneAck) (B:34)[0m
+[0;32mI (79908) chip[EM]: >>> [E:19316r S:32406 M:22113662] (S) Msg RX from 1:00000000559F0421 [8B73] to 0000000006BC098E --- Type 0001:02 (IM:ReadRequest) (B:51)[0m
+[0;32mI (79918) chip[EM]: >>> [E:19317r S:32406 M:22113663] (S) Msg RX from 1:00000000559F0421 [8B73] to 0000000006BC098E --- Type 0001:02 (IM:ReadRequest) (B:51)[0m
+[0;32mI (79928) chip[EM]: >>> [E:19315r S:0 M:162413927 (Ack:18862443)] (U) Msg RX from 0:CAC754EEF9F9AC16 [0000] to 0000000000000000 --- Type 0000:10 (SecureChannel:StandaloneAck) (B:26)[0m
+[0;32mI (79948) chip[EM]: <<< [E:19316r S:32406 M:41780091 (Ack:22113662)] (S) Msg TX from 0000000006BC098E to 1:00000000559F0421 [8B73] [UDP:[FD73:986F:53CE:0:E8F4:C998:519F:D1A5]:64422] --- Type 0001:05 (IM:ReportData) (B:70)[0m
+[0;32mI (79968) chip[EM]: ??1 [E:19316r S:32406 M:41780091] (S) Msg Retransmission to 1:00000000559F0421 scheduled for 5406ms from now [State:Active II:500 AI:300 AT:4000][0m
+[0;32mI (79978) chip[EM]: <<< [E:19317r S:32406 M:41780092 (Ack:22113663)] (S) Msg TX from 0000000006BC098E to 1:00000000559F0421 [8B73] [UDP:[FD73:986F:53CE:0:E8F4:C998:519F:D1A5]:64422] --- Type 0001:05 (IM:ReportData) (B:70)[0m
+[0;32mI (79998) chip[EM]: ??1 [E:19317r S:32406 M:41780092] (S) Msg Retransmission to 1:00000000559F0421 scheduled for 5359ms from now [State:Active II:500 AI:300 AT:4000][0m
+[0;32mI (80018) chip[EM]: >>> [E:19318r S:32406 M:22113664] (S) Msg RX from 1:00000000559F0421 [8B73] to 0000000006BC098E --- Type 0001:02 (IM:ReadRequest) (B:51)[0m
+[0;32mI (80028) chip[EM]: >>> [E:19316r S:32406 M:22113665 (Ack:41780091)] (S) Msg RX from 1:00000000559F0421 [8B73] to 0000000006BC098E --- Type 0000:10 (SecureChannel:StandaloneAck) (B:34)[0m
+[0;32mI (80048) chip[EM]: <<< [E:19318r S:32406 M:41780093 (Ack:22113664)] (S) Msg TX from 0000000006BC098E to 1:00000000559F0421 [8B73] [UDP:[FD73:986F:53CE:0:E8F4:C998:519F:D1A5]:64422] --- Type 0001:05 (IM:ReportData) (B:125)[0m
+[0;32mI (80068) chip[EM]: ??1 [E:19318r S:32406 M:41780093] (S) Msg Retransmission to 1:00000000559F0421 scheduled for 5350ms from now [State:Active II:500 AI:300 AT:4000][0m
+[0;32mI (80088) chip[EM]: >>> [E:19319r S:32406 M:22113666] (S) Msg RX from 1:00000000559F0421 [8B73] to 0000000006BC098E --- Type 0001:03 (IM:SubscribeRequest) (B:58)[0m
+[0;32mI (80098) chip[DMG]: Final negotiated min/max parameters: Min = 0s, Max = 600s[0m
+[0;32mI (80108) chip[EM]: >>> [E:19317r S:32406 M:22113667 (Ack:41780092)] (S) Msg RX from 1:00000000559F0421 [8B73] to 0000000006BC098E --- Type 0000:10 (SecureChannel:StandaloneAck) (B:34)[0m
+[0;32mI (80148) chip[EM]: <<< [E:19319r S:32406 M:41780094 (Ack:22113666)] (S) Msg TX from 0000000006BC098E to 1:00000000559F0421 [8B73] [UDP:[FD73:986F:53CE:0:E8F4:C998:519F:D1A5]:64422] --- Type 0001:05 (IM:ReportData) (B:1200)[0m
+[0;32mI (80158) chip[EM]: ??1 [E:19319r S:32406 M:41780094] (S) Msg Retransmission to 1:00000000559F0421 scheduled for 5394ms from now [State:Active II:500 AI:300 AT:4000][0m
+[0;32mI (80168) chip[EM]: >>> [E:19318r S:32406 M:22113668 (Ack:41780093)] (S) Msg RX from 1:00000000559F0421 [8B73] to 0000000006BC098E --- Type 0000:10 (SecureChannel:StandaloneAck) (B:34)[0m
+[0;32mI (80188) chip[EM]: >>> [E:19320r S:32406 M:22113669] (S) Msg RX from 1:00000000559F0421 [8B73] to 0000000006BC098E --- Type 0001:06 (IM:WriteRequest) (B:110)[0m
+[0;32mI (80208) chip[EM]: <<< [E:19320r S:32406 M:41780095 (Ack:22113669)] (S) Msg TX from 0000000006BC098E to 1:00000000559F0421 [8B73] [UDP:[FD73:986F:53CE:0:E8F4:C998:519F:D1A5]:64422] --- Type 0001:07 (IM:WriteResponse) (B:62)[0m
+[0;32mI (80218) chip[EM]: ??1 [E:19320r S:32406 M:41780095] (S) Msg Retransmission to 1:00000000559F0421 scheduled for 5331ms from now [State:Active II:500 AI:300 AT:4000][0m
+[0;32mI (80248) chip[EM]: <<< [E:14618i S:32404 M:6311967] (S) Msg TX from 0000000006BC098E to 1:000000003BDEF7D9 [8B73] [UDP:[FD07:D539:E997:1:1870:727B:E2C8:2AA7]:54378] --- Type 0001:05 (IM:ReportData) (B:279)[0m
+[0;32mI (80258) chip[EM]: ??1 [E:14618i S:32404 M:6311967] (S) Msg Retransmission to 1:000000003BDEF7D9 scheduled for 5386ms from now [State:Active II:500 AI:300 AT:4000][0m
+[0;32mI (80388) chip[EM]: >>> [E:19319r S:32406 M:22113670 (Ack:41780094)] (S) Msg RX from 1:00000000559F0421 [8B73] to 0000000006BC098E --- Type 0001:01 (IM:StatusResponse) (B:42)[0m
+[0;32mI (80388) chip[IM]: Received status response, status is 0x00[0m
+[0;32mI (80398) chip[EM]: >>> [E:19320r S:32406 M:22113671 (Ack:41780095)] (S) Msg RX from 1:00000000559F0421 [8B73] to 0000000006BC098E --- Type 0000:10 (SecureChannel:StandaloneAck) (B:34)[0m
+[0;32mI (80428) chip[EM]: <<< [E:19319r S:32406 M:41780096 (Ack:22113670)] (S) Msg TX from 0000000006BC098E to 1:00000000559F0421 [8B73] [UDP:[FD73:986F:53CE:0:E8F4:C998:519F:D1A5]:64422] --- Type 0001:05 (IM:ReportData) (B:1180)[0m
+[0;32mI (80438) chip[EM]: ??1 [E:19319r S:32406 M:41780096] (S) Msg Retransmission to 1:00000000559F0421 scheduled for 5356ms from now [State:Active II:500 AI:300 AT:4000][0m
+[0;32mI (80518) chip[EM]: >>> [E:14618i S:32404 M:120496864 (Ack:6311967)] (S) Msg RX from 1:000000003BDEF7D9 [8B73] to 0000000006BC098E --- Type 0001:01 (IM:StatusResponse) (B:42)[0m
+[0;32mI (80528) chip[IM]: Received status response, status is 0x00[0m
+[0;32mI (80538) chip[EM]: <<< [E:14618i S:32404 M:6311968 (Ack:120496864)] (S) Msg TX from 0000000006BC098E to 1:000000003BDEF7D9 [8B73] [UDP:[FD07:D539:E997:1:1870:727B:E2C8:2AA7]:54378] --- Type 0000:10 (SecureChannel:StandaloneAck) (B:34)[0m
+[0;32mI (80938) chip[EM]: >>> [E:19319r S:32406 M:22113672 (Ack:41780096)] (S) Msg RX from 1:00000000559F0421 [8B73] to 0000000006BC098E --- Type 0001:01 (IM:StatusResponse) (B:42)[0m
+[0;32mI (80948) chip[IM]: Received status response, status is 0x00[0m
+[0;32mI (80968) chip[EM]: <<< [E:19319r S:32406 M:41780097 (Ack:22113672)] (S) Msg TX from 0000000006BC098E to 1:00000000559F0421 [8B73] [UDP:[FD73:986F:53CE:0:E8F4:C998:519F:D1A5]:64422] --- Type 0001:05 (IM:ReportData) (B:1185)[0m
+[0;32mI (80978) chip[EM]: ??1 [E:19319r S:32406 M:41780097] (S) Msg Retransmission to 1:00000000559F0421 scheduled for 5359ms from now [State:Active II:500 AI:300 AT:4000][0m
+[0;32mI (81308) chip[EM]: >>> [E:19319r S:32406 M:22113673 (Ack:41780097)] (S) Msg RX from 1:00000000559F0421 [8B73] to 0000000006BC098E --- Type 0001:01 (IM:StatusResponse) (B:42)[0m
+[0;32mI (81318) chip[IM]: Received status response, status is 0x00[0m
+[0;32mI (81338) chip[EM]: <<< [E:19319r S:32406 M:41780098 (Ack:22113673)] (S) Msg TX from 0000000006BC098E to 1:00000000559F0421 [8B73] [UDP:[FD73:986F:53CE:0:E8F4:C998:519F:D1A5]:64422] --- Type 0001:05 (IM:ReportData) (B:1183)[0m
+[0;32mI (81348) chip[EM]: ??1 [E:19319r S:32406 M:41780098] (S) Msg Retransmission to 1:00000000559F0421 scheduled for 5368ms from now [State:Active II:500 AI:300 AT:4000][0m
+[0;32mI (81698) chip[EM]: >>> [E:19319r S:32406 M:22113674 (Ack:41780098)] (S) Msg RX from 1:00000000559F0421 [8B73] to 0000000006BC098E --- Type 0001:01 (IM:StatusResponse) (B:42)[0m
+[0;32mI (81708) chip[IM]: Received status response, status is 0x00[0m
+[0;32mI (81758) chip[EM]: <<< [E:19319r S:32406 M:41780099 (Ack:22113674)] (S) Msg TX from 0000000006BC098E to 1:00000000559F0421 [8B73] [UDP:[FD73:986F:53CE:0:E8F4:C998:519F:D1A5]:64422] --- Type 0001:05 (IM:ReportData) (B:1194)[0m
+[0;32mI (81768) chip[EM]: ??1 [E:19319r S:32406 M:41780099] (S) Msg Retransmission to 1:00000000559F0421 scheduled for 5404ms from now [State:Active II:500 AI:300 AT:4000][0m
+[0;32mI (82198) chip[EM]: >>> [E:19319r S:32406 M:22113675 (Ack:41780099)] (S) Msg RX from 1:00000000559F0421 [8B73] to 0000000006BC098E --- Type 0001:01 (IM:StatusResponse) (B:42)[0m
+[0;32mI (82208) chip[IM]: Received status response, status is 0x00[0m
+[0;32mI (82228) chip[EM]: <<< [E:19319r S:32406 M:41780100 (Ack:22113675)] (S) Msg TX from 0000000006BC098E to 1:00000000559F0421 [8B73] [UDP:[FD73:986F:53CE:0:E8F4:C998:519F:D1A5]:64422] --- Type 0001:05 (IM:ReportData) (B:1198)[0m
+[0;32mI (82238) chip[EM]: ??1 [E:19319r S:32406 M:41780100] (S) Msg Retransmission to 1:00000000559F0421 scheduled for 5381ms from now [State:Active II:500 AI:300 AT:4000][0m
+[0;32mI (82698) chip[EM]: >>> [E:19319r S:32406 M:22113676 (Ack:41780100)] (S) Msg RX from 1:00000000559F0421 [8B73] to 0000000006BC098E --- Type 0001:01 (IM:StatusResponse) (B:42)[0m
+[0;32mI (82698) chip[IM]: Received status response, status is 0x00[0m
+[0;32mI (82718) chip[EM]: <<< [E:19319r S:32406 M:41780101 (Ack:22113676)] (S) Msg TX from 0000000006BC098E to 1:00000000559F0421 [8B73] [UDP:[FD73:986F:53CE:0:E8F4:C998:519F:D1A5]:64422] --- Type 0001:05 (IM:ReportData) (B:710)[0m
+[0;32mI (82728) chip[EM]: ??1 [E:19319r S:32406 M:41780101] (S) Msg Retransmission to 1:00000000559F0421 scheduled for 5352ms from now [State:Active II:500 AI:300 AT:4000][0m
+[0;32mI (83168) chip[EM]: >>> [E:19319r S:32406 M:22113677 (Ack:41780101)] (S) Msg RX from 1:00000000559F0421 [8B73] to 0000000006BC098E --- Type 0001:01 (IM:StatusResponse) (B:42)[0m
+[0;32mI (83168) chip[IM]: Received status response, status is 0x00[0m
+[0;32mI (83178) chip[EM]: <<< [E:19319r S:32406 M:41780102 (Ack:22113677)] (S) Msg TX from 0000000006BC098E to 1:00000000559F0421 [8B73] [UDP:[FD73:986F:53CE:0:E8F4:C998:519F:D1A5]:64422] --- Type 0001:04 (IM:SubscribeResponse) (B:49)[0m
+[0;32mI (83198) chip[EM]: ??1 [E:19319r S:32406 M:41780102] (S) Msg Retransmission to 1:00000000559F0421 scheduled for 5399ms from now [State:Active II:500 AI:300 AT:4000][0m
+[0;32mI (83208) chip[DMG]: Registered a ReadHandler that will schedule a report between system Timestamp: 0x0000000000014511 and system Timestamp 0x00000000000A6CD1.[0m
+[0;32mI (83228) chip[EM]: <<< [E:14619i S:32406 M:41780103] (S) Msg TX from 0000000006BC098E to 1:00000000559F0421 [8B73] [UDP:[FD73:986F:53CE:0:E8F4:C998:519F:D1A5]:64422] --- Type 0001:05 (IM:ReportData) (B:130)[0m
+[0;32mI (83248) chip[EM]: ??1 [E:14619i S:32406 M:41780103] (S) Msg Retransmission to 1:00000000559F0421 scheduled for 5405ms from now [State:Active II:500 AI:300 AT:4000][0m
+[0;32mI (83258) chip[EM]: >>> [E:19319r S:32406 M:22113678 (Ack:41780102)] (S) Msg RX from 1:00000000559F0421 [8B73] to 0000000006BC098E --- Type 0000:10 (SecureChannel:StandaloneAck) (B:34)[0m
+[0;32mI (83308) chip[EM]: >>> [E:14619i S:32406 M:22113679 (Ack:41780103)] (S) Msg RX from 1:00000000559F0421 [8B73] to 0000000006BC098E --- Type 0001:01 (IM:StatusResponse) (B:42)[0m
+[0;32mI (83318) chip[IM]: Received status response, status is 0x00[0m
+[0;32mI (83328) chip[EM]: <<< [E:14619i S:32406 M:41780104 (Ack:22113679)] (S) Msg TX from 0000000006BC098E to 1:00000000559F0421 [8B73] [UDP:[FD73:986F:53CE:0:E8F4:C998:519F:D1A5]:64422] --- Type 0000:10 (SecureChannel:StandaloneAck) (B:34)[0m
+[0;32mI (83378) chip[EM]: >>> [E:19321r S:32406 M:22113680] (S) Msg RX from 1:00000000559F0421 [8B73] to 0000000006BC098E --- Type 0001:06 (IM:WriteRequest) (B:89)[0m
+[0;32mI (83388) chip[EM]: <<< [E:19321r S:32406 M:41780105 (Ack:22113680)] (S) Msg TX from 0000000006BC098E to 1:00000000559F0421 [8B73] [UDP:[FD73:986F:53CE:0:E8F4:C998:519F:D1A5]:64422] --- Type 0001:07 (IM:WriteResponse) (B:84)[0m
+[0;32mI (83408) chip[EM]: ??1 [E:19321r S:32406 M:41780105] (S) Msg Retransmission to 1:00000000559F0421 scheduled for 5335ms from now [State:Active II:500 AI:300 AT:4000][0m
+[0;32mI (83428) chip[EM]: <<< [E:14620i S:32404 M:6311969] (S) Msg TX from 0000000006BC098E to 1:000000003BDEF7D9 [8B73] [UDP:[FD07:D539:E997:1:1870:727B:E2C8:2AA7]:54378] --- Type 0001:05 (IM:ReportData) (B:84)[0m
+[0;32mI (83438) chip[EM]: ??1 [E:14620i S:32404 M:6311969] (S) Msg Retransmission to 1:000000003BDEF7D9 scheduled for 5342ms from now [State:Active II:500 AI:300 AT:4000][0m
+[0;32mI (83458) chip[EM]: <<< [E:14621i S:32406 M:41780106] (S) Msg TX from 0000000006BC098E to 1:00000000559F0421 [8B73] [UDP:[FD73:986F:53CE:0:E8F4:C998:519F:D1A5]:64422] --- Type 0001:05 (IM:ReportData) (B:84)[0m
+[0;32mI (83478) chip[EM]: ??1 [E:14621i S:32406 M:41780106] (S) Msg Retransmission to 1:00000000559F0421 scheduled for 5365ms from now [State:Active II:500 AI:300 AT:4000][0m
+[0;32mI (83498) chip[EM]: >>> [E:19322r S:32406 M:22113681] (S) Msg RX from 1:00000000559F0421 [8B73] to 0000000006BC098E --- Type 0001:08 (IM:InvokeCommandRequest) (B:79)[0m
+[0;32mI (83508) chip[ZCL]: OpCreds: Received an UpdateFabricLabel command[0m
+[0;32mI (83518) chip[FP]: Metadata for Fabric 0x1 persisted to storage.[0m
+[0;32mI (83528) chip[EM]: <<< [E:19322r S:32406 M:41780107 (Ack:22113681)] (S) Msg TX from 0000000006BC098E to 1:00000000559F0421 [8B73] [UDP:[FD73:986F:53CE:0:E8F4:C998:519F:D1A5]:64422] --- Type 0001:09 (IM:InvokeCommandResponse) (B:70)[0m
+[0;32mI (83548) chip[EM]: ??1 [E:19322r S:32406 M:41780107] (S) Msg Retransmission to 1:00000000559F0421 scheduled for 5349ms from now [State:Active II:500 AI:300 AT:4000][0m
+[0;32mI (83558) chip[EM]: >>> [E:19321r S:32406 M:22113682 (Ack:41780105)] (S) Msg RX from 1:00000000559F0421 [8B73] to 0000000006BC098E --- Type 0000:10 (SecureChannel:StandaloneAck) (B:34)[0m
+[0;32mI (83578) chip[EM]: >>> [E:14621i S:32406 M:22113683 (Ack:41780106)] (S) Msg RX from 1:00000000559F0421 [8B73] to 0000000006BC098E --- Type 0001:01 (IM:StatusResponse) (B:42)[0m
+[0;32mI (83588) chip[IM]: Received status response, status is 0x00[0m
+[0;32mI (83598) chip[EM]: <<< [E:14621i S:32406 M:41780108 (Ack:22113683)] (S) Msg TX from 0000000006BC098E to 1:00000000559F0421 [8B73] [UDP:[FD73:986F:53CE:0:E8F4:C998:519F:D1A5]:64422] --- Type 0000:10 (SecureChannel:StandaloneAck) (B:34)[0m
+[0;32mI (83618) chip[EM]: >>> [E:19322r S:32406 M:22113684 (Ack:41780107)] (S) Msg RX from 1:00000000559F0421 [8B73] to 0000000006BC098E --- Type 0000:10 (SecureChannel:StandaloneAck) (B:34)[0m
+[0;32mI (83638) chip[EM]: >>> [E:14620i S:32404 M:120496865 (Ack:6311969)] (S) Msg RX from 1:000000003BDEF7D9 [8B73] to 0000000006BC098E --- Type 0001:01 (IM:StatusResponse) (B:42)[0m
+[0;32mI (83648) chip[IM]: Received status response, status is 0x00[0m
+[0;32mI (83658) chip[EM]: <<< [E:14620i S:32404 M:6311970 (Ack:120496865)] (S) Msg TX from 0000000006BC098E to 1:000000003BDEF7D9 [8B73] [UDP:[FD07:D539:E997:1:1870:727B:E2C8:2AA7]:54378] --- Type 0000:10 (SecureChannel:StandaloneAck) (B:34)[0m
+[0;32mI (83688) chip[EM]: <<< [E:14622i S:32404 M:6311971] (S) Msg TX from 0000000006BC098E to 1:000000003BDEF7D9 [8B73] [UDP:[FD07:D539:E997:1:1870:727B:E2C8:2AA7]:54378] --- Type 0001:05 (IM:ReportData) (B:271)[0m
+[0;32mI (83698) chip[EM]: ??1 [E:14622i S:32404 M:6311971] (S) Msg Retransmission to 1:000000003BDEF7D9 scheduled for 5376ms from now [State:Active II:500 AI:300 AT:4000][0m
+[0;32mI (83718) chip[EM]: <<< [E:14623i S:32406 M:41780109] (S) Msg TX from 0000000006BC098E to 1:00000000559F0421 [8B73] [UDP:[FD73:986F:53CE:0:E8F4:C998:519F:D1A5]:64422] --- Type 0001:05 (IM:ReportData) (B:271)[0m
+[0;32mI (83738) chip[EM]: ??1 [E:14623i S:32406 M:41780109] (S) Msg Retransmission to 1:00000000559F0421 scheduled for 5369ms from now [State:Active II:500 AI:300 AT:4000][0m
+[0;32mI (83938) chip[EM]: >>> [E:14623i S:32406 M:22113685 (Ack:41780109)] (S) Msg RX from 1:00000000559F0421 [8B73] to 0000000006BC098E --- Type 0001:01 (IM:StatusResponse) (B:42)[0m
+[0;32mI (83948) chip[IM]: Received status response, status is 0x00[0m
+[0;32mI (83948) chip[EM]: <<< [E:14623i S:32406 M:41780110 (Ack:22113685)] (S) Msg TX from 0000000006BC098E to 1:00000000559F0421 [8B73] [UDP:[FD73:986F:53CE:0:E8F4:C998:519F:D1A5]:64422] --- Type 0000:10 (SecureChannel:StandaloneAck) (B:34)[0m
+[0;32mI (84118) chip[EM]: >>> [E:14622i S:32404 M:120496866 (Ack:6311971)] (S) Msg RX from 1:000000003BDEF7D9 [8B73] to 0000000006BC098E --- Type 0001:01 (IM:StatusResponse) (B:42)[0m
+[0;32mI (84118) chip[IM]: Received status response, status is 0x00[0m
+[0;32mI (84128) chip[EM]: <<< [E:14622i S:32404 M:6311972 (Ack:120496866)] (S) Msg TX from 0000000006BC098E to 1:000000003BDEF7D9 [8B73] [UDP:[FD07:D539:E997:1:1870:727B:E2C8:2AA7]:54378] --- Type 0000:10 (SecureChannel:StandaloneAck) (B:34)[0m
+[0;33mW(84558) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
+[0;33mW(84558) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
+[0;33mW(92688) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
+[0;33mW(92688) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
+[0;33mW(106248) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
+[0;33mW(106248) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
+[0;32mI (108488) chip[SWU]: Stopping the Periodic Query timer[0m
+[0;32mI (108488) chip[SWU]: Starting the watchdog timer, timeout: 21600 seconds[0m
+[0;32mI (108488) chip[DIS]: Found an existing secure session to [1:00000000559F0421]![0m
+[0;32mI (108498) chip[EM]: <<< [E:14624i S:32406 M:41780111] (S) Msg TX from 0000000006BC098E to 1:00000000559F0421 [8B73] [UDP:[FD73:986F:53CE:0:E8F4:C998:519F:D1A5]:64422] --- Type 0001:08 (IM:InvokeCommandRequest) (B:85)[0m
+[0;32mI (108518) chip[EM]: ??1 [E:14624i S:32406 M:41780111] (S) Msg Retransmission to 1:00000000559F0421 scheduled for 5639ms from now [State:Idle II:500 AI:300 AT:4000][0m
+[0;32mI (108538) chip[EM]: <<< [E:14625i S:32404 M:6311973] (S) Msg TX from 0000000006BC098E to 1:000000003BDEF7D9 [8B73] [UDP:[FD07:D539:E997:1:1870:727B:E2C8:2AA7]:54378] --- Type 0001:05 (IM:ReportData) (B:116)[0m
+[0;32mI (108548) chip[EM]: ??1 [E:14625i S:32404 M:6311973] (S) Msg Retransmission to 1:000000003BDEF7D9 scheduled for 5651ms from now [State:Idle II:500 AI:300 AT:4000][0m
+[0;32mI (108568) chip[EM]: <<< [E:14626i S:32406 M:41780112] (S) Msg TX from 0000000006BC098E to 1:00000000559F0421 [8B73] [UDP:[FD73:986F:53CE:0:E8F4:C998:519F:D1A5]:64422] --- Type 0001:05 (IM:ReportData) (B:116)[0m
+[0;32mI (108588) chip[EM]: ??1 [E:14626i S:32406 M:41780112] (S) Msg Retransmission to 1:00000000559F0421 scheduled for 5586ms from now [State:Idle II:500 AI:300 AT:4000][0m
+[0;32mI (108598) chip[EM]: >>> [E:14624i S:32406 M:22113686 (Ack:41780111)] (S) Msg RX from 1:00000000559F0421 [8B73] to 0000000006BC098E --- Type 0001:09 (IM:InvokeCommandResponse) (B:67)[0m
+[0;32mI (108618) chip[DMG]: Received Command Response Data, Endpoint=0 Cluster=0x0000_0029 Command=0x0000_0001[0m
+[0;32mI (108628) chip[SWU]: Stopping the watchdog timer[0m
+[0;32mI (108628) chip[SWU]: Starting the periodic query timer, timeout: 86400 seconds[0m
+[0;32mI (108638) chip[EM]: <<< [E:14624i S:32406 M:41780113 (Ack:22113686)] (S) Msg TX from 0000000006BC098E to 1:00000000559F0421 [8B73] [UDP:[FD73:986F:53CE:0:E8F4:C998:519F:D1A5]:64422] --- Type 0000:10 (SecureChannel:StandaloneAck) (B:34)[0m
+[0;32mI (108668) chip[EM]: >>> [E:14626i S:32406 M:22113687 (Ack:41780112)] (S) Msg RX from 1:00000000559F0421 [8B73] to 0000000006BC098E --- Type 0001:01 (IM:StatusResponse) (B:42)[0m
+[0;32mI (108678) chip[IM]: Received status response, status is 0x00[0m
+[0;32mI (108688) chip[EM]: <<< [E:14626i S:32406 M:41780114 (Ack:22113687)] (S) Msg TX from 0000000006BC098E to 1:00000000559F0421 [8B73] [UDP:[FD73:986F:53CE:0:E8F4:C998:519F:D1A5]:64422] --- Type 0000:10 (SecureChannel:StandaloneAck) (B:34)[0m
+[0;32mI (108718) chip[EM]: <<< [E:14627i S:32406 M:41780115] (S) Msg TX from 0000000006BC098E to 1:00000000559F0421 [8B73] [UDP:[FD73:986F:53CE:0:E8F4:C998:519F:D1A5]:64422] --- Type 0001:05 (IM:ReportData) (B:116)[0m
+[0;32mI (108728) chip[EM]: ??1 [E:14627i S:32406 M:41780115] (S) Msg Retransmission to 1:00000000559F0421 scheduled for 5384ms from now [State:Active II:500 AI:300 AT:4000][0m
+[0;32mI (108738) chip[EM]: >>> [E:14625i S:32404 M:120496867 (Ack:6311973)] (S) Msg RX from 1:000000003BDEF7D9 [8B73] to 0000000006BC098E --- Type 0001:01 (IM:StatusResponse) (B:42)[0m
+[0;32mI (108758) chip[IM]: Received status response, status is 0x00[0m
+[0;32mI (108768) chip[EM]: <<< [E:14625i S:32404 M:6311974 (Ack:120496867)] (S) Msg TX from 0000000006BC098E to 1:000000003BDEF7D9 [8B73] [UDP:[FD07:D539:E997:1:1870:727B:E2C8:2AA7]:54378] --- Type 0000:10 (SecureChannel:StandaloneAck) (B:34)[0m
+[0;32mI (108798) chip[EM]: <<< [E:14628i S:32404 M:6311975] (S) Msg TX from 0000000006BC098E to 1:000000003BDEF7D9 [8B73] [UDP:[FD07:D539:E997:1:1870:727B:E2C8:2AA7]:54378] --- Type 0001:05 (IM:ReportData) (B:116)[0m
+[0;32mI (108808) chip[EM]: ??1 [E:14628i S:32404 M:6311975] (S) Msg Retransmission to 1:000000003BDEF7D9 scheduled for 5348ms from now [State:Active II:500 AI:300 AT:4000][0m
+[0;32mI (108828) chip[EM]: >>> [E:14627i S:32406 M:22113688 (Ack:41780115)] (S) Msg RX from 1:00000000559F0421 [8B73] to 0000000006BC098E --- Type 0001:01 (IM:StatusResponse) (B:42)[0m
+[0;32mI (108838) chip[IM]: Received status response, status is 0x00[0m
+[0;32mI (108848) chip[EM]: <<< [E:14627i S:32406 M:41780116 (Ack:22113688)] (S) Msg TX from 0000000006BC098E to 1:00000000559F0421 [8B73] [UDP:[FD73:986F:53CE:0:E8F4:C998:519F:D1A5]:64422] --- Type 0000:10 (SecureChannel:StandaloneAck) (B:34)[0m
+[0;32mI (108868) chip[EM]: >>> [E:14628i S:32404 M:120496868 (Ack:6311975)] (S) Msg RX from 1:000000003BDEF7D9 [8B73] to 0000000006BC098E --- Type 0001:01 (IM:StatusResponse) (B:42)[0m
+[0;32mI (108888) chip[IM]: Received status response, status is 0x00[0m
+[0;32mI (108888) chip[EM]: <<< [E:14628i S:32404 M:6311976 (Ack:120496868)] (S) Msg TX from 0000000006BC098E to 1:000000003BDEF7D9 [8B73] [UDP:[FD07:D539:E997:1:1870:727B:E2C8:2AA7]:54378] --- Type 0000:10 (SecureChannel:StandaloneAck) (B:34)[0m
+[0;33mW(118458) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
+[0;33mW(118458) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
+[0;32mI (129798) chip[EM]: >>> [E:19323r S:32406 M:22113689] (S) Msg RX from 1:00000000559F0421 [8B73] to 0000000006BC098E --- Type 0001:06 (IM:WriteRequest) (B:62)[0m
+[0;32mI (129798) chip[EM]: <<< [E:19323r S:32406 M:41780117 (Ack:22113689)] (S) Msg TX from 0000000006BC098E to 1:00000000559F0421 [8B73] [UDP:[FD73:986F:53CE:0:E8F4:C998:519F:D1A5]:64422] --- Type 0001:07 (IM:WriteResponse) (B:63)[0m
+[0;32mI (129818) chip[EM]: ??1 [E:19323r S:32406 M:41780117] (S) Msg Retransmission to 1:00000000559F0421 scheduled for 5345ms from now [State:Active II:500 AI:300 AT:4000][0m
+[0;32mI (129838) chip[EM]: <<< [E:14629i S:32404 M:6311977] (S) Msg TX from 0000000006BC098E to 1:000000003BDEF7D9 [8B73] [UDP:[FD07:D539:E997:1:1870:727B:E2C8:2AA7]:54378] --- Type 0001:05 (IM:ReportData) (B:71)[0m
+[0;32mI (129858) chip[EM]: ??1 [E:14629i S:32404 M:6311977] (S) Msg Retransmission to 1:000000003BDEF7D9 scheduled for 5571ms from now [State:Idle II:500 AI:300 AT:4000][0m
+[0;32mI (129878) chip[EM]: <<< [E:14630i S:32406 M:41780118] (S) Msg TX from 0000000006BC098E to 1:00000000559F0421 [8B73] [UDP:[FD73:986F:53CE:0:E8F4:C998:519F:D1A5]:64422] --- Type 0001:05 (IM:ReportData) (B:71)[0m
+[0;32mI (129888) chip[EM]: ??1 [E:14630i S:32406 M:41780118] (S) Msg Retransmission to 1:00000000559F0421 scheduled for 5330ms from now [State:Active II:500 AI:300 AT:4000][0m
+[0;32mI (129908) chip[EM]: >>> [E:19323r S:32406 M:22113690 (Ack:41780117)] (S) Msg RX from 1:00000000559F0421 [8B73] to 0000000006BC098E --- Type 0000:10 (SecureChannel:StandaloneAck) (B:34)[0m
+[0;32mI (129918) chip[EM]: >>> [E:14629i S:32404 M:120496869 (Ack:6311977)] (S) Msg RX from 1:000000003BDEF7D9 [8B73] to 0000000006BC098E --- Type 0001:01 (IM:StatusResponse) (B:42)[0m
+[0;32mI (129938) chip[IM]: Received status response, status is 0x7d[0m
+[0;32mI (129938) chip[DMG]: Subscription id 0xc2254bdb from node <000000003BDEF7D9, 1> torn down[0m
+[0;32mI (129958) chip[EM]: <<< [E:14629i S:32404 M:6311978 (Ack:120496869)] (S) Msg TX from 0000000006BC098E to 1:000000003BDEF7D9 [8B73] [UDP:[FD07:D539:E997:1:1870:727B:E2C8:2AA7]:54378] --- Type 0000:10 (SecureChannel:StandaloneAck) (B:34)[0m
+[0;32mI (129978) chip[EM]: >>> [E:14630i S:32406 M:22113691 (Ack:41780118)] (S) Msg RX from 1:00000000559F0421 [8B73] to 0000000006BC098E --- Type 0001:01 (IM:StatusResponse) (B:42)[0m
+[0;32mI (129988) chip[IM]: Received status response, status is 0x00[0m
+[0;32mI (129998) chip[EM]: <<< [E:14630i S:32406 M:41780119 (Ack:22113691)] (S) Msg TX from 0000000006BC098E to 1:00000000559F0421 [8B73] [UDP:[FD73:986F:53CE:0:E8F4:C998:519F:D1A5]:64422] --- Type 0000:10 (SecureChannel:StandaloneAck) (B:34)[0m
+[0;33mW(133608) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
+[0;33mW(133618) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
+[0;33mW(142948) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
+[0;33mW(142958) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
+[0;33mW(153098) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
+[0;33mW(153098) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
+[0;33mW(165108) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
+[0;33mW(165108) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
+[0;33mW(178898) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
+[0;33mW(178898) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
