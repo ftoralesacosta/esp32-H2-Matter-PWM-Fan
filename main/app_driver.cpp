@@ -26,28 +26,32 @@ using namespace esp_matter;
 static const char *TAG = "app_driver";
 extern uint16_t fan_endpoint_id;
 
-#define PWM_FAN_GPIO            GPIO_NUM_10       // Changed to GPIO 10 to avoid physical conflicts/shorts on GPIO 3
-#define PWM_LEDC_CHANNEL        LEDC_CHANNEL_0
-#define PWM_LEDC_TIMER          LEDC_TIMER_0
-#define PWM_LEDC_MODE           LEDC_LOW_SPEED_MODE
-#define PWM_LEDC_RESOLUTION     LEDC_TIMER_10_BIT // 10-bit resolution (0 to 1023)
-#define PWM_LEDC_FREQ           25000             // 25 kHz PWM frequency for Noctua fan
+#define TEST_PIN_1              GPIO_NUM_3
+#define TEST_PIN_2              GPIO_NUM_10
+#define TEST_PIN_3              GPIO_NUM_11
+#define TEST_PIN_4              GPIO_NUM_18
 
 static uint8_t current_speed_percentage = 0;
 
-// Background task to toggle the GPIO level directly between 0V and 3.3V for physical testing
+// Background task to toggle multiple GPIO levels directly for diagnostic testing
 static void ledc_test_task(void *pvParameters)
 {
-    ESP_LOGI("test_task", "Starting DIRECT GPIO hardware test loop on GPIO %d...", PWM_FAN_GPIO);
+    ESP_LOGI("test_task", "Starting MULTI-PIN direct GPIO hardware test loop...");
     while (1) {
-        // Set to HIGH (3.3V)
-        ESP_LOGI("test_task", "TEST: Setting GPIO %d to HIGH (3.3V)", PWM_FAN_GPIO);
-        gpio_set_level(PWM_FAN_GPIO, 1);
+        // Set all to HIGH (3.3V)
+        ESP_LOGI("test_task", "TEST: Setting all pins to HIGH (3.3V) (GPIOs 3, 10, 11, 18)");
+        gpio_set_level(TEST_PIN_1, 1);
+        gpio_set_level(TEST_PIN_2, 1);
+        gpio_set_level(TEST_PIN_3, 1);
+        gpio_set_level(TEST_PIN_4, 1);
         vTaskDelay(pdMS_TO_TICKS(3000)); // Hold for 3 seconds
 
-        // Set to LOW (0V)
-        ESP_LOGI("test_task", "TEST: Setting GPIO %d to LOW (0V)", PWM_FAN_GPIO);
-        gpio_set_level(PWM_FAN_GPIO, 0);
+        // Set all to LOW (0V)
+        ESP_LOGI("test_task", "TEST: Setting all pins to LOW (0V) (GPIOs 3, 10, 11, 18)");
+        gpio_set_level(TEST_PIN_1, 0);
+        gpio_set_level(TEST_PIN_2, 0);
+        gpio_set_level(TEST_PIN_3, 0);
+        gpio_set_level(TEST_PIN_4, 0);
         vTaskDelay(pdMS_TO_TICKS(3000)); // Hold for 3 seconds
     }
 }
@@ -149,13 +153,23 @@ esp_err_t app_driver_fan_set_defaults(uint16_t endpoint_id)
 
 app_driver_handle_t app_driver_fan_init()
 {
-    // Release the pin from JTAG/strapping and route it to the GPIO matrix
-    gpio_reset_pin(PWM_FAN_GPIO);
-    gpio_set_direction(PWM_FAN_GPIO, GPIO_MODE_OUTPUT);
+    // Configure all 4 test pins as digital outputs
+    gpio_reset_pin(TEST_PIN_1);
+    gpio_set_direction(TEST_PIN_1, GPIO_MODE_OUTPUT);
 
-    ESP_LOGI(TAG, "Direct GPIO %d configured as standard digital output for test", PWM_FAN_GPIO);
+    gpio_reset_pin(TEST_PIN_2);
+    gpio_set_direction(TEST_PIN_2, GPIO_MODE_OUTPUT);
 
-    // Create FreeRTOS task to cycle the GPIO level for testing
+    gpio_reset_pin(TEST_PIN_3);
+    gpio_set_direction(TEST_PIN_3, GPIO_MODE_OUTPUT);
+
+    gpio_reset_pin(TEST_PIN_4);
+    gpio_set_direction(TEST_PIN_4, GPIO_MODE_OUTPUT);
+
+    ESP_LOGI(TAG, "Multi-pin GPIO test initialized (GPIOs: %d, %d, %d, %d)", 
+             TEST_PIN_1, TEST_PIN_2, TEST_PIN_3, TEST_PIN_4);
+
+    // Create FreeRTOS task to cycle the levels of all 4 pins
     xTaskCreate(ledc_test_task, "ledc_test_task", 4096, NULL, 5, NULL);
 
     return (app_driver_handle_t)1; // Return non-null handle to indicate success
