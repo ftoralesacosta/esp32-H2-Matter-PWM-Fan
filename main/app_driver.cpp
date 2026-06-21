@@ -26,32 +26,30 @@ using namespace esp_matter;
 static const char *TAG = "app_driver";
 extern uint16_t fan_endpoint_id;
 
-#define TEST_PIN_1              GPIO_NUM_3
-#define TEST_PIN_2              GPIO_NUM_10
-#define TEST_PIN_3              GPIO_NUM_11
-#define TEST_PIN_4              GPIO_NUM_18
+#define PWM_FAN_GPIO            GPIO_NUM_21       // Physical pin D3 on Seeed Studio XIAO ESP32-C6
+#define PWM_LEDC_CHANNEL        LEDC_CHANNEL_0
+#define PWM_LEDC_TIMER          LEDC_TIMER_0
+#define PWM_LEDC_MODE           LEDC_LOW_SPEED_MODE
+#define PWM_LEDC_RESOLUTION     LEDC_TIMER_10_BIT // 10-bit resolution (0 to 1023)
+#define PWM_LEDC_FREQ           25000             // 25 kHz PWM frequency for Noctua fan
 
 static uint8_t current_speed_percentage = 0;
 
-// Background task to toggle multiple GPIO levels directly for diagnostic testing
+// Background task to toggle the LEDC PWM duty cycle between 0% and 100% for physical testing
 static void ledc_test_task(void *pvParameters)
 {
-    ESP_LOGI("test_task", "Starting MULTI-PIN direct GPIO hardware test loop...");
+    ESP_LOGI("test_task", "Starting LEDC PWM test loop on physical pin D3 (GPIO %d)...", PWM_FAN_GPIO);
     while (1) {
-        // Set all to HIGH (3.3V)
-        ESP_LOGI("test_task", "TEST: Setting all pins to HIGH (3.3V) (GPIOs 3, 10, 11, 18)");
-        gpio_set_level(TEST_PIN_1, 1);
-        gpio_set_level(TEST_PIN_2, 1);
-        gpio_set_level(TEST_PIN_3, 1);
-        gpio_set_level(TEST_PIN_4, 1);
+        // Set to 100% Speed (Duty: 1023 -> Constant 3.3V)
+        ESP_LOGI("test_task", "TEST: Setting physical pin D3 (GPIO %d) to 100%% Speed (3.3V)", PWM_FAN_GPIO);
+        ledc_set_duty(PWM_LEDC_MODE, PWM_LEDC_CHANNEL, 1023);
+        ledc_update_duty(PWM_LEDC_MODE, PWM_LEDC_CHANNEL);
         vTaskDelay(pdMS_TO_TICKS(3000)); // Hold for 3 seconds
 
-        // Set all to LOW (0V)
-        ESP_LOGI("test_task", "TEST: Setting all pins to LOW (0V) (GPIOs 3, 10, 11, 18)");
-        gpio_set_level(TEST_PIN_1, 0);
-        gpio_set_level(TEST_PIN_2, 0);
-        gpio_set_level(TEST_PIN_3, 0);
-        gpio_set_level(TEST_PIN_4, 0);
+        // Set to 0% Speed (Duty: 0 -> Constant 0V)
+        ESP_LOGI("test_task", "TEST: Setting physical pin D3 (GPIO %d) to 0%% Speed (0V)", PWM_FAN_GPIO);
+        ledc_set_duty(PWM_LEDC_MODE, PWM_LEDC_CHANNEL, 0);
+        ledc_update_duty(PWM_LEDC_MODE, PWM_LEDC_CHANNEL);
         vTaskDelay(pdMS_TO_TICKS(3000)); // Hold for 3 seconds
     }
 }
@@ -61,8 +59,24 @@ static esp_err_t app_driver_fan_set_speed(uint8_t speed_percentage)
     if (speed_percentage > 100) {
         speed_percentage = 100;
     }
+
+    // Map speed percentage (0-100) to LEDC duty cycle (0-1023)
+    uint32_t duty = (speed_percentage * 1023) / 100;
+
+    esp_err_t err = ledc_set_duty(PWM_LEDC_MODE, PWM_LEDC_CHANNEL, duty);
+    if (err != ESP_OK) {
+        ESP_LOGE(TAG, "Failed to set LEDC duty: %s", esp_err_to_name(err));
+        return err;
+    }
+
+    err = ledc_update_duty(PWM_LEDC_MODE, PWM_LEDC_CHANNEL);
+    if (err != ESP_OK) {
+        ESP_LOGE(TAG, "Failed to update LEDC duty: %s", esp_err_to_name(err));
+        return err;
+    }
+
     current_speed_percentage = speed_percentage;
-    ESP_LOGI(TAG, "Fan speed updated to %d%% (LEDC BYPASSED FOR DIAGNOSTIC TEST)", speed_percentage);
+    ESP_LOGI(TAG, "Fan speed updated to %d%% (Duty: %ld)", speed_percentage, duty);
     return ESP_OK;
 }
 
@@ -153,23 +167,45 @@ esp_err_t app_driver_fan_set_defaults(uint16_t endpoint_id)
 
 app_driver_handle_t app_driver_fan_init()
 {
-    // Configure all 4 test pins as digital outputs
-    gpio_reset_pin(TEST_PIN_1);
-    gpio_set_direction(TEST_PIN_1, GPIO_MODE_OUTPUT);
+    // Release the pin from JTAG/strapping and route it to the GPIO matrix
+    gpio_reset_pin(PWM_FAN_GPIO);
+    gpio_set_direction(PWM_FAN_GPIO, GPIO_MODE_OUTPUT);
 
-    gpio_reset_pin(TEST_PIN_2);
-    gpio_set_direction(TEST_PIN_2, GPIO_MODE_OUTPUT);
+    // 1. Configure LEDC Timer
+    ledc_timer_config_t ledc_timer = {
+        .speed_mode       = PWM_LEDC_MODE,
+        .duty_resolution  = PWM_LEDC_RESOLUTION,
+        .timer_num        = PWM_LEDC_TIMER,
+        .freq_hz          = PWM_LEDC_FREQ,
+        .clk_cfg          = LEDC_AUTO_CLK  // Automatically select best clock source
+    };
+    
+    esp_err_t err = ledc_timer_config(&ledc_timer);
+    if (err != ESP_OK) {
+        ESP_LOGE(TAG, "LEDC timer config failed: %s", esp_err_to_name(err));
+        return NULL;
+    }
 
-    gpio_reset_pin(TEST_PIN_3);
-    gpio_set_direction(TEST_PIN_3, GPIO_MODE_OUTPUT);
+    // 2. Configure LEDC Channel
+    ledc_channel_config_t ledc_channel = {
+        .gpio_num       = PWM_FAN_GPIO,
+        .speed_mode     = PWM_LEDC_MODE,
+        .channel        = PWM_LEDC_CHANNEL,
+        .intr_type      = LEDC_INTR_DISABLE,
+        .timer_sel      = PWM_LEDC_TIMER,
+        .duty           = 0,
+        .hpoint         = 0
+    };
 
-    gpio_reset_pin(TEST_PIN_4);
-    gpio_set_direction(TEST_PIN_4, GPIO_MODE_OUTPUT);
+    err = ledc_channel_config(&ledc_channel);
+    if (err != ESP_OK) {
+        ESP_LOGE(TAG, "LEDC channel config failed: %s", esp_err_to_name(err));
+        return NULL;
+    }
 
-    ESP_LOGI(TAG, "Multi-pin GPIO test initialized (GPIOs: %d, %d, %d, %d)", 
-             TEST_PIN_1, TEST_PIN_2, TEST_PIN_3, TEST_PIN_4);
+    ESP_LOGI(TAG, "Noctua Fan LEDC PWM initialized at 25kHz on physical pin D3 (GPIO %d)", PWM_FAN_GPIO);
 
-    // Create FreeRTOS task to cycle the levels of all 4 pins
+    // Create FreeRTOS task to cycle the PWM speed from 0 to 100 for testing
     xTaskCreate(ledc_test_task, "ledc_test_task", 4096, NULL, 5, NULL);
 
     return (app_driver_handle_t)1; // Return non-null handle to indicate success
