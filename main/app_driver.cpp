@@ -35,24 +35,6 @@ extern uint16_t fan_endpoint_id;
 
 static uint8_t current_speed_percentage = 0;
 
-// Background task to toggle the LEDC PWM duty cycle between 0% and 100% for physical testing
-static void ledc_test_task(void *pvParameters)
-{
-    ESP_LOGI("test_task", "Starting LEDC PWM test loop on physical pin D3 (GPIO %d)...", PWM_FAN_GPIO);
-    while (1) {
-        // Set to 100% Speed (Duty: 1023 -> Constant 3.3V)
-        ESP_LOGI("test_task", "TEST: Setting physical pin D3 (GPIO %d) to 100%% Speed (3.3V)", PWM_FAN_GPIO);
-        ledc_set_duty(PWM_LEDC_MODE, PWM_LEDC_CHANNEL, 1023);
-        ledc_update_duty(PWM_LEDC_MODE, PWM_LEDC_CHANNEL);
-        vTaskDelay(pdMS_TO_TICKS(3000)); // Hold for 3 seconds
-
-        // Set to 0% Speed (Duty: 0 -> Constant 0V)
-        ESP_LOGI("test_task", "TEST: Setting physical pin D3 (GPIO %d) to 0%% Speed (0V)", PWM_FAN_GPIO);
-        ledc_set_duty(PWM_LEDC_MODE, PWM_LEDC_CHANNEL, 0);
-        ledc_update_duty(PWM_LEDC_MODE, PWM_LEDC_CHANNEL);
-        vTaskDelay(pdMS_TO_TICKS(3000)); // Hold for 3 seconds
-    }
-}
 
 static esp_err_t app_driver_fan_set_speed(uint8_t speed_percentage)
 {
@@ -205,8 +187,6 @@ app_driver_handle_t app_driver_fan_init()
 
     ESP_LOGI(TAG, "Noctua Fan LEDC PWM initialized at 25kHz on physical pin D3 (GPIO %d)", PWM_FAN_GPIO);
 
-    // Create FreeRTOS task to cycle the PWM speed from 0 to 100 for testing
-    xTaskCreate(ledc_test_task, "ledc_test_task", 4096, NULL, 5, NULL);
 
     return (app_driver_handle_t)1; // Return non-null handle to indicate success
 }
