@@ -9,6 +9,7 @@
 #include <esp_log.h>
 #include <stdlib.h>
 #include <string.h>
+#include <esp_timer.h>
 
 #include <esp_matter.h>
 #include <app_priv.h>
@@ -88,6 +89,37 @@ static void app_driver_button_toggle_cb(void *arg, void *data)
     attribute::update(endpoint_id, cluster_id, attribute_id, &val);
 }
 
+static esp_timer_handle_t debounce_timer = NULL;
+static uint8_t target_speed = 0;
+static uint16_t target_endpoint_id = 0;
+static bool timer_created = false;
+
+static void debounce_timer_callback(void *arg)
+{
+    // 1. Update physical fan speed
+    app_driver_fan_set_speed(target_speed);
+
+    // 2. Update database attributes (PercentCurrent and FanMode)
+    uint16_t endpoint_id = target_endpoint_id;
+    
+    // Update PercentCurrent to match target_speed
+    esp_matter_attr_val_t current_val = esp_matter_uint8(target_speed);
+    esp_err_t err = attribute::update(endpoint_id, FanControl::Id, FanControl::Attributes::PercentCurrent::Id, &current_val);
+    if (err != ESP_OK) {
+        ESP_LOGE(TAG, "Failed to update PercentCurrent in debounce: %s", esp_err_to_name(err));
+    }
+    
+    // Update FanMode to match target_speed (4 for On, 0 for Off)
+    uint8_t mode = (target_speed > 0) ? 4 : 0;
+    esp_matter_attr_val_t mode_val = esp_matter_enum8(mode);
+    err = attribute::update(endpoint_id, FanControl::Id, FanControl::Attributes::FanMode::Id, &mode_val);
+    if (err != ESP_OK) {
+        ESP_LOGE(TAG, "Failed to update FanMode in debounce: %s", esp_err_to_name(err));
+    }
+
+    ESP_LOGI(TAG, "Debounce timer fired: Fan speed applied and database synchronized to %d%%", target_speed);
+}
+
 esp_err_t app_driver_attribute_update(app_driver_handle_t driver_handle, uint16_t endpoint_id, uint32_t cluster_id,
                                       uint32_t attribute_id, esp_matter_attr_val_t *val)
 {
@@ -95,9 +127,37 @@ esp_err_t app_driver_attribute_update(app_driver_handle_t driver_handle, uint16_
     if (endpoint_id == fan_endpoint_id) {
         if (cluster_id == FanControl::Id) {
             if (attribute_id == FanControl::Attributes::PercentSetting::Id) {
-                // Matter percent setting is a nullable uint8 (0 to 100)
                 uint8_t speed = val->val.u8;
-                err = app_driver_fan_set_speed(speed);
+                
+                // Store the target speed and endpoint
+                target_speed = speed;
+                target_endpoint_id = endpoint_id;
+
+                // Create the timer if it doesn't exist yet
+                if (!timer_created) {
+                    esp_timer_create_args_t timer_args = {
+                        .callback = debounce_timer_callback,
+                        .arg = NULL,
+                        .dispatch_method = ESP_TIMER_TASK,
+                        .name = "fan_debounce_timer"
+                    };
+                    esp_err_t timer_err = esp_timer_create(&timer_args, &debounce_timer);
+                    if (timer_err == ESP_OK) {
+                        timer_created = true;
+                    } else {
+                        ESP_LOGE(TAG, "Failed to create debounce timer: %s", esp_err_to_name(timer_err));
+                        // Fallback to immediate update if timer creation fails
+                        return app_driver_fan_set_speed(speed);
+                    }
+                }
+
+                // Stop the timer if it's already running (reset the debounce window)
+                esp_timer_stop(debounce_timer);
+
+                // Start the timer with a 300ms delay (300,000 microseconds)
+                esp_timer_start_once(debounce_timer, 300000);
+                
+                ESP_LOGD(TAG, "Debounce timer scheduled for speed %d%%", speed);
             }
         }
     }
@@ -107,31 +167,8 @@ esp_err_t app_driver_attribute_update(app_driver_handle_t driver_handle, uint16_
 esp_err_t app_driver_attribute_post_update(app_driver_handle_t driver_handle, uint16_t endpoint_id, uint32_t cluster_id,
                                            uint32_t attribute_id, esp_matter_attr_val_t *val)
 {
-    esp_err_t err = ESP_OK;
-    if (endpoint_id == fan_endpoint_id) {
-        if (cluster_id == FanControl::Id) {
-            if (attribute_id == FanControl::Attributes::PercentSetting::Id) {
-                uint8_t speed = val->val.u8;
-                
-                // Update PercentCurrent to match PercentSetting (now that the database is unlocked)
-                esp_matter_attr_val_t current_val = esp_matter_uint8(speed);
-                esp_err_t temp_err = attribute::update(endpoint_id, FanControl::Id, FanControl::Attributes::PercentCurrent::Id, &current_val);
-                if (temp_err != ESP_OK) {
-                    ESP_LOGE(TAG, "Failed to update PercentCurrent: %s", esp_err_to_name(temp_err));
-                }
-                
-                // Update FanMode to match PercentSetting (On if speed > 0, Off if speed == 0)
-                // In Matter FanControl: 0 is Off, 4 is On (kOn)
-                uint8_t mode = (speed > 0) ? 4 : 0;
-                esp_matter_attr_val_t mode_val = esp_matter_enum8(mode);
-                temp_err = attribute::update(endpoint_id, FanControl::Id, FanControl::Attributes::FanMode::Id, &mode_val);
-                if (temp_err != ESP_OK) {
-                    ESP_LOGE(TAG, "Failed to update FanMode: %s", esp_err_to_name(temp_err));
-                }
-            }
-        }
-    }
-    return err;
+    // Database updates for PercentCurrent and FanMode are now handled in the debounce timer callback
+    return ESP_OK;
 }
 
 esp_err_t app_driver_fan_set_defaults(uint16_t endpoint_id)
