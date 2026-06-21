@@ -853,3 +853,88 @@ entry 0x4086c410
 [0;33mW(226678) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
 [0;33mW(238058) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
 [0;33mW(238068) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
+[0;32mI (249568) chip[EM]: >>> [E:19324r S:32406 M:22113692] (S) Msg RX from 1:00000000559F0421 [8B73] to 0000000006BC098E --- Type 0001:06 (IM:WriteRequest) (B:62)[0m
+[0;32mI (249568) app_driver: Fan speed updated to 53% (Duty: 542)[0m
+[0;32mI (249578) esp_matter_attribute: ********** W : Endpoint 0x0001's Cluster 0x00000202's Attribute 0x00000003 is 53 **********[0m
+[0;32mI (249588) esp_matter_attribute: ********** W : Endpoint 0x0001's Cluster 0x00000202's Attribute 0x00000000 is 4 **********[0m
+[0;32mI (249608) chip[EM]: <<< [E:19324r S:32406 M:41780120 (Ack:22113692)] (S) Msg TX from 0000000006BC098E to 1:00000000559F0421 [8B73] [UDP:[FD73:986F:53CE:0:E8F4:C998:519F:D1A5]:64422] --- Type 0001:07 (IM:WriteResponse) (B:63)[0m
+[0;32mI (249618) chip[EM]: ??1 [E:19324r S:32406 M:41780120] (S) Msg Retransmission to 1:00000000559F0421 scheduled for 5336ms from now [State:Active II:500 AI:300 AT:4000][0m
+[0;32mI (249638) chip[EM]: <<< [E:14631i S:32406 M:41780121] (S) Msg TX from 0000000006BC098E to 1:00000000559F0421 [8B73] [UDP:[FD73:986F:53CE:0:E8F4:C998:519F:D1A5]:64422] --- Type 0001:05 (IM:ReportData) (B:125)[0m
+[0;32mI (249658) chip[EM]: ??1 [E:14631i S:32406 M:41780121] (S) Msg Retransmission to 1:00000000559F0421 scheduled for 5393ms from now [State:Active II:500 AI:300 AT:4000][0m
+[0;32mI (249668) chip[EM]: >>> [E:19324r S:32406 M:22113693 (Ack:41780120)] (S) Msg RX from 1:00000000559F0421 [8B73] to 0000000006BC098E --- Type 0000:10 (SecureChannel:StandaloneAck) (B:34)[0m
+[0;32mI (249748) chip[EM]: >>> [E:14631i S:32406 M:22113694 (Ack:41780121)] (S) Msg RX from 1:00000000559F0421 [8B73] to 0000000006BC098E --- Type 0001:01 (IM:StatusResponse) (B:42)[0m
+[0;32mI (249748) chip[IM]: Received status response, status is 0x00[0m
+[0;32mI (249758) chip[EM]: <<< [E:14631i S:32406 M:41780122 (Ack:22113694)] (S) Msg TX from 0000000006BC098E to 1:00000000559F0421 [8B73] [UDP:[FD73:986F:53CE:0:E8F4:C998:519F:D1A5]:64422] --- Type 0000:10 (SecureChannel:StandaloneAck) (B:34)[0m
+[0;32mI (249808) chip[EM]: >>> [E:19325r S:32406 M:22113695] (S) Msg RX from 1:00000000559F0421 [8B73] to 0000000006BC098E --- Type 0001:06 (IM:WriteRequest) (B:62)[0m
+[0;32mI (249818) app_driver: Fan speed updated to 76% (Duty: 777)[0m
+[0;32mI (249828) esp_matter_attribute: ********** W : Endpoint 0x0001's Cluster 0x00000202's Attribute 0x00000003 is 76 **********[0m
+[0;32mI (249838) esp_matter_attribute: ********** W : Endpoint 0x0001's Cluster 0x00000202's Attribute 0x00000000 is 4 **********[0m
+[0;32mI (249848) chip[EM]: <<< [E:19325r S:32406 M:41780123 (Ack:22113695)] (S) Msg TX from 0000000006BC098E to 1:00000000559F0421 [8B73] [UDP:[FD73:986F:53CE:0:E8F4:C998:519F:D1A5]:64422] --- Type 0001:07 (IM:WriteResponse) (B:63)[0m
+[0;32mI (249868) chip[EM]: ??1 [E:19325r S:32406 M:41780123] (S) Msg Retransmission to 1:00000000559F0421 scheduled for 5396ms from now [State:Active II:500 AI:300 AT:4000][0m
+[0;32mI (249888) chip[EM]: <<< [E:14632i S:32406 M:41780124] (S) Msg TX from 0000000006BC098E to 1:00000000559F0421 [8B73] [UDP:[FD73:986F:53CE:0:E8F4:C998:519F:D1A5]:64422] --- Type 0001:05 (IM:ReportData) (B:98)[0m
+[0;32mI (249898) chip[EM]: ??1 [E:14632i S:32406 M:41780124] (S) Msg Retransmission to 1:00000000559F0421 scheduled for 5377ms from now [State:Active II:500 AI:300 AT:4000][0m
+[0;32mI (249918) chip[EM]: >>> [E:19325r S:32406 M:22113696 (Ack:41780123)] (S) Msg RX from 1:00000000559F0421 [8B73] to 0000000006BC098E --- Type 0000:10 (SecureChannel:StandaloneAck) (B:34)[0m
+[0;32mI (249968) chip[EM]: >>> [E:14632i S:32406 M:22113697 (Ack:41780124)] (S) Msg RX from 1:00000000559F0421 [8B73] to 0000000006BC098E --- Type 0001:01 (IM:StatusResponse) (B:42)[0m
+[0;32mI (249978) chip[IM]: Received status response, status is 0x00[0m
+[0;32mI (249988) chip[EM]: <<< [E:14632i S:32406 M:41780125 (Ack:22113697)] (S) Msg TX from 0000000006BC098E to 1:00000000559F0421 [8B73] [UDP:[FD73:986F:53CE:0:E8F4:C998:519F:D1A5]:64422] --- Type 0000:10 (SecureChannel:StandaloneAck) (B:34)[0m
+[0;32mI (250078) chip[EM]: >>> [E:19326r S:32406 M:22113698] (S) Msg RX from 1:00000000559F0421 [8B73] to 0000000006BC098E --- Type 0001:06 (IM:WriteRequest) (B:62)[0m
+[0;32mI (250078) app_driver: Fan speed updated to 81% (Duty: 828)[0m
+[0;32mI (250088) esp_matter_attribute: ********** W : Endpoint 0x0001's Cluster 0x00000202's Attribute 0x00000003 is 81 **********[0m
+[0;32mI (250098) esp_matter_attribute: ********** W : Endpoint 0x0001's Cluster 0x00000202's Attribute 0x00000000 is 4 **********[0m
+[0;32mI (250108) chip[EM]: <<< [E:19326r S:32406 M:41780126 (Ack:22113698)] (S) Msg TX from 0000000006BC098E to 1:00000000559F0421 [8B73] [UDP:[FD73:986F:53CE:0:E8F4:C998:519F:D1A5]:64422] --- Type 0001:07 (IM:WriteResponse) (B:63)[0m
+[0;32mI (250128) chip[EM]: ??1 [E:19326r S:32406 M:41780126] (S) Msg Retransmission to 1:00000000559F0421 scheduled for 5378ms from now [State:Active II:500 AI:300 AT:4000][0m
+[0;32mI (250158) chip[EM]: <<< [E:14633i S:32406 M:41780127] (S) Msg TX from 0000000006BC098E to 1:00000000559F0421 [8B73] [UDP:[FD73:986F:53CE:0:E8F4:C998:519F:D1A5]:64422] --- Type 0001:05 (IM:ReportData) (B:98)[0m
+[0;32mI (250168) chip[EM]: ??1 [E:14633i S:32406 M:41780127] (S) Msg Retransmission to 1:00000000559F0421 scheduled for 5378ms from now [State:Active II:500 AI:300 AT:4000][0m
+[0;33mW(250178) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
+[0;33mW(250188) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
+[0;32mI (250198) chip[EM]: >>> [E:19326r S:32406 M:22113699 (Ack:41780126)] (S) Msg RX from 1:00000000559F0421 [8B73] to 0000000006BC098E --- Type 0000:10 (SecureChannel:StandaloneAck) (B:34)[0m
+[0;32mI (250238) chip[EM]: >>> [E:14633i S:32406 M:22113700 (Ack:41780127)] (S) Msg RX from 1:00000000559F0421 [8B73] to 0000000006BC098E --- Type 0001:01 (IM:StatusResponse) (B:42)[0m
+[0;32mI (250248) chip[IM]: Received status response, status is 0x00[0m
+[0;32mI (250248) chip[EM]: <<< [E:14633i S:32406 M:41780128 (Ack:22113700)] (S) Msg TX from 0000000006BC098E to 1:00000000559F0421 [8B73] [UDP:[FD73:986F:53CE:0:E8F4:C998:519F:D1A5]:64422] --- Type 0000:10 (SecureChannel:StandaloneAck) (B:34)[0m
+[0;32mI (254748) chip[EM]: >>> [E:19327r S:32406 M:22113701] (S) Msg RX from 1:00000000559F0421 [8B73] to 0000000006BC098E --- Type 0001:06 (IM:WriteRequest) (B:62)[0m
+[0;32mI (254758) app_driver: Fan speed updated to 79% (Duty: 808)[0m
+[0;32mI (254768) esp_matter_attribute: ********** W : Endpoint 0x0001's Cluster 0x00000202's Attribute 0x00000003 is 79 **********[0m
+[0;32mI (254778) esp_matter_attribute: ********** W : Endpoint 0x0001's Cluster 0x00000202's Attribute 0x00000000 is 4 **********[0m
+[0;32mI (254788) chip[EM]: <<< [E:19327r S:32406 M:41780129 (Ack:22113701)] (S) Msg TX from 0000000006BC098E to 1:00000000559F0421 [8B73] [UDP:[FD73:986F:53CE:0:E8F4:C998:519F:D1A5]:64422] --- Type 0001:07 (IM:WriteResponse) (B:63)[0m
+[0;32mI (254808) chip[EM]: ??1 [E:19327r S:32406 M:41780129] (S) Msg Retransmission to 1:00000000559F0421 scheduled for 5368ms from now [State:Active II:500 AI:300 AT:4000][0m
+[0;32mI (254828) chip[EM]: <<< [E:14634i S:32406 M:41780130] (S) Msg TX from 0000000006BC098E to 1:00000000559F0421 [8B73] [UDP:[FD73:986F:53CE:0:E8F4:C998:519F:D1A5]:64422] --- Type 0001:05 (IM:ReportData) (B:98)[0m
+[0;32mI (254838) chip[EM]: ??1 [E:14634i S:32406 M:41780130] (S) Msg Retransmission to 1:00000000559F0421 scheduled for 5396ms from now [State:Active II:500 AI:300 AT:4000][0m
+[0;32mI (254858) chip[EM]: >>> [E:19327r S:32406 M:22113702 (Ack:41780129)] (S) Msg RX from 1:00000000559F0421 [8B73] to 0000000006BC098E --- Type 0000:10 (SecureChannel:StandaloneAck) (B:34)[0m
+[0;32mI (254878) chip[EM]: >>> [E:14634i S:32406 M:22113703 (Ack:41780130)] (S) Msg RX from 1:00000000559F0421 [8B73] to 0000000006BC098E --- Type 0001:01 (IM:StatusResponse) (B:42)[0m
+[0;32mI (254888) chip[IM]: Received status response, status is 0x00[0m
+[0;32mI (254898) chip[EM]: <<< [E:14634i S:32406 M:41780131 (Ack:22113703)] (S) Msg TX from 0000000006BC098E to 1:00000000559F0421 [8B73] [UDP:[FD73:986F:53CE:0:E8F4:C998:519F:D1A5]:64422] --- Type 0000:10 (SecureChannel:StandaloneAck) (B:34)[0m
+[0;32mI (255008) chip[EM]: >>> [E:19328r S:32406 M:22113704] (S) Msg RX from 1:00000000559F0421 [8B73] to 0000000006BC098E --- Type 0001:06 (IM:WriteRequest) (B:62)[0m
+[0;32mI (255008) app_driver: Fan speed updated to 19% (Duty: 194)[0m
+[0;32mI (255018) esp_matter_attribute: ********** W : Endpoint 0x0001's Cluster 0x00000202's Attribute 0x00000003 is 19 **********[0m
+[0;32mI (255028) esp_matter_attribute: ********** W : Endpoint 0x0001's Cluster 0x00000202's Attribute 0x00000000 is 4 **********[0m
+[0;32mI (255038) chip[EM]: <<< [E:19328r S:32406 M:41780132 (Ack:22113704)] (S) Msg TX from 0000000006BC098E to 1:00000000559F0421 [8B73] [UDP:[FD73:986F:53CE:0:E8F4:C998:519F:D1A5]:64422] --- Type 0001:07 (IM:WriteResponse) (B:63)[0m
+[0;32mI (255058) chip[EM]: ??1 [E:19328r S:32406 M:41780132] (S) Msg Retransmission to 1:00000000559F0421 scheduled for 5340ms from now [State:Active II:500 AI:300 AT:4000][0m
+[0;32mI (255078) chip[EM]: <<< [E:14635i S:32406 M:41780133] (S) Msg TX from 0000000006BC098E to 1:00000000559F0421 [8B73] [UDP:[FD73:986F:53CE:0:E8F4:C998:519F:D1A5]:64422] --- Type 0001:05 (IM:ReportData) (B:98)[0m
+[0;32mI (255098) chip[EM]: ??1 [E:14635i S:32406 M:41780133] (S) Msg Retransmission to 1:00000000559F0421 scheduled for 5359ms from now [State:Active II:500 AI:300 AT:4000][0m
+[0;32mI (255108) chip[EM]: >>> [E:19328r S:32406 M:22113705 (Ack:41780132)] (S) Msg RX from 1:00000000559F0421 [8B73] to 0000000006BC098E --- Type 0000:10 (SecureChannel:StandaloneAck) (B:34)[0m
+[0;32mI (255138) chip[EM]: >>> [E:14635i S:32406 M:22113706 (Ack:41780133)] (S) Msg RX from 1:00000000559F0421 [8B73] to 0000000006BC098E --- Type 0001:01 (IM:StatusResponse) (B:42)[0m
+[0;32mI (255148) chip[IM]: Received status response, status is 0x00[0m
+[0;32mI (255158) chip[EM]: <<< [E:14635i S:32406 M:41780134 (Ack:22113706)] (S) Msg TX from 0000000006BC098E to 1:00000000559F0421 [8B73] [UDP:[FD73:986F:53CE:0:E8F4:C998:519F:D1A5]:64422] --- Type 0000:10 (SecureChannel:StandaloneAck) (B:34)[0m
+[0;32mI (255278) chip[EM]: >>> [E:19329r S:32406 M:22113707] (S) Msg RX from 1:00000000559F0421 [8B73] to 0000000006BC098E --- Type 0001:06 (IM:WriteRequest) (B:62)[0m
+[0;32mI (255288) app_driver: Fan speed updated to 16% (Duty: 163)[0m
+[0;32mI (255288) esp_matter_attribute: ********** W : Endpoint 0x0001's Cluster 0x00000202's Attribute 0x00000003 is 16 **********[0m
+[0;32mI (255298) esp_matter_attribute: ********** W : Endpoint 0x0001's Cluster 0x00000202's Attribute 0x00000000 is 4 **********[0m
+[0;32mI (255308) chip[EM]: <<< [E:19329r S:32406 M:41780135 (Ack:22113707)] (S) Msg TX from 0000000006BC098E to 1:00000000559F0421 [8B73] [UDP:[FD73:986F:53CE:0:E8F4:C998:519F:D1A5]:64422] --- Type 0001:07 (IM:WriteResponse) (B:63)[0m
+[0;32mI (255338) chip[EM]: ??1 [E:19329r S:32406 M:41780135] (S) Msg Retransmission to 1:00000000559F0421 scheduled for 5334ms from now [State:Active II:500 AI:300 AT:4000][0m
+[0;32mI (255358) chip[EM]: <<< [E:14636i S:32406 M:41780136] (S) Msg TX from 0000000006BC098E to 1:00000000559F0421 [8B73] [UDP:[FD73:986F:53CE:0:E8F4:C998:519F:D1A5]:64422] --- Type 0001:05 (IM:ReportData) (B:98)[0m
+[0;32mI (255368) chip[EM]: ??1 [E:14636i S:32406 M:41780136] (S) Msg Retransmission to 1:00000000559F0421 scheduled for 5376ms from now [State:Active II:500 AI:300 AT:4000][0m
+[0;32mI (255398) chip[EM]: >>> [E:19329r S:32406 M:22113708 (Ack:41780135)] (S) Msg RX from 1:00000000559F0421 [8B73] to 0000000006BC098E --- Type 0000:10 (SecureChannel:StandaloneAck) (B:34)[0m
+[0;32mI (255498) chip[EM]: >>> [E:14636i S:32406 M:22113709 (Ack:41780136)] (S) Msg RX from 1:00000000559F0421 [8B73] to 0000000006BC098E --- Type 0001:01 (IM:StatusResponse) (B:42)[0m
+[0;32mI (255508) chip[IM]: Received status response, status is 0x00[0m
+[0;32mI (255518) chip[EM]: <<< [E:14636i S:32406 M:41780137 (Ack:22113709)] (S) Msg TX from 0000000006BC098E to 1:00000000559F0421 [8B73] [UDP:[FD73:986F:53CE:0:E8F4:C998:519F:D1A5]:64422] --- Type 0000:10 (SecureChannel:StandaloneAck) (B:34)[0m
+[0;32mI (255538) chip[EM]: >>> [E:19330r S:32406 M:22113710] (S) Msg RX from 1:00000000559F0421 [8B73] to 0000000006BC098E --- Type 0001:06 (IM:WriteRequest) (B:62)[0m
+[0;32mI (255548) app_driver: Fan speed updated to 16% (Duty: 163)[0m
+[0;32mI (255558) esp_matter_attribute: ********** W : Endpoint 0x0001's Cluster 0x00000202's Attribute 0x00000003 is 16 **********[0m
+[0;32mI (255568) esp_matter_attribute: ********** W : Endpoint 0x0001's Cluster 0x00000202's Attribute 0x00000000 is 4 **********[0m
+[0;32mI (255578) chip[EM]: <<< [E:19330r S:32406 M:41780138 (Ack:22113710)] (S) Msg TX from 0000000006BC098E to 1:00000000559F0421 [8B73] [UDP:[FD73:986F:53CE:0:E8F4:C998:519F:D1A5]:64422] --- Type 0001:07 (IM:WriteResponse) (B:63)[0m
+[0;32mI (255598) chip[EM]: ??1 [E:19330r S:32406 M:41780138] (S) Msg Retransmission to 1:00000000559F0421 scheduled for 5376ms from now [State:Active II:500 AI:300 AT:4000][0m
+[0;32mI (255648) chip[EM]: >>> [E:19330r S:32406 M:22113711 (Ack:41780138)] (S) Msg RX from 1:00000000559F0421 [8B73] to 0000000006BC098E --- Type 0000:10 (SecureChannel:StandaloneAck) (B:34)[0m
+[0;33mW(263118) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
+[0;33mW(263128) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
+[0;33mW(276888) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
+[0;33mW(276898) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
