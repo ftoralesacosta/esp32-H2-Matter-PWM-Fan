@@ -87,20 +87,26 @@ We have investigated an issue where the device disconnects shortly after pairing
   CONFIG_OPENTHREAD_MTD=y
   ```
 
-### B. Hardware & Electrical Hypotheses & Status
-* **Voltage Mismatch (RULED OUT):** The PWM signal lines measure a perfect **3.3V** (at 100% duty cycle) and **~1.65V** (at 50% duty cycle), meaning there is no high-voltage back-feeding from the fan board.
-* **MacBook Capacitive Interference (RULED OUT):** We previously hypothesized that the MacBook Air's aluminum chassis acted as a capacitive antenna, drawing ground loop noise through the USB cable. **The user found this extremely unlikely.** Furthermore, because the disconnect still occurred when the MacBook was completely disconnected (device running on battery), this theory has been **officially ruled out**.
 * **Proximity Battery Test (COMPLETED):** 
   * *Setup:* The ESP was powered by a portable battery pack (completely floating) and placed directly next to the Apple TV (Thread Border Router). 
-  * *Behavior:* The chip worked initially, but then stopped working after a few minutes, **even when the user was NOT adjusting the slider** (ruling out slider packet storms as the sole trigger).
+  * *Behavior:* The chip worked initially, but then stopped working after a few minutes, even when the user was NOT adjusting the slider.
+  * *Findings:* The onboard LED went dark, confirming the **USB Power Bank Auto-Shutdown** occurred.
+* **Proximity USB-PD Wall Brick Test (COMPLETED):**
+  * *Setup:* The ESP was powered by a USB-PD wall charger block (no auto-shutdown) directly next to the Apple TV, with the 12V wall-powered fan running.
+  * *Behavior:* The onboard LED turned off after a while (normal status behavior once commissioned), but the board remained **fully powered and running** (VBUS = 5V, Pin 3 = 1.7V average, fan spinning at 50% speed). However, HomeKit still went to **"No Response"** shortly after pairing.
 
-### C. Active Hypotheses for the Battery-Proximity Failure
-1. **USB Power Bank Auto-Shutdown (CONFIRMED):** Most smartphone USB power banks have an automatic low-current shutoff. If the connected device draws less than 50mA–100mA, the power bank assumes the device is fully charged and cuts power after a few minutes.
-   * *Status:* **CONFIRMED.** The user observed that when plugged into the battery bank, the Seeed Studio XIAO ESP32-C6's onboard LED went on for a bit and then turned off completely, proving the battery bank is shutting down power due to the C6's ultra-low current draw.
-   * *Resolution:* Use a power bank with an "Always-On" or "Low Current" mode, or power the ESP board from a standard USB wall charger block (which has no auto-shutdown feature) to continue testing.
-2. **Conducted EMI / Ground Noise:** Although battery power breaks the AC mains ground loop, the ESP still shares a physical GND wire with the 12V wall-powered fan board. Brushless DC fan motors generate significant high-frequency electrical switching noise. This noise can travel directly along the GND and PWM wires into the ESP's ground plane, swamping the onboard ceramic antenna's RF counterpoise and blinding the receiver.
-   * *Verification:* Test the ESP next to the Apple TV with the 12V fan power supply unplugged. If it stays online indefinitely when the fan is off and unpowered, it confirms motor/GND noise is the culprit.
-3. **Thread Stack / Supervision Timeouts:** The OpenThread stack running on the ESP-IDF might be failing its Child Supervision poll requests or losing its parent router lease due to minor packet loss, failing to re-attach properly.
+### C. Active Hypotheses for the Proximity Failures
+
+1. **Conducted EMI / Ground Noise (PRIMARY SUSPECT):** 
+   * *The Mechanism:* Although the USB-PD wall block and battery power break the laptop ground loop, the ESP still shares a physical GND wire with the 12V wall-powered fan board. The brushless DC fan motor generates significant high-frequency electrical switching noise (EMI) on the shared GND and PWM lines. This noise travels directly into the ESP's ground plane, swamping the onboard ceramic antenna's RF counterpoise and **blinding the 2.4GHz receiver**. 
+   * *Why it fits:* The chip is fully powered and running the fan at 50% (1.7V on Pin 3), but because its receiver is blinded by the motor's conducted noise, it cannot hear the Apple TV's keep-alive packets or commands, leading to a permanent "No Response" lockout.
+   * *Verification Test:* Keep the ESP powered by the USB-PD wall block next to the Apple TV, but **unplug the 12V fan power supply from the wall** (so the fan is completely unpowered and silent). If the ESP/accessory remains online and responsive in HomeKit indefinitely, it **proves 100%** that conducted motor noise is swamping the radio.
+2. **Thread Stack / Supervision Timeouts:** The OpenThread stack running on the ESP-IDF might be failing its Child Supervision poll requests or losing its parent router lease due to minor packet loss, failing to re-attach properly.
+
+### D. Question: "Is it possible it connects via Bluetooth and Thread isn't working?"
+* **Answer:** **No, it is not possible for HomeKit control to run over Bluetooth.** 
+* **The Matter Protocol Flow:** Under the Matter specification, Bluetooth (BLE) is **only** used for the initial pairing handshake (commissioning) to send the Thread credentials to the board. Once the board successfully joins the Thread network, the BLE connection is **permanently terminated** (which we see in the logs: `Closing BLE GATT connection` and `BLE GAP connection terminated`).
+* **Conclusion:** From that point on, your Apple Home app and Apple TV communicate with the fan **exclusively over Thread (IPv6/UDP)**. The fact that the fan responded to speed changes initially means **Thread was 100% working**. The subsequent "No Response" is due to the connection dropping later (blinded by noise), not because it was secretly using Bluetooth.
 
 ---
 
