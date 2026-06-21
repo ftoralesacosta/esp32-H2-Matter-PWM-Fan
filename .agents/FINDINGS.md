@@ -115,10 +115,17 @@ To allow the fan to run without blinding the ESP32's radio, you need to filter o
 
 #### 1. Optocoupler Isolation (The Ultimate, Bulletproof Fix)
 * **How it works:** Instead of sharing a ground and connecting the ESP's GPIO pin directly to the fan board, you use a cheap **optocoupler** (like a PC817 or EL817) to transmit the PWM signal.
-* **The Setup:**
-  * The ESP's PWM pin drives the internal LED of the optocoupler (using the ESP's own isolated 3.3V and GND).
-  * The phototransistor on the output side of the optocoupler switches the fan board's PWM input (using the fan board's 12V and GND).
-* **Why it's best:** There is **no physical electrical connection (no shared ground!)** between the ESP and the noisy fan board. The signal is transmitted purely by light inside the optocoupler. This completely immunizes the ESP's ground plane and antenna from any motor noise. This is the professional standard for driving high-noise motors from microcontrollers.
+* **The Setup & Pin Mapping:**
+  * **Pin 1 (Anode):** Connect to the **ESP32's PWM pin (GPIO 21)** through a current-limiting resistor.
+  * **Pin 2 (Cathode):** Connect to the **ESP32's GND pin**.
+  * **Pin 3 (Emitter):** Connect to the **fan board's Ground** (12V supply ground).
+  * **Pin 4 (Collector):** Connect to the **fan board's PWM input pin**.
+  * *Critical Rule:* **The ESP Ground and the Fan Board Ground must remain completely isolated and never touch each other with a wire.**
+* **Resistor Range (for Pin 1):**
+  * **Safe Range:** **$100\Omega$ to $1\text{k}\Omega$ ($1,000\Omega$)**.
+  * *Ideal values:* **$220\Omega$ to $330\Omega$** (e.g. **$300\Omega$** is perfect).
+  * *Why?* Under $100\Omega$ draws too much current, risking damage to the ESP's GPIO. Over $1\text{k}\Omega$ limits the current too much, slowing down the optocoupler's switching response for the 25kHz PWM signal.
+* **Why it's best:** There is **no physical electrical connection** between the ESP and the noisy fan board. The signal is transmitted purely by light inside the optocoupler. This completely immunizes the ESP's ground plane and antenna from any motor noise. This is the professional standard for driving high-noise motors from microcontrollers.
 
 #### 2. Decoupling & Bulk Capacitors (Easy to Add)
 * **How it works:** Place a low-ESR **electrolytic capacitor (100µF to 470µF)** in parallel with a small **ceramic capacitor (0.1µF)** directly across the 12V and GND terminals where the power supply enters the fan board.
