@@ -35,22 +35,20 @@ extern uint16_t fan_endpoint_id;
 
 static uint8_t current_speed_percentage = 0;
 
-// Background task to toggle the PWM output between 0% and 100% for physical testing
+// Background task to toggle the GPIO level directly between 0V and 3.3V for physical testing
 static void ledc_test_task(void *pvParameters)
 {
-    ESP_LOGI("test_task", "Starting LEDC hardware test loop on GPIO %d...", PWM_FAN_GPIO);
+    ESP_LOGI("test_task", "Starting DIRECT GPIO hardware test loop on GPIO %d...", PWM_FAN_GPIO);
     while (1) {
-        // Set to 100% Speed (Duty: 1023 -> Constant 3.3V)
-        ESP_LOGI("test_task", "TEST: Setting GPIO %d to 100%% Speed (Duty: 1023 -> Constant 3.3V)", PWM_FAN_GPIO);
-        ledc_set_duty(PWM_LEDC_MODE, PWM_LEDC_CHANNEL, 1023);
-        ledc_update_duty(PWM_LEDC_MODE, PWM_LEDC_CHANNEL);
-        vTaskDelay(pdMS_TO_TICKS(5000)); // Hold for 5 seconds
+        // Set to HIGH (3.3V)
+        ESP_LOGI("test_task", "TEST: Setting GPIO %d to HIGH (3.3V)", PWM_FAN_GPIO);
+        gpio_set_level(PWM_FAN_GPIO, 1);
+        vTaskDelay(pdMS_TO_TICKS(3000)); // Hold for 3 seconds
 
-        // Set to 0% Speed (Duty: 0 -> Constant 0V)
-        ESP_LOGI("test_task", "TEST: Setting GPIO %d to 0%% Speed (Duty: 0 -> Constant 0V)", PWM_FAN_GPIO);
-        ledc_set_duty(PWM_LEDC_MODE, PWM_LEDC_CHANNEL, 0);
-        ledc_update_duty(PWM_LEDC_MODE, PWM_LEDC_CHANNEL);
-        vTaskDelay(pdMS_TO_TICKS(5000)); // Hold for 5 seconds
+        // Set to LOW (0V)
+        ESP_LOGI("test_task", "TEST: Setting GPIO %d to LOW (0V)", PWM_FAN_GPIO);
+        gpio_set_level(PWM_FAN_GPIO, 0);
+        vTaskDelay(pdMS_TO_TICKS(3000)); // Hold for 3 seconds
     }
 }
 
@@ -59,24 +57,8 @@ static esp_err_t app_driver_fan_set_speed(uint8_t speed_percentage)
     if (speed_percentage > 100) {
         speed_percentage = 100;
     }
-
-    // Map speed percentage (0-100) to LEDC duty cycle (0-1023)
-    uint32_t duty = (speed_percentage * 1023) / 100;
-
-    esp_err_t err = ledc_set_duty(PWM_LEDC_MODE, PWM_LEDC_CHANNEL, duty);
-    if (err != ESP_OK) {
-        ESP_LOGE(TAG, "Failed to set LEDC duty: %s", esp_err_to_name(err));
-        return err;
-    }
-
-    err = ledc_update_duty(PWM_LEDC_MODE, PWM_LEDC_CHANNEL);
-    if (err != ESP_OK) {
-        ESP_LOGE(TAG, "Failed to update LEDC duty: %s", esp_err_to_name(err));
-        return err;
-    }
-
     current_speed_percentage = speed_percentage;
-    ESP_LOGI(TAG, "Fan speed updated to %d%% (Duty: %ld)", speed_percentage, duty);
+    ESP_LOGI(TAG, "Fan speed updated to %d%% (LEDC BYPASSED FOR DIAGNOSTIC TEST)", speed_percentage);
     return ESP_OK;
 }
 
@@ -171,41 +153,9 @@ app_driver_handle_t app_driver_fan_init()
     gpio_reset_pin(PWM_FAN_GPIO);
     gpio_set_direction(PWM_FAN_GPIO, GPIO_MODE_OUTPUT);
 
-    // 1. Configure LEDC Timer
-    ledc_timer_config_t ledc_timer = {
-        .speed_mode       = PWM_LEDC_MODE,
-        .duty_resolution  = PWM_LEDC_RESOLUTION,
-        .timer_num        = PWM_LEDC_TIMER,
-        .freq_hz          = PWM_LEDC_FREQ,
-        .clk_cfg          = LEDC_USE_XTAL_CLK
-    };
-    
-    esp_err_t err = ledc_timer_config(&ledc_timer);
-    if (err != ESP_OK) {
-        ESP_LOGE(TAG, "LEDC timer config failed: %s", esp_err_to_name(err));
-        return NULL;
-    }
+    ESP_LOGI(TAG, "Direct GPIO %d configured as standard digital output for test", PWM_FAN_GPIO);
 
-    // 2. Configure LEDC Channel
-    ledc_channel_config_t ledc_channel = {
-        .gpio_num       = PWM_FAN_GPIO,
-        .speed_mode     = PWM_LEDC_MODE,
-        .channel        = PWM_LEDC_CHANNEL,
-        .intr_type      = LEDC_INTR_DISABLE,
-        .timer_sel      = PWM_LEDC_TIMER,
-        .duty           = 0,
-        .hpoint         = 0
-    };
-
-    err = ledc_channel_config(&ledc_channel);
-    if (err != ESP_OK) {
-        ESP_LOGE(TAG, "LEDC channel config failed: %s", esp_err_to_name(err));
-        return NULL;
-    }
-
-    ESP_LOGI(TAG, "Noctua Fan LEDC PWM initialized at 25kHz on GPIO %d", PWM_FAN_GPIO);
-
-    // Create FreeRTOS task to cycle the PWM speed from 0 to 100 for testing
+    // Create FreeRTOS task to cycle the GPIO level for testing
     xTaskCreate(ledc_test_task, "ledc_test_task", 4096, NULL, 5, NULL);
 
     return (app_driver_handle_t)1; // Return non-null handle to indicate success
