@@ -16,6 +16,8 @@
 
 #include <driver/gpio.h>
 #include <driver/ledc.h>
+#include <freertos/FreeRTOS.h>
+#include <freertos/task.h>
 #include <iot_button.h>
 
 using namespace chip::app::Clusters;
@@ -24,7 +26,7 @@ using namespace esp_matter;
 static const char *TAG = "app_driver";
 extern uint16_t fan_endpoint_id;
 
-#define PWM_FAN_GPIO            GPIO_NUM_3        // GPIO 3 as soldered on hardware
+#define PWM_FAN_GPIO            GPIO_NUM_10       // Changed to GPIO 10 to avoid physical conflicts/shorts on GPIO 3
 #define PWM_LEDC_CHANNEL        LEDC_CHANNEL_0
 #define PWM_LEDC_TIMER          LEDC_TIMER_0
 #define PWM_LEDC_MODE           LEDC_LOW_SPEED_MODE
@@ -32,6 +34,25 @@ extern uint16_t fan_endpoint_id;
 #define PWM_LEDC_FREQ           25000             // 25 kHz PWM frequency for Noctua fan
 
 static uint8_t current_speed_percentage = 0;
+
+// Background task to toggle the PWM output between 0% and 100% for physical testing
+static void ledc_test_task(void *pvParameters)
+{
+    ESP_LOGI("test_task", "Starting LEDC hardware test loop on GPIO %d...", PWM_FAN_GPIO);
+    while (1) {
+        // Set to 100% Speed (Duty: 1023 -> Constant 3.3V)
+        ESP_LOGI("test_task", "TEST: Setting GPIO %d to 100%% Speed (Duty: 1023 -> Constant 3.3V)", PWM_FAN_GPIO);
+        ledc_set_duty(PWM_LEDC_MODE, PWM_LEDC_CHANNEL, 1023);
+        ledc_update_duty(PWM_LEDC_MODE, PWM_LEDC_CHANNEL);
+        vTaskDelay(pdMS_TO_TICKS(5000)); // Hold for 5 seconds
+
+        // Set to 0% Speed (Duty: 0 -> Constant 0V)
+        ESP_LOGI("test_task", "TEST: Setting GPIO %d to 0%% Speed (Duty: 0 -> Constant 0V)", PWM_FAN_GPIO);
+        ledc_set_duty(PWM_LEDC_MODE, PWM_LEDC_CHANNEL, 0);
+        ledc_update_duty(PWM_LEDC_MODE, PWM_LEDC_CHANNEL);
+        vTaskDelay(pdMS_TO_TICKS(5000)); // Hold for 5 seconds
+    }
+}
 
 static esp_err_t app_driver_fan_set_speed(uint8_t speed_percentage)
 {
@@ -183,6 +204,10 @@ app_driver_handle_t app_driver_fan_init()
     }
 
     ESP_LOGI(TAG, "Noctua Fan LEDC PWM initialized at 25kHz on GPIO %d", PWM_FAN_GPIO);
+
+    // Create FreeRTOS task to cycle the PWM speed from 0 to 100 for testing
+    xTaskCreate(ledc_test_task, "ledc_test_task", 4096, NULL, 5, NULL);
+
     return (app_driver_handle_t)1; // Return non-null handle to indicate success
 }
 
