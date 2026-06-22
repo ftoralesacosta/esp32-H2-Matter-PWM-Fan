@@ -43,8 +43,8 @@ static esp_err_t app_driver_fan_set_speed(uint8_t speed_percentage)
         speed_percentage = 100;
     }
 
-    // Map speed percentage (0-100) to LEDC duty cycle (0-1023) and invert for the optocoupler
-    uint32_t duty = 1023 - ((speed_percentage * 1023) / 100);
+    // Map speed percentage (0-100) to LEDC duty cycle (0-1023)
+    uint32_t duty = (speed_percentage * 1023) / 100;
 
     esp_err_t err = ledc_set_duty(PWM_LEDC_MODE, PWM_LEDC_CHANNEL, duty);
     if (err != ESP_OK) {
