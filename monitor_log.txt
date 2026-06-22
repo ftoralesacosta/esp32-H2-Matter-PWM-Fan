@@ -8888,3 +8888,5 @@ entry 0x4086c410
 [0;33mW(44988978) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
 [0;33mW(44996478) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
 [0;33mW(44996488) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
+[0;33mW(45013468) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
+[0;33mW(45013478) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
