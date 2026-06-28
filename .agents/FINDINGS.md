@@ -77,9 +77,19 @@ If the chip fails to connect, shows "Not Responding" in Apple Home, or prints `S
 ## 4. Thread Disconnect & "No Response" Troubleshooting
 
 > [!IMPORTANT]
-> **This issue is identical across both the original ESP32-H2 and the new ESP32-C6 chips.** Wiping, swapping the physical chip from H2 to C6, and rebuilding did not resolve the "No Response" behavior. This confirms the issue is not a hardware defect of a specific chip, but rather a shared software, Thread stack, or network routing configuration issue.
+> **This issue is identical across both the original ESP32-H2-DevKitM-1-N4S and the new Seeed Studio XIAO ESP32-C6.** Since the H2-DevKit does not have an RF switch (it uses a PCB trace antenna) but still exhibited the exact same "No Response" behavior shortly after pairing, this confirms there is a deeper **software/protocol layer issue** common to both builds.
+
+### H. Matter Data Model Schema Violations (June 28)
+* **The Discovery:** During boot, both the H2 and C6 logs print two critical data model errors:
+  1. `E (660) esp_matter_feature: Feature map attribute cannot be null`
+  2. `E (670) data_model: Attribute should be non-volatile to set a deferred persistence time`
+* **The Theory:** Apple HomeKit enforces extremely strict validation on Matter clusters during the post-pairing discovery phase. If a mandatory attribute like the **`FeatureMap`** (which defines what features the fan supports, e.g. MultiSpeed) is null or missing, or if the attribute flags do not match the expected schema, HomeKit will reject the device and display **"No Response"**.
+* **The Software Fix:**
+  - Initialize the Fan Control `feature_map` to `1` (enabling the `MultiSpeed` feature, which also enables the speed slider in the Home app).
+  - Explicitly add the `ATTRIBUTE_FLAG_NON_VOLATILE` flag to the `PercentSetting` attribute before enabling deferred persistence.
 
 ### A. The Permanent "No Response" Software Bug (FTD vs MTD)
+
 * **The Symptom:** When a temporary radio drop occurs, the chip detaches and then transitions: `OPENTHREAD: Role detached -> leader`. It starts its own isolated network partition, permanently separating itself from the Apple TV Border Router. It will never recover until rebooted.
 * **The Cause:** The firmware is compiled as a **Full Thread Device (FTD)** (e.g., `CONFIG_OPENTHREAD_FTD=y` in the H2 defaults or overridden by Matter). FTDs are allowed to become leaders.
 * **The Fix:** Force the firmware to compile as a **Minimal Thread Device (MTD)**. MTDs are not allowed to become leaders; they will remain detached and continually scan, automatically reconnecting to the Apple TV as soon as the signal clears.
