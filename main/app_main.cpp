@@ -22,7 +22,9 @@
 #if CONFIG_OPENTHREAD_ENABLED
 #include <platform/ESP32/OpenthreadLauncher.h>
 #include <openthread/thread.h>
+#include "esp_openthread.h"
 #endif
+
 
 #if CONFIG_DYNAMIC_PASSCODE_COMMISSIONABLE_DATA_PROVIDER
 #include <custom_provider/dynamic_commissionable_data_provider.h>
