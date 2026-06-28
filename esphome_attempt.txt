@@ -1,8 +1,6 @@
 Failed config
 
-external_components: [source esp32c6-fan.yaml:11]
-  - source: github://pr#4621
-    components: 
-      
-      Could not find __init__.py file for component matter. Please check the component is defined by this source (search path: /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/.esphome/external_components/0e42b16d/esphome/components/matter/__init__.py).
-      - matter
+openthread: [source esp32c6-fan.yaml:19]
+  
+  Must contain exactly one of network_key, tlv.
+  device_type: MTD
