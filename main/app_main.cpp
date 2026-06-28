@@ -43,7 +43,20 @@ static void app_event_cb(const ChipDeviceEvent *event, intptr_t arg)
     switch (event->Type) {
     case chip::DeviceLayer::DeviceEventType::kInterfaceIpAddressChanged:
         ESP_LOGI(TAG, "Interface IP Address Changed");
+#if CHIP_DEVICE_CONFIG_ENABLE_THREAD
+        {
+            otInstance *instance = esp_openthread_get_instance();
+            if (instance) {
+                for (const otNetifAddress *addr = otIp6GetUnicastAddresses(instance); addr; addr = addr->mNext) {
+                    char buf[40];
+                    otIp6AddressToString(&addr->mAddress, buf, sizeof(buf));
+                    ESP_LOGI(TAG, "  OT Addr: %s", buf);
+                }
+            }
+        }
+#endif
         break;
+
 
     case chip::DeviceLayer::DeviceEventType::kCommissioningComplete:
         ESP_LOGI(TAG, "Commissioning complete");
