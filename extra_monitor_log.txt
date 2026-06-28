@@ -125,3 +125,9 @@ entry 0x4086c410
 [0;32mI (4774) chip[EM]: >>> [E:64756i S:48368 M:9214895 (Ack:27702835)] (S) Msg RX from 1:00000000559F0421 [8B73] to 000000000DE3FD2F --- Type 0001:01 (IM:StatusResponse) (B:42)[0m
 [0;32mI (4784) chip[IM]: Received status response, status is 0x00[0m
 [0;32mI (4794) chip[EM]: <<< [E:64756i S:48368 M:27702836 (Ack:9214895)] (S) Msg TX from 000000000DE3FD2F to 1:00000000559F0421 [8B73] [UDP:[FD73:986F:53CE:0:E8F4:C998:519F:D1A5]:64422] --- Type 0000:10 (SecureChannel:StandaloneAck) (B:34)[0m
+[0;32mI(546814) OPENTHREAD:[N] Mle-----------: Attach attempt 0, BetterParent [0m
+[0;32mI (604674) chip[EM]: <<< [E:64757i S:48368 M:27702837] (S) Msg TX from 000000000DE3FD2F to 1:00000000559F0421 [8B73] [UDP:[FD73:986F:53CE:0:E8F4:C998:519F:D1A5]:64422] --- Type 0001:05 (IM:ReportData) (B:41)[0m
+[0;32mI (604684) chip[EM]: ??1 [E:64757i S:48368 M:27702837] (S) Msg Retransmission to 1:00000000559F0421 scheduled for 2574ms from now [State:Idle II:500 AI:300 AT:4000][0m
+[0;32mI (604734) chip[EM]: >>> [E:64757i S:48368 M:9214896 (Ack:27702837)] (S) Msg RX from 1:00000000559F0421 [8B73] to 000000000DE3FD2F --- Type 0001:01 (IM:StatusResponse) (B:42)[0m
+[0;32mI (604744) chip[IM]: Received status response, status is 0x00[0m
+[0;32mI (604754) chip[EM]: <<< [E:64757i S:48368 M:27702838 (Ack:9214896)] (S) Msg TX from 000000000DE3FD2F to 1:00000000559F0421 [8B73] [UDP:[FD73:986F:53CE:0:E8F4:C998:519F:D1A5]:64422] --- Type 0000:10 (SecureChannel:StandaloneAck) (B:34)[0m
