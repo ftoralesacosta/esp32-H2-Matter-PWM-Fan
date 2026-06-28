@@ -1,10 +1,5 @@
-(venv) Bonnie-MAir:esp32-H2-Matter-PWM-Fan fernando$ esphome run esp32c6-fan.yaml
-INFO ESPHome 2026.7.0-dev
-INFO Reading configuration esp32c6-fan.yaml...
-INFO Unable to import component matter: No module named 'esphome.components.matter'
-Failed config
-
-matter: [source esp32c6-fan.yaml:15]
-
-  Component not found: matter.
+(venv) Bonnie-MAir:esp32-H2-Matter-PWM-Fan fernando$ python3 -c "import esphome.components.matter"
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+ModuleNotFoundError: No module named 'esphome.components.matter'
 (venv) Bonnie-MAir:esp32-H2-Matter-PWM-Fan fernando$
