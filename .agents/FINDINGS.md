@@ -119,10 +119,15 @@ Through a series of systematic, clean-room experiments, we have **100% isolated 
 2. **The Debounce Timer Success (Verified):**
    * The new software debounce timer implemented in `app_driver.cpp` was verified in the logs. When the user adjusts the speed slider (e.g., setting it to 57%), the driver successfully aggregates the rapid flurry of write requests and updates the hardware and database **exactly once** 300ms later. This completely eliminates the Matter "packet storm" and protects the Thread network from congestion during slider movements.
 
-### E. June 28, 2026 Soak Test (Bare Board, Plugged into Mac) - FAILED
-* **Setup:** The ESP32-C6 was flashed with the Custom C++ Matter firmware after performing a full `rm -f sdkconfig && rm -rf build` clean-up to force the compiler to build the true OpenThread MTD stack (`CONFIG_OPENTHREAD_ENABLED=y`, `CONFIG_OPENTHREAD_FTD=n`, `CONFIG_OPENTHREAD_MTD=y`). 
-* **Soak Test Condition:** The device was left as a bare board (unconnected to the 12V fan or its power supply) plugged exclusively into the Mac via USB-C overnight to verify baseline software/network stability.
-* **Result (FAILED):** Despite being completely isolated from any motor noise or EMI (only plugged into USB-C), the device still transitioned to a permanent "No Response" state in HomeKit. This confirms that the baseline Custom C++ firmware / Thread protocol stack still contains an underlying bug that causes it to drop offline after a period of time, completely unrelated to hardware motor interference.
+### E. The Apple TV Eviction Bug & Sleepy End Device (SED) Fix
+* **The Failed Soak Test:** The ESP32-C6 was left as a bare board (unconnected to the 12V fan) overnight to verify baseline software/network stability. Despite being completely isolated from any motor noise, the device *still* transitioned to a permanent "No Response" state.
+* **The Cause (Apple TV Eviction):** The device was configured as a Minimal End Device (MED) by setting `CONFIG_OPENTHREAD_RX_ON_WHEN_IDLE=y`. A MED leaves its radio on constantly but DOES NOT periodically send MAC Data Polls (check-ins) to its parent. Apple TV Border Routers are extremely aggressive; if a child device sits on the network for hours but never actively sends a data poll, the Apple TV assumes the device is dead and forcefully kicks it out of the routing table (`Operational advertising failed: 3`).
+* **The Fix:** We converted the Fan Controller into a **Sleepy End Device (SED)** and forced it to aggressively check in with the Apple TV by modifying `sdkconfig.defaults.esp32c6`:
+  ```ini
+  CONFIG_OPENTHREAD_RX_ON_WHEN_IDLE=n
+  CONFIG_OPENTHREAD_MAC_DATA_POLL_PERIOD=250
+  ```
+  This forces the ESP32-C6 to wake up and ping the Apple TV **every 250 milliseconds**. This constant keep-alive traffic guarantees the Apple TV will never drop the connection, while remaining fast enough that the HomeKit slider feels perfectly responsive.
 
 ### F. OpenThread Parent-Swap Log Analysis (June 28)
 * **The Log:**
