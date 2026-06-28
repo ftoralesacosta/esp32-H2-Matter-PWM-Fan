@@ -8,7 +8,9 @@ Future AI agents starting a new Jetski session MUST read this document to unders
 
 ## 1. Hardware Overview & Pin Mapping
 
-The project is built on the **Seeed Studio XIAO ESP32-C6** development board. 
+The project is currently built on the **Seeed Studio XIAO ESP32-C6** development board. 
+*(Note: Initial development and troubleshooting was also extensively conducted using the **ESP32-H2-DevKitM-1-N4S**. Both boards exhibited identical Thread "No Response" drops, which helped confirm the root cause was related to software configuration and motor EMI, rather than a silicon defect on a specific board).*
+
 > [!WARNING]
 > **DO NOT confuse physical pin labels with the chip's internal GPIO numbers.** The Seeed Studio XIAO form factor uses a multiplexed pinout where board silkscreen numbers do NOT map 1-to-1 with ESP32-C6 GPIOs.
 
