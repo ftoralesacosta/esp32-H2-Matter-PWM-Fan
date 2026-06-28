@@ -129,17 +129,20 @@ Through a series of systematic, clean-room experiments, we have **100% isolated 
   ```
   This forces the ESP32-C6 to wake up and ping the Apple TV **every 250 milliseconds**. This constant keep-alive traffic guarantees the Apple TV will never drop the connection, while remaining fast enough that the HomeKit slider feels perfectly responsive.
 
-### F. OpenThread Parent-Swap Log Analysis (June 28)
-* **The Log:**
+### G. The 5-Minute Session Resumption & mDNS Bug (June 28)
+* **The Symptom:** Five minutes after successfully passing the slider stress test, the device transitioned back to "No Response" in HomeKit.
+* **The Log Analysis:**
   ```text
-  I(577549) OPENTHREAD:[N] Mle-----------: Role child -> detached
-  I(578059) OPENTHREAD:[N] Mle-----------: Attach attempt 1, AnyPartition reattaching with Active Dataset
-  I(578569) OPENTHREAD:[N] Mle-----------: RLOC16 1c04 -> 1805
-  I(578569) OPENTHREAD:[N] Mle-----------: Role detached -> child
+  I (346905) chip[DIS]: Lookup started for 3B2C559852478B73-000000003BDEF7D9
+  I (391895) chip[DIS]: Checking node lookup status ... after 45000 ms
+  E (391895) chip[DIS]: OperationalSessionSetup... operational discovery failed: 32
+  E (391905) chip[DMG]: Failed to establish CASE for subscription-resumption with error '32'
   ```
-* **The Analysis:** When the Minimal End Device (MTD) loses connection, it detaches and scans for a better parent. The parent swap completed in under 1 second. This proves the MTD configuration is successfully preventing the "Leader" partition lockouts.
+  Exactly 5 minutes (300 seconds) after the last interaction, the active Matter session went idle and expired. When the ESP32 attempted to re-establish the session (subscription resumption), it had to perform an mDNS Operational Discovery lookup for the Apple TV's Node ID (`3BDEF7D9`). The lookup timed out (`Error 32`), failing the CASE session establishment.
+* **The Root Cause:** In `sdkconfig.defaults.esp32c6`, we had `CONFIG_USE_MINIMAL_MDNS=n`. This forces the Matter stack to use the platform's (ESP-IDF) native `mdns` component. However, the ESP-IDF `mdns` component relies on UDP multicast, which does NOT route over Thread networks (Thread uses SRP for discovery). Because it wasn't using the native Matter `MinimalMdns` client (which correctly queries the OpenThread SRP server), the ESP32 was literally unable to resolve the Apple TV's IP address after the session expired.
+* **The Fix:** Changed `CONFIG_USE_MINIMAL_MDNS=y` in `sdkconfig.defaults.esp32c6`. This instructs the Matter stack to use its own internal `MinimalMdns` implementation, which correctly interfaces with the OpenThread DNS client to resolve Operational Node IDs over the Thread mesh.
 
-### G. RF Switch / Antenna Path Disabled in Software (June 28)
+### H. RF Switch / Antenna Path Disabled in Software (June 28)
 * **The Discovery:** Both the Seeed Studio XIAO ESP32-H2 and XIAO ESP32-C6 boards utilize an onboard RF Switch chip (`FM8625H`) to toggle between the ceramic antenna and the u.FL connector. By default, a generic ESP-IDF build does not configure this switch, leaving the antenna path floating/disabled.
 * **The Symptom:** This results in extremely poor radio range and a high packet drop rate. While small packets (keep-alives) occasionally get through, large Matter packets (wildcard status reports of 1000+ bytes) are fragmented into 12 frames (6LoWPAN) and fail consistently with `error:NoAck` at the MAC layer.
 * **The Software Fix:**
