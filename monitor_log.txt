@@ -1116,3 +1116,308 @@ entry 0x4086c410
 [0;32mI (22715) chip[EM]: >>> [E:61735i S:49720 M:61873306 (Ack:228319608)] (S) Msg RX from 1:00000000559F0421 [8B73] to 000000002A197C0E --- Type 0001:01 (IM:StatusResponse) (B:42)[0m
 [0;32mI (22725) chip[IM]: Received status response, status is 0x00[0m
 [0;32mI (22725) chip[EM]: <<< [E:61735i S:49720 M:228319609 (Ack:61873306)] (S) Msg TX from 000000002A197C0E to 1:00000000559F0421 [8B73] [UDP:[FD73:986F:53CE:0:E8F4:C998:519F:D1A5]:64422] --- Type 0000:10 (SecureChannel:StandaloneAck) (B:34)[0m
+[0;32mI (31475) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (31475) IP_DIAG:   fd73:986f:53ce:0:8c04:ccd1:2b60:3d4e[0m
+[0;32mI (31475) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:9428[0m
+[0;32mI (31475) IP_DIAG:   fd16:4ae:d5c4:0:53ee:acde:e358:b67e[0m
+[0;32mI (31485) IP_DIAG:   fe80:0:0:0:e4df:e7ea:c35d:5e7c[0m
+[0;33mW(32905) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
+[0;33mW(32915) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
+[0;32mI (41485) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (41485) IP_DIAG:   fd73:986f:53ce:0:8c04:ccd1:2b60:3d4e[0m
+[0;32mI (41485) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:9428[0m
+[0;32mI (41485) IP_DIAG:   fd16:4ae:d5c4:0:53ee:acde:e358:b67e[0m
+[0;32mI (41495) IP_DIAG:   fe80:0:0:0:e4df:e7ea:c35d:5e7c[0m
+[0;32mI (46875) chip[DIS]: Checking node lookup status for 3B2C559852478B73-000000003BDEF7D9 after 45000 ms[0m
+[0;31mE (46875) chip[DIS]: OperationalSessionSetup[1:000000003BDEF7D9]: operational discovery failed: 32[0m
+[0;31mE (46885) chip[DMG]: Failed to establish CASE for subscription-resumption with error '32'[0m
+[0;32mI (46895) chip[IM]: Schedule subscription resumption when failing to establish session, Retries: 1[0m
+[0;33mW(50845) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
+[0;33mW(50855) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
+[0;32mI (51495) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (51495) IP_DIAG:   fd73:986f:53ce:0:8c04:ccd1:2b60:3d4e[0m
+[0;32mI (51495) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:9428[0m
+[0;32mI (51495) IP_DIAG:   fd16:4ae:d5c4:0:53ee:acde:e358:b67e[0m
+[0;32mI (51505) IP_DIAG:   fe80:0:0:0:e4df:e7ea:c35d:5e7c[0m
+[0;32mI (61505) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (61505) IP_DIAG:   fd73:986f:53ce:0:8c04:ccd1:2b60:3d4e[0m
+[0;32mI (61505) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:9428[0m
+[0;32mI (61505) IP_DIAG:   fd16:4ae:d5c4:0:53ee:acde:e358:b67e[0m
+[0;32mI (61515) IP_DIAG:   fe80:0:0:0:e4df:e7ea:c35d:5e7c[0m
+[0;33mW(66765) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
+[0;33mW(66765) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
+[0;32mI (71515) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (71515) IP_DIAG:   fd73:986f:53ce:0:8c04:ccd1:2b60:3d4e[0m
+[0;32mI (71515) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:9428[0m
+[0;32mI (71515) IP_DIAG:   fd16:4ae:d5c4:0:53ee:acde:e358:b67e[0m
+[0;32mI (71525) IP_DIAG:   fe80:0:0:0:e4df:e7ea:c35d:5e7c[0m
+[0;33mW(78625) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
+[0;33mW(78625) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
+[0;32mI (81525) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (81525) IP_DIAG:   fd73:986f:53ce:0:8c04:ccd1:2b60:3d4e[0m
+[0;32mI (81525) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:9428[0m
+[0;32mI (81525) IP_DIAG:   fd16:4ae:d5c4:0:53ee:acde:e358:b67e[0m
+[0;32mI (81535) IP_DIAG:   fe80:0:0:0:e4df:e7ea:c35d:5e7c[0m
+[0;32mI (91535) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (91535) IP_DIAG:   fd73:986f:53ce:0:8c04:ccd1:2b60:3d4e[0m
+[0;32mI (91535) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:9428[0m
+[0;32mI (91535) IP_DIAG:   fd16:4ae:d5c4:0:53ee:acde:e358:b67e[0m
+[0;32mI (91545) IP_DIAG:   fe80:0:0:0:e4df:e7ea:c35d:5e7c[0m
+[0;33mW(96345) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
+[0;33mW(96355) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
+[0;32mI (101545) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (101545) IP_DIAG:   fd73:986f:53ce:0:8c04:ccd1:2b60:3d4e[0m
+[0;32mI (101545) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:9428[0m
+[0;32mI (101545) IP_DIAG:   fd16:4ae:d5c4:0:53ee:acde:e358:b67e[0m
+[0;32mI (101555) IP_DIAG:   fe80:0:0:0:e4df:e7ea:c35d:5e7c[0m
+[0;32mI (111555) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (111555) IP_DIAG:   fd73:986f:53ce:0:8c04:ccd1:2b60:3d4e[0m
+[0;32mI (111555) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:9428[0m
+[0;32mI (111555) IP_DIAG:   fd16:4ae:d5c4:0:53ee:acde:e358:b67e[0m
+[0;32mI (111565) IP_DIAG:   fe80:0:0:0:e4df:e7ea:c35d:5e7c[0m
+[0;33mW(115895) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
+[0;33mW(115905) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
+[0;32mI (121565) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (121565) IP_DIAG:   fd73:986f:53ce:0:8c04:ccd1:2b60:3d4e[0m
+[0;32mI (121565) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:9428[0m
+[0;32mI (121565) IP_DIAG:   fd16:4ae:d5c4:0:53ee:acde:e358:b67e[0m
+[0;32mI (121575) IP_DIAG:   fe80:0:0:0:e4df:e7ea:c35d:5e7c[0m
+[0;33mW(129485) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
+[0;33mW(129495) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
+[0;32mI (131575) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (131575) IP_DIAG:   fd73:986f:53ce:0:8c04:ccd1:2b60:3d4e[0m
+[0;32mI (131575) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:9428[0m
+[0;32mI (131575) IP_DIAG:   fd16:4ae:d5c4:0:53ee:acde:e358:b67e[0m
+[0;32mI (131585) IP_DIAG:   fe80:0:0:0:e4df:e7ea:c35d:5e7c[0m
+[0;32mI (141585) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (141585) IP_DIAG:   fd73:986f:53ce:0:8c04:ccd1:2b60:3d4e[0m
+[0;32mI (141585) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:9428[0m
+[0;32mI (141585) IP_DIAG:   fd16:4ae:d5c4:0:53ee:acde:e358:b67e[0m
+[0;32mI (141595) IP_DIAG:   fe80:0:0:0:e4df:e7ea:c35d:5e7c[0m
+[0;33mW(149765) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
+[0;33mW(149775) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
+[0;32mI (151595) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (151595) IP_DIAG:   fd73:986f:53ce:0:8c04:ccd1:2b60:3d4e[0m
+[0;32mI (151595) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:9428[0m
+[0;32mI (151595) IP_DIAG:   fd16:4ae:d5c4:0:53ee:acde:e358:b67e[0m
+[0;32mI (151605) IP_DIAG:   fe80:0:0:0:e4df:e7ea:c35d:5e7c[0m
+[0;32mI (161605) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (161605) IP_DIAG:   fd73:986f:53ce:0:8c04:ccd1:2b60:3d4e[0m
+[0;32mI (161605) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:9428[0m
+[0;32mI (161605) IP_DIAG:   fd16:4ae:d5c4:0:53ee:acde:e358:b67e[0m
+[0;32mI (161615) IP_DIAG:   fe80:0:0:0:e4df:e7ea:c35d:5e7c[0m
+[0;33mW(162065) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
+[0;33mW(162075) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
+[0;32mI (171615) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (171615) IP_DIAG:   fd73:986f:53ce:0:8c04:ccd1:2b60:3d4e[0m
+[0;32mI (171615) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:9428[0m
+[0;32mI (171615) IP_DIAG:   fd16:4ae:d5c4:0:53ee:acde:e358:b67e[0m
+[0;32mI (171625) IP_DIAG:   fe80:0:0:0:e4df:e7ea:c35d:5e7c[0m
+[0;33mW(180275) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
+[0;33mW(180275) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
+[0;32mI (181625) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (181625) IP_DIAG:   fd73:986f:53ce:0:8c04:ccd1:2b60:3d4e[0m
+[0;32mI (181625) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:9428[0m
+[0;32mI (181625) IP_DIAG:   fd16:4ae:d5c4:0:53ee:acde:e358:b67e[0m
+[0;32mI (181635) IP_DIAG:   fe80:0:0:0:e4df:e7ea:c35d:5e7c[0m
+[0;33mW(190635) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
+[0;33mW(190635) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
+[0;32mI (191635) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (191635) IP_DIAG:   fd73:986f:53ce:0:8c04:ccd1:2b60:3d4e[0m
+[0;32mI (191635) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:9428[0m
+[0;32mI (191635) IP_DIAG:   fd16:4ae:d5c4:0:53ee:acde:e358:b67e[0m
+[0;32mI (191645) IP_DIAG:   fe80:0:0:0:e4df:e7ea:c35d:5e7c[0m
+[0;32mI (201645) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (201645) IP_DIAG:   fd73:986f:53ce:0:8c04:ccd1:2b60:3d4e[0m
+[0;32mI (201645) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:9428[0m
+[0;32mI (201645) IP_DIAG:   fd16:4ae:d5c4:0:53ee:acde:e358:b67e[0m
+[0;32mI (201655) IP_DIAG:   fe80:0:0:0:e4df:e7ea:c35d:5e7c[0m
+[0;33mW(207745) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
+[0;33mW(207755) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
+[0;32mI (211655) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (211655) IP_DIAG:   fd73:986f:53ce:0:8c04:ccd1:2b60:3d4e[0m
+[0;32mI (211655) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:9428[0m
+[0;32mI (211655) IP_DIAG:   fd16:4ae:d5c4:0:53ee:acde:e358:b67e[0m
+[0;32mI (211665) IP_DIAG:   fe80:0:0:0:e4df:e7ea:c35d:5e7c[0m
+[0;32mI (221665) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (221665) IP_DIAG:   fd73:986f:53ce:0:8c04:ccd1:2b60:3d4e[0m
+[0;32mI (221665) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:9428[0m
+[0;32mI (221665) IP_DIAG:   fd16:4ae:d5c4:0:53ee:acde:e358:b67e[0m
+[0;32mI (221675) IP_DIAG:   fe80:0:0:0:e4df:e7ea:c35d:5e7c[0m
+[0;33mW(227845) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
+[0;33mW(227845) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
+[0;32mI (231675) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (231675) IP_DIAG:   fd73:986f:53ce:0:8c04:ccd1:2b60:3d4e[0m
+[0;32mI (231675) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:9428[0m
+[0;32mI (231675) IP_DIAG:   fd16:4ae:d5c4:0:53ee:acde:e358:b67e[0m
+[0;32mI (231685) IP_DIAG:   fe80:0:0:0:e4df:e7ea:c35d:5e7c[0m
+[0;32mI (241685) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (241685) IP_DIAG:   fd73:986f:53ce:0:8c04:ccd1:2b60:3d4e[0m
+[0;32mI (241685) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:9428[0m
+[0;32mI (241685) IP_DIAG:   fd16:4ae:d5c4:0:53ee:acde:e358:b67e[0m
+[0;32mI (241695) IP_DIAG:   fe80:0:0:0:e4df:e7ea:c35d:5e7c[0m
+[0;33mW(246485) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
+[0;33mW(246485) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
+[0;32mI (251695) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (251695) IP_DIAG:   fd73:986f:53ce:0:8c04:ccd1:2b60:3d4e[0m
+[0;32mI (251695) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:9428[0m
+[0;32mI (251695) IP_DIAG:   fd16:4ae:d5c4:0:53ee:acde:e358:b67e[0m
+[0;32mI (251705) IP_DIAG:   fe80:0:0:0:e4df:e7ea:c35d:5e7c[0m
+[0;33mW(257405) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
+[0;33mW(257405) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
+[0;32mI (261705) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (261705) IP_DIAG:   fd73:986f:53ce:0:8c04:ccd1:2b60:3d4e[0m
+[0;32mI (261705) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:9428[0m
+[0;32mI (261705) IP_DIAG:   fd16:4ae:d5c4:0:53ee:acde:e358:b67e[0m
+[0;32mI (261715) IP_DIAG:   fe80:0:0:0:e4df:e7ea:c35d:5e7c[0m
+[0;32mI (271715) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (271715) IP_DIAG:   fd73:986f:53ce:0:8c04:ccd1:2b60:3d4e[0m
+[0;32mI (271715) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:9428[0m
+[0;32mI (271715) IP_DIAG:   fd16:4ae:d5c4:0:53ee:acde:e358:b67e[0m
+[0;32mI (271725) IP_DIAG:   fe80:0:0:0:e4df:e7ea:c35d:5e7c[0m
+[0;33mW(273045) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
+[0;33mW(273045) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
+[0;32mI (281725) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (281725) IP_DIAG:   fd73:986f:53ce:0:8c04:ccd1:2b60:3d4e[0m
+[0;32mI (281725) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:9428[0m
+[0;32mI (281725) IP_DIAG:   fd16:4ae:d5c4:0:53ee:acde:e358:b67e[0m
+[0;32mI (281735) IP_DIAG:   fe80:0:0:0:e4df:e7ea:c35d:5e7c[0m
+[0;33mW(287315) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
+[0;33mW(287325) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
+[0;32mI (291735) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (291735) IP_DIAG:   fd73:986f:53ce:0:8c04:ccd1:2b60:3d4e[0m
+[0;32mI (291735) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:9428[0m
+[0;32mI (291735) IP_DIAG:   fd16:4ae:d5c4:0:53ee:acde:e358:b67e[0m
+[0;32mI (291745) IP_DIAG:   fe80:0:0:0:e4df:e7ea:c35d:5e7c[0m
+[0;32mI (301745) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (301745) IP_DIAG:   fd73:986f:53ce:0:8c04:ccd1:2b60:3d4e[0m
+[0;32mI (301745) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:9428[0m
+[0;32mI (301745) IP_DIAG:   fd16:4ae:d5c4:0:53ee:acde:e358:b67e[0m
+[0;32mI (301755) IP_DIAG:   fe80:0:0:0:e4df:e7ea:c35d:5e7c[0m
+[0;33mW(305995) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
+[0;33mW(306005) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
+[0;32mI (311755) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (311755) IP_DIAG:   fd73:986f:53ce:0:8c04:ccd1:2b60:3d4e[0m
+[0;32mI (311755) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:9428[0m
+[0;32mI (311755) IP_DIAG:   fd16:4ae:d5c4:0:53ee:acde:e358:b67e[0m
+[0;32mI (311765) IP_DIAG:   fe80:0:0:0:e4df:e7ea:c35d:5e7c[0m
+[0;33mW(320755) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
+[0;33mW(320755) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
+[0;32mI (321765) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (321765) IP_DIAG:   fd73:986f:53ce:0:8c04:ccd1:2b60:3d4e[0m
+[0;32mI (321765) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:9428[0m
+[0;32mI (321765) IP_DIAG:   fd16:4ae:d5c4:0:53ee:acde:e358:b67e[0m
+[0;32mI (321775) IP_DIAG:   fe80:0:0:0:e4df:e7ea:c35d:5e7c[0m
+[0;32mI (331775) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (331775) IP_DIAG:   fd73:986f:53ce:0:8c04:ccd1:2b60:3d4e[0m
+[0;32mI (331775) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:9428[0m
+[0;32mI (331775) IP_DIAG:   fd16:4ae:d5c4:0:53ee:acde:e358:b67e[0m
+[0;32mI (331785) IP_DIAG:   fe80:0:0:0:e4df:e7ea:c35d:5e7c[0m
+[0;33mW(335815) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
+[0;33mW(335825) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
+[0;32mI (341785) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (341785) IP_DIAG:   fd73:986f:53ce:0:8c04:ccd1:2b60:3d4e[0m
+[0;32mI (341785) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:9428[0m
+[0;32mI (341785) IP_DIAG:   fd16:4ae:d5c4:0:53ee:acde:e358:b67e[0m
+[0;32mI (341795) IP_DIAG:   fe80:0:0:0:e4df:e7ea:c35d:5e7c[0m
+[0;32mI (346895) chip[DIS]: Resolving 3B2C559852478B73:000000003BDEF7D9 ...[0m
+[0;32mI (346905) chip[DIS]: Lookup started for 3B2C559852478B73-000000003BDEF7D9[0m
+[0;32mI (346905) chip[IM]: Skip resuming live subscriptionId 598212405[0m
+[0;32mI (347095) chip[DIS]: Checking node lookup status for 3B2C559852478B73-000000003BDEF7D9 after 200 ms[0m
+[0;33mW(351565) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
+[0;33mW(351575) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
+[0;32mI (351795) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (351795) IP_DIAG:   fd73:986f:53ce:0:8c04:ccd1:2b60:3d4e[0m
+[0;32mI (351795) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:9428[0m
+[0;32mI (351795) IP_DIAG:   fd16:4ae:d5c4:0:53ee:acde:e358:b67e[0m
+[0;32mI (351805) IP_DIAG:   fe80:0:0:0:e4df:e7ea:c35d:5e7c[0m
+[0;32mI (361805) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (361805) IP_DIAG:   fd73:986f:53ce:0:8c04:ccd1:2b60:3d4e[0m
+[0;32mI (361805) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:9428[0m
+[0;32mI (361805) IP_DIAG:   fd16:4ae:d5c4:0:53ee:acde:e358:b67e[0m
+[0;32mI (361815) IP_DIAG:   fe80:0:0:0:e4df:e7ea:c35d:5e7c[0m
+[0;33mW(370075) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
+[0;33mW(370075) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
+[0;32mI (371815) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (371815) IP_DIAG:   fd73:986f:53ce:0:8c04:ccd1:2b60:3d4e[0m
+[0;32mI (371815) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:9428[0m
+[0;32mI (371815) IP_DIAG:   fd16:4ae:d5c4:0:53ee:acde:e358:b67e[0m
+[0;32mI (371825) IP_DIAG:   fe80:0:0:0:e4df:e7ea:c35d:5e7c[0m
+[0;32mI (381825) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (381825) IP_DIAG:   fd73:986f:53ce:0:8c04:ccd1:2b60:3d4e[0m
+[0;32mI (381825) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:9428[0m
+[0;32mI (381825) IP_DIAG:   fd16:4ae:d5c4:0:53ee:acde:e358:b67e[0m
+[0;32mI (381835) IP_DIAG:   fe80:0:0:0:e4df:e7ea:c35d:5e7c[0m
+[0;33mW(386865) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
+[0;33mW(386875) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
+[0;32mI (391835) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (391835) IP_DIAG:   fd73:986f:53ce:0:8c04:ccd1:2b60:3d4e[0m
+[0;32mI (391835) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:9428[0m
+[0;32mI (391835) IP_DIAG:   fd16:4ae:d5c4:0:53ee:acde:e358:b67e[0m
+[0;32mI (391845) IP_DIAG:   fe80:0:0:0:e4df:e7ea:c35d:5e7c[0m
+[0;32mI (391895) chip[DIS]: Checking node lookup status for 3B2C559852478B73-000000003BDEF7D9 after 45000 ms[0m
+[0;31mE (391895) chip[DIS]: OperationalSessionSetup[1:000000003BDEF7D9]: operational discovery failed: 32[0m
+[0;31mE (391905) chip[DMG]: Failed to establish CASE for subscription-resumption with error '32'[0m
+[0;32mI (391915) chip[IM]: Schedule subscription resumption when failing to establish session, Retries: 2[0m
+[0;33mW(401225) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
+[0;33mW(401225) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
+[0;32mI (401845) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (401845) IP_DIAG:   fd73:986f:53ce:0:8c04:ccd1:2b60:3d4e[0m
+[0;32mI (401845) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:9428[0m
+[0;32mI (401845) IP_DIAG:   fd16:4ae:d5c4:0:53ee:acde:e358:b67e[0m
+[0;32mI (401855) IP_DIAG:   fe80:0:0:0:e4df:e7ea:c35d:5e7c[0m
+[0;32mI (411855) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (411855) IP_DIAG:   fd73:986f:53ce:0:8c04:ccd1:2b60:3d4e[0m
+[0;32mI (411855) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:9428[0m
+[0;32mI (411855) IP_DIAG:   fd16:4ae:d5c4:0:53ee:acde:e358:b67e[0m
+[0;32mI (411865) IP_DIAG:   fe80:0:0:0:e4df:e7ea:c35d:5e7c[0m
+[0;33mW(421745) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
+[0;33mW(421755) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
+[0;32mI (421865) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (421865) IP_DIAG:   fd73:986f:53ce:0:8c04:ccd1:2b60:3d4e[0m
+[0;32mI (421865) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:9428[0m
+[0;32mI (421865) IP_DIAG:   fd16:4ae:d5c4:0:53ee:acde:e358:b67e[0m
+[0;32mI (421875) IP_DIAG:   fe80:0:0:0:e4df:e7ea:c35d:5e7c[0m
+[0;32mI (431875) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (431875) IP_DIAG:   fd73:986f:53ce:0:8c04:ccd1:2b60:3d4e[0m
+[0;32mI (431875) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:9428[0m
+[0;32mI (431875) IP_DIAG:   fd16:4ae:d5c4:0:53ee:acde:e358:b67e[0m
+[0;32mI (431885) IP_DIAG:   fe80:0:0:0:e4df:e7ea:c35d:5e7c[0m
+[0;33mW(434385) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
+[0;33mW(434385) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
+[0;32mI (441885) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (441885) IP_DIAG:   fd73:986f:53ce:0:8c04:ccd1:2b60:3d4e[0m
+[0;32mI (441885) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:9428[0m
+[0;32mI (441885) IP_DIAG:   fd16:4ae:d5c4:0:53ee:acde:e358:b67e[0m
+[0;32mI (441895) IP_DIAG:   fe80:0:0:0:e4df:e7ea:c35d:5e7c[0m
+[0;32mI (451895) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (451895) IP_DIAG:   fd73:986f:53ce:0:8c04:ccd1:2b60:3d4e[0m
+[0;32mI (451895) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:9428[0m
+[0;32mI (451895) IP_DIAG:   fd16:4ae:d5c4:0:53ee:acde:e358:b67e[0m
+[0;32mI (451905) IP_DIAG:   fe80:0:0:0:e4df:e7ea:c35d:5e7c[0m
+[0;33mW(454195) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
+[0;33mW(454205) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
+[0;32mI (461905) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (461905) IP_DIAG:   fd73:986f:53ce:0:8c04:ccd1:2b60:3d4e[0m
+[0;32mI (461905) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:9428[0m
+[0;32mI (461905) IP_DIAG:   fd16:4ae:d5c4:0:53ee:acde:e358:b67e[0m
+[0;32mI (461915) IP_DIAG:   fe80:0:0:0:e4df:e7ea:c35d:5e7c[0m
+[0;33mW(463395) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
+[0;33mW(463395) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
+[0;32mI (471915) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (471915) IP_DIAG:   fd73:986f:53ce:0:8c04:ccd1:2b60:3d4e[0m
+[0;32mI (471915) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:9428[0m
+[0;32mI (471915) IP_DIAG:   fd16:4ae:d5c4:0:53ee:acde:e358:b67e[0m
+[0;32mI (471925) IP_DIAG:   fe80:0:0:0:e4df:e7ea:c35d:5e7c[0m
+[0;32mI (481925) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (481925) IP_DIAG:   fd73:986f:53ce:0:8c04:ccd1:2b60:3d4e[0m
+[0;32mI (481925) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:9428[0m
+[0;32mI (481925) IP_DIAG:   fd16:4ae:d5c4:0:53ee:acde:e358:b67e[0m
+[0;32mI (481935) IP_DIAG:   fe80:0:0:0:e4df:e7ea:c35d:5e7c[0m
+[0;33mW(486465) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
+[0;33mW(486475) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
+[0;32mI (491935) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (491935) IP_DIAG:   fd73:986f:53ce:0:8c04:ccd1:2b60:3d4e[0m
+[0;32mI (491935) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:9428[0m
+[0;32mI (491935) IP_DIAG:   fd16:4ae:d5c4:0:53ee:acde:e358:b67e[0m
+[0;32mI (491945) IP_DIAG:   fe80:0:0:0:e4df:e7ea:c35d:5e7c[0m
