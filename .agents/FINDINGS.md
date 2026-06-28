@@ -141,6 +141,12 @@ Through a series of systematic, clean-room experiments, we have **100% isolated 
   - Configure `GPIO 3` (`RF_SWITCH_EN`) and `GPIO 14` (`RF_ANT_SELECT`) as outputs.
   - Set `GPIO 3` to `LOW` to enable the RF switch.
   - Set `GPIO 14` to `LOW` to select the on-board ceramic antenna.
+* **Status (June 28 - SUCCESS):** The fix was successfully compiled, flashed, and verified. The boot logs confirm:
+  - The RF switch is enabled and the ceramic antenna is selected.
+  - The `Attribute should be non-volatile...` boot error is resolved.
+  - The `FeatureMap` attribute is successfully updated to `1` (MultiSpeed).
+  - **Crucial Result:** The `error:NoAck` packet fragmentation drops have completely stopped. The large Matter status reports are now being transmitted and acknowledged successfully by the Apple TV.
+
 
 * **HomeKit Reconnection Behavior:** During a parent swap, the device's internal Thread routing address (`RLOC16`) changes (in this case, from `1c04` to `1803`). Because of this routing update, Apple Home/HomeKit controllers may briefly show the device as "Updating" or offline for a short period while the Apple TV Border Router propagates the new IPv6 routing path to your phone/hubs. It should automatically recover without requiring a device reboot.
 
