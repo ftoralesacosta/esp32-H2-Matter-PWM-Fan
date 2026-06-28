@@ -47,18 +47,6 @@ static void app_event_cb(const ChipDeviceEvent *event, intptr_t arg)
     switch (event->Type) {
     case chip::DeviceLayer::DeviceEventType::kInterfaceIpAddressChanged:
         ESP_LOGI(TAG, "Interface IP Address Changed");
-#if CONFIG_OPENTHREAD_ENABLED
-        {
-            otInstance *instance = esp_openthread_get_instance();
-            if (instance) {
-                for (const otNetifAddress *addr = otIp6GetUnicastAddresses(instance); addr; addr = addr->mNext) {
-                    char buf[40];
-                    otIp6AddressToString(&addr->mAddress, buf, sizeof(buf));
-                    ESP_LOGI(TAG, "  OT Addr: %s", buf);
-                }
-            }
-        }
-#endif
         break;
 
 
@@ -119,8 +107,27 @@ static esp_err_t app_attribute_update_cb(callback_type_t type, uint16_t endpoint
     return ESP_OK;
 }
 
+#if CONFIG_OPENTHREAD_ENABLED
+static void print_ip_addresses_task(void *pvParameters)
+{
+    while (1) {
+        vTaskDelay(pdMS_TO_TICKS(10000));
+        otInstance *instance = esp_openthread_get_instance();
+        if (instance) {
+            ESP_LOGI("IP_DIAG", "OpenThread Unicast Addresses:");
+            for (const otNetifAddress *addr = otIp6GetUnicastAddresses(instance); addr; addr = addr->mNext) {
+                char buf[40];
+                otIp6AddressToString(&addr->mAddress, buf, sizeof(buf));
+                ESP_LOGI("IP_DIAG", "  %s", buf);
+            }
+        }
+    }
+}
+#endif
+
 extern "C" void app_main()
 {
+
     esp_err_t err = ESP_OK;
 
     /* Initialize the ESP NVS layer */
@@ -174,4 +181,9 @@ extern "C" void app_main()
 
     /* Starting driver with default values */
     app_driver_fan_set_defaults(fan_endpoint_id);
+
+#if CONFIG_OPENTHREAD_ENABLED
+    xTaskCreate(print_ip_addresses_task, "print_ip_task", 4096, NULL, 5, NULL);
+#endif
 }
+
