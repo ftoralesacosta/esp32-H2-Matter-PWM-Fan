@@ -123,12 +123,34 @@ static void print_ip_addresses_task(void *pvParameters)
         }
     }
 }
+
+static void init_rf_switch()
+{
+    ESP_LOGI("RF_SWITCH", "Initializing RF Switch for Seeed Studio XIAO board...");
+    gpio_config_t io_conf = {};
+    io_conf.intr_type = GPIO_INTR_DISABLE;
+    io_conf.mode = GPIO_MODE_OUTPUT;
+    io_conf.pin_bit_mask = (1ULL << GPIO_NUM_3) | (1ULL << GPIO_NUM_14);
+    io_conf.pull_down_en = GPIO_PULLDOWN_DISABLE;
+    io_conf.pull_up_en = GPIO_PULLUP_DISABLE;
+    gpio_config(&io_conf);
+
+    // GPIO3 LOW enables the RF switch
+    gpio_set_level(GPIO_NUM_3, 0);
+    // GPIO14 LOW selects the on-board ceramic antenna
+    gpio_set_level(GPIO_NUM_14, 0);
+    ESP_LOGI("RF_SWITCH", "RF Switch enabled (GPIO3=LOW), Ceramic Antenna selected (GPIO14=LOW)");
+}
 #endif
 
 extern "C" void app_main()
 {
-
     esp_err_t err = ESP_OK;
+
+#if CONFIG_OPENTHREAD_ENABLED
+    init_rf_switch();
+#endif
+
 
     /* Initialize the ESP NVS layer */
     nvs_flash_init();

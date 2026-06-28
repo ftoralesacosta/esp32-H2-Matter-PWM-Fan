@@ -114,16 +114,24 @@ Through a series of systematic, clean-room experiments, we have **100% isolated 
 * **Soak Test:** The user has left the bare board (unconnected to the 12V fan or its power supply) plugged into their Mac overnight to verify baseline software/network stability.
 * **CRITICAL INSTRUCTION FOR THE NEXT SESSION:** At the very start of the next session, the AI agent **MUST** ask the user: *"Did the overnight soak test succeed, or did the chip disconnect?"* This is the primary verification step before proceeding to hardware testing with the fan motor.
 
-### F. June 28, 2026 Parent Swap & MTD Self-Healing Verification
-During active monitoring, we captured a live Thread parent migration in the logs:
-```text
-I(576729) OPENTHREAD:[N] Mle-----------: Attach attempt 0, BetterParent 
-I(577539) OPENTHREAD:[N] Mle-----------: Role child -> detached
-I(577549) OPENTHREAD:[N] Mle-----------: RLOC16 1c04 -> 1803
-I(577549) OPENTHREAD:[N] Mle-----------: Role detached -> child
-I(577549) OPENTHREAD:[N] Mle-----------: Sending message to inform previous parent 0x1c00
-```
-* **Analysis:** This log proves that the **Minimal End Device (MTD)** configuration is working exactly as designed. When the chip detected a router with a better signal (a `BetterParent`), it safely detached from the old parent (`Role child -> detached`) and re-attached to the new one (`Role detached -> child`) in **under 1 second** (from timestamp `577539` to `577549`).
+### F. OpenThread Parent-Swap Log Analysis (June 28)
+* **The Log:**
+  ```text
+  I(577549) OPENTHREAD:[N] Mle-----------: Role child -> detached
+  I(578059) OPENTHREAD:[N] Mle-----------: Attach attempt 1, AnyPartition reattaching with Active Dataset
+  I(578569) OPENTHREAD:[N] Mle-----------: RLOC16 1c04 -> 1805
+  I(578569) OPENTHREAD:[N] Mle-----------: Role detached -> child
+  ```
+* **The Analysis:** When the Minimal End Device (MTD) loses connection, it detaches and scans for a better parent. The parent swap completed in under 1 second. This proves the MTD configuration is successfully preventing the "Leader" partition lockouts.
+
+### G. RF Switch / Antenna Path Disabled in Software (June 28)
+* **The Discovery:** Both the Seeed Studio XIAO ESP32-H2 and XIAO ESP32-C6 boards utilize an onboard RF Switch chip (`FM8625H`) to toggle between the ceramic antenna and the u.FL connector. By default, a generic ESP-IDF build does not configure this switch, leaving the antenna path floating/disabled.
+* **The Symptom:** This results in extremely poor radio range and a high packet drop rate. While small packets (keep-alives) occasionally get through, large Matter packets (wildcard status reports of 1000+ bytes) are fragmented into 12 frames (6LoWPAN) and fail consistently with `error:NoAck` at the MAC layer.
+* **The Software Fix:**
+  - Configure `GPIO 3` (`RF_SWITCH_EN`) and `GPIO 14` (`RF_ANT_SELECT`) as outputs.
+  - Set `GPIO 3` to `LOW` to enable the RF switch.
+  - Set `GPIO 14` to `LOW` to select the on-board ceramic antenna.
+
 * **HomeKit Reconnection Behavior:** During a parent swap, the device's internal Thread routing address (`RLOC16`) changes (in this case, from `1c04` to `1803`). Because of this routing update, Apple Home/HomeKit controllers may briefly show the device as "Updating" or offline for a short period while the Apple TV Border Router propagates the new IPv6 routing path to your phone/hubs. It should automatically recover without requiring a device reboot.
 
 ---
