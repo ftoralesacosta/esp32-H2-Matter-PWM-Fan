@@ -167,7 +167,6 @@ extern "C" void app_main()
 
     // Configure the Matter Fan endpoint
     fan::config_t fan_config;
-    fan_config.fan_control.feature_map = 1; // MultiSpeed
     fan_config.fan_control.fan_mode = 0; // Off
     fan_config.fan_control.percent_setting = DEFAULT_FAN_SPEED;
     fan_config.fan_control.percent_current = DEFAULT_FAN_SPEED;
@@ -179,13 +178,12 @@ extern "C" void app_main()
     fan_endpoint_id = endpoint::get_id(endpoint);
     ESP_LOGI(TAG, "Fan created with endpoint_id %d", fan_endpoint_id);
 
-    /* Mark deferred persistence for some attributes that might be changed rapidly */
-    attribute_t *percent_setting_attribute = attribute::get(fan_endpoint_id, FanControl::Id, FanControl::Attributes::PercentSetting::Id);
-    if (percent_setting_attribute) {
-        uint16_t flags = attribute::get_flags(percent_setting_attribute);
-        flags |= ATTRIBUTE_FLAG_NON_VOLATILE;
-        attribute::set_flags(percent_setting_attribute, flags);
-        attribute::set_deferred_persistence(percent_setting_attribute);
+    // Set FeatureMap attribute (0xFFFC) to 1 (MultiSpeed) to satisfy HomeKit and enable the speed slider
+    attribute_t *feature_map_attribute = attribute::get(fan_endpoint_id, FanControl::Id, 0xFFFC);
+    if (feature_map_attribute) {
+        esp_matter_attr_val_t val = esp_matter_uint32(1);
+        attribute::set_val(feature_map_attribute, &val);
+        ESP_LOGI(TAG, "Fan Control FeatureMap set to 1 (MultiSpeed)");
     }
 
 #if CHIP_DEVICE_CONFIG_ENABLE_THREAD
