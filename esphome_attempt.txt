@@ -1,10 +1,10 @@
-(venv) Bonnie-MAir:esp32-H2-Matter-PWM-Fan fernando$ pip install --upgrade git+https://github.com/esphome/esphome.git
-Collecting git+https://github.com/esphome/esphome.git
-  Cloning https://github.com/esphome/esphome.git to /private/var/folders/yp/wxz61p5j0jz9x91v77395mq00000gp/T/pip-req-build-98t6ose4
-  Running command git clone --filter=blob:none --quiet https://github.com/esphome/esphome.git /private/var/folders/yp/wxz61p5j0jz9x91v77395mq00000gp/T/pip-req-build-98t6ose4
-  Resolved https://github.com/esphome/esphome.git to commit bda789052d67332ea89c811a0b64a77b475e9b3f
-  Installing build dependencies ... done
-  Getting requirements to build wheel ... done
-  Preparing metadata (pyproject.toml) ... done
-INFO: pip is looking at multiple versions of esphome to determine which version is compatible with other requirements. This could take a while.
-ERROR: Package 'esphome' requires a different Python: 3.9.6 not in '<3.15,>=3.11.0'
+(venv) Bonnie-MAir:esp32-H2-Matter-PWM-Fan fernando$ esphome run esp32c6-fan.yaml
+INFO ESPHome 2026.7.0-dev
+INFO Reading configuration esp32c6-fan.yaml...
+INFO Unable to import component matter: No module named 'esphome.components.matter'
+Failed config
+
+matter: [source esp32c6-fan.yaml:15]
+
+  Component not found: matter.
+(venv) Bonnie-MAir:esp32-H2-Matter-PWM-Fan fernando$
