@@ -148,8 +148,11 @@ Through a series of systematic, clean-room experiments, we have **100% isolated 
   - **Crucial Result:** The `error:NoAck` packet fragmentation drops have completely stopped. The large Matter status reports are now being transmitted and acknowledged successfully by the Apple TV.
 * **Force Cache Clearing (June 28):** To resolve the "No Response" state caused by the Apple TV caching the old null `FeatureMap`, a clean `idf.py erase-flash` was executed successfully on the board. This completely clears the old pairing fabrics and the old Node ID (`86EADBD5`), forcing the Apple TV to register a new Node ID and cache the correct `FeatureMap` upon the next pairing.
 * **Second Erase-Flash Soak Test (June 28 - FAILED):** 
-  - The board was erased again via `idf.py erase-flash` and successfully re-paired.
-  - Despite the clean database state and new Node ID, the device still transitioned to "No Response" (DIS-connected) on both the Mac and iPhone Home apps shortly after.
+  - **Verification:** We verified that the onboard ceramic antenna is successfully enabled in software (`GPIO 3` set to `LOW`, `GPIO 14` set to `LOW`).
+  - **Action:** A clean `idf.py erase-flash` was executed to completely wipe the flash NVS partition, followed by a re-flash and a fresh re-pairing to the Apple Home app.
+  - **Result:** Despite the clean database state, new Node ID, and verified antenna path, the device still transitioned to "No Response" (DIS-connected) on both the Mac and iPhone Home apps after a period of time.
+  - **User Suspicion:** The user strongly suspects an underlying software or protocol-level issue in the firmware/Thread stack, rather than a hardware or local network routing issue, since the IP-level link remains fully responsive (pings succeed) but the HomeKit/Matter connection drops.
+
 
 
 ### H. Limitations of On-Chip Logs & The Need for External Network Diagnostics (June 28)
