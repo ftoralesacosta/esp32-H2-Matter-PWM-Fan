@@ -147,10 +147,10 @@ Through a series of systematic, clean-room experiments, we have **100% isolated 
   - The `FeatureMap` attribute is successfully updated to `1` (MultiSpeed).
   - **Crucial Result:** The `error:NoAck` packet fragmentation drops have completely stopped. The large Matter status reports are now being transmitted and acknowledged successfully by the Apple TV.
 * **Force Cache Clearing (June 28):** To resolve the "No Response" state caused by the Apple TV caching the old null `FeatureMap`, a clean `idf.py erase-flash` was executed successfully on the board. This completely clears the old pairing fabrics and the old Node ID (`86EADBD5`), forcing the Apple TV to register a new Node ID and cache the correct `FeatureMap` upon the next pairing.
-* **1-Hour Soak Test (June 28):** 
-  - After the clean erase, the device paired successfully and ran for 1 hour.
-  - At the 59.7-minute mark, the device successfully received a `WriteRequest` from the Apple TV and set the fan speed to 100%, demonstrating active control.
-  - Shortly after this interaction, the device transitioned to "No Response" on both the Mac and iPhone Home apps.
+* **Second Erase-Flash Soak Test (June 28 - FAILED):** 
+  - The board was erased again via `idf.py erase-flash` and successfully re-paired.
+  - Despite the clean database state and new Node ID, the device still transitioned to "No Response" (DIS-connected) on both the Mac and iPhone Home apps shortly after.
+
 
 ### H. Limitations of On-Chip Logs & The Need for External Network Diagnostics (June 28)
 * **The Problem:** The serial monitor logs on the ESP32-C6 itself were insufficient to diagnose the "No Response" issue.
