@@ -30,5 +30,10 @@ These rules are specific to the `esp32-H2-WPM-Fan` project pair programming work
 ## 6. Next Session Verification
 - At the very start of the next session, you **MUST** ask the user: *"Did the overnight soak test succeed, or did the chip disconnect?"* This is the primary verification step to confirm if the baseline software/network stability is holding before doing any further testing with the fan motor.
 
+## 7. Findings Document Maintenance
+- You **MUST** update [.agents/FINDINGS.md](file:///Users/ftorales/Projects/esp32-H2-WPM-Fan/.agents/FINDINGS.md) immediately after any successful build, flash, and verification iteration.
+- Document the build status, log output, and network behavior to ensure the project history is continuously maintained.
+
+
 
 
