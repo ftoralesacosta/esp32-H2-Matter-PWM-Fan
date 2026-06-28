@@ -1,6 +1,12 @@
 Failed config
 
-openthread: [source esp32c6-fan.yaml:19]
-  
-  Must contain exactly one of network_key, tlv.
-  device_type: MTD
+binary_sensor.gpio: [source esp32c6-fan.yaml:40]
+  platform: gpio
+  pin: 
+    number: GPIO2
+    mode: INPUT_PULLDOWN
+  name: Fan Toggle Button
+  on_press: 
+    - 
+      IDs must only consist of upper/lowercase characters, the underscorecharacter and numbers. The character ' ' cannot be used.
+      fan.toggle: Noctua Fan
