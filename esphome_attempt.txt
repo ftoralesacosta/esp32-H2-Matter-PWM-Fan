@@ -1,5 +1,6 @@
-(venv) Bonnie-MAir:esp32-H2-Matter-PWM-Fan fernando$ python3 -c "import esphome.components.matter"
-Traceback (most recent call last):
-  File "<string>", line 1, in <module>
-ModuleNotFoundError: No module named 'esphome.components.matter'
-(venv) Bonnie-MAir:esp32-H2-Matter-PWM-Fan fernando$
+(venv) Bonnie-MAir:esp32-H2-Matter-PWM-Fan fernando$ esphome -v run esp32c6-fan.yaml
+INFO ESPHome 2026.7.0-dev
+INFO Reading configuration esp32c6-fan.yaml...
+INFO Cloning https://github.com/tomschimansky/esphome-matter.git@None
+DEBUG Location: /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/.esphome/external_components/bb25f510
+DEBUG Running git command: git clone --depth=1 -- https://github.com/tomschimansky/esphome-matter.git /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/.esphome/external_components/bb25f510
