@@ -33,6 +33,7 @@ fan:
   - platform: speed
     output: fan_pwm
     name: "Noctua Fan"
+    id: noctua_fan
     speed_count: 100
 
 # Configure the Physical Button on GPIO2 (Physical Pin D2)
@@ -43,4 +44,5 @@ binary_sensor:
       mode: INPUT_PULLDOWN
     name: "Fan Toggle Button"
     on_press:
-      - fan.toggle: "Noctua Fan"
+      - fan.toggle: noctua_fan
+
