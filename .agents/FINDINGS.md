@@ -76,7 +76,8 @@ If the chip fails to connect, shows "Not Responding" in Apple Home, or prints `S
 
 ## 4. Thread Disconnect & "No Response" Troubleshooting
 
-We have investigated an issue where the device disconnects shortly after pairing and permanently shows as **"No Response"** in HomeKit.
+> [!IMPORTANT]
+> **This issue is identical across both the original ESP32-H2 and the new ESP32-C6 chips.** Wiping, swapping the physical chip from H2 to C6, and rebuilding did not resolve the "No Response" behavior. This confirms the issue is not a hardware defect of a specific chip, but rather a shared software, Thread stack, or network routing configuration issue.
 
 ### A. The Permanent "No Response" Software Bug (FTD vs MTD)
 * **The Symptom:** When a temporary radio drop occurs, the chip detaches and then transitions: `OPENTHREAD: Role detached -> leader`. It starts its own isolated network partition, permanently separating itself from the Apple TV Border Router. It will never recover until rebooted.
