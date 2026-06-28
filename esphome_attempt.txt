@@ -1,10 +1,18 @@
 INFO ESPHome 2026.7.0-dev
 INFO Reading configuration esp32c6-fan.yaml...
+INFO Cloning ssh://git@github.com/tomschimansky/esphome-matter.git@None
+DEBUG Location: /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/.esphome/external_components/1a65b885
+DEBUG Running git command: git clone --depth=1 -- ssh://git@github.com/tomschimansky/esphome-matter.git /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/.esphome/external_components/1a65b885
 Failed config
 
 external_components: [source esp32c6-fan.yaml:11]
-  - source: 
+  - 
+    Cloning into '/Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/.esphome/external_components/1a65b885'...
+    ERROR: Repository not found.
+    fatal: Could not read from remote repository.
+    
+    Please make sure you have the correct access rights
+    and the repository exists.
+    source: 
       type: git
-      
-      Expected a file scheme or a URL scheme with host.
-      url: git@github.com:tomschimansky/esphome-matter.git
+      url: ssh://git@github.com/tomschimansky/esphome-matter.git
