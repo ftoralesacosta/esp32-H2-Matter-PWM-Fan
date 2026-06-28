@@ -23,3 +23,8 @@ These rules are specific to the `esp32-H2-WPM-Fan` project pair programming work
 ## 4. Hardware & Architecture Reference
 - At the start of the session, you **MUST** read [FINDINGS.md](file:///Users/ftorales/Projects/esp32-H2-WPM-Fan/.agents/FINDINGS.md) in the `.agents/` directory to understand the Seeed Studio XIAO ESP32-C6 pin mappings, the Thread Minimal End Device (MTD) configurations, and the critical flashing/erase workflows. Do not make assumptions about standard dev kit pinouts.
 
+## 5. ESPHome Attempt Log Monitoring
+- During the ESPHome transition/build phase, the user will write compilation and run outputs to [esphome_attempt.txt](file:///Users/ftorales/Projects/esp32-H2-WPM-Fan/esphome_attempt.txt).
+- You **MUST** check if this file has been updated at the start of your turn. If the user mentions building/flashing but `esphome_attempt.txt` has not been updated, explicitly ask the user to update it.
+
+
