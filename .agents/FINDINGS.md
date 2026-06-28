@@ -118,11 +118,10 @@ Through a series of systematic, clean-room experiments, we have **100% isolated 
 2. **The Debounce Timer Success (Verified):**
    * The new software debounce timer implemented in `app_driver.cpp` was verified in the logs. When the user adjusts the speed slider (e.g., setting it to 57%), the driver successfully aggregates the rapid flurry of write requests and updates the hardware and database **exactly once** 300ms later. This completely eliminates the Matter "packet storm" and protects the Thread network from congestion during slider movements.
 
-### E. June 28, 2026 Soak Test (Bare Board, Plugged into Mac)
+### E. June 28, 2026 Soak Test (Bare Board, Plugged into Mac) - FAILED
 * **Setup:** The ESP32-C6 was flashed with the Custom C++ Matter firmware after performing a full `rm -f sdkconfig && rm -rf build` clean-up to force the compiler to build the true OpenThread MTD stack (`CONFIG_OPENTHREAD_ENABLED=y`, `CONFIG_OPENTHREAD_FTD=n`, `CONFIG_OPENTHREAD_MTD=y`). 
-* **Current Status:** The device was successfully paired to HomeKit. It remained 100% responsive, accepting multiple fan speed adjustments (e.g., to 60% and 85%) and logging successful acknowledgments (`Received status response, status is 0x00`) from the Apple Home Hub over IPv6.
-* **Soak Test:** The user has left the bare board (unconnected to the 12V fan or its power supply) plugged into their Mac overnight to verify baseline software/network stability.
-* **CRITICAL INSTRUCTION FOR THE NEXT SESSION:** At the very start of the next session, the AI agent **MUST** ask the user: *"Did the overnight soak test succeed, or did the chip disconnect?"* This is the primary verification step before proceeding to hardware testing with the fan motor.
+* **Soak Test Condition:** The device was left as a bare board (unconnected to the 12V fan or its power supply) plugged exclusively into the Mac via USB-C overnight to verify baseline software/network stability.
+* **Result (FAILED):** Despite being completely isolated from any motor noise or EMI (only plugged into USB-C), the device still transitioned to a permanent "No Response" state in HomeKit. This confirms that the baseline Custom C++ firmware / Thread protocol stack still contains an underlying bug that causes it to drop offline after a period of time, completely unrelated to hardware motor interference.
 
 ### F. OpenThread Parent-Swap Log Analysis (June 28)
 * **The Log:**
