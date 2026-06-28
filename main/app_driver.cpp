@@ -70,18 +70,12 @@ static void app_driver_button_toggle_cb(void *arg, void *data)
     uint32_t cluster_id = FanControl::Id;
     uint32_t attribute_id = FanControl::Attributes::PercentSetting::Id;
 
-    lock::status_t lock_status = lock::chip_stack_lock(portMAX_DELAY);
-    if (lock_status == lock::FAILED) {
-        ESP_LOGE(TAG, "Failed to acquire chip stack lock in button callback");
-        return;
-    }
+    chip::DeviceLayer::PlatformMgr().LockChipStack();
 
     attribute_t *attribute = attribute::get(endpoint_id, cluster_id, attribute_id);
     if (!attribute) {
         ESP_LOGE(TAG, "Failed to get PercentSetting attribute");
-        if (lock_status == lock::SUCCESS) {
-            lock::chip_stack_unlock();
-        }
+        chip::DeviceLayer::PlatformMgr().UnlockChipStack();
         return;
     }
 
@@ -97,9 +91,7 @@ static void app_driver_button_toggle_cb(void *arg, void *data)
 
     attribute::update(endpoint_id, cluster_id, attribute_id, &val);
 
-    if (lock_status == lock::SUCCESS) {
-        lock::chip_stack_unlock();
-    }
+    chip::DeviceLayer::PlatformMgr().UnlockChipStack();
 }
 
 static esp_timer_handle_t debounce_timer = NULL;
@@ -115,11 +107,7 @@ static void debounce_timer_callback(void *arg)
     // 2. Update database attributes (PercentCurrent and FanMode)
     uint16_t endpoint_id = target_endpoint_id;
     
-    lock::status_t lock_status = lock::chip_stack_lock(portMAX_DELAY);
-    if (lock_status == lock::FAILED) {
-        ESP_LOGE(TAG, "Failed to acquire chip stack lock in debounce timer");
-        return;
-    }
+    chip::DeviceLayer::PlatformMgr().LockChipStack();
 
     // Update PercentCurrent to match target_speed
     esp_matter_attr_val_t current_val = esp_matter_uint8(target_speed);
@@ -136,9 +124,7 @@ static void debounce_timer_callback(void *arg)
         ESP_LOGE(TAG, "Failed to update FanMode in debounce: %s", esp_err_to_name(err));
     }
 
-    if (lock_status == lock::SUCCESS) {
-        lock::chip_stack_unlock();
-    }
+    chip::DeviceLayer::PlatformMgr().UnlockChipStack();
 
     ESP_LOGI(TAG, "Debounce timer fired: Fan speed applied and database synchronized to %d%%", target_speed);
 }
