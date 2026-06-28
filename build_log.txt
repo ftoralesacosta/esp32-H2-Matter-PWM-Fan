@@ -1,311 +1,391 @@
-Executing action: monitor
-Serial port /dev/cu.usbmodem101
-Connecting...
-Detecting chip type... ESP32-C6
-Running idf_monitor in directory /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan
-Executing "/Users/fernando/.espressif/python_env/idf5.1_py3.12_env/bin/python /Users/fernando/Projects/esp32-H2/esp-idf/tools/idf_monitor.py -p /dev/cu.usbmodem101 -b 115200 --toolchain-prefix riscv32-esp-elf- --target esp32c6 --revision 0 --decode-panic backtrace /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/build/fan_controller.elf -m '/Users/fernando/.espressif/python_env/idf5.1_py3.12_env/bin/python' '/Users/fernando/Projects/esp32-H2/esp-idf/tools/idf.py'"...
-ESP-ROM:esp32c6-20220919
-Build:Sep 19 2022
-rst:0x15 (USB_UART_HPSYS),boot:0x1e (SPI_FAST_FLASH_BOOT)
-Saved PC:0x40022ef0
-SPIWP:0xee
-mode:DIO, clock div:2
-load:0x4086c410,len:0xdbc
-load:0x4086e610,len:0x2f20
-load:0x40875728,len:0x1890
-entry 0x4086c410
-[0;32mI (23) boot: ESP-IDF 4b1ae71 2nd stage bootloader[0m
-[0;32mI (23) boot: compile time Jun 21 2026 14:46:21[0m
-[0;32mI (24) boot: chip revision: v0.2[0m
-[0;32mI (26) boot: efuse block revision: v0.3[0m
-[0;32mI (30) boot.esp32c6: SPI Speed      : 80MHz[0m
-[0;32mI (35) boot.esp32c6: SPI Mode       : DIO[0m
-[0;32mI (40) boot.esp32c6: SPI Flash Size : 4MB[0m
-[0;32mI (45) boot: Enabling RNG early entropy source...[0m
-[0;32mI (50) boot: Partition Table:[0m
-[0;32mI (54) boot: ## Label            Usage          Type ST Offset   Length[0m
-[0;32mI (61) boot:  0 esp_secure_cert  unknown          3f 06 0000d000 00002000[0m
-[0;32mI (68) boot:  1 nvs              WiFi data        01 02 00010000 0000c000[0m
-[0;32mI (76) boot:  2 nvs_keys         NVS keys         01 04 0001c000 00001000[0m
-[0;32mI (83) boot:  3 otadata          OTA data         01 00 0001d000 00002000[0m
-[0;32mI (91) boot:  4 phy_init         RF data          01 01 0001f000 00001000[0m
-[0;32mI (98) boot:  5 ota_0            OTA app          00 10 00020000 001e0000[0m
-[0;32mI (106) boot:  6 ota_1            OTA app          00 11 00200000 001e0000[0m
-[0;32mI (113) boot:  7 fctry            WiFi data        01 02 003e0000 00006000[0m
-[0;32mI (121) boot: End of partition table[0m
-[0;32mI (125) esp_image: segment 0: paddr=00020020 vaddr=42130020 size=373e0h (226272) map[0m
-[0;32mI (180) esp_image: segment 1: paddr=00057408 vaddr=40800000 size=08c10h ( 35856) load[0m
-[0;32mI (189) esp_image: segment 2: paddr=00060020 vaddr=42000020 size=12a974h (1223028) map[0m
-[0;32mI (438) esp_image: segment 3: paddr=0018a99c vaddr=40808c10 size=0ebd4h ( 60372) load[0m
-[0;32mI (453) esp_image: segment 4: paddr=00199578 vaddr=50000000 size=00004h (     4) load[0m
-[0;32mI (458) boot: Loaded app from partition at offset 0x20000[0m
-[0;32mI (459) boot: Disabling RNG early entropy source...[0m
-[0;32mI (473) cpu_start: Unicore app[0m
-[0;32mI (474) cpu_start: Pro cpu up.[0m
-[0;33mW (482) clk: esp_perip_clk_init() has not been implemented yet[0m
-[0;32mI (489) cpu_start: Pro cpu start user code[0m
-[0;32mI (489) cpu_start: cpu freq: 160000000 Hz[0m
-[0;32mI (489) cpu_start: Application information:[0m
-[0;32mI (492) cpu_start: Project name:     fan_controller[0m
-[0;32mI (497) cpu_start: App version:      1.0[0m
-[0;32mI (502) cpu_start: Compile time:     Jun 21 2026 14:45:58[0m
-[0;32mI (508) cpu_start: ELF file SHA256:  b77c6c6817ef2d68...[0m
-[0;32mI (514) cpu_start: ESP-IDF:          4b1ae71[0m
-[0;32mI (519) cpu_start: Min chip rev:     v0.0[0m
-[0;32mI (524) cpu_start: Max chip rev:     v0.99 [0m
-[0;32mI (529) cpu_start: Chip rev:         v0.2[0m
-[0;32mI (533) heap_init: Initializing. RAM available for dynamic allocation:[0m
-[0;32mI (541) heap_init: At 4082E9E0 len 0004DC30 (311 KiB): D/IRAM[0m
-[0;32mI (547) heap_init: At 4087C610 len 00002F54 (11 KiB): STACK/DIRAM[0m
-[0;32mI (554) heap_init: At 50000004 len 00003FE4 (15 KiB): RTCRAM[0m
-[0;32mI (561) spi_flash: detected chip: generic[0m
-[0;32mI (565) spi_flash: flash io: dio[0m
-[0;32mI (570) sleep: Configure to isolate all GPIO pins in sleep state[0m
-[0;32mI (575) sleep: Enable automatic switching of GPIO sleep configuration[0m
-[0;32mI (593) app_start: Starting scheduler on CPU0[0m
-[0;32mI (598) main_task: Started on CPU0[0m
-[0;32mI (598) main_task: Calling app_main()[0m
-[0;32mI (628) gpio: GPIO[21]| InputEn: 0| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 0| Intr:0 [0m
-[0;32mI (628) app_driver: Noctua Fan LEDC PWM initialized at 25kHz on physical pin D3 (GPIO 21)[0m
-[0;32mI (628) button: IoT Button Version: 3.5.0[0m
-[0;32mI (638) gpio: GPIO[2]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 0| Pulldown: 1| Intr:0 [0m
-[0;31mE (648) esp_matter_feature: Feature map attribute cannot be null[0m
-[0;32mI (658) app_main: Fan created with endpoint_id 1[0m
-[0;31mE (658) data_model: Attribute should be non-volatile to set a deferred persistence time[0m
-[0;32mI (688) chip[DL]: NVS set: chip-counters/reboot-count = 2 (0x2)[0m
-[0;32mI (688) BLE_INIT: Using main XTAL as clock source, chip ver: 2[0m
-[0;32mI (688) BLE_INIT: ble controller commit:[b6027ae][0m
-[0;32mI (688) OPENTHREAD: Host connection mode none[0m
-[0;32mI (698) phy_init: phy_version 343,b513b46,Nov 14 2025,16:34:12[0m
-[0;32mI (708) BLE_INIT: Bluetooth MAC: 58:e6:c5:16:46:5e[0m
-[0;32mI (788) phy: libbtbb version: c493933, Nov 14 2025, 16:34:25[0m
-[0;32mI (798) NimBLE: GAP procedure initiated: stop advertising.
-[0m
-[0;32mI (798) CHIP[DL]: BLE host-controller synced[0m
-[0;32mI (808) OPENTHREAD: OpenThread attached to netif[0m
-[0;32mI(818) OPENTHREAD:[N] Mle-----------: Role disabled -> detached[0m
-[0;32mI (818) chip[DL]: OpenThread ifconfig up and thread start[0m
-[0;32mI (818) chip[DL]: OpenThread started: OK[0m
-[0;32mI (828) chip[DL]: Posting ESPSystemEvent: IP Event with eventId : 3[0m
-[0;32mI (828) chip[DL]: Posting ESPSystemEvent: IP Event with eventId : 3[0m
-[0;32mI (838) chip[DL]: Posting ESPSystemEvent: IP Event with eventId : 3[0m
-[0;32mI (848) chip[DL]: Posting ESPSystemEvent: IP Event with eventId : 3[0m
-[0;32mI (848) chip[DL]: Setting OpenThread device type to MINIMAL END DEVICE[0m
-[0;32mI (888) OT_STATE: netif up[0m
-[0;32mI(908) OPENTHREAD:[N] Mle-----------: Role detached -> child[0m
-[0;33mW(908) OPENTHREAD:[W] Mle-----------: Failed to process Child Update Response as child: NotFound[0m
-[0;32mI (958) chip[DL]: Posting ESPSystemEvent: IP Event with eventId : 3[0m
-[0;32mI (958) chip[DL]: Posting ESPSystemEvent: IP Event with eventId : 3[0m
-[0;32mI (958) chip[DL]: SRP Client was started, detected server: fd16:04ae:d5c4:0000:0000:00ff:fe00:fc11[0m
-[0;32mI (1308) chip[SVR]: Initializing session resumption storage...[0m
-[0;32mI (1308) chip[SVR]: Server initializing...[0m
-[0;32mI (1308) chip[TS]: Last Known Good Time: 2026-06-21T19:57:00[0m
-[0;32mI (1318) chip[FP]: Fabric index 0x1 was retrieved from storage. Compressed FabricId 0x3B2C559852478B73, FabricId 0x00000000F9466150, NodeId 0x00000000D7E3986A, VendorId 0x1349[0m
-[0;32mI (1328) chip[FP]: Fabric index 0x2 was retrieved from storage. Compressed FabricId 0x1B9ADABA3627A66D, FabricId 0x00000000499BFCF0, NodeId 0x00000000A0487AC8, VendorId 0x1384[0m
-[0;32mI (1338) chip[DMG]: AccessControl: initializing[0m
-[0;32mI (1348) chip[DMG]: Examples::AccessControlDelegate::Init[0m
-[0;32mI (1358) chip[DMG]: AccessControl: setting[0m
-[0;32mI (1358) chip[DMG]: DefaultAclStorage: initializing[0m
-[0;32mI (1368) chip[DMG]: DefaultAclStorage: 3 entries loaded[0m
-[0;32mI (1368) chip[SVR]: WARNING: mTestEventTriggerDelegate is null[0m
-[0;32mI (1398) chip[DMG]: AccessControlCluster: initializing[0m
-[0;32mI (1398) chip[SVR]: Fabric already commissioned. Disabling BLE advertisement[0m
-[0;32mI (1398) chip[IN]: CASE Server enabling CASE session setups[0m
-[0;32mI (1408) chip[SVR]: Joining Multicast groups[0m
-[0;32mI (1408) chip[SVR]: Server Listening...[0m
-[0;32mI (1418) app_driver: Fan speed updated to 50% (Duty: 511)[0m
-[0;32mI (1418) main_task: Returned from app_main()[0m
-[0;32mI (1428) chip[ZCL]: ThdDiag: Conn, PAN: 0xba10[0m
-[0;32mI (1438) chip[DIS]: Updating services using commissioning mode 0[0m
-[0;31mE (1438) chip[DIS]: Failed to remove advertised services: 3[0m
-[0;32mI (1438) chip[DIS]: Advertise operational node 3B2C559852478B73-00000000D7E3986A[0m
-[0;31mE (1448) chip[DIS]: Failed to advertise operational node: 3[0m
-[0;32mI (1458) chip[DIS]: Advertise commission parameter vendorID=65521 productID=32768 discriminator=3840/15 cm=0 cp=0 jf=0[0m
-[0;31mE (1468) chip[DIS]: Failed to advertise extended commissionable node: 3[0m
-[0;31mE (1478) chip[DIS]: Failed to finalize service update: 3[0m
-[0;32mI (1788) chip[DIS]: Updating services using commissioning mode 0[0m
-[0;32mI (1788) chip[DIS]: Advertise operational node 3B2C559852478B73-00000000D7E3986A[0m
-[0;32mI (1788) chip[DL]: advertising srp service: 3B2C559852478B73-00000000D7E3986A._matter._tcp[0m
-[0;32mI (1798) chip[DIS]: Advertise operational node 1B9ADABA3627A66D-00000000A0487AC8[0m
-[0;32mI (1808) chip[DL]: advertising srp service: 1B9ADABA3627A66D-00000000A0487AC8._matter._tcp[0m
-[0;32mI (1818) chip[DIS]: Advertise commission parameter vendorID=65521 productID=32768 discriminator=3840/15 cm=0 cp=0 jf=0[0m
-[0;32mI (1828) chip[DL]: advertising srp service: 3AC75A4747FC2A59._matterc._udp[0m
-[0;32mI (1838) chip[SVR]: Server initialization complete[0m
-[0;32mI (1838) chip[SWU]: Stopping the watchdog timer[0m
-[0;32mI (1848) chip[SWU]: Starting the periodic query timer, timeout: 86400 seconds[0m
-[0;33mW(11628) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(11638) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(27398) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(27398) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(37968) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(37978) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(45778) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(45778) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(61978) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(61988) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(72098) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(72108) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(82678) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(82678) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(95098) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(95108) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(109718) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(109728) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(119848) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(119858) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(133118) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(133128) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(143858) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(143858) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(159658) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(159668) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(166768) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(166768) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(180808) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(180818) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;32mI (187828) chip[EM]: >>> [E:19290r S:0 M:162413909] (U) Msg RX from 0:612A3232E222D65B [0000] to 0000000000000000 --- Type 0000:30 (SecureChannel:CASE_Sigma1) (B:234)[0m
-[0;32mI (187828) chip[IN]: CASE Server received Sigma1 message . Starting handshake. EC 0x4081c6c0[0m
-[0;32mI (187838) chip[EM]: <<< [E:19290r S:0 M:71126595 (Ack:162413909)] (U) Msg TX from 0000000000000000 to 0:612A3232E222D65B [0000] [UDP:[FD73:986F:53CE:0:E8F4:C998:519F:D1A5]:64422] --- Type 0000:10 (SecureChannel:StandaloneAck) (B:26)[0m
-[0;32mI (187858) chip[SC]: Received Sigma1 msg[0m
-[0;32mI (187868) chip[EM]: <<< [E:19290r S:0 M:71126596 (Ack:162413909)] (U) Msg TX from 0000000000000000 to 0:612A3232E222D65B [0000] [UDP:[FD73:986F:53CE:0:E8F4:C998:519F:D1A5]:64422] --- Type 0000:33 (SecureChannel:CASE_Sigma2Resume) (B:100)[0m
-[0;32mI (187888) chip[EM]: ??1 [E:19290r S:0 M:71126596] (U) Msg Retransmission to 0:0000000000000000 scheduled for 5364ms from now [State:Active II:500 AI:300 AT:4000][0m
-[0;32mI (187898) chip[SC]: Sent Sigma2Resume msg[0m
-[0;32mI (188078) chip[EM]: >>> [E:19290r S:0 M:162413910 (Ack:71126596)] (U) Msg RX from 0:612A3232E222D65B [0000] to 0000000000000000 --- Type 0000:40 (SecureChannel:StatusReport) (B:34)[0m
-[0;32mI (188088) chip[SC]: Success status report received. Session was established[0m
-[0;32mI (188108) chip[SC]: SecureSession[0x4081ac60, LSID:38465]: State change 'kEstablishing' --> 'kActive'[0m
-[0;32mI (188108) chip[IN]: CASE Session established to peer: <00000000559F0421, 1>[0m
-[0;32mI (188118) chip[EM]: <<< [E:19290r S:0 M:71126597 (Ack:162413910)] (U) Msg TX from 0000000000000000 to 0:612A3232E222D65B [0000] [UDP:[FD73:986F:53CE:0:E8F4:C998:519F:D1A5]:64422] --- Type 0000:10 (SecureChannel:StandaloneAck) (B:26)[0m
-[0;32mI (188138) chip[EM]: >>> [E:19291r S:38465 M:175429372] (S) Msg RX from 1:00000000559F0421 [8B73] to 00000000D7E3986A --- Type 0001:03 (IM:SubscribeRequest) (B:342)[0m
-[0;32mI (188158) chip[DMG]: Final negotiated min/max parameters: Min = 0s, Max = 600s[0m
-[0;32mI (188178) chip[EM]: <<< [E:19291r S:38465 M:226330464 (Ack:175429372)] (S) Msg TX from 00000000D7E3986A to 1:00000000559F0421 [8B73] [UDP:[FD73:986F:53CE:0:E8F4:C998:519F:D1A5]:64422] --- Type 0001:05 (IM:ReportData) (B:1200)[0m
-[0;32mI (188188) chip[EM]: ??1 [E:19291r S:38465 M:226330464] (S) Msg Retransmission to 1:00000000559F0421 scheduled for 5361ms from now [State:Active II:500 AI:300 AT:4000][0m
-[0;32mI (188518) chip[EM]: >>> [E:19291r S:38465 M:175429373 (Ack:226330464)] (S) Msg RX from 1:00000000559F0421 [8B73] to 00000000D7E3986A --- Type 0001:01 (IM:StatusResponse) (B:42)[0m
-[0;32mI (188528) chip[IM]: Received status response, status is 0x00[0m
-[0;32mI (188548) chip[EM]: <<< [E:19291r S:38465 M:226330465 (Ack:175429373)] (S) Msg TX from 00000000D7E3986A to 1:00000000559F0421 [8B73] [UDP:[FD73:986F:53CE:0:E8F4:C998:519F:D1A5]:64422] --- Type 0001:05 (IM:ReportData) (B:1180)[0m
-[0;32mI (188558) chip[EM]: ??1 [E:19291r S:38465 M:226330465] (S) Msg Retransmission to 1:00000000559F0421 scheduled for 5330ms from now [State:Active II:500 AI:300 AT:4000][0m
-[0;32mI (188818) chip[EM]: >>> [E:19291r S:38465 M:175429374 (Ack:226330465)] (S) Msg RX from 1:00000000559F0421 [8B73] to 00000000D7E3986A --- Type 0001:01 (IM:StatusResponse) (B:42)[0m
-[0;32mI (188828) chip[IM]: Received status response, status is 0x00[0m
-[0;32mI (188848) chip[EM]: <<< [E:19291r S:38465 M:226330466 (Ack:175429374)] (S) Msg TX from 00000000D7E3986A to 1:00000000559F0421 [8B73] [UDP:[FD73:986F:53CE:0:E8F4:C998:519F:D1A5]:64422] --- Type 0001:05 (IM:ReportData) (B:1185)[0m
-[0;32mI (188858) chip[EM]: ??1 [E:19291r S:38465 M:226330466] (S) Msg Retransmission to 1:00000000559F0421 scheduled for 5358ms from now [State:Active II:500 AI:300 AT:4000][0m
-[0;32mI (189078) chip[EM]: >>> [E:19291r S:38465 M:175429375 (Ack:226330466)] (S) Msg RX from 1:00000000559F0421 [8B73] to 00000000D7E3986A --- Type 0001:01 (IM:StatusResponse) (B:42)[0m
-[0;32mI (189078) chip[IM]: Received status response, status is 0x00[0m
-[0;32mI (189098) chip[EM]: <<< [E:19291r S:38465 M:226330467 (Ack:175429375)] (S) Msg TX from 00000000D7E3986A to 1:00000000559F0421 [8B73] [UDP:[FD73:986F:53CE:0:E8F4:C998:519F:D1A5]:64422] --- Type 0001:05 (IM:ReportData) (B:1183)[0m
-[0;32mI (189118) chip[EM]: ??1 [E:19291r S:38465 M:226330467] (S) Msg Retransmission to 1:00000000559F0421 scheduled for 5407ms from now [State:Active II:500 AI:300 AT:4000][0m
-[0;32mI (189508) chip[EM]: >>> [E:19291r S:38465 M:175429376 (Ack:226330467)] (S) Msg RX from 1:00000000559F0421 [8B73] to 00000000D7E3986A --- Type 0001:01 (IM:StatusResponse) (B:42)[0m
-[0;32mI (189518) chip[IM]: Received status response, status is 0x00[0m
-[0;32mI (189558) chip[EM]: <<< [E:19291r S:38465 M:226330468 (Ack:175429376)] (S) Msg TX from 00000000D7E3986A to 1:00000000559F0421 [8B73] [UDP:[FD73:986F:53CE:0:E8F4:C998:519F:D1A5]:64422] --- Type 0001:05 (IM:ReportData) (B:1194)[0m
-[0;32mI (189578) chip[EM]: ??1 [E:19291r S:38465 M:226330468] (S) Msg Retransmission to 1:00000000559F0421 scheduled for 5364ms from now [State:Active II:500 AI:300 AT:4000][0m
-[0;32mI (190098) chip[EM]: >>> [E:19291r S:38465 M:175429377 (Ack:226330468)] (S) Msg RX from 1:00000000559F0421 [8B73] to 00000000D7E3986A --- Type 0001:01 (IM:StatusResponse) (B:42)[0m
-[0;32mI (190098) chip[IM]: Received status response, status is 0x00[0m
-[0;32mI (190118) chip[EM]: <<< [E:19291r S:38465 M:226330469 (Ack:175429377)] (S) Msg TX from 00000000D7E3986A to 1:00000000559F0421 [8B73] [UDP:[FD73:986F:53CE:0:E8F4:C998:519F:D1A5]:64422] --- Type 0001:05 (IM:ReportData) (B:1185)[0m
-[0;32mI (190128) chip[EM]: ??1 [E:19291r S:38465 M:226330469] (S) Msg Retransmission to 1:00000000559F0421 scheduled for 5331ms from now [State:Active II:500 AI:300 AT:4000][0m
-[0;32mI (190518) chip[EM]: >>> [E:19291r S:38465 M:175429378 (Ack:226330469)] (S) Msg RX from 1:00000000559F0421 [8B73] to 00000000D7E3986A --- Type 0001:01 (IM:StatusResponse) (B:42)[0m
-[0;32mI (190518) chip[IM]: Received status response, status is 0x00[0m
-[0;32mI (190528) chip[EM]: <<< [E:19291r S:38465 M:226330470 (Ack:175429378)] (S) Msg TX from 00000000D7E3986A to 1:00000000559F0421 [8B73] [UDP:[FD73:986F:53CE:0:E8F4:C998:519F:D1A5]:64422] --- Type 0001:05 (IM:ReportData) (B:344)[0m
-[0;32mI (190548) chip[EM]: ??1 [E:19291r S:38465 M:226330470] (S) Msg Retransmission to 1:00000000559F0421 scheduled for 5408ms from now [State:Active II:500 AI:300 AT:4000][0m
-[0;32mI (190678) chip[EM]: >>> [E:19291r S:38465 M:175429379 (Ack:226330470)] (S) Msg RX from 1:00000000559F0421 [8B73] to 00000000D7E3986A --- Type 0001:01 (IM:StatusResponse) (B:42)[0m
-[0;32mI (190688) chip[IM]: Received status response, status is 0x00[0m
-[0;32mI (190688) chip[EM]: <<< [E:19291r S:38465 M:226330471 (Ack:175429379)] (S) Msg TX from 00000000D7E3986A to 1:00000000559F0421 [8B73] [UDP:[FD73:986F:53CE:0:E8F4:C998:519F:D1A5]:64422] --- Type 0001:04 (IM:SubscribeResponse) (B:49)[0m
-[0;32mI (190708) chip[EM]: ??1 [E:19291r S:38465 M:226330471] (S) Msg Retransmission to 1:00000000559F0421 scheduled for 5335ms from now [State:Active II:500 AI:300 AT:4000][0m
-[0;32mI (190728) chip[DMG]: Registered a ReadHandler that will schedule a report between system Timestamp: 0x000000000002E90B and system Timestamp 0x00000000000C10CB.[0m
-[0;32mI (190748) chip[EM]: >>> [E:19291r S:38465 M:175429380 (Ack:226330471)] (S) Msg RX from 1:00000000559F0421 [8B73] to 00000000D7E3986A --- Type 0000:10 (SecureChannel:StandaloneAck) (B:34)[0m
-[0;33mW(192968) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(192968) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(206008) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(206018) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(217618) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(217628) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(230198) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(230208) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(239028) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(239028) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(254508) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(254508) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(266808) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(266818) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(276798) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(276798) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(290618) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(290628) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(300068) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(300078) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(312848) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(312848) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(323308) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(323308) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(334018) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(334018) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(346648) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(346658) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(362758) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(362768) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(370508) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(370508) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(382698) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(382708) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(396258) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(396268) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(409148) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(409158) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(420718) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(420728) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(432978) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(432978) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(441928) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(441938) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(455988) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(455988) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(467028) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(467038) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(480928) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(480938) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(494978) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(494988) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(505858) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(505868) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(515038) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(515038) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(528078) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(528088) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(541788) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(541798) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;32mI(549198) OPENTHREAD:[N] Mle-----------: Attach attempt 0, BetterParent [0m
-[0;33mW(549738) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(554428) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(554438) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(562598) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(562608) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(574458) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(574468) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(591868) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(591868) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(601318) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(601328) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(612518) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(612518) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(622938) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(622938) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(635698) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(635698) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(649288) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(649288) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(659758) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(659758) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(670378) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(670388) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(685388) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(685388) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(698158) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(698158) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(709568) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(709578) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(722608) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(722618) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(730758) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(730758) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(744638) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(744648) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(759948) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(759958) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(770388) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
-[0;33mW(770398) OPENTHREAD:[W] Mle-----------: Failed to process UDP: Duplicated[0m
+Executing action: all (aliases: build)
+Running ninja in directory /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/build
+Executing "ninja all"...
+[0/1] Re-running CMake...
+-- Component directory /Users/fernando/Projects/esp32-H2/esp-matter/examples/common/blemesh_platform does not contain a CMakeLists.txt file. No component will be added
+-- Component directory /Users/fernando/Projects/esp32-H2/esp-matter/examples/common/cmake_common does not contain a CMakeLists.txt file. No component will be added
+-- Component directory /Users/fernando/Projects/esp32-H2/esp-matter/examples/common/external_platform does not contain a CMakeLists.txt file. No component will be added
+-- Component directory /Users/fernando/Projects/esp32-H2/esp-matter/examples/common/manufacturing_data_provider does not contain a CMakeLists.txt file. No component will be added
+-- Component directory /Users/fernando/Projects/esp32-H2/esp-matter/examples/common/relinker does not contain a CMakeLists.txt file. No component will be added
+-- Component directory /Users/fernando/Projects/esp32-H2/esp-matter/examples/common/utils does not contain a CMakeLists.txt file. No component will be added
+-- Building ESP-IDF components for target esp32c6
+NOTICE: Skipping optional dependency: espressif/mqtt
+NOTICE: Skipping optional dependency: espressif/esp_wifi_remote
+NOTICE: Skipping optional dependency: espressif/esp_hosted
+NOTICE: 
+Following dependencies have new versions available:
+Dependency "espressif/rmaker_common": "1.8.3" -> "1.8.5"
+Dependency "espressif/rmaker_time_sync": "1.0.0" -> "1.0.2"
+Consider running "idf.py update-dependencies" to update your lock file.
+NOTICE: Processing 21 dependencies:
+NOTICE: [1/21] espressif/button (3.5.0)
+NOTICE: [2/21] espressif/cbor (0.6.1~4)
+NOTICE: [3/21] espressif/cmake_utilities (0.5.3)
+NOTICE: [4/21] espressif/esp_delta_ota (1.1.4)
+NOTICE: [5/21] espressif/esp_diag_data_store (1.1.0)
+NOTICE: [6/21] espressif/esp_diagnostics (1.3.3)
+NOTICE: [7/21] espressif/esp_encrypted_img (2.3.0)
+NOTICE: [8/21] espressif/esp_insights (1.3.3)
+NOTICE: [9/21] espressif/esp_secure_cert_mgr (2.9.2)
+NOTICE: [10/21] espressif/jsmn (1.1.0)
+NOTICE: [11/21] espressif/json_generator (1.1.2)
+NOTICE: [12/21] espressif/json_parser (1.0.3)
+NOTICE: [13/21] espressif/mdns (1.11.2)
+NOTICE: [14/21] espressif/rmaker_cmd_resp (1.0.0)
+NOTICE: [15/21] espressif/rmaker_common (1.8.3)
+NOTICE: [16/21] espressif/rmaker_common_events (1.0.0)
+NOTICE: [17/21] espressif/rmaker_console (1.0.0)
+NOTICE: [18/21] espressif/rmaker_system_ctrl (1.0.0)
+NOTICE: [19/21] espressif/rmaker_time_sync (1.0.0)
+NOTICE: [20/21] espressif/rmaker_work_queue (1.0.0)
+NOTICE: [21/21] idf (5.1.7)
+-- Found Python3: /opt/homebrew/Frameworks/Python.framework/Versions/3.14/bin/python3.14 (found version "3.14.3") found components: Interpreter
+NOTICE: Skipping optional dependency: espressif/mqtt
+NOTICE: Skipping optional dependency: espressif/esp_wifi_remote
+NOTICE: Skipping optional dependency: espressif/esp_hosted
+-- Project sdkconfig file /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/sdkconfig
+Loading defaults file /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/sdkconfig.defaults...
+Loading defaults file /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/sdkconfig.defaults.esp32c6...
+/Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/sdkconfig.defaults.esp32c6:10 CONFIG_BT_NIMBLE_HCI_EVT_BUF_SIZE was replaced with CONFIG_BT_NIMBLE_TRANSPORT_EVT_SIZE
+-- Could NOT find Threads (missing: Threads_FOUND) 
+-- USING O3
+-- App "fan_controller" version: 1.0
+-- Adding linker script /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/build/esp-idf/esp_system/ld/memory.ld
+-- Adding linker script /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_system/ld/esp32c6/sections.ld.in
+-- Adding linker script /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_rom/esp32c6/ld/esp32c6.rom.ld
+-- Adding linker script /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_rom/esp32c6/ld/esp32c6.rom.api.ld
+-- Adding linker script /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_rom/esp32c6/ld/esp32c6.rom.rvfp.ld
+-- Adding linker script /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_rom/esp32c6/ld/esp32c6.rom.newlib.ld
+-- Adding linker script /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_rom/esp32c6/ld/esp32c6.rom.version.ld
+-- Adding linker script /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_rom/esp32c6/ld/esp32c6.rom.phy.ld
+-- Adding linker script /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_rom/esp32c6/ld/esp32c6.rom.coexist.ld
+-- Adding linker script /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_rom/esp32c6/ld/esp32c6.rom.net80211.ld
+-- Adding linker script /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_rom/esp32c6/ld/esp32c6.rom.pp.ld
+-- Adding linker script /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_rom/esp32c6/ld/esp32c6.rom.wdt.ld
+-- Adding linker script /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_rom/esp32c6/ld/esp32c6.rom.newlib-normal.ld
+-- Adding linker script /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_rom/esp32c6/ld/esp32c6.rom.heap.ld
+-- Adding linker script /Users/fernando/Projects/esp32-H2/esp-idf/components/soc/esp32c6/ld/esp32c6.peripherals.ld
+-- BUTTON: 3.5.0
+-- Components: app_bridge app_reset app_trace app_update bootloader bootloader_support bt chip cmock console cxx driver efuse esp-tls esp_adc esp_app_format esp_coex esp_common esp_eth esp_event esp_gdbstub esp_hid esp_http_client esp_http_server esp_https_ota esp_https_server esp_hw_support esp_lcd esp_local_ctrl esp_matter esp_matter_bridge esp_matter_console esp_matter_controller esp_matter_ota_provider esp_matter_rainmaker esp_mm esp_netif esp_netif_stack esp_partition esp_phy esp_pm esp_psram esp_ringbuf esp_rom esp_system esp_timer esp_wifi espcoredump espressif__button espressif__cbor espressif__cmake_utilities espressif__esp_delta_ota espressif__esp_diag_data_store espressif__esp_diagnostics espressif__esp_encrypted_img espressif__esp_insights espressif__esp_secure_cert_mgr espressif__jsmn espressif__json_generator espressif__json_parser espressif__mdns espressif__rmaker_cmd_resp espressif__rmaker_common espressif__rmaker_common_events espressif__rmaker_console espressif__rmaker_system_ctrl espressif__rmaker_time_sync espressif__rmaker_work_queue esptool_py fatfs freertos hal heap http_parser idf_test ieee802154 json log lwip main mbedtls mqtt newlib nvs_flash openthread partition_table protobuf-c protocomm pthread riscv sdmmc soc spi_flash spiffs tcp_transport ulp unity usb vfs wear_levelling wifi_provisioning wpa_supplicant
+-- Component paths: /Users/fernando/Projects/esp32-H2/esp-matter/examples/common/app_bridge /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/components/app_reset /Users/fernando/Projects/esp32-H2/esp-idf/components/app_trace /Users/fernando/Projects/esp32-H2/esp-idf/components/app_update /Users/fernando/Projects/esp32-H2/esp-idf/components/bootloader /Users/fernando/Projects/esp32-H2/esp-idf/components/bootloader_support /Users/fernando/Projects/esp32-H2/esp-idf/components/bt /Users/fernando/Projects/esp32-H2/esp-matter/connectedhomeip/connectedhomeip/config/esp32/components/chip /Users/fernando/Projects/esp32-H2/esp-idf/components/cmock /Users/fernando/Projects/esp32-H2/esp-idf/components/console /Users/fernando/Projects/esp32-H2/esp-idf/components/cxx /Users/fernando/Projects/esp32-H2/esp-idf/components/driver /Users/fernando/Projects/esp32-H2/esp-idf/components/efuse /Users/fernando/Projects/esp32-H2/esp-idf/components/esp-tls /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_adc /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_app_format /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_coex /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_common /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_eth /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_event /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_gdbstub /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_hid /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_http_client /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_http_server /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_https_ota /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_https_server /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_hw_support /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_lcd /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_local_ctrl /Users/fernando/Projects/esp32-H2/esp-matter/components/esp_matter /Users/fernando/Projects/esp32-H2/esp-matter/components/esp_matter_bridge /Users/fernando/Projects/esp32-H2/esp-matter/components/esp_matter_console /Users/fernando/Projects/esp32-H2/esp-matter/components/esp_matter_controller /Users/fernando/Projects/esp32-H2/esp-matter/components/esp_matter_ota_provider /Users/fernando/Projects/esp32-H2/esp-matter/components/esp_matter_rainmaker /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_mm /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_netif /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_netif_stack /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_partition /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_phy /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_pm /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_psram /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_ringbuf /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_rom /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_system /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_timer /Users/fernando/Projects/esp32-H2/esp-idf/components/esp_wifi /Users/fernando/Projects/esp32-H2/esp-idf/components/espcoredump /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/managed_components/espressif__button /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/managed_components/espressif__cbor /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/managed_components/espressif__cmake_utilities /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/managed_components/espressif__esp_delta_ota /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/managed_components/espressif__esp_diag_data_store /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/managed_components/espressif__esp_diagnostics /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/managed_components/espressif__esp_encrypted_img /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/managed_components/espressif__esp_insights /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/managed_components/espressif__esp_secure_cert_mgr /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/managed_components/espressif__jsmn /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/managed_components/espressif__json_generator /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/managed_components/espressif__json_parser /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/managed_components/espressif__mdns /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/managed_components/espressif__rmaker_cmd_resp /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/managed_components/espressif__rmaker_common /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/managed_components/espressif__rmaker_common_events /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/managed_components/espressif__rmaker_console /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/managed_components/espressif__rmaker_system_ctrl /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/managed_components/espressif__rmaker_time_sync /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/managed_components/espressif__rmaker_work_queue /Users/fernando/Projects/esp32-H2/esp-idf/components/esptool_py /Users/fernando/Projects/esp32-H2/esp-idf/components/fatfs /Users/fernando/Projects/esp32-H2/esp-idf/components/freertos /Users/fernando/Projects/esp32-H2/esp-idf/components/hal /Users/fernando/Projects/esp32-H2/esp-idf/components/heap /Users/fernando/Projects/esp32-H2/esp-idf/components/http_parser /Users/fernando/Projects/esp32-H2/esp-idf/components/idf_test /Users/fernando/Projects/esp32-H2/esp-idf/components/ieee802154 /Users/fernando/Projects/esp32-H2/esp-idf/components/json /Users/fernando/Projects/esp32-H2/esp-idf/components/log /Users/fernando/Projects/esp32-H2/esp-idf/components/lwip /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/main /Users/fernando/Projects/esp32-H2/esp-idf/components/mbedtls /Users/fernando/Projects/esp32-H2/esp-idf/components/mqtt /Users/fernando/Projects/esp32-H2/esp-idf/components/newlib /Users/fernando/Projects/esp32-H2/esp-idf/components/nvs_flash /Users/fernando/Projects/esp32-H2/esp-idf/components/openthread /Users/fernando/Projects/esp32-H2/esp-idf/components/partition_table /Users/fernando/Projects/esp32-H2/esp-idf/components/protobuf-c /Users/fernando/Projects/esp32-H2/esp-idf/components/protocomm /Users/fernando/Projects/esp32-H2/esp-idf/components/pthread /Users/fernando/Projects/esp32-H2/esp-idf/components/riscv /Users/fernando/Projects/esp32-H2/esp-idf/components/sdmmc /Users/fernando/Projects/esp32-H2/esp-idf/components/soc /Users/fernando/Projects/esp32-H2/esp-idf/components/spi_flash /Users/fernando/Projects/esp32-H2/esp-idf/components/spiffs /Users/fernando/Projects/esp32-H2/esp-idf/components/tcp_transport /Users/fernando/Projects/esp32-H2/esp-idf/components/ulp /Users/fernando/Projects/esp32-H2/esp-idf/components/unity /Users/fernando/Projects/esp32-H2/esp-idf/components/usb /Users/fernando/Projects/esp32-H2/esp-idf/components/vfs /Users/fernando/Projects/esp32-H2/esp-idf/components/wear_levelling /Users/fernando/Projects/esp32-H2/esp-idf/components/wifi_provisioning /Users/fernando/Projects/esp32-H2/esp-idf/components/wpa_supplicant
+-- Configuring done (18.8s)
+-- Generating done (0.7s)
+-- Build files have been written to: /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/build
+[1/302] Building C object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/src/esp_openthread_lock.c.obj
+[2/302] Building C object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/src/port/esp_openthread_memory.c.obj
+[3/302] Building C object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/src/port/esp_openthread_logging.c.obj
+[4/302] Building C object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/src/port/esp_openthread_alarm.c.obj
+[5/302] Building C object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/src/esp_openthread_lwip_netif.c.obj
+[6/302] Building C object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/src/esp_openthread_task_queue.c.obj
+[7/302] Building C object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/src/esp_openthread_cli.c.obj
+[8/302] Building C object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/src/port/esp_openthread_misc.c.obj
+[9/302] Building C object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/src/esp_openthread_netif_glue.c.obj
+[10/302] Building C object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/src/port/esp_openthread_settings.c.obj
+[11/302] Building C object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/src/port/esp_openthread_spi_slave.c.obj
+[12/302] Building C object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/src/port/esp_openthread_state.c.obj
+[13/302] Building C object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/examples/platforms/utils/debug_uart.c.obj
+[14/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/src/esp_openthread.cpp.obj
+[15/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/examples/platforms/utils/otns_utils.cpp.obj
+[16/302] Building C object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/src/port/esp_openthread_uart.c.obj
+[17/302] Building C object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/examples/platforms/utils/uart_rtt.c.obj
+[18/302] Building C object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/examples/platforms/utils/settings_ram.c.obj
+[19/302] Building C object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/src/port/esp_openthread_radio.c.obj
+[20/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/backbone_router_ftd_api.cpp.obj
+[21/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/ble_secure_api.cpp.obj
+[22/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/border_agent_tracker_api.cpp.obj
+[23/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/border_agent_txt_data_api.cpp.obj
+[24/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/border_agent_api.cpp.obj
+[25/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/examples/platforms/utils/link_metrics.cpp.obj
+[26/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/border_router_api.cpp.obj
+[27/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/border_routing_api.cpp.obj
+[28/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/channel_manager_api.cpp.obj
+[29/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/channel_monitor_api.cpp.obj
+[30/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/coap_secure_api.cpp.obj
+[31/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/commissioner_api.cpp.obj
+[32/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/examples/platforms/utils/mac_frame.cpp.obj
+[33/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/dataset_updater_api.cpp.obj
+[34/302] Building C object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/src/port/esp_openthread_udp.c.obj
+[35/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/dataset_ftd_api.cpp.obj
+[36/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/error_api.cpp.obj
+[37/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/heap_api.cpp.obj
+[38/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/history_tracker_api.cpp.obj
+[39/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/src/esp_openthread_platform.cpp.obj
+[40/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/backbone_router_api.cpp.obj
+[41/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/dns_server_api.cpp.obj
+[42/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/child_supervision_api.cpp.obj
+[43/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/jam_detection_api.cpp.obj
+[44/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/dataset_api.cpp.obj
+[45/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/coap_api.cpp.obj
+[46/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/crypto_api.cpp.obj
+[47/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/diags_api.cpp.obj
+[48/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/joiner_api.cpp.obj
+[49/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/link_metrics_api.cpp.obj
+[50/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/mdns_api.cpp.obj
+[51/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/mesh_diag_api.cpp.obj
+[52/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/dns_api.cpp.obj
+[53/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/multi_radio_api.cpp.obj
+[54/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/netdata_publisher_api.cpp.obj
+[55/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/icmp6_api.cpp.obj
+[56/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/network_time_api.cpp.obj
+[57/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/p2p_api.cpp.obj
+[58/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/instance_api.cpp.obj
+[59/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/ip6_api.cpp.obj
+[60/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/netdata_api.cpp.obj
+[61/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/link_raw_api.cpp.obj
+[62/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/netdiag_api.cpp.obj
+[63/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/message_api.cpp.obj
+[64/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/random_crypto_api.cpp.obj
+[65/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/nat64_api.cpp.obj
+[66/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/logging_api.cpp.obj
+[67/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/link_api.cpp.obj
+[68/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/random_noncrypto_api.cpp.obj
+[69/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/server_api.cpp.obj
+[70/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/sntp_api.cpp.obj
+[71/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/tcp_ext_api.cpp.obj
+[72/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/srp_server_api.cpp.obj
+[73/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/tcp_api.cpp.obj
+[74/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/trel_api.cpp.obj
+[75/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/verhoeff_checksum_api.cpp.obj
+[76/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/thread_ftd_api.cpp.obj
+[77/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/common/binary_search.cpp.obj
+[78/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/radio_stats_api.cpp.obj
+[79/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/common/bit_utils.cpp.obj
+[80/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/ping_sender_api.cpp.obj
+[81/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/common/error.cpp.obj
+[82/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/common/appender.cpp.obj
+[83/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/common/data.cpp.obj
+[84/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/common/frame_data.cpp.obj
+[85/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/common/crc.cpp.obj
+[86/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/common/heap_data.cpp.obj
+[87/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/common/frame_builder.cpp.obj
+[88/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/common/heap_string.cpp.obj
+[89/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/common/offset_range.cpp.obj
+[90/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/common/preference.cpp.obj
+[91/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/tasklet_api.cpp.obj
+[92/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/srp_client_api.cpp.obj
+[93/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/srp_client_buffers_api.cpp.obj
+[94/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/common/random.cpp.obj
+[95/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/udp_api.cpp.obj
+[96/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/common/heap.cpp.obj
+[97/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/common/string.cpp.obj
+[98/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/api/thread_api.cpp.obj
+[99/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/common/trickle_timer.cpp.obj
+[100/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/common/log.cpp.obj
+[101/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/common/tlvs.cpp.obj
+[102/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/common/notifier.cpp.obj
+[103/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/crypto/aes_ecb.cpp.obj
+[104/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/crypto/hkdf_sha256.cpp.obj
+[105/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/crypto/aes_ccm.cpp.obj
+[106/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/crypto/mbedtls.cpp.obj
+[107/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/crypto/hmac_sha256.cpp.obj
+[108/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/crypto/storage.cpp.obj
+[109/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/common/time_ticker.cpp.obj
+[110/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/common/tasklet.cpp.obj
+[111/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/common/message.cpp.obj
+[112/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/crypto/sha256.cpp.obj
+[113/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/common/settings.cpp.obj
+[114/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/mac/link_raw.cpp.obj
+[115/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/mac/channel_mask.cpp.obj
+[116/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/common/timer.cpp.obj
+[117/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/common/uptime.cpp.obj
+[118/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/mac/mac_filter.cpp.obj
+[119/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/mac/data_poll_handler.cpp.obj
+[120/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/mac/mac_header_ie.cpp.obj
+[121/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/mac/mac_types.cpp.obj
+[122/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/mac/sub_mac_csl_receiver.cpp.obj
+[123/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/mac/sub_mac_wed.cpp.obj
+[124/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/crypto/crypto_platform.cpp.obj
+[125/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/mac/wakeup_tx_scheduler.cpp.obj
+[126/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/radio/ble_secure.cpp.obj
+[127/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/instance/instance.cpp.obj
+[128/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/mac/mac_frame.cpp.obj
+[129/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/mac/data_poll_sender.cpp.obj
+[130/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/radio/trel_interface.cpp.obj
+[131/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/mac/mac_links.cpp.obj
+[132/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/radio/trel_link.cpp.obj
+[133/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/mac/sub_mac_callbacks.cpp.obj
+[134/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/radio/trel_packet.cpp.obj
+[135/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/radio/trel_peer.cpp.obj
+[136/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/radio/trel_peer_discoverer.cpp.obj
+[137/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/anycast_locator.cpp.obj
+[138/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/diags/factory_diags.cpp.obj
+[139/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/radio/radio.cpp.obj
+[140/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/mac/sub_mac.cpp.obj
+[141/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/radio/radio_callbacks.cpp.obj
+[142/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/child_table.cpp.obj
+[143/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/mac/mac.cpp.obj
+[144/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/dua_manager.cpp.obj
+[145/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/radio/radio_platform.cpp.obj
+[146/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/announce_begin_server.cpp.obj
+[147/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/child.cpp.obj
+[148/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/link_metrics.cpp.obj
+[149/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/link_metrics_types.cpp.obj
+[150/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/address_resolver.cpp.obj
+[151/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/child_supervision.cpp.obj
+[152/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/announce_sender.cpp.obj
+[153/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/csl_tx_scheduler.cpp.obj
+[154/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/mesh_forwarder_ftd.cpp.obj
+[155/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/energy_scan_server.cpp.obj
+[156/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/indirect_sender.cpp.obj
+[157/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/discover_scanner.cpp.obj
+[158/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/key_manager.cpp.obj
+[159/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/mesh_forwarder_mtd.cpp.obj
+[160/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/link_quality.cpp.obj
+[161/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/mlr_manager.cpp.obj
+[162/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/mle_tlvs.cpp.obj
+[163/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/mle_types.cpp.obj
+[164/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/mle_ftd.cpp.obj
+[165/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/mle_p2p.cpp.obj
+[166/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/network_data_local.cpp.obj
+[167/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/lowpan.cpp.obj
+[168/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/network_data_notifier.cpp.obj
+[169/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/mesh_forwarder.cpp.obj
+[170/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/network_data_publisher.cpp.obj
+[171/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/message_framer.cpp.obj
+[172/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/network_data_leader_ftd.cpp.obj
+[173/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/network_data_tlvs.cpp.obj
+[174/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/neighbor_table.cpp.obj
+[175/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/neighbor.cpp.obj
+[176/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/peer.cpp.obj
+[177/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/network_diagnostic_tlvs.cpp.obj
+[178/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/peer_table.cpp.obj
+[179/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/radio_selector.cpp.obj
+[180/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/router_table.cpp.obj
+[181/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/src_match_controller.cpp.obj
+[182/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/network_data_leader.cpp.obj
+[183/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/thread_link_info.cpp.obj
+[184/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/time_sync_service.cpp.obj
+[185/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/network_data.cpp.obj
+[186/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/network_data_service.cpp.obj
+[187/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/version.cpp.obj
+[188/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/utils/channel_manager.cpp.obj
+[189/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/network_data_types.cpp.obj
+[190/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/panid_query_server.cpp.obj
+[191/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/utils/flash.cpp.obj
+[192/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/utils/channel_monitor.cpp.obj
+[193/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/utils/heap.cpp.obj
+[194/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/utils/history_tracker.cpp.obj
+[195/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/utils/jam_detector.cpp.obj
+[196/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/utils/otns.cpp.obj
+[197/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/utils/link_metrics_manager.cpp.obj
+[198/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/utils/mesh_diag.cpp.obj
+[199/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/network_diagnostic.cpp.obj
+[200/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/utils/power_calibration.cpp.obj
+[201/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/utils/verhoeff_checksum.cpp.obj
+[202/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/utils/parse_cmdline.cpp.obj
+[203/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/lib/spinel/example_vendor_hook.cpp.obj
+[204/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/lib/hdlc/hdlc.cpp.obj
+[205/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/router.cpp.obj
+[206/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/thread_netif.cpp.obj
+[207/302] Building C object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/lib/spinel/spinel.c.obj
+[208/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/lib/spinel/spinel_buffer.cpp.obj
+[209/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/lib/spinel/spinel_decoder.cpp.obj
+[210/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/lib/spinel/logger.cpp.obj
+[211/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/lib/spinel/spinel_helper.cpp.obj
+[212/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/uri_paths.cpp.obj
+[213/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/lib/spinel/spinel_encoder.cpp.obj
+[214/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/lib/spinel/spinel_prop_codec.cpp.obj
+[215/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/backbone_router/backbone_tmf.cpp.obj
+[216/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/tmf.cpp.obj
+[217/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/backbone_router/bbr_manager.cpp.obj
+[218/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/backbone_router/bbr_local.cpp.obj
+[219/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/lib/spinel/spinel_driver.cpp.obj
+[220/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/backbone_router/multicast_listeners_table.cpp.obj
+[221/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/backbone_router/ndproxy_table.cpp.obj
+[222/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/coap/coap_secure.cpp.obj
+[223/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/meshcop/border_agent.cpp.obj
+[224/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/meshcop/announce_begin_client.cpp.obj
+[225/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/meshcop/border_agent_tracker.cpp.obj
+[226/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/meshcop/commissioner.cpp.obj
+[227/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/utils/srp_client_buffers.cpp.obj
+[228/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/utils/ping_sender.cpp.obj
+[229/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/meshcop/dataset_updater.cpp.obj
+[230/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/meshcop/energy_scan_client.cpp.obj
+[231/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/meshcop/dataset_manager_ftd.cpp.obj
+[232/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/lib/spinel/radio_spinel.cpp.obj
+[233/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/thread/mle.cpp.obj
+[234/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/meshcop/joiner.cpp.obj
+[235/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/meshcop/joiner_router.cpp.obj
+[236/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/meshcop/meshcop_leader.cpp.obj
+[237/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/backbone_router/bbr_leader.cpp.obj
+[238/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/meshcop/border_agent_txt_data.cpp.obj
+[239/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/meshcop/panid_query_client.cpp.obj
+[240/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/meshcop/tcat_agent.cpp.obj
+[241/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/meshcop/timestamp.cpp.obj
+[242/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/meshcop/extended_panid.cpp.obj
+[243/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/net/dhcp6_client.cpp.obj
+[244/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/meshcop/secure_transport.cpp.obj
+[245/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/coap/coap_message.cpp.obj
+[246/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/meshcop/dataset.cpp.obj
+[247/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/meshcop/dataset_manager.cpp.obj
+[248/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/net/dhcp6_server.cpp.obj
+[249/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/net/checksum.cpp.obj
+[250/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/meshcop/network_name.cpp.obj
+[251/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/meshcop/meshcop.cpp.obj
+[252/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/coap/coap.cpp.obj
+[253/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/net/dns_dso.cpp.obj
+[254/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/net/dns_platform.cpp.obj
+[255/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/meshcop/meshcop_tlvs.cpp.obj
+[256/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/net/dnssd.cpp.obj
+[257/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/net/dnssd_server.cpp.obj
+[258/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/net/dhcp6_types.cpp.obj
+[259/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/net/mdns.cpp.obj
+[260/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/net/nat64_translator.cpp.obj
+[261/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/net/ip6_headers.cpp.obj
+[262/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/net/ip4_types.cpp.obj
+[263/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/net/nd6.cpp.obj
+[264/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/net/nd_agent.cpp.obj
+[265/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/net/sntp_client.cpp.obj
+[266/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/net/socket.cpp.obj
+[267/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/net/srp_advertising_proxy.cpp.obj
+[268/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/net/ip6_filter.cpp.obj
+[269/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/net/icmp6.cpp.obj
+[270/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/net/ip6_mpl.cpp.obj
+[271/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/net/srp_server.cpp.obj
+[272/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/net/ip6_address.cpp.obj
+[273/302] Building C object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/lib/platform/exit_code.c.obj
+[274/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/net/tcp6.cpp.obj
+[275/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/net/slaac_address.cpp.obj
+[276/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/net/tcp6_ext.cpp.obj
+[277/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/net/netif.cpp.obj
+[278/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/net/ip6.cpp.obj
+[279/302] Generating args.gn
+[280/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/net/dns_types.cpp.obj
+[281/302] Performing build step for 'bootloader'
+[1/1] cd /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/build/bootloader/esp-idf/esptool_py && /Users/fernando/.espressif/python_env/idf5.1_py3.12_env/bin/python /Users/fernando/Projects/esp32-H2/esp-idf/components/partition_table/check_sizes.py --offset 0xc000 bootloader 0x0 /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/build/bootloader/bootloader.bin
+Bootloader binary size 0x55c0 bytes. 0x6a40 bytes (55%) free.
+[282/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/net/dns_client.cpp.obj
+[283/302] No install step for 'bootloader'
+[284/302] Completed 'bootloader'
+[285/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/net/udp6.cpp.obj
+[286/302] Building CXX object esp-idf/openthread/CMakeFiles/__idf_openthread.dir/openthread/src/core/net/srp_client.cpp.obj
+[287/302] Linking C static library esp-idf/openthread/libopenthread.a
+[288/302] Performing build step for 'chip_gn'
+[0/1] Regenerating ninja files
+ninja: no work to do.
+[289/302] No install step for 'chip_gn'
+[290/302] Completed 'chip_gn'
+[291/302] Linking C static library esp-idf/esp_matter_console/libesp_matter_console.a
+[292/302] Linking C static library esp-idf/app_reset/libapp_reset.a
+[293/302] Linking C static library esp-idf/esp_matter_bridge/libesp_matter_bridge.a
+[294/302] Linking C static library esp-idf/app_bridge/libapp_bridge.a
+[295/302] Building CXX object esp-idf/main/CMakeFiles/__idf_main.dir/app_driver.cpp.obj
+[296/302] Linking C static library esp-idf/main/libmain.a
+[297/302] Generating ld/sections.ld
+warning: default on the choice symbol SEC_CERT_DAC_PROVIDER (defined at /Users/fernando/Projects/esp32-H2/esp-matter/connectedhomeip/connectedhomeip/config/esp32/components/chip/Kconfig:852, /Users/fernando/Projects/esp32-H2/esp-matter/components/esp_matter/Kconfig:48) will have no effect, as defaults do not affect choice symbols
+warning: the choice symbol SEC_CERT_DAC_PROVIDER (defined at /Users/fernando/Projects/esp32-H2/esp-matter/connectedhomeip/connectedhomeip/config/esp32/components/chip/Kconfig:852, /Users/fernando/Projects/esp32-H2/esp-matter/components/esp_matter/Kconfig:48) is defined with a prompt outside the choice
+[298/302] Building C object CMakeFiles/fan_controller.elf.dir/project_elf_src_esp32c6.c.obj
+[299/302] Linking CXX executable fan_controller.elf
+[300/302] Generating binary image from built executable
+esptool.py v4.11.0
+Creating esp32c6 image...
+MMU page size not specified, set to 64 KB
+Merged 3 ELF sections
+Successfully created esp32c6 image.
+Generated /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/build/fan_controller.bin
+[301/302] cd /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/build/esp-idf/esptool_py && /Users/fernando/.espressif/python_env/idf5.1_py3.12_env/bin/python /Users/fernando/Projects/esp32-H2/esp-idf/components/partition_table/check_sizes.py --offset 0xc000 partition --type app /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/build/partition_table/partition-table.bin /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/build/fan_controller.bin
+fan_controller.bin binary size 0x17b3d0 bytes. Smallest app partition is 0x1e0000 bytes. 0x64c30 bytes (21%) free.
+
+Project build complete. To flash, run this command:
+/Users/fernando/.espressif/python_env/idf5.1_py3.12_env/bin/python ../esp32-H2/esp-idf/components/esptool_py/esptool/esptool.py -p (PORT) -b 460800 --before default_reset --after hard_reset --chip esp32c6  write_flash --flash_mode dio --flash_size 4MB --flash_freq 80m 0x0 build/bootloader/bootloader.bin 0xc000 build/partition_table/partition-table.bin 0x1d000 build/ota_data_initial.bin 0x20000 build/fan_controller.bin
+or run 'idf.py -p (PORT) flash'
