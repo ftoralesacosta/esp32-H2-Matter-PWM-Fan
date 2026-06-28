@@ -32,8 +32,8 @@ These rules are specific to the `esp32-H2-WPM-Fan` project pair programming work
 
 ## 7. Findings Document Maintenance
 - You **MUST** update [.agents/FINDINGS.md](file:///Users/ftorales/Projects/esp32-H2-WPM-Fan/.agents/FINDINGS.md) immediately after any successful build, flash, and verification iteration.
+- You **MUST** update `FINDINGS.md` every time a new hypothesis is formulated or tried. Document the hypothesis, the experiment, and clearly mark whether it was debunked or confirmed.
 - Document the build status, log output, and network behavior to ensure the project history is continuously maintained.
-
 
 
 
