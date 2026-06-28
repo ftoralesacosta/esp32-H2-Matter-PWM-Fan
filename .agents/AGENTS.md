@@ -27,4 +27,8 @@ These rules are specific to the `esp32-H2-WPM-Fan` project pair programming work
 - During the ESPHome transition/build phase, the user will write compilation and run outputs to [esphome_attempt.txt](file:///Users/ftorales/Projects/esp32-H2-WPM-Fan/esphome_attempt.txt).
 - You **MUST** check if this file has been updated at the start of your turn. If the user mentions building/flashing but `esphome_attempt.txt` has not been updated, explicitly ask the user to update it.
 
+## 6. Next Session Verification
+- At the very start of the next session, you **MUST** ask the user: *"Did the overnight soak test succeed, or did the chip disconnect?"* This is the primary verification step to confirm if the baseline software/network stability is holding before doing any further testing with the fan motor.
+
+
 
