@@ -183,15 +183,33 @@ esp_err_t app_driver_attribute_post_update(app_driver_handle_t driver_handle, ui
 esp_err_t app_driver_fan_set_defaults(uint16_t endpoint_id)
 {
     esp_err_t err = ESP_OK;
-    esp_matter_attr_val_t val = esp_matter_invalid(NULL);
-
-    attribute_t *attribute = attribute::get(endpoint_id, FanControl::Id, FanControl::Attributes::PercentSetting::Id);
-    if (attribute) {
-        attribute::get_val(attribute, &val);
-        err = app_driver_fan_set_speed(val.val.u8);
+    esp_matter_attr_val_t mode_val = esp_matter_invalid(NULL);
+    esp_matter_attr_val_t speed_val = esp_matter_invalid(NULL);
+ 
+    attribute_t *mode_attr = attribute::get(endpoint_id, FanControl::Id, FanControl::Attributes::FanMode::Id);
+    attribute_t *speed_attr = attribute::get(endpoint_id, FanControl::Id, FanControl::Attributes::PercentSetting::Id);
+ 
+    uint8_t mode = 0;
+    uint8_t speed = 0;
+ 
+    if (mode_attr) {
+        attribute::get_val(mode_attr, &mode_val);
+        mode = mode_val.val.u8;
+    }
+    if (speed_attr) {
+        attribute::get_val(speed_attr, &speed_val);
+        speed = speed_val.val.u8;
+    }
+ 
+    // If mode is Off (0), keep physical fan stopped (0%). Otherwise, set to speed.
+    if (mode == 0) {
+        err = app_driver_fan_set_speed(0);
+    } else {
+        err = app_driver_fan_set_speed(speed);
     }
     return err;
 }
+
 
 app_driver_handle_t app_driver_fan_init()
 {
