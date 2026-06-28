@@ -186,13 +186,6 @@ extern "C" void app_main()
         ESP_LOGI(TAG, "Fan Control FeatureMap set to 1 (MultiSpeed)");
     }
 
-    // Add ATTRIBUTE_FLAG_NON_VOLATILE to PercentSetting attribute to fix the HomeKit persistence warning/error
-    attribute_t *percent_setting_attribute = attribute::get(fan_endpoint_id, FanControl::Id, FanControl::Attributes::PercentSetting::Id);
-    if (percent_setting_attribute) {
-        attribute::add_flags(percent_setting_attribute, esp_matter::ATTRIBUTE_FLAG_NON_VOLATILE);
-        ESP_LOGI(TAG, "PercentSetting attribute made non-volatile");
-    }
-
 #if CHIP_DEVICE_CONFIG_ENABLE_THREAD
     /* Set OpenThread platform config */
     esp_openthread_platform_config_t config = {

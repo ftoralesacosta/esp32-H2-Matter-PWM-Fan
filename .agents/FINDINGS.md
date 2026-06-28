@@ -83,10 +83,9 @@ If the chip fails to connect, shows "Not Responding" in Apple Home, or prints `S
 * **The Discovery:** During boot, both the H2 and C6 logs print two critical data model errors:
   1. `E (660) esp_matter_feature: Feature map attribute cannot be null`
   2. `E (670) data_model: Attribute should be non-volatile to set a deferred persistence time`
-* **The Theory:** Apple HomeKit enforces extremely strict validation on Matter clusters during the post-pairing discovery phase. If a mandatory attribute like the **`FeatureMap`** (which defines what features the fan supports, e.g. MultiSpeed) is null or missing, or if the attribute flags do not match the expected schema, HomeKit will reject the device and display **"No Response"**.
 * **The Software Fix:**
   - Initialize the Fan Control `feature_map` to `1` (enabling the `MultiSpeed` feature, which also enables the speed slider in the Home app).
-  - Explicitly add the `ATTRIBUTE_FLAG_NON_VOLATILE` flag to the `PercentSetting` attribute before enabling deferred persistence.
+* **Debunked Software Hypothesis:** Previous assumptions regarding strict HomeKit validation failures due to missing `ATTRIBUTE_FLAG_NON_VOLATILE` on `PercentSetting` were FALSE. Attempting to dynamically add this flag via `attribute::add_flags()` is an invalid API operation that causes a C++ compiler error. The ESP-Matter SDK correctly initializes the attribute as nullable and writable internally. The "No Response" drops were not caused by this flag.
 
 ### A. The Permanent "No Response" Software Bug (FTD vs MTD)
 
