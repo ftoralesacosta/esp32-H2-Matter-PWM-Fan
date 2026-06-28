@@ -7,21 +7,17 @@ esp32:
   framework:
     type: esp-idf
 
-external_components:
-  - source: github://pr#4621
-    components: [ matter ]
+# Enable the native ESPHome API for Home Assistant
+api:
 
-
-
-
-
+# Enable Over-The-Air updates
+ota:
+  - platform: esphome
 
 # Enable OpenThread
 openthread:
   device_type: MTD # Keep as Minimal Thread Device for stability
-
-# Enable Matter
-matter:
+  # tlv: "PASTE_YOUR_THREAD_DATASET_TLV_HERE"
 
 # Configure the PWM output on GPIO21 (Physical Pin D3) at 25kHz
 output:
