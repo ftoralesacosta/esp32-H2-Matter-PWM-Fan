@@ -722,3 +722,379 @@ entry 0x4086c410
 [0;32mI (31480) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:1c07[0m
 [0;32mI (31480) IP_DIAG:   fd16:4ae:d5c4:0:c7ff:6f03:67a:e644[0m
 [0;32mI (31490) IP_DIAG:   fe80:0:0:0:8c13:519c:4da:8b07[0m
+[0;32mI (41490) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (41490) IP_DIAG:   fd73:986f:53ce:0:19e6:378e:6950:19f7[0m
+[0;32mI (41490) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:1c07[0m
+[0;32mI (41490) IP_DIAG:   fd16:4ae:d5c4:0:c7ff:6f03:67a:e644[0m
+[0;32mI (41500) IP_DIAG:   fe80:0:0:0:8c13:519c:4da:8b07[0m
+[0;32mI (51500) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (51500) IP_DIAG:   fd73:986f:53ce:0:19e6:378e:6950:19f7[0m
+[0;32mI (51500) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:1c07[0m
+[0;32mI (51500) IP_DIAG:   fd16:4ae:d5c4:0:c7ff:6f03:67a:e644[0m
+[0;32mI (51510) IP_DIAG:   fe80:0:0:0:8c13:519c:4da:8b07[0m
+[0;32mI (61510) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (61510) IP_DIAG:   fd73:986f:53ce:0:19e6:378e:6950:19f7[0m
+[0;32mI (61510) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:1c07[0m
+[0;32mI (61510) IP_DIAG:   fd16:4ae:d5c4:0:c7ff:6f03:67a:e644[0m
+[0;32mI (61520) IP_DIAG:   fe80:0:0:0:8c13:519c:4da:8b07[0m
+[0;32mI (71520) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (71520) IP_DIAG:   fd73:986f:53ce:0:19e6:378e:6950:19f7[0m
+[0;32mI (71520) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:1c07[0m
+[0;32mI (71520) IP_DIAG:   fd16:4ae:d5c4:0:c7ff:6f03:67a:e644[0m
+[0;32mI (71530) IP_DIAG:   fe80:0:0:0:8c13:519c:4da:8b07[0m
+[0;32mI (81530) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (81530) IP_DIAG:   fd73:986f:53ce:0:19e6:378e:6950:19f7[0m
+[0;32mI (81530) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:1c07[0m
+[0;32mI (81530) IP_DIAG:   fd16:4ae:d5c4:0:c7ff:6f03:67a:e644[0m
+[0;32mI (81540) IP_DIAG:   fe80:0:0:0:8c13:519c:4da:8b07[0m
+[0;32mI (91540) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (91540) IP_DIAG:   fd73:986f:53ce:0:19e6:378e:6950:19f7[0m
+[0;32mI (91540) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:1c07[0m
+[0;32mI (91540) IP_DIAG:   fd16:4ae:d5c4:0:c7ff:6f03:67a:e644[0m
+[0;32mI (91550) IP_DIAG:   fe80:0:0:0:8c13:519c:4da:8b07[0m
+[0;32mI (101550) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (101550) IP_DIAG:   fd73:986f:53ce:0:19e6:378e:6950:19f7[0m
+[0;32mI (101550) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:1c07[0m
+[0;32mI (101550) IP_DIAG:   fd16:4ae:d5c4:0:c7ff:6f03:67a:e644[0m
+[0;32mI (101560) IP_DIAG:   fe80:0:0:0:8c13:519c:4da:8b07[0m
+[0;32mI (111560) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (111560) IP_DIAG:   fd73:986f:53ce:0:19e6:378e:6950:19f7[0m
+[0;32mI (111560) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:1c07[0m
+[0;32mI (111560) IP_DIAG:   fd16:4ae:d5c4:0:c7ff:6f03:67a:e644[0m
+[0;32mI (111570) IP_DIAG:   fe80:0:0:0:8c13:519c:4da:8b07[0m
+[0;32mI (121570) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (121570) IP_DIAG:   fd73:986f:53ce:0:19e6:378e:6950:19f7[0m
+[0;32mI (121570) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:1c07[0m
+[0;32mI (121570) IP_DIAG:   fd16:4ae:d5c4:0:c7ff:6f03:67a:e644[0m
+[0;32mI (121580) IP_DIAG:   fe80:0:0:0:8c13:519c:4da:8b07[0m
+[0;32mI (131580) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (131580) IP_DIAG:   fd73:986f:53ce:0:19e6:378e:6950:19f7[0m
+[0;32mI (131580) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:1c07[0m
+[0;32mI (131580) IP_DIAG:   fd16:4ae:d5c4:0:c7ff:6f03:67a:e644[0m
+[0;32mI (131590) IP_DIAG:   fe80:0:0:0:8c13:519c:4da:8b07[0m
+[0;32mI (131740) chip[EM]: >>> [E:23562r S:0 M:221812989] (U) Msg RX from 0:EA65625424316B8A [0000] to 0000000000000000 --- Type 0000:30 (SecureChannel:CASE_Sigma1) (B:196)[0m
+[0;32mI (131750) chip[IN]: CASE Server received Sigma1 message . Starting handshake. EC 0x4081c700[0m
+[0;32mI (131760) chip[EM]: <<< [E:23562r S:0 M:263185500 (Ack:221812989)] (U) Msg TX from 0000000000000000 to 0:EA65625424316B8A [0000] [UDP:[FD07:D539:E997:1:14B7:9C33:BF20:8736]:54635] --- Type 0000:10 (SecureChannel:StandaloneAck) (B:26)[0m
+[0;32mI (131780) chip[SC]: Received Sigma1 msg[0m
+[0;32mI (131780) chip[SC]: CASE matched destination ID: fabricIndex 1, NodeID 0x0000000086EADBD5[0m
+[0;32mI (131840) chip[EM]: <<< [E:23562r S:0 M:263185501 (Ack:221812989)] (U) Msg TX from 0000000000000000 to 0:EA65625424316B8A [0000] [UDP:[FD07:D539:E997:1:14B7:9C33:BF20:8736]:54635] --- Type 0000:31 (SecureChannel:CASE_Sigma2) (B:529)[0m
+[0;32mI (131850) chip[EM]: ??1 [E:23562r S:0 M:263185501] (U) Msg Retransmission to 0:0000000000000000 scheduled for 2364ms from now [State:Active II:500 AI:300 AT:4000][0m
+[0;32mI (131860) chip[SC]: Sent Sigma2 msg[0m
+[0;32mI (132080) chip[EM]: >>> [E:23562r S:0 M:221812990 (Ack:263185501)] (U) Msg RX from 0:EA65625424316B8A [0000] to 0000000000000000 --- Type 0000:32 (SecureChannel:CASE_Sigma3) (B:380)[0m
+[0;32mI (132090) chip[EM]: <<< [E:23562r S:0 M:263185502 (Ack:221812990)] (U) Msg TX from 0000000000000000 to 0:EA65625424316B8A [0000] [UDP:[FD07:D539:E997:1:14B7:9C33:BF20:8736]:54635] --- Type 0000:10 (SecureChannel:StandaloneAck) (B:26)[0m
+[0;32mI (132110) chip[SC]: Received Sigma3 msg[0m
+[0;31mE (132120) chip[SC]: The device does not support GetClock_RealTimeMS() API: 6c.  Falling back to Last Known Good UTC Time[0m
+[0;32mI (132230) chip[EM]: <<< [E:23562r S:0 M:263185503 (Ack:221812990)] (U) Msg TX from 0000000000000000 to 0:EA65625424316B8A [0000] [UDP:[FD07:D539:E997:1:14B7:9C33:BF20:8736]:54635] --- Type 0000:40 (SecureChannel:StatusReport) (B:34)[0m
+[0;32mI (132240) chip[EM]: ??1 [E:23562r S:0 M:263185503] (U) Msg Retransmission to 0:0000000000000000 scheduled for 2358ms from now [State:Active II:500 AI:300 AT:4000][0m
+[0;32mI (132260) chip[SC]: SecureSession[0x4081ae50, LSID:50743]: State change 'kEstablishing' --> 'kActive'[0m
+[0;32mI (132260) chip[IN]: CASE Session established to peer: <0000000074AD7D73, 1>[0m
+[0;32mI (132370) chip[EM]: >>> [E:23563r S:50743 M:233098140] (S) Msg RX from 1:0000000074AD7D73 [8B73] to 0000000086EADBD5 --- Type 0001:02 (IM:ReadRequest) (B:51)[0m
+[0;32mI (132380) chip[EM]: >>> [E:23562r S:0 M:221812991 (Ack:263185503)] (U) Msg RX from 0:EA65625424316B8A [0000] to 0000000000000000 --- Type 0000:10 (SecureChannel:StandaloneAck) (B:26)[0m
+[0;32mI (132400) chip[EM]: <<< [E:23563r S:50743 M:157584767 (Ack:233098140)] (S) Msg TX from 0000000086EADBD5 to 1:0000000074AD7D73 [8B73] [UDP:[FD07:D539:E997:1:14B7:9C33:BF20:8736]:54635] --- Type 0001:05 (IM:ReportData) (B:70)[0m
+[0;32mI (132410) chip[EM]: ??1 [E:23563r S:50743 M:157584767] (S) Msg Retransmission to 1:0000000074AD7D73 scheduled for 2410ms from now [State:Active II:500 AI:300 AT:4000][0m
+[0;32mI (132480) chip[EM]: >>> [E:23564r S:50743 M:233098141] (S) Msg RX from 1:0000000074AD7D73 [8B73] to 0000000086EADBD5 --- Type 0001:02 (IM:ReadRequest) (B:51)[0m
+[0;32mI (132490) chip[EM]: >>> [E:23563r S:50743 M:233098142 (Ack:157584767)] (S) Msg RX from 1:0000000074AD7D73 [8B73] to 0000000086EADBD5 --- Type 0000:10 (SecureChannel:StandaloneAck) (B:34)[0m
+[0;32mI (132510) chip[EM]: <<< [E:23564r S:50743 M:157584768 (Ack:233098141)] (S) Msg TX from 0000000086EADBD5 to 1:0000000074AD7D73 [8B73] [UDP:[FD07:D539:E997:1:14B7:9C33:BF20:8736]:54635] --- Type 0001:05 (IM:ReportData) (B:94)[0m
+[0;32mI (132530) chip[EM]: ??1 [E:23564r S:50743 M:157584768] (S) Msg Retransmission to 1:0000000074AD7D73 scheduled for 2399ms from now [State:Active II:500 AI:300 AT:4000][0m
+[0;32mI (132620) chip[EM]: >>> [E:23564r S:50743 M:233098143 (Ack:157584768)] (S) Msg RX from 1:0000000074AD7D73 [8B73] to 0000000086EADBD5 --- Type 0000:10 (SecureChannel:StandaloneAck) (B:34)[0m
+[0;32mI (132980) chip[EM]: >>> [E:23565r S:50743 M:233098144] (S) Msg RX from 1:0000000074AD7D73 [8B73] to 0000000086EADBD5 --- Type 0001:02 (IM:ReadRequest) (B:51)[0m
+[0;32mI (132990) chip[EM]: <<< [E:23565r S:50743 M:157584769 (Ack:233098144)] (S) Msg TX from 0000000086EADBD5 to 1:0000000074AD7D73 [8B73] [UDP:[FD07:D539:E997:1:14B7:9C33:BF20:8736]:54635] --- Type 0001:05 (IM:ReportData) (B:94)[0m
+[0;32mI (133010) chip[EM]: ??1 [E:23565r S:50743 M:157584769] (S) Msg Retransmission to 1:0000000074AD7D73 scheduled for 2408ms from now [State:Active II:500 AI:300 AT:4000][0m
+[0;32mI (133070) chip[EM]: >>> [E:23565r S:50743 M:233098145 (Ack:157584769)] (S) Msg RX from 1:0000000074AD7D73 [8B73] to 0000000086EADBD5 --- Type 0000:10 (SecureChannel:StandaloneAck) (B:34)[0m
+[0;32mI (141590) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (141590) IP_DIAG:   fd73:986f:53ce:0:19e6:378e:6950:19f7[0m
+[0;32mI (141590) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:1c07[0m
+[0;32mI (141590) IP_DIAG:   fd16:4ae:d5c4:0:c7ff:6f03:67a:e644[0m
+[0;32mI (141600) IP_DIAG:   fe80:0:0:0:8c13:519c:4da:8b07[0m
+[0;32mI (151600) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (151600) IP_DIAG:   fd73:986f:53ce:0:19e6:378e:6950:19f7[0m
+[0;32mI (151600) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:1c07[0m
+[0;32mI (151600) IP_DIAG:   fd16:4ae:d5c4:0:c7ff:6f03:67a:e644[0m
+[0;32mI (151610) IP_DIAG:   fe80:0:0:0:8c13:519c:4da:8b07[0m
+[0;32mI (161610) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (161610) IP_DIAG:   fd73:986f:53ce:0:19e6:378e:6950:19f7[0m
+[0;32mI (161610) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:1c07[0m
+[0;32mI (161610) IP_DIAG:   fd16:4ae:d5c4:0:c7ff:6f03:67a:e644[0m
+[0;32mI (161620) IP_DIAG:   fe80:0:0:0:8c13:519c:4da:8b07[0m
+[0;32mI (171620) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (171620) IP_DIAG:   fd73:986f:53ce:0:19e6:378e:6950:19f7[0m
+[0;32mI (171620) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:1c07[0m
+[0;32mI (171620) IP_DIAG:   fd16:4ae:d5c4:0:c7ff:6f03:67a:e644[0m
+[0;32mI (171630) IP_DIAG:   fe80:0:0:0:8c13:519c:4da:8b07[0m
+[0;32mI (181630) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (181630) IP_DIAG:   fd73:986f:53ce:0:19e6:378e:6950:19f7[0m
+[0;32mI (181630) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:1c07[0m
+[0;32mI (181630) IP_DIAG:   fd16:4ae:d5c4:0:c7ff:6f03:67a:e644[0m
+[0;32mI (181640) IP_DIAG:   fe80:0:0:0:8c13:519c:4da:8b07[0m
+[0;32mI (191640) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (191640) IP_DIAG:   fd73:986f:53ce:0:19e6:378e:6950:19f7[0m
+[0;32mI (191640) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:1c07[0m
+[0;32mI (191640) IP_DIAG:   fd16:4ae:d5c4:0:c7ff:6f03:67a:e644[0m
+[0;32mI (191650) IP_DIAG:   fe80:0:0:0:8c13:519c:4da:8b07[0m
+[0;32mI (201650) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (201650) IP_DIAG:   fd73:986f:53ce:0:19e6:378e:6950:19f7[0m
+[0;32mI (201650) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:1c07[0m
+[0;32mI (201650) IP_DIAG:   fd16:4ae:d5c4:0:c7ff:6f03:67a:e644[0m
+[0;32mI (201660) IP_DIAG:   fe80:0:0:0:8c13:519c:4da:8b07[0m
+[0;32mI (211660) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (211660) IP_DIAG:   fd73:986f:53ce:0:19e6:378e:6950:19f7[0m
+[0;32mI (211660) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:1c07[0m
+[0;32mI (211660) IP_DIAG:   fd16:4ae:d5c4:0:c7ff:6f03:67a:e644[0m
+[0;32mI (211670) IP_DIAG:   fe80:0:0:0:8c13:519c:4da:8b07[0m
+[0;32mI (221670) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (221670) IP_DIAG:   fd73:986f:53ce:0:19e6:378e:6950:19f7[0m
+[0;32mI (221670) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:1c07[0m
+[0;32mI (221670) IP_DIAG:   fd16:4ae:d5c4:0:c7ff:6f03:67a:e644[0m
+[0;32mI (221680) IP_DIAG:   fe80:0:0:0:8c13:519c:4da:8b07[0m
+[0;32mI (231680) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (231680) IP_DIAG:   fd73:986f:53ce:0:19e6:378e:6950:19f7[0m
+[0;32mI (231680) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:1c07[0m
+[0;32mI (231680) IP_DIAG:   fd16:4ae:d5c4:0:c7ff:6f03:67a:e644[0m
+[0;32mI (231690) IP_DIAG:   fe80:0:0:0:8c13:519c:4da:8b07[0m
+[0;32mI (241690) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (241690) IP_DIAG:   fd73:986f:53ce:0:19e6:378e:6950:19f7[0m
+[0;32mI (241690) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:1c07[0m
+[0;32mI (241690) IP_DIAG:   fd16:4ae:d5c4:0:c7ff:6f03:67a:e644[0m
+[0;32mI (241700) IP_DIAG:   fe80:0:0:0:8c13:519c:4da:8b07[0m
+[0;32mI (251700) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (251700) IP_DIAG:   fd73:986f:53ce:0:19e6:378e:6950:19f7[0m
+[0;32mI (251700) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:1c07[0m
+[0;32mI (251700) IP_DIAG:   fd16:4ae:d5c4:0:c7ff:6f03:67a:e644[0m
+[0;32mI (251710) IP_DIAG:   fe80:0:0:0:8c13:519c:4da:8b07[0m
+[0;32mI (261710) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (261710) IP_DIAG:   fd73:986f:53ce:0:19e6:378e:6950:19f7[0m
+[0;32mI (261710) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:1c07[0m
+[0;32mI (261710) IP_DIAG:   fd16:4ae:d5c4:0:c7ff:6f03:67a:e644[0m
+[0;32mI (261720) IP_DIAG:   fe80:0:0:0:8c13:519c:4da:8b07[0m
+[0;32mI (271720) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (271720) IP_DIAG:   fd73:986f:53ce:0:19e6:378e:6950:19f7[0m
+[0;32mI (271720) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:1c07[0m
+[0;32mI (271720) IP_DIAG:   fd16:4ae:d5c4:0:c7ff:6f03:67a:e644[0m
+[0;32mI (271730) IP_DIAG:   fe80:0:0:0:8c13:519c:4da:8b07[0m
+[0;32mI (281730) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (281730) IP_DIAG:   fd73:986f:53ce:0:19e6:378e:6950:19f7[0m
+[0;32mI (281730) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:1c07[0m
+[0;32mI (281730) IP_DIAG:   fd16:4ae:d5c4:0:c7ff:6f03:67a:e644[0m
+[0;32mI (281740) IP_DIAG:   fe80:0:0:0:8c13:519c:4da:8b07[0m
+[0;32mI (291740) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (291740) IP_DIAG:   fd73:986f:53ce:0:19e6:378e:6950:19f7[0m
+[0;32mI (291740) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:1c07[0m
+[0;32mI (291740) IP_DIAG:   fd16:4ae:d5c4:0:c7ff:6f03:67a:e644[0m
+[0;32mI (291750) IP_DIAG:   fe80:0:0:0:8c13:519c:4da:8b07[0m
+[0;32mI (301750) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (301750) IP_DIAG:   fd73:986f:53ce:0:19e6:378e:6950:19f7[0m
+[0;32mI (301750) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:1c07[0m
+[0;32mI (301750) IP_DIAG:   fd16:4ae:d5c4:0:c7ff:6f03:67a:e644[0m
+[0;32mI (301760) IP_DIAG:   fe80:0:0:0:8c13:519c:4da:8b07[0m
+[0;32mI (311760) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (311760) IP_DIAG:   fd73:986f:53ce:0:19e6:378e:6950:19f7[0m
+[0;32mI (311760) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:1c07[0m
+[0;32mI (311760) IP_DIAG:   fd16:4ae:d5c4:0:c7ff:6f03:67a:e644[0m
+[0;32mI (311770) IP_DIAG:   fe80:0:0:0:8c13:519c:4da:8b07[0m
+[0;32mI (321770) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (321770) IP_DIAG:   fd73:986f:53ce:0:19e6:378e:6950:19f7[0m
+[0;32mI (321770) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:1c07[0m
+[0;32mI (321770) IP_DIAG:   fd16:4ae:d5c4:0:c7ff:6f03:67a:e644[0m
+[0;32mI (321780) IP_DIAG:   fe80:0:0:0:8c13:519c:4da:8b07[0m
+[0;32mI (331780) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (331780) IP_DIAG:   fd73:986f:53ce:0:19e6:378e:6950:19f7[0m
+[0;32mI (331780) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:1c07[0m
+[0;32mI (331780) IP_DIAG:   fd16:4ae:d5c4:0:c7ff:6f03:67a:e644[0m
+[0;32mI (331790) IP_DIAG:   fe80:0:0:0:8c13:519c:4da:8b07[0m
+[0;32mI (341790) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (341790) IP_DIAG:   fd73:986f:53ce:0:19e6:378e:6950:19f7[0m
+[0;32mI (341790) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:1c07[0m
+[0;32mI (341790) IP_DIAG:   fd16:4ae:d5c4:0:c7ff:6f03:67a:e644[0m
+[0;32mI (341800) IP_DIAG:   fe80:0:0:0:8c13:519c:4da:8b07[0m
+[0;32mI (351800) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (351800) IP_DIAG:   fd73:986f:53ce:0:19e6:378e:6950:19f7[0m
+[0;32mI (351800) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:1c07[0m
+[0;32mI (351800) IP_DIAG:   fd16:4ae:d5c4:0:c7ff:6f03:67a:e644[0m
+[0;32mI (351810) IP_DIAG:   fe80:0:0:0:8c13:519c:4da:8b07[0m
+[0;32mI (361810) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (361810) IP_DIAG:   fd73:986f:53ce:0:19e6:378e:6950:19f7[0m
+[0;32mI (361810) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:1c07[0m
+[0;32mI (361810) IP_DIAG:   fd16:4ae:d5c4:0:c7ff:6f03:67a:e644[0m
+[0;32mI (361820) IP_DIAG:   fe80:0:0:0:8c13:519c:4da:8b07[0m
+[0;32mI (371820) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (371820) IP_DIAG:   fd73:986f:53ce:0:19e6:378e:6950:19f7[0m
+[0;32mI (371820) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:1c07[0m
+[0;32mI (371820) IP_DIAG:   fd16:4ae:d5c4:0:c7ff:6f03:67a:e644[0m
+[0;32mI (371830) IP_DIAG:   fe80:0:0:0:8c13:519c:4da:8b07[0m
+[0;32mI (381830) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (381830) IP_DIAG:   fd73:986f:53ce:0:19e6:378e:6950:19f7[0m
+[0;32mI (381830) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:1c07[0m
+[0;32mI (381830) IP_DIAG:   fd16:4ae:d5c4:0:c7ff:6f03:67a:e644[0m
+[0;32mI (381840) IP_DIAG:   fe80:0:0:0:8c13:519c:4da:8b07[0m
+[0;32mI (391840) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (391840) IP_DIAG:   fd73:986f:53ce:0:19e6:378e:6950:19f7[0m
+[0;32mI (391840) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:1c07[0m
+[0;32mI (391840) IP_DIAG:   fd16:4ae:d5c4:0:c7ff:6f03:67a:e644[0m
+[0;32mI (391850) IP_DIAG:   fe80:0:0:0:8c13:519c:4da:8b07[0m
+[0;32mI (401850) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (401850) IP_DIAG:   fd73:986f:53ce:0:19e6:378e:6950:19f7[0m
+[0;32mI (401850) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:1c07[0m
+[0;32mI (401850) IP_DIAG:   fd16:4ae:d5c4:0:c7ff:6f03:67a:e644[0m
+[0;32mI (401860) IP_DIAG:   fe80:0:0:0:8c13:519c:4da:8b07[0m
+[0;32mI (411860) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (411860) IP_DIAG:   fd73:986f:53ce:0:19e6:378e:6950:19f7[0m
+[0;32mI (411860) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:1c07[0m
+[0;32mI (411860) IP_DIAG:   fd16:4ae:d5c4:0:c7ff:6f03:67a:e644[0m
+[0;32mI (411870) IP_DIAG:   fe80:0:0:0:8c13:519c:4da:8b07[0m
+[0;32mI (421870) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (421870) IP_DIAG:   fd73:986f:53ce:0:19e6:378e:6950:19f7[0m
+[0;32mI (421870) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:1c07[0m
+[0;32mI (421870) IP_DIAG:   fd16:4ae:d5c4:0:c7ff:6f03:67a:e644[0m
+[0;32mI (421880) IP_DIAG:   fe80:0:0:0:8c13:519c:4da:8b07[0m
+[0;32mI (431880) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (431880) IP_DIAG:   fd73:986f:53ce:0:19e6:378e:6950:19f7[0m
+[0;32mI (431880) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:1c07[0m
+[0;32mI (431880) IP_DIAG:   fd16:4ae:d5c4:0:c7ff:6f03:67a:e644[0m
+[0;32mI (431890) IP_DIAG:   fe80:0:0:0:8c13:519c:4da:8b07[0m
+[0;32mI (441890) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (441890) IP_DIAG:   fd73:986f:53ce:0:19e6:378e:6950:19f7[0m
+[0;32mI (441890) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:1c07[0m
+[0;32mI (441890) IP_DIAG:   fd16:4ae:d5c4:0:c7ff:6f03:67a:e644[0m
+[0;32mI (441900) IP_DIAG:   fe80:0:0:0:8c13:519c:4da:8b07[0m
+[0;32mI (451900) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (451900) IP_DIAG:   fd73:986f:53ce:0:19e6:378e:6950:19f7[0m
+[0;32mI (451900) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:1c07[0m
+[0;32mI (451900) IP_DIAG:   fd16:4ae:d5c4:0:c7ff:6f03:67a:e644[0m
+[0;32mI (451910) IP_DIAG:   fe80:0:0:0:8c13:519c:4da:8b07[0m
+[0;32mI (461910) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (461910) IP_DIAG:   fd73:986f:53ce:0:19e6:378e:6950:19f7[0m
+[0;32mI (461910) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:1c07[0m
+[0;32mI (461910) IP_DIAG:   fd16:4ae:d5c4:0:c7ff:6f03:67a:e644[0m
+[0;32mI (461920) IP_DIAG:   fe80:0:0:0:8c13:519c:4da:8b07[0m
+[0;32mI (471920) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (471920) IP_DIAG:   fd73:986f:53ce:0:19e6:378e:6950:19f7[0m
+[0;32mI (471920) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:1c07[0m
+[0;32mI (471920) IP_DIAG:   fd16:4ae:d5c4:0:c7ff:6f03:67a:e644[0m
+[0;32mI (471930) IP_DIAG:   fe80:0:0:0:8c13:519c:4da:8b07[0m
+[0;32mI (481930) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (481930) IP_DIAG:   fd73:986f:53ce:0:19e6:378e:6950:19f7[0m
+[0;32mI (481930) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:1c07[0m
+[0;32mI (481930) IP_DIAG:   fd16:4ae:d5c4:0:c7ff:6f03:67a:e644[0m
+[0;32mI (481940) IP_DIAG:   fe80:0:0:0:8c13:519c:4da:8b07[0m
+[0;32mI (491940) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (491940) IP_DIAG:   fd73:986f:53ce:0:19e6:378e:6950:19f7[0m
+[0;32mI (491940) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:1c07[0m
+[0;32mI (491940) IP_DIAG:   fd16:4ae:d5c4:0:c7ff:6f03:67a:e644[0m
+[0;32mI (491950) IP_DIAG:   fe80:0:0:0:8c13:519c:4da:8b07[0m
+[0;32mI (501950) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (501950) IP_DIAG:   fd73:986f:53ce:0:19e6:378e:6950:19f7[0m
+[0;32mI (501950) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:1c07[0m
+[0;32mI (501950) IP_DIAG:   fd16:4ae:d5c4:0:c7ff:6f03:67a:e644[0m
+[0;32mI (501960) IP_DIAG:   fe80:0:0:0:8c13:519c:4da:8b07[0m
+[0;32mI (511960) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (511960) IP_DIAG:   fd73:986f:53ce:0:19e6:378e:6950:19f7[0m
+[0;32mI (511960) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:1c07[0m
+[0;32mI (511960) IP_DIAG:   fd16:4ae:d5c4:0:c7ff:6f03:67a:e644[0m
+[0;32mI (511970) IP_DIAG:   fe80:0:0:0:8c13:519c:4da:8b07[0m
+[0;32mI (521970) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (521970) IP_DIAG:   fd73:986f:53ce:0:19e6:378e:6950:19f7[0m
+[0;32mI (521970) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:1c07[0m
+[0;32mI (521970) IP_DIAG:   fd16:4ae:d5c4:0:c7ff:6f03:67a:e644[0m
+[0;32mI (521980) IP_DIAG:   fe80:0:0:0:8c13:519c:4da:8b07[0m
+[0;32mI (531980) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (531980) IP_DIAG:   fd73:986f:53ce:0:19e6:378e:6950:19f7[0m
+[0;32mI (531980) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:1c07[0m
+[0;32mI (531980) IP_DIAG:   fd16:4ae:d5c4:0:c7ff:6f03:67a:e644[0m
+[0;32mI (531990) IP_DIAG:   fe80:0:0:0:8c13:519c:4da:8b07[0m
+[0;32mI (541990) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (541990) IP_DIAG:   fd73:986f:53ce:0:19e6:378e:6950:19f7[0m
+[0;32mI (541990) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:1c07[0m
+[0;32mI (541990) IP_DIAG:   fd16:4ae:d5c4:0:c7ff:6f03:67a:e644[0m
+[0;32mI (542000) IP_DIAG:   fe80:0:0:0:8c13:519c:4da:8b07[0m
+[0;32mI (552000) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (552000) IP_DIAG:   fd73:986f:53ce:0:19e6:378e:6950:19f7[0m
+[0;32mI (552000) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:1c07[0m
+[0;32mI (552000) IP_DIAG:   fd16:4ae:d5c4:0:c7ff:6f03:67a:e644[0m
+[0;32mI (552010) IP_DIAG:   fe80:0:0:0:8c13:519c:4da:8b07[0m
+[0;32mI(559010) OPENTHREAD:[N] Mle-----------: Attach attempt 0, BetterParent [0m
+[0;32mI (562010) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (562010) IP_DIAG:   fd73:986f:53ce:0:19e6:378e:6950:19f7[0m
+[0;32mI (562010) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:1c07[0m
+[0;32mI (562010) IP_DIAG:   fd16:4ae:d5c4:0:c7ff:6f03:67a:e644[0m
+[0;32mI (562020) IP_DIAG:   fe80:0:0:0:8c13:519c:4da:8b07[0m
+[0;32mI (572020) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (572020) IP_DIAG:   fd73:986f:53ce:0:19e6:378e:6950:19f7[0m
+[0;32mI (572020) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:1c07[0m
+[0;32mI (572020) IP_DIAG:   fd16:4ae:d5c4:0:c7ff:6f03:67a:e644[0m
+[0;32mI (572030) IP_DIAG:   fe80:0:0:0:8c13:519c:4da:8b07[0m
+[0;32mI (582030) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (582030) IP_DIAG:   fd73:986f:53ce:0:19e6:378e:6950:19f7[0m
+[0;32mI (582030) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:1c07[0m
+[0;32mI (582030) IP_DIAG:   fd16:4ae:d5c4:0:c7ff:6f03:67a:e644[0m
+[0;32mI (582040) IP_DIAG:   fe80:0:0:0:8c13:519c:4da:8b07[0m
+[0;32mI (592040) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (592040) IP_DIAG:   fd73:986f:53ce:0:19e6:378e:6950:19f7[0m
+[0;32mI (592040) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:1c07[0m
+[0;32mI (592040) IP_DIAG:   fd16:4ae:d5c4:0:c7ff:6f03:67a:e644[0m
+[0;32mI (592050) IP_DIAG:   fe80:0:0:0:8c13:519c:4da:8b07[0m
+[0;32mI (602050) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (602050) IP_DIAG:   fd73:986f:53ce:0:19e6:378e:6950:19f7[0m
+[0;32mI (602050) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:1c07[0m
+[0;32mI (602050) IP_DIAG:   fd16:4ae:d5c4:0:c7ff:6f03:67a:e644[0m
+[0;32mI (602060) IP_DIAG:   fe80:0:0:0:8c13:519c:4da:8b07[0m
+[0;32mI (611410) chip[EM]: <<< [E:61378i S:50741 M:25845106] (S) Msg TX from 0000000086EADBD5 to 1:00000000559F0421 [8B73] [UDP:[FD73:986F:53CE:0:E8F4:C998:519F:D1A5]:64422] --- Type 0001:05 (IM:ReportData) (B:41)[0m
+[0;32mI (611420) chip[EM]: ??1 [E:61378i S:50741 M:25845106] (S) Msg Retransmission to 1:00000000559F0421 scheduled for 2628ms from now [State:Idle II:500 AI:300 AT:4000][0m
+[0;32mI (611480) chip[EM]: >>> [E:61378i S:50741 M:235252143 (Ack:25845106)] (S) Msg RX from 1:00000000559F0421 [8B73] to 0000000086EADBD5 --- Type 0001:01 (IM:StatusResponse) (B:42)[0m
+[0;32mI (611490) chip[IM]: Received status response, status is 0x00[0m
+[0;32mI (611500) chip[EM]: <<< [E:61378i S:50741 M:25845107 (Ack:235252143)] (S) Msg TX from 0000000086EADBD5 to 1:00000000559F0421 [8B73] [UDP:[FD73:986F:53CE:0:E8F4:C998:519F:D1A5]:64422] --- Type 0000:10 (SecureChannel:StandaloneAck) (B:34)[0m
+[0;32mI (612060) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (612060) IP_DIAG:   fd73:986f:53ce:0:19e6:378e:6950:19f7[0m
+[0;32mI (612060) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:1c07[0m
+[0;32mI (612060) IP_DIAG:   fd16:4ae:d5c4:0:c7ff:6f03:67a:e644[0m
+[0;32mI (612070) IP_DIAG:   fe80:0:0:0:8c13:519c:4da:8b07[0m
+[0;32mI (621720) chip[EM]: >>> [E:20631r S:50741 M:235252144] (S) Msg RX from 1:00000000559F0421 [8B73] to 0000000086EADBD5 --- Type 0001:0A (IM:TimedRequest) (B:39)[0m
+[0;32mI (621730) chip[EM]: <<< [E:20631r S:50741 M:25845108 (Ack:235252144)] (S) Msg TX from 0000000086EADBD5 to 1:00000000559F0421 [8B73] [UDP:[FD73:986F:53CE:0:E8F4:C998:519F:D1A5]:64422] --- Type 0001:01 (IM:StatusResponse) (B:42)[0m
+[0;32mI (621750) chip[EM]: ??1 [E:20631r S:50741 M:25845108] (S) Msg Retransmission to 1:00000000559F0421 scheduled for 2346ms from now [State:Active II:500 AI:300 AT:4000][0m
+[0;32mI (621800) chip[EM]: >>> [E:20631r S:50741 M:235252145 (Ack:25845108)] (S) Msg RX from 1:00000000559F0421 [8B73] to 0000000086EADBD5 --- Type 0001:08 (IM:InvokeCommandRequest) (B:63)[0m
+[0;32mI (621810) chip[ZCL]: Received RevokeCommissioning command[0m
+[0;31mE (621810) chip[ZCL]: Commissioning window is currently not open[0m
+[0;31mE (621820) chip[DMG]: Endpoint=0 Cluster=0x0000_003C Command=0x0000_0002 status 0x01 ClusterSpecificCode=4 (no additional context)[0m
+[0;32mI (621830) chip[EM]: <<< [E:20631r S:50741 M:25845109 (Ack:235252145)] (S) Msg TX from 0000000086EADBD5 to 1:00000000559F0421 [8B73] [UDP:[FD73:986F:53CE:0:E8F4:C998:519F:D1A5]:64422] --- Type 0001:09 (IM:InvokeCommandResponse) (B:70)[0m
+[0;32mI (621850) chip[EM]: ??1 [E:20631r S:50741 M:25845109] (S) Msg Retransmission to 1:00000000559F0421 scheduled for 2330ms from now [State:Active II:500 AI:300 AT:4000][0m
+[0;32mI (621900) chip[EM]: >>> [E:20631r S:50741 M:235252146 (Ack:25845109)] (S) Msg RX from 1:00000000559F0421 [8B73] to 0000000086EADBD5 --- Type 0000:10 (SecureChannel:StandaloneAck) (B:34)[0m
+[0;32mI (621920) chip[EM]: >>> [E:20632r S:50741 M:235252147] (S) Msg RX from 1:00000000559F0421 [8B73] to 0000000086EADBD5 --- Type 0001:0A (IM:TimedRequest) (B:39)[0m
+[0;32mI (621920) chip[EM]: <<< [E:20632r S:50741 M:25845110 (Ack:235252147)] (S) Msg TX from 0000000086EADBD5 to 1:00000000559F0421 [8B73] [UDP:[FD73:986F:53CE:0:E8F4:C998:519F:D1A5]:64422] --- Type 0001:01 (IM:StatusResponse) (B:42)[0m
+[0;32mI (621940) chip[EM]: ??1 [E:20632r S:50741 M:25845110] (S) Msg Retransmission to 1:00000000559F0421 scheduled for 2409ms from now [State:Active II:500 AI:300 AT:4000][0m
+[0;32mI (622030) chip[EM]: >>> [E:20632r S:50741 M:235252148 (Ack:25845110)] (S) Msg RX from 1:00000000559F0421 [8B73] to 0000000086EADBD5 --- Type 0001:08 (IM:InvokeCommandRequest) (B:210)[0m
+[0;32mI (622030) chip[ZCL]: Received command to open commissioning window[0m
+[0;32mI (622040) chip[DIS]: Updating services using commissioning mode 2[0m
+[0;32mI (622050) chip[DIS]: Advertise operational node 3B2C559852478B73-0000000086EADBD5[0m
+[0;32mI (622060) chip[DIS]: Advertise operational node 1B9ADABA3627A66D-000000003182FAE6[0m
+[0;32mI (622060) chip[DIS]: Advertise commission parameter vendorID=65521 productID=32768 discriminator=2738/10 cm=2 cp=0 jf=0[0m
+[0;32mI (622070) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (622080) IP_DIAG:   fd73:986f:53ce:0:19e6:378e:6950:19f7[0m
+[0;32mI (622090) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:1c07[0m
+[0;32mI (622090) IP_DIAG:   fd16:4ae:d5c4:0:c7ff:6f03:67a:e644[0m
+[0;32mI (622100) IP_DIAG:   fe80:0:0:0:8c13:519c:4da:8b07[0m
+[0;32mI (622090) chip[DL]: advertising srp service: DFAD486A02DBC6E6._matterc._udp[0m
+[0;32mI (622110) chip[DL]: removing invalid srp service: 6ABBA4FC5DA4A08A._matterc._udp[0m
+[0;32mI (622120) chip[ZCL]: Commissioning window is now open[0m
+[0;32mI (622130) chip[EM]: <<< [E:20632r S:50741 M:25845111 (Ack:235252148)] (S) Msg TX from 0000000086EADBD5 to 1:00000000559F0421 [8B73] [UDP:[FD73:986F:53CE:0:E8F4:C998:519F:D1A5]:64422] --- Type 0001:09 (IM:InvokeCommandResponse) (B:67)[0m
+[0;32mI (622150) chip[EM]: ??1 [E:20632r S:50741 M:25845111] (S) Msg Retransmission to 1:00000000559F0421 scheduled for 2336ms from now [State:Active II:500 AI:300 AT:4000][0m
+[0;32mI (622160) app_main: Commissioning window opened[0m
+[0;32mI (622170) chip[EM]: <<< [E:61379i S:50741 M:25845112] (S) Msg TX from 0000000086EADBD5 to 1:00000000559F0421 [8B73] [UDP:[FD73:986F:53CE:0:E8F4:C998:519F:D1A5]:64422] --- Type 0001:05 (IM:ReportData) (B:123)[0m
+[0;32mI (622190) chip[EM]: ??1 [E:61379i S:50741 M:25845112] (S) Msg Retransmission to 1:00000000559F0421 scheduled for 2376ms from now [State:Active II:500 AI:300 AT:4000][0m
+[0;32mI (622210) chip[EM]: >>> [E:20632r S:50741 M:235252149 (Ack:25845111)] (S) Msg RX from 1:00000000559F0421 [8B73] to 0000000086EADBD5 --- Type 0000:10 (SecureChannel:StandaloneAck) (B:34)[0m
+[0;32mI (622250) chip[EM]: >>> [E:61379i S:50741 M:235252150 (Ack:25845112)] (S) Msg RX from 1:00000000559F0421 [8B73] to 0000000086EADBD5 --- Type 0001:01 (IM:StatusResponse) (B:42)[0m
+[0;32mI (622260) chip[IM]: Received status response, status is 0x00[0m
+[0;32mI (622270) chip[EM]: <<< [E:61379i S:50741 M:25845113 (Ack:235252150)] (S) Msg TX from 0000000086EADBD5 to 1:00000000559F0421 [8B73] [UDP:[FD73:986F:53CE:0:E8F4:C998:519F:D1A5]:64422] --- Type 0000:10 (SecureChannel:StandaloneAck) (B:34)[0m
+[0;32mI (632100) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (632100) IP_DIAG:   fd73:986f:53ce:0:19e6:378e:6950:19f7[0m
+[0;32mI (632100) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:1c07[0m
+[0;32mI (632100) IP_DIAG:   fd16:4ae:d5c4:0:c7ff:6f03:67a:e644[0m
+[0;32mI (632110) IP_DIAG:   fe80:0:0:0:8c13:519c:4da:8b07[0m
+[0;32mI (642110) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (642110) IP_DIAG:   fd73:986f:53ce:0:19e6:378e:6950:19f7[0m
+[0;32mI (642110) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:1c07[0m
+[0;32mI (642110) IP_DIAG:   fd16:4ae:d5c4:0:c7ff:6f03:67a:e644[0m
+[0;32mI (642120) IP_DIAG:   fe80:0:0:0:8c13:519c:4da:8b07[0m
+[0;32mI (652120) IP_DIAG: OpenThread Unicast Addresses:[0m
+[0;32mI (652120) IP_DIAG:   fd73:986f:53ce:0:19e6:378e:6950:19f7[0m
+[0;32mI (652120) IP_DIAG:   fd16:4ae:d5c4:0:0:ff:fe00:1c07[0m
+[0;32mI (652120) IP_DIAG:   fd16:4ae:d5c4:0:c7ff:6f03:67a:e644[0m
+[0;32mI (652130) IP_DIAG:   fe80:0:0:0:8c13:519c:4da:8b07[0m
