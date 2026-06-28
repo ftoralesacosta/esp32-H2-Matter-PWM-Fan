@@ -140,3 +140,96 @@ To allow the fan to run without blinding the ESP32's radio, you need to filter o
 ## 5. Git & Workspace Rules
 * **Agent Configurations**: The `.agents/` folder (containing pairing rules, prompts, and this findings file) is **tracked in Git** and must be pushed to GitHub to sync rules and findings across the user's multiple flashing/development Macs.
 * **Auto-Push Policy**: All code, configuration, and documentation changes must be **automatically staged, committed, and pushed** to GitHub immediately to ensure they are available for the user on their flashing machine.
+
+---
+
+## 6. Custom C++ vs. ESPHome Matter-over-Thread Comparison
+
+Should we choose to pivot to ESPHome, here is the technical comparison of the two approaches:
+
+### Custom C++ Setup (Current)
+* **Pros:**
+  * **Surgical Network Tuning:** Direct access to `sdkconfig.defaults.esp32c6` allows us to enable subscription persistence (`CONFIG_ENABLE_PERSIST_SUBSCRIPTIONS=y`) and reduce MRP retry intervals (to `2000ms`) to combat connection drops.
+  * **Network Protection (Debouncing):** Custom C++ allows us to intercept the Matter database and implement a 300ms software debounce timer on the slider, preventing "packet storms" that saturate the low-bandwidth Thread network.
+  * **Efficiency:** Minimal footprint, direct hardware access, and precise control over cluster attribute synchronization.
+* **Cons:**
+  * **High Complexity:** Requires writing and maintaining dense C++ code, endpoint configurations, and callback handlers.
+  * **Configuration Cache Issues:** The ESP-IDF build system easily caches `sdkconfig` on the host machine, requiring target resets (`idf.py set-target`) to apply changes.
+
+### ESPHome Setup
+* **Pros:**
+  * **YAML Simplicity:** Zero C++ boilerplate. The entire device configuration is defined in a single, human-readable YAML file.
+  * **Fast Iteration:** Adding new sensors, buttons, or status LEDs takes seconds instead of writing new C++ classes.
+  * **Automated Matter Mapping:** ESPHome automatically handles the creation of Matter clusters, endpoints, and commissioning credentials.
+* **Cons:**
+  * **No Low-Level Tuning:** You cannot easily modify the underlying OpenThread/Matter settings (like persistent subscriptions or MRP retry timers) via YAML.
+  * **No Native Debouncing:** Sliding the speed bar in the Home App will send immediate, rapid back-to-back writes, risking Thread network saturation and device drops.
+  * **Experimental Status:** The ESPHome `matter` component is still in active development and may introduce wrapper-level bugs.
+
+---
+
+## 7. ESPHome Matter-over-Thread Transition Plan
+
+If we decide to pivot, here is the step-by-step plan to transition the Seeed Studio XIAO ESP32-C6 to ESPHome:
+
+### Step 1: Create the ESPHome Configuration File
+Create a file named `esp32c6-fan.yaml` in the root of the workspace:
+
+```yaml
+esphome:
+  name: matter-fan-controller
+  friendly_name: Matter Fan Controller
+
+esp32:
+  board: esp32-c6-devkitc-1
+  framework:
+    type: esp-idf
+
+# Enable OpenThread
+openthread:
+  device_type: MTD # Keep as Minimal Thread Device for stability
+
+# Enable Matter
+matter:
+
+# Configure the PWM output on GPIO21 (Physical Pin D3) at 25kHz
+output:
+  - platform: ledc
+    pin: GPIO21
+    frequency: 25000 Hz
+    id: fan_pwm
+
+# Expose the PWM output as a Fan component
+fan:
+  - platform: speed
+    output: fan_pwm
+    name: "Noctua Fan"
+    speed_count: 100
+
+# Configure the Physical Button on GPIO2 (Physical Pin D2)
+binary_sensor:
+  - platform: gpio
+    pin:
+      number: GPIO2
+      mode: INPUT_PULLDOWN
+    name: "Fan Toggle Button"
+    on_press:
+      - fan.toggle: "Noctua Fan"
+```
+
+### Step 2: Install and Run ESPHome
+On the flashing Mac:
+1. Install ESPHome via Python:
+   ```bash
+   pip install esphome
+   ```
+2. Compile and flash the board:
+   ```bash
+   esphome run esp32c6-fan.yaml
+   ```
+
+### Step 3: Commissioning to Apple Home
+1. Watch the terminal logs during the first boot. ESPHome will print a **Matter Commissioning QR Code URL** and a **11-digit passcode** (e.g., `20202021`).
+2. Open the Apple Home App, select **Add Accessory**, and enter the passcode or scan the generated QR code.
+3. The device will connect directly to your Apple TV/HomePod Thread network.
+
