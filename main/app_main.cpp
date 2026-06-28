@@ -19,9 +19,11 @@
 #include <app_priv.h>
 #include <app_reset.h>
 
-#if CHIP_DEVICE_CONFIG_ENABLE_THREAD
+#if CONFIG_OPENTHREAD_ENABLED
 #include <platform/ESP32/OpenthreadLauncher.h>
+#include <openthread/thread.h>
 #endif
+
 #if CONFIG_DYNAMIC_PASSCODE_COMMISSIONABLE_DATA_PROVIDER
 #include <custom_provider/dynamic_commissionable_data_provider.h>
 #endif
@@ -43,7 +45,7 @@ static void app_event_cb(const ChipDeviceEvent *event, intptr_t arg)
     switch (event->Type) {
     case chip::DeviceLayer::DeviceEventType::kInterfaceIpAddressChanged:
         ESP_LOGI(TAG, "Interface IP Address Changed");
-#if CHIP_DEVICE_CONFIG_ENABLE_THREAD
+#if CONFIG_OPENTHREAD_ENABLED
         {
             otInstance *instance = esp_openthread_get_instance();
             if (instance) {
