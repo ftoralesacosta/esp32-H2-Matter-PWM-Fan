@@ -11,3 +11,4 @@ ERROR: Could not find a version that satisfies the requirement aioesphomeapi==45
 ERROR: No matching distribution found for aioesphomeapi==45.5.2
 WARNING: You are using pip version 21.2.4; however, version 26.0.1 is available.
 You should consider upgrading via the '/Users/fernando/venv/bin/python3 -m pip install --upgrade pip' command.
+
