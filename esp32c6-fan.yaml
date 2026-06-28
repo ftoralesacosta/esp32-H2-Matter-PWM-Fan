@@ -8,9 +8,9 @@ esp32:
     type: esp-idf
 
 external_components:
-  - source:
-      type: git
-      url: ssh://git@github.com/tomschimansky/esphome-matter.git
+  - source: github://pr#4621
+    components: [ matter ]
+
 
 
 
