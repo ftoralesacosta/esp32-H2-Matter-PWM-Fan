@@ -7,6 +7,10 @@ esp32:
   framework:
     type: esp-idf
 
+external_components:
+  - source: github://tomschimansky/esphome-matter
+
+
 # Enable OpenThread
 openthread:
   device_type: MTD # Keep as Minimal Thread Device for stability
