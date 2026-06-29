@@ -107,7 +107,7 @@ static esp_err_t app_attribute_update_cb(callback_type_t type, uint16_t endpoint
     return ESP_OK;
 }
 
-
+#if CONFIG_OPENTHREAD_ENABLED
 static void init_rf_switch()
 {
     ESP_LOGI("RF_SWITCH", "Initializing RF Switch for Seeed Studio XIAO board...");
