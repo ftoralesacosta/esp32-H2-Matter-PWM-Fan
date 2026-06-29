@@ -119,28 +119,21 @@ Through a series of systematic, clean-room experiments, we have **100% isolated 
 2. **The Debounce Timer Success (Verified):**
    * The new software debounce timer implemented in `app_driver.cpp` was verified in the logs. When the user adjusts the speed slider (e.g., setting it to 57%), the driver successfully aggregates the rapid flurry of write requests and updates the hardware and database **exactly once** 300ms later. This completely eliminates the Matter "packet storm" and protects the Thread network from congestion during slider movements.
 
-### E. The Apple TV Eviction Bug & Sleepy End Device (SED) Fix
-* **The Failed Soak Test:** The ESP32-C6 was left as a bare board (unconnected to the 12V fan) overnight to verify baseline software/network stability. Despite being completely isolated from any motor noise, the device *still* transitioned to a permanent "No Response" state.
-* **The Cause (Apple TV Eviction):** The device was configured as a Minimal End Device (MED) by setting `CONFIG_OPENTHREAD_RX_ON_WHEN_IDLE=y`. A MED leaves its radio on constantly but DOES NOT periodically send MAC Data Polls (check-ins) to its parent. Apple TV Border Routers are extremely aggressive; if a child device sits on the network for hours but never actively sends a data poll, the Apple TV assumes the device is dead and forcefully kicks it out of the routing table (`Operational advertising failed: 3`).
-* **The Fix:** We converted the Fan Controller into a **Sleepy End Device (SED)** and forced it to aggressively check in with the Apple TV by modifying `sdkconfig.defaults.esp32c6`:
+### E. The Apple TV Eviction Bug (Debunked) & Thread Device Role Fix
+* **The Failed Soak Test:** Initially, we set `CONFIG_OPENTHREAD_RX_ON_WHEN_IDLE=y` to make the device a Minimal End Device (MED). When it dropped offline, we falsely hypothesized that the Apple TV evicted MEDs that didn't poll, so we switched it to a Sleepy End Device (SED) (`RX_ON_WHEN_IDLE=n`). 
+* **The Real Cause:** The SED configuration is self-defeating for a mains-powered fan controller. The 250ms polling serialization caused huge latency for multi-packet CASE session resumptions and large wildcard reads. Furthermore, the true root cause for *all* drops was discovered to be an unsynchronized debug task corrupting OpenThread memory (see Section G below), NOT Apple TV MED eviction.
+* **The Fix:** We reverted to a proper Minimal End Device (MED) which keeps the radio constantly on to instantly receive Apple Home commands without polling latency, while remaining immune to Leader partition bugs:
   ```ini
-  CONFIG_OPENTHREAD_RX_ON_WHEN_IDLE=n
-  CONFIG_OPENTHREAD_MAC_DATA_POLL_PERIOD=250
+  CONFIG_OPENTHREAD_FTD=n
+  CONFIG_OPENTHREAD_MTD=y
+  CONFIG_OPENTHREAD_RX_ON_WHEN_IDLE=y
   ```
-  This forces the ESP32-C6 to wake up and ping the Apple TV **every 250 milliseconds**. This constant keep-alive traffic guarantees the Apple TV will never drop the connection, while remaining fast enough that the HomeKit slider feels perfectly responsive.
 
-### G. The 5-Minute Session Resumption & mDNS Bug (June 28)
-* **The Symptom:** Five minutes after successfully passing the slider stress test, the device transitioned back to "No Response" in HomeKit.
-* **The Log Analysis:**
-  ```text
-  I (346905) chip[DIS]: Lookup started for 3B2C559852478B73-000000003BDEF7D9
-  I (391895) chip[DIS]: Checking node lookup status ... after 45000 ms
-  E (391895) chip[DIS]: OperationalSessionSetup... operational discovery failed: 32
-  E (391905) chip[DMG]: Failed to establish CASE for subscription-resumption with error '32'
-  ```
-  Exactly 5 minutes (300 seconds) after the last interaction, the active Matter session went idle and expired. When the ESP32 attempted to re-establish the session (subscription resumption), it had to perform an mDNS Operational Discovery lookup for the Apple TV's Node ID (`3BDEF7D9`). The lookup timed out (`Error 32`), failing the CASE session establishment.
-* **The Root Cause:** In `sdkconfig.defaults.esp32c6`, we had `CONFIG_USE_MINIMAL_MDNS=n`. This forces the Matter stack to use the platform's (ESP-IDF) native `mdns` component. However, the ESP-IDF `mdns` component relies on UDP multicast, which does NOT route over Thread networks (Thread uses SRP for discovery). Because it wasn't using the native Matter `MinimalMdns` client (which correctly queries the OpenThread SRP server), the ESP32 was literally unable to resolve the Apple TV's IP address after the session expired.
-* **The Fix:** Changed `CONFIG_USE_MINIMAL_MDNS=y` in `sdkconfig.defaults.esp32c6`. This instructs the Matter stack to use its own internal `MinimalMdns` implementation, which correctly interfaces with the OpenThread DNS client to resolve Operational Node IDs over the Thread mesh.
+### G. The "No Response" Data Race (The Ultimate Fix)
+* **The Symptom:** Despite perfect motor noise isolation (or even before motor noise was involved), the device would eventually go to "No Response" exactly after a few minutes, or fail to commission entirely with `Failed to advertise records: 46` or `OperationalSessionSetup... operational discovery failed: 32`.
+* **The Log Analysis:** The discovery timeouts and operational advertising failures were highly intermittent but reliably crashed the Thread SRP (Service Registration Protocol) subsystem on the ESP32.
+* **The Root Cause:** A debug task in `app_main.cpp` called `print_ip_addresses_task()` was running an infinite loop every 10 seconds. This task directly invoked `otIp6GetUnicastAddresses(instance)` **without acquiring the OpenThread stack lock**. OpenThread is strictly single-threaded and not reentrant. Accessing its internals from a concurrent FreeRTOS task caused a classic data race that consistently corrupted the OpenThread internal state. This memory corruption manifested as the SRP client crashing and failing to advertise or resolve Node IDs, breaking all Matter session resumptions and causing the permanent "No Response" states.
+* **The Fix:** Completely deleted `print_ip_addresses_task` from the codebase. Any OpenThread diagnostics must be performed via the `chip-shell` (which is properly synchronized) or strictly wrapped in `esp_openthread_lock_acquire()`.
 
 ### H. RF Switch / Antenna Path Disabled in Software (June 28)
 * **The Discovery:** Both the Seeed Studio XIAO ESP32-H2 and XIAO ESP32-C6 boards utilize an onboard RF Switch chip (`FM8625H`) to toggle between the ceramic antenna and the u.FL connector. By default, a generic ESP-IDF build does not configure this switch, leaving the antenna path floating/disabled.

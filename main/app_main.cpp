@@ -107,22 +107,6 @@ static esp_err_t app_attribute_update_cb(callback_type_t type, uint16_t endpoint
     return ESP_OK;
 }
 
-#if CONFIG_OPENTHREAD_ENABLED
-static void print_ip_addresses_task(void *pvParameters)
-{
-    while (1) {
-        vTaskDelay(pdMS_TO_TICKS(10000));
-        otInstance *instance = esp_openthread_get_instance();
-        if (instance) {
-            ESP_LOGI("IP_DIAG", "OpenThread Unicast Addresses:");
-            for (const otNetifAddress *addr = otIp6GetUnicastAddresses(instance); addr; addr = addr->mNext) {
-                char buf[40];
-                otIp6AddressToString(&addr->mAddress, buf, sizeof(buf));
-                ESP_LOGI("IP_DIAG", "  %s", buf);
-            }
-        }
-    }
-}
 
 static void init_rf_switch()
 {
@@ -208,8 +192,5 @@ extern "C" void app_main()
     /* Starting driver with default values */
     app_driver_fan_set_defaults(fan_endpoint_id);
 
-#if CONFIG_OPENTHREAD_ENABLED
-    xTaskCreate(print_ip_addresses_task, "print_ip_task", 4096, NULL, 5, NULL);
-#endif
 }
 
