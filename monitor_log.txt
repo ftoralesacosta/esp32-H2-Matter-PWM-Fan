@@ -24,4 +24,4 @@ FAILED: [code=1] esp-idf/main/CMakeFiles/__idf_main.dir/app_main.cpp.obj
   128 | #endif
       |  ^~~~~
 ninja: build stopped: subcommand failed.
-ninja failed with exit code 1, output of the command is in the /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/build/log/idf_py_stderr_output_87680 and /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/build/log/idf_py_stdout_output_87680
+ninja failed with exit code 1, output of the command is in the /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/build/log/idf_py_stderr_output_96142 and /Users/fernando/Projects/esp32-H2-Matter-PWM-Fan/build/log/idf_py_stdout_output_96142
