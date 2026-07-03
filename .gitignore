@@ -53,3 +53,11 @@ dkms.conf
 
 build/
 managed_components/
+
+# Generated per-build config. MUST NOT be committed: a stale committed
+# sdkconfig silently overrides sdkconfig.defaults.* and was the root cause
+# of the Thread config drift (FTD/OT-disabled builds despite correct defaults).
+sdkconfig
+sdkconfig.old
+.esphome/
+venv/

@@ -1,18 +1,80 @@
 # Seeed Studio XIAO ESP32-C6 Matter Fan Controller - Project Findings & Architecture
 
-This document contains critical architectural findings, hardware mappings, and troubleshooting workflows compiled during the development and stabilization of the Matter PWM Fan Controller. 
+This document contains architectural findings, hardware mappings, and troubleshooting
+workflows for the Matter PWM Fan Controller.
 
-Future AI agents starting a new Jetski session MUST read this document to understand the hardware-software boundaries of the project.
+Future AI agents starting a new session MUST read this document before touching config,
+because several earlier conclusions in this file were WRONG and have been corrected. Read
+the "Corrected Root Cause" section first.
+
+---
+
+## 0. Corrected Root Cause (supersedes earlier EMI / data-race conclusions)
+
+> [!IMPORTANT]
+> The Thread disconnects are a **software/configuration** problem, not motor EMI. Every
+> disconnect test was performed with the fan physically disconnected. The device drops
+> from Thread regardless of the fan. Do not reintroduce the "conducted EMI is the sole
+> cause" claim.
+
+### Primary cause: committed `sdkconfig` overriding the defaults
+`sdkconfig.defaults.*` only seeds a build when there is no existing `sdkconfig`. A stale
+`sdkconfig` was committed to the repo and silently overrode the defaults. As a result the
+firmware that actually shipped did NOT match `sdkconfig.defaults.esp32c6`:
+
+* The committed `sdkconfig` had `# CONFIG_OPENTHREAD_ENABLED is not set` and
+  `# CONFIG_OPENTHREAD_RX_ON_WHEN_IDLE is not set`.
+* `sdkconfig.old` shows a prior FTD build (`CONFIG_OPENTHREAD_FTD=y`, MTD not set).
+* Meanwhile `sdkconfig.defaults.esp32c6` claimed MTD + RX_ON_WHEN_IDLE.
+
+Three different device-role stories across three files. Editing the defaults did nothing
+because the committed `sdkconfig` won. This is why "switching to MTD" never took effect and
+the device kept behaving like an FTD that partitions itself as leader.
+
+**Fix applied:**
+* `sdkconfig` and `sdkconfig.old` are now git-ignored and must be removed from tracking
+  (`git rm --cached sdkconfig sdkconfig.old`). Never commit a generated `sdkconfig` again.
+* Device role is now set deliberately in `sdkconfig.defaults.esp32c6` (see Section 2).
+* Always build via `clean_build_and_flash.sh`, which does `rm -f sdkconfig` before
+  `idf.py set-target esp32c6` so the defaults are actually applied.
+
+### Secondary cause: over-aggressive MRP retry intervals
+The C6 defaults forced every MRP retry interval to 2000ms with MAX_RETRANS=3. Long retry
+intervals widen the recovery window after a dropped packet. The runtime log
+(`extra_monitor_log.txt`) shows the device healthy through ~4.8s uptime, then a ~9-minute
+silent gap, then `OPENTHREAD:[N] Mle: Attach attempt 0, BetterParent` — i.e. it lost its
+parent and re-attached, with no crash and no reboot (uptime kept climbing). That is a
+link/timing signature, not RF noise (which would show `NoAck` bursts and 6LoWPAN fragment
+failures) and not a reboot loop. The MRP overrides have been removed so the faster SDK
+defaults apply.
+
+### What was genuinely fixed earlier and should stay fixed
+* **Deleting `print_ip_addresses_task`** (Section G, old doc): correct and necessary. That
+  task called `otIp6GetUnicastAddresses()` without the OpenThread stack lock, a real data
+  race. Keep it deleted. It was NOT, however, "the ultimate fix" — drops continued after it,
+  so it was one bug among several.
+* **RF switch init** (`init_rf_switch()` in app_main.cpp): correctly drives GPIO3=LOW
+  (enable switch) and GPIO14=LOW (select ceramic antenna). Keep it.
+* **FeatureMap = 1 (MultiSpeed)**: correctly set so the Home app shows a speed slider.
+
+### Debunked claims removed from this document
+* "Conducted EMI from the fan motor is the sole cause" — FALSE (fan was disconnected).
+* "Debounce timer verified working" — the cited log line is not reproducible in the repo
+  logs, and the timer had a re-entrancy bug (see Section 3). Now fixed.
+* The tangled MED vs SED vs MTD narrative — MTD is a build-time device type; RX_ON_WHEN_IDLE
+  is a radio behavior. They are independent. See Section 2 for the correct combination.
 
 ---
 
 ## 1. Hardware Overview & Pin Mapping
 
-The project is currently built on the **Seeed Studio XIAO ESP32-C6** development board. 
-*(Note: Initial development and troubleshooting was also extensively conducted using the **ESP32-H2-DevKitM-1-N4S**. Both boards exhibited identical Thread "No Response" drops, which helped confirm the root cause was related to software configuration and motor EMI, rather than a silicon defect on a specific board).*
+Built on the **Seeed Studio XIAO ESP32-C6**. (Earlier work also used the
+**ESP32-H2-DevKitM-1-N4S**; both showed the same drops, which is consistent with the
+shared software/config root cause above, not a per-board silicon defect.)
 
 > [!WARNING]
-> **DO NOT confuse physical pin labels with the chip's internal GPIO numbers.** The Seeed Studio XIAO form factor uses a multiplexed pinout where board silkscreen numbers do NOT map 1-to-1 with ESP32-C6 GPIOs.
+> **DO NOT confuse physical pin labels with the chip's internal GPIO numbers.** The XIAO
+> form factor uses a multiplexed pinout where silkscreen numbers do NOT map 1-to-1 to GPIOs.
 
 ### Seeed Studio XIAO ESP32-C6 Pin Map
 
@@ -30,284 +92,102 @@ The project is currently built on the **Seeed Studio XIAO ESP32-C6** development
 | **D9** | SPI MISO | **GPIO20** | Unused |
 | **D10** | SPI MOSI | **GPIO18** | Unused |
 | **User LED** | Onboard LED | **GPIO15** | Status Indicator |
-| **RF Switch Power** | Antenna Power | **GPIO3** | Internal Antenna Power (Do not drive/use!) |
-| **RF Switch Port** | Antenna Select | **GPIO14** | Internal Antenna Switch |
+| **RF Switch Power** | Antenna Power | **GPIO3** | RF switch enable (drive LOW) |
+| **RF Switch Port** | Antenna Select | **GPIO14** | Antenna select (LOW = ceramic) |
+
+> [!NOTE]
+> The onboard status LED turning off after commissioning is NORMAL. Do not treat "LED went
+> dark" as evidence of a power/USB shutdown — in past testing the logs kept showing activity
+> with the LED off. LED state is not a reliable liveness signal.
 
 ### PWM Fan Wiring (Noctua Standard)
-* **Control Pin**: Connect the fan's PWM control wire (usually Blue) to the physical pin labeled **`3` (or `D3`)**, which corresponds to **`GPIO21`** in software.
-* **LEDC Driver Details**: Configured as low-speed LEDC, 10-bit duty cycle resolution (0 to 1023), running at **25 kHz** (the Noctua PWM frequency spec).
+* **Control Pin**: Fan PWM wire (blue) to physical pin **D3** = **GPIO21** in software.
+* **LEDC**: low-speed mode, 10-bit duty (0-1023), **25 kHz** (Noctua spec).
 
 ---
 
 ## 2. Core Matter & Thread Architecture
 
-### Thread Device Role (Minimal End Device - MTD)
-To ensure absolute network stability and prevent the device from dropping offline, the device is configured as a **Minimal End Device (MED)** rather than a Router-eligible FTD (Full Thread Device):
-* **Why?** An FTD device, when experiencing packet loss or missing ACKs from the Border Router, will detach and attempt to partition itself as a "Leader," isolating itself from the Apple Home/Matter fabric. An MTD (MED) device remains a child, resulting in a rock-solid, self-healing connection.
-* **Configuration**: Configured in [sdkconfig.defaults.esp32c6](file:///Users/ftorales/Projects/esp32-H2-WPM-Fan/sdkconfig.defaults.esp32c6) via:
-  ```ini
-  CONFIG_OPENTHREAD_FTD=n
-  CONFIG_OPENTHREAD_MTD=y
-  ```
+### Thread Device Role (current: FTD, radio always on)
+Configured in `sdkconfig.defaults.esp32c6`:
+```ini
+CONFIG_OPENTHREAD_ENABLED=y
+CONFIG_OPENTHREAD_FTD=y
+# CONFIG_OPENTHREAD_MTD is not set
+CONFIG_OPENTHREAD_RX_ON_WHEN_IDLE=y
+```
+* **FTD vs MTD:** FTD is the current choice (project preference) and is stable as long as a
+  healthy border router (Apple TV/HomePod) is present. The old "detaches -> leader ->
+  isolated partition" symptom was caused by the config drift in Section 0, not by FTD per se.
+* **Fallback:** If leader-partition drops ever recur, switch to a Minimal End Device:
+  `CONFIG_OPENTHREAD_FTD=n` / `CONFIG_OPENTHREAD_MTD=y`, keeping `RX_ON_WHEN_IDLE=y`. A
+  non-sleepy MED keeps the radio on (low latency) and cannot become leader.
+* **Do NOT** set `RX_ON_WHEN_IDLE=n` (sleepy) for this mains-powered controller; polling
+  latency hurts CASE resumption and large wildcard reads.
+
+### MRP timing
+The four `CONFIG_MRP_*` overrides (all 2000ms) have been removed. Use SDK defaults unless
+there is a measured reason to change them; if you do, re-add the lines deliberately and
+document why here.
 
 ---
 
-## 3. Critical Developer Workflows
+## 3. Application Driver Notes
 
-### Target Selection
-When building or compiling the project, you must explicitly set the active build target to `esp32c6`. 
-* **Why?** ESP-IDF only merges target-specific defaults (like `sdkconfig.defaults.esp32c6`) if the target is set explicitly. If not set, the compiler defaults to `esp32` and silently skips the C6 defaults, leading to compilation failures on C6-specific features.
-* **Command**:
-  ```bash
-  idf.py set-target esp32c6
-  ```
+### Debounce timer (fixed)
+`app_driver.cpp` debounces rapid `PercentSetting` writes (300ms) before applying LEDC duty
+and syncing `PercentCurrent`/`FanMode`.
 
-### Stabilizing HomeKit Connection Failures
-If the chip fails to connect, shows "Not Responding" in Apple Home, or prints `SRP update error: domain name or RRset is duplicated` or `unknown session` in the serial monitor:
-1. **The Cause**: The Border Router (Apple TV/HomePod) has stale, cached pairing fabrics or secure sessions from a previous flash, and rejects the new registration.
-2. **The Fix**: Clear the NVS flash on the chip to wipe old fabrics and force a clean pairing:
-   ```bash
-   idf.py erase-flash
-   idf.py flash monitor
-   ```
-3. Remove the accessory from the Apple Home app and add it fresh using:
-   * **Manual Setup Code**: `20202021`
-   * **Discriminator**: `3840`
+* **Bug that was fixed:** the debounce callback calls `attribute::update()`, which re-enters
+  the attribute-update callback path. That re-entry previously hit the same
+  `esp_timer_stop`/`esp_timer_start_once` logic and re-armed the timer from inside its own
+  callback, so it effectively never settled. A `driver_initiated_update` guard now short-
+  circuits driver-issued writes so only genuine user writes (re)arm the timer.
+* If you ever simplify: for a fan slider it is acceptable to drop the debounce entirely and
+  apply LEDC duty immediately. The "packet storm" it guards against is not a real problem on
+  a correctly configured non-sleepy device.
 
 ---
 
-## 4. Thread Disconnect & "No Response" Troubleshooting
+## 4. Critical Developer Workflows
 
-> [!IMPORTANT]
-> **This issue is identical across both the original ESP32-H2-DevKitM-1-N4S and the new Seeed Studio XIAO ESP32-C6.** Since the H2-DevKit does not have an RF switch (it uses a PCB trace antenna) but still exhibited the exact same "No Response" behavior shortly after pairing, this confirms there is a deeper **software/protocol layer issue** common to both builds.
+### Target selection & clean builds
+Always build through `clean_build_and_flash.sh`. It removes the stale `sdkconfig`, sets the
+target to `esp32c6` (so `sdkconfig.defaults.esp32c6` is merged), builds, erases flash, and
+flashes. Setting the target explicitly matters: without it ESP-IDF defaults to `esp32` and
+skips the C6 defaults.
 
-### H. Matter Data Model Schema Violations (June 28)
-* **The Discovery:** During boot, both the H2 and C6 logs print two critical data model errors:
-  1. `E (660) esp_matter_feature: Feature map attribute cannot be null`
-  2. `E (670) data_model: Attribute should be non-volatile to set a deferred persistence time`
-* **The Software Fix:**
-  - Initialize the Fan Control `feature_map` to `1` (enabling the `MultiSpeed` feature, which also enables the speed slider in the Home app).
-* **Debunked Software Hypothesis:** Previous assumptions regarding strict HomeKit validation failures due to missing `ATTRIBUTE_FLAG_NON_VOLATILE` on `PercentSetting` were FALSE. Attempting to dynamically add this flag via `attribute::add_flags()` is an invalid API operation that causes a C++ compiler error. The ESP-Matter SDK correctly initializes the attribute as nullable and writable internally. The "No Response" drops were not caused by this flag.
+### Verifying the flashed config actually matches intent
+After flashing, confirm in the boot log that OpenThread is enabled and the MLE role settles
+to `child`/`router` (FTD) rather than `disabled` or `leader`. Do not trust the defaults file
+alone — verify against the running device.
 
-### A. The Permanent "No Response" Software Bug (FTD vs MTD)
+### Stabilizing HomeKit connection failures
+If the chip shows "Not Responding", or logs `SRP update error: ... duplicated` or
+`unknown session`, the border router likely holds stale fabrics/sessions from a previous
+flash. Clear NVS and re-pair:
+```bash
+idf.py erase-flash
+idf.py flash monitor
+```
+Remove the accessory from Apple Home and re-add with Manual Setup Code `20202021`,
+Discriminator `3840`.
 
-* **The Symptom:** When a temporary radio drop occurs, the chip detaches and then transitions: `OPENTHREAD: Role detached -> leader`. It starts its own isolated network partition, permanently separating itself from the Apple TV Border Router. It will never recover until rebooted.
-* **The Cause:** The firmware is compiled as a **Full Thread Device (FTD)** (e.g., `CONFIG_OPENTHREAD_FTD=y` in the H2 defaults or overridden by Matter). FTDs are allowed to become leaders.
-* **The Fix:** Force the firmware to compile as a **Minimal Thread Device (MTD)**. MTDs are not allowed to become leaders; they will remain detached and continually scan, automatically reconnecting to the Apple TV as soon as the signal clears.
-  ```ini
-  CONFIG_OPENTHREAD_FTD=n
-  CONFIG_OPENTHREAD_MTD=y
-  ```
-
-* **Proximity Battery Test (COMPLETED):** 
-  * *Setup:* The ESP was powered by a portable battery pack (completely floating) and placed directly next to the Apple TV (Thread Border Router). 
-  * *Behavior:* The chip worked initially, but then stopped working after a few minutes, even when the user was NOT adjusting the slider.
-  * *Findings:* The onboard LED went dark, confirming the **USB Power Bank Auto-Shutdown** occurred.
-* **Proximity USB-PD Wall Brick Test (COMPLETED):**
-  * *Setup:* The ESP was powered by a USB-PD wall charger block (no auto-shutdown) directly next to the Apple TV, with the 12V wall-powered fan running.
-  * *Behavior:* The onboard LED turned off after a while (normal status behavior once commissioned), but the board remained **fully powered and running** (VBUS = 5V, Pin 3 = 1.7V average, fan spinning at 50% speed). However, HomeKit still went to **"No Response"** shortly after pairing.
-
-### C. Root Cause Confirmed: Conducted EMI from the Fan Motor
-
-Through a series of systematic, clean-room experiments, we have **100% isolated and confirmed the root cause** of the Thread connection drops:
-
-1. **The Proof (The Clean Run):** 
-   * *Setup:* The ESP32-C6 was powered by a clean, battery-powered MacBook (completely floating), placed next to the Apple TV, with the **12V fan power supply completely unplugged from the wall** (drawing 0 current, generating 0 noise).
-   * *Result:* **100% Stable!** The device stayed online, responsive, and perfectly connected in HomeKit for **12+ minutes** (and would stay online indefinitely). It successfully received commands to turn on, off, and change speeds without a single packet drop or disconnection.
-   * *Conclusion:* **Conducted high-frequency switching noise from the running brushless DC fan motor is the sole cause of the failure.** When the motor spins, its electrical noise travels back along the shared GND and PWM lines into the ESP's ground plane. Because the onboard ceramic antenna uses the ESP's ground plane as its RF counterpoise, this noise **blinds the 2.4GHz Thread receiver**, leading to packet loss, parent eviction, and a permanent "No Response" lockout.
-
-2. **The Debounce Timer Success (Verified):**
-   * The new software debounce timer implemented in `app_driver.cpp` was verified in the logs. When the user adjusts the speed slider (e.g., setting it to 57%), the driver successfully aggregates the rapid flurry of write requests and updates the hardware and database **exactly once** 300ms later. This completely eliminates the Matter "packet storm" and protects the Thread network from congestion during slider movements.
-
-### E. The Apple TV Eviction Bug (Debunked) & Thread Device Role Fix
-* **The Failed Soak Test:** Initially, we set `CONFIG_OPENTHREAD_RX_ON_WHEN_IDLE=y` to make the device a Minimal End Device (MED). When it dropped offline, we falsely hypothesized that the Apple TV evicted MEDs that didn't poll, so we switched it to a Sleepy End Device (SED) (`RX_ON_WHEN_IDLE=n`). 
-* **The Real Cause:** The SED configuration is self-defeating for a mains-powered fan controller. The 250ms polling serialization caused huge latency for multi-packet CASE session resumptions and large wildcard reads. Furthermore, the true root cause for *all* drops was discovered to be an unsynchronized debug task corrupting OpenThread memory (see Section G below), NOT Apple TV MED eviction.
-* **The Fix:** We reverted to a proper Minimal End Device (MED) which keeps the radio constantly on to instantly receive Apple Home commands without polling latency, while remaining immune to Leader partition bugs:
-  ```ini
-  CONFIG_OPENTHREAD_FTD=n
-  CONFIG_OPENTHREAD_MTD=y
-  CONFIG_OPENTHREAD_RX_ON_WHEN_IDLE=y
-  ```
-
-### G. The "No Response" Data Race (The Ultimate Fix)
-* **The Symptom:** Despite perfect motor noise isolation (or even before motor noise was involved), the device would eventually go to "No Response" exactly after a few minutes, or fail to commission entirely with `Failed to advertise records: 46` or `OperationalSessionSetup... operational discovery failed: 32`.
-* **The Log Analysis:** The discovery timeouts and operational advertising failures were highly intermittent but reliably crashed the Thread SRP (Service Registration Protocol) subsystem on the ESP32.
-* **The Root Cause:** A debug task in `app_main.cpp` called `print_ip_addresses_task()` was running an infinite loop every 10 seconds. This task directly invoked `otIp6GetUnicastAddresses(instance)` **without acquiring the OpenThread stack lock**. OpenThread is strictly single-threaded and not reentrant. Accessing its internals from a concurrent FreeRTOS task caused a classic data race that consistently corrupted the OpenThread internal state. This memory corruption manifested as the SRP client crashing and failing to advertise or resolve Node IDs, breaking all Matter session resumptions and causing the permanent "No Response" states.
-* **The Fix:** Completely deleted `print_ip_addresses_task` from the codebase. Any OpenThread diagnostics must be performed via the `chip-shell` (which is properly synchronized) or strictly wrapped in `esp_openthread_lock_acquire()`.
-
-### H. RF Switch / Antenna Path Disabled in Software (June 28)
-* **The Discovery:** Both the Seeed Studio XIAO ESP32-H2 and XIAO ESP32-C6 boards utilize an onboard RF Switch chip (`FM8625H`) to toggle between the ceramic antenna and the u.FL connector. By default, a generic ESP-IDF build does not configure this switch, leaving the antenna path floating/disabled.
-* **The Symptom:** This results in extremely poor radio range and a high packet drop rate. While small packets (keep-alives) occasionally get through, large Matter packets (wildcard status reports of 1000+ bytes) are fragmented into 12 frames (6LoWPAN) and fail consistently with `error:NoAck` at the MAC layer.
-* **The Software Fix:**
-  - Configure `GPIO 3` (`RF_SWITCH_EN`) and `GPIO 14` (`RF_ANT_SELECT`) as outputs.
-  - Set `GPIO 3` to `LOW` to enable the RF switch.
-  - Set `GPIO 14` to `LOW` to select the on-board ceramic antenna.
-* **Status (June 28 - SUCCESS):** The fix was successfully compiled, flashed, and verified. The boot logs confirm:
-  - The RF switch is enabled and the ceramic antenna is selected.
-  - The `Attribute should be non-volatile...` boot error is resolved.
-  - The `FeatureMap` attribute is successfully updated to `1` (MultiSpeed).
-  - **Crucial Result:** The `error:NoAck` packet fragmentation drops have completely stopped. The large Matter status reports are now being transmitted and acknowledged successfully by the Apple TV.
-* **Force Cache Clearing (June 28):** To resolve the "No Response" state caused by the Apple TV caching the old null `FeatureMap`, a clean `idf.py erase-flash` was executed successfully on the board. This completely clears the old pairing fabrics and the old Node ID (`86EADBD5`), forcing the Apple TV to register a new Node ID and cache the correct `FeatureMap` upon the next pairing.
-* **Second Erase-Flash Soak Test (June 28 - FAILED):** 
-  - **Verification:** We verified that the onboard ceramic antenna is successfully enabled in software (`GPIO 3` set to `LOW`, `GPIO 14` set to `LOW`).
-  - **Action:** A clean `idf.py erase-flash` was executed to completely wipe the flash NVS partition, followed by a re-flash and a fresh re-pairing to the Apple Home app.
-  - **Result:** Despite the clean database state, new Node ID, and verified antenna path, the device still transitioned to "No Response" (DIS-connected) on both the Mac and iPhone Home apps after a period of time.
-  - **User Suspicion:** The user strongly suspects an underlying software or protocol-level issue in the firmware/Thread stack, rather than a hardware or local network routing issue, since the IP-level link remains fully responsive (pings succeed) but the HomeKit/Matter connection drops.
-
-
-
-### H. Limitations of On-Chip Logs & The Need for External Network Diagnostics (June 28)
-* **The Problem:** The serial monitor logs on the ESP32-C6 itself were insufficient to diagnose the "No Response" issue.
- The chip's logs showed it was 100% online, successfully connected to the Thread network, and had active sessions, but the Apple Home app still showed "No Response".
-* **The Solution:** We had to pivot to **external network diagnostics** from a Mac on the same Wi-Fi network to trace the host-side behavior:
-  1. **`ping6`:** Verified that the Wi-Fi-to-Thread IP-level routing through the Apple TV Border Router was fully operational (0% packet loss, ~50ms latency).
-  2. **`dns-sd -B _matter._tcp`:** Verified that the Apple TV's mDNS Advertising Proxy was actively broadcasting the device's operational Matter service on the Wi-Fi network.
-  3. **`dns-sd -L` and `-G v6`:** Verified that the advertised hostname resolved to the *new* OMR IPv6 address of the chip.
-* **The Insight:** This diagnostic path proved that the network and radio layers were perfect, isolating the issue to **host-side database caching** (the Apple TV refusing to re-read the `FeatureMap` for the reused Node ID). 
-
-### I. Slider Spam Stress Test (June 28)
-* **Hypothesis:** Rapidly adjusting the HomeKit slider (creating a "packet storm" of Matter `WriteRequests`) will overwhelm the Thread network bandwidth or crash the ESP32-C6 if the 300ms software debounce timer fails or if the SED polling interval (250ms) conflicts with heavy traffic.
-* **Experiment:** The user rapidly slid the Fan Speed slider from 0% to 100% continuously for 15-20 seconds in the Apple Home app while the device was running the Sleepy End Device (SED) configuration.
-* **Result (CONFIRMED SUCCESS):** The device survived flawlessly without dropping offline or causing HomeKit to stick on "Updating". The Thread stack maintained perfect bidirectional `WriteResponse` and `StandaloneAck` communication.
-* **Log Proof of Debounce working:**
-  ```text
-  I (22315) chip[EM]: >>> [E:20697r S:49720 M:61873304] (S) Msg RX from 1:00000000559F0421 [8B73] to 000000002A197C0E --- Type 0001:06 (IM:WriteRequest) (B:62)
-  I (22325) chip[EM]: <<< [E:20697r S:49720 M:228319607 (Ack:61873304)] (S) Msg TX from 000000002A197C0E to 1:00000000559F0421 [8B73] ... --- Type 0001:07 (IM:WriteResponse) (B:63)
-  I (22615) app_driver: Fan speed updated to 38% (Duty: 388)
-  I (22615) esp_matter_attribute: ********** W : Endpoint 0x0001's Cluster 0x00000202's Attribute 0x00000003 is 38 **********
-  I (22635) app_driver: Debounce timer fired: Fan speed applied and database synchronized to 38%
-  ```
-  The log explicitly proves that despite receiving dozens of rapid `WriteRequest` packets, the application driver correctly aggregated them and only updated the physical PWM hardware and synchronized the database exactly once at the end of the swipe.
-
-
-
-* **HomeKit Reconnection Behavior:** During a parent swap, the device's internal Thread routing address (`RLOC16`) changes (in this case, from `1c04` to `1803`). Because of this routing update, Apple Home/HomeKit controllers may briefly show the device as "Updating" or offline for a short period while the Apple TV Border Router propagates the new IPv6 routing path to your phone/hubs. It should automatically recover without requiring a device reboot.
-
----
-
-
-
-### D. Recommended Hardware Solutions to Fix the Motor Noise
-
-To allow the fan to run without blinding the ESP32's radio, you need to filter or isolate the conducted electrical noise. Here are the three best ways to do this, in order of effectiveness:
-
-#### 1. Optocoupler Isolation (The Ultimate, Bulletproof Fix)
-* **How it works:** Instead of sharing a ground and connecting the ESP's GPIO pin directly to the fan board, you use a cheap **optocoupler** (like a PC817 or EL817) to transmit the PWM signal.
-* **The Setup & Pin Mapping:**
-  * **Pin 1 (Anode):** Connect to the **ESP32's PWM pin (GPIO 21)** through a current-limiting resistor.
-  * **Pin 2 (Cathode):** Connect to the **ESP32's GND pin**.
-  * **Pin 3 (Emitter):** Connect to the **fan board's Ground** (12V supply ground).
-  * **Pin 4 (Collector):** Connect to the **fan board's PWM input pin**.
-  * *Critical Rule:* **The ESP Ground and the Fan Board Ground must remain completely isolated and never touch each other with a wire.**
-* **Resistor Range (for Pin 1):**
-  * **Safe Range:** **$100\Omega$ to $1\text{k}\Omega$ ($1,000\Omega$)**.
-  * *Ideal values:* **$220\Omega$ to $330\Omega$** (e.g. **$300\Omega$** is perfect).
-  * *Why?* Under $100\Omega$ draws too much current, risking damage to the ESP's GPIO. Over $1\text{k}\Omega$ limits the current too much, slowing down the optocoupler's switching response for the 25kHz PWM signal.
-* **Why it's best:** There is **no physical electrical connection** between the ESP and the noisy fan board. The signal is transmitted purely by light inside the optocoupler. This completely immunizes the ESP's ground plane and antenna from any motor noise. This is the professional standard for driving high-noise motors from microcontrollers.
-
-#### 2. Decoupling & Bulk Capacitors (Easy to Add)
-* **How it works:** Place a low-ESR **electrolytic capacitor (100µF to 470µF)** in parallel with a small **ceramic capacitor (0.1µF)** directly across the 12V and GND terminals where the power supply enters the fan board.
-* **Why it helps:** The capacitors act as a local energy reservoir, smoothing out the voltage spikes and shunting the high-frequency motor switching noise to ground before it can travel back along the wires.
-
-#### 3. Ferrite Bead / Choke (Simple Clip-on)
-* **How it works:** Wrap the GND, 12V, and PWM wires together 3 to 4 times through a **ferrite toroid**, or clip a **snap-on ferrite bead** over the wire bundle near the fan board.
-* **Why it helps:** The ferrite bead acts as a high-frequency resistor, blocking high-frequency noise from propagating down the wires toward the ESP.
+### Diagnosing a drop
+Capture the serial log ACROSS the disconnect; the informative part is the gap. Distinguish:
+* Role goes to `leader` -> FTD partition problem -> switch to MTD fallback.
+* `detached -> child` re-attach after a silent gap -> link/timing -> MRP/defaults change
+  should help; check border-router health and RSSI.
+External checks from a Mac on the same network remain useful: `ping6` the device's OMR
+address, `dns-sd -B _matter._tcp` to confirm the border router's advertising proxy, and
+`dns-sd -L`/`-G v6` to confirm hostname resolution.
 
 ---
 
 ## 5. Git & Workspace Rules
-* **Agent Configurations**: The `.agents/` folder (containing pairing rules, prompts, and this findings file) is **tracked in Git** and must be pushed to GitHub to sync rules and findings across the user's multiple flashing/development Macs.
-* **Auto-Push Policy**: All code, configuration, and documentation changes must be **automatically staged, committed, and pushed** to GitHub immediately to ensure they are available for the user on their flashing machine.
-
----
-
-## 6. Custom C++ vs. ESPHome Matter-over-Thread Comparison
-
-Should we choose to pivot to ESPHome, here is the technical comparison of the two approaches:
-
-### Custom C++ Setup (Current)
-* **Pros:**
-  * **Surgical Network Tuning:** Direct access to `sdkconfig.defaults.esp32c6` allows us to enable subscription persistence (`CONFIG_ENABLE_PERSIST_SUBSCRIPTIONS=y`) and reduce MRP retry intervals (to `2000ms`) to combat connection drops.
-  * **Network Protection (Debouncing):** Custom C++ allows us to intercept the Matter database and implement a 300ms software debounce timer on the slider, preventing "packet storms" that saturate the low-bandwidth Thread network.
-  * **Efficiency:** Minimal footprint, direct hardware access, and precise control over cluster attribute synchronization.
-* **Cons:**
-  * **High Complexity:** Requires writing and maintaining dense C++ code, endpoint configurations, and callback handlers.
-  * **Configuration Cache Issues:** The ESP-IDF build system easily caches `sdkconfig` on the host machine, requiring target resets (`idf.py set-target`) to apply changes.
-
-### ESPHome Setup
-* **Pros:**
-  * **YAML Simplicity:** Zero C++ boilerplate. The entire device configuration is defined in a single, human-readable YAML file.
-  * **Fast Iteration:** Adding new sensors, buttons, or status LEDs takes seconds instead of writing new C++ classes.
-  * **Automated Matter Mapping:** ESPHome automatically handles the creation of Matter clusters, endpoints, and commissioning credentials.
-* **Cons:**
-  * **No Low-Level Tuning:** You cannot easily modify the underlying OpenThread/Matter settings (like persistent subscriptions or MRP retry timers) via YAML.
-  * **No Native Debouncing:** Sliding the speed bar in the Home App will send immediate, rapid back-to-back writes, risking Thread network saturation and device drops.
-  * **Experimental Status:** The ESPHome `matter` component is still in active development and may introduce wrapper-level bugs.
-
----
-
-## 7. ESPHome Matter-over-Thread Transition Plan
-
-If we decide to pivot, here is the step-by-step plan to transition the Seeed Studio XIAO ESP32-C6 to ESPHome:
-
-### Step 1: Create the ESPHome Configuration File
-Create a file named `esp32c6-fan.yaml` in the root of the workspace:
-
-```yaml
-esphome:
-  name: matter-fan-controller
-  friendly_name: Matter Fan Controller
-
-esp32:
-  board: esp32-c6-devkitc-1
-  framework:
-    type: esp-idf
-
-# Enable OpenThread
-openthread:
-  device_type: MTD # Keep as Minimal Thread Device for stability
-
-# Enable Matter
-matter:
-
-# Configure the PWM output on GPIO21 (Physical Pin D3) at 25kHz
-output:
-  - platform: ledc
-    pin: GPIO21
-    frequency: 25000 Hz
-    id: fan_pwm
-
-# Expose the PWM output as a Fan component
-fan:
-  - platform: speed
-    output: fan_pwm
-    name: "Noctua Fan"
-    speed_count: 100
-
-# Configure the Physical Button on GPIO2 (Physical Pin D2)
-binary_sensor:
-  - platform: gpio
-    pin:
-      number: GPIO2
-      mode: INPUT_PULLDOWN
-    name: "Fan Toggle Button"
-    on_press:
-      - fan.toggle: "Noctua Fan"
-```
-
-### Step 2: Install and Run ESPHome
-On the flashing Mac:
-1. Install ESPHome via Python:
-   ```bash
-   pip install esphome
-   ```
-2. Compile and flash the board:
-   ```bash
-   esphome run esp32c6-fan.yaml
-   ```
-
-### Step 3: Commissioning to Apple Home
-1. Watch the terminal logs during the first boot. ESPHome will print a **Matter Commissioning QR Code URL** and a **11-digit passcode** (e.g., `20202021`).
-2. Open the Apple Home App, select **Add Accessory**, and enter the passcode or scan the generated QR code.
-3. The device will connect directly to your Apple TV/HomePod Thread network.
-
+* `.agents/` is tracked in Git and synced across the user's flashing/dev Macs.
+* **NEVER commit `sdkconfig` or `sdkconfig.old`** — they are generated and override the
+  defaults. They are now in `.gitignore`. Run `git rm --cached sdkconfig sdkconfig.old` once
+  to stop tracking them.
+* Auto-push policy: code/config/doc changes are staged, committed, and pushed immediately so
+  they are available on the flashing machine.

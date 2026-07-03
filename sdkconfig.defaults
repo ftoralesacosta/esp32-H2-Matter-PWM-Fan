@@ -1,47 +1,79 @@
-# Default to 921600 baud when flashing and monitoring device
-CONFIG_ESPTOOLPY_BAUD_921600B=y
-CONFIG_ESPTOOLPY_BAUD=921600
-CONFIG_ESPTOOLPY_COMPRESSED=y
-CONFIG_ESPTOOLPY_MONITOR_BAUD_115200B=y
-CONFIG_ESPTOOLPY_MONITOR_BAUD=115200
-CONFIG_ESPTOOLPY_FLASHSIZE_4MB=y
+CONFIG_IDF_TARGET="esp32c6"
 
-#enable BT
+# libsodium
+CONFIG_LIBSODIUM_USE_MBEDTLS_SHA=y
+
+# NIMBLE
 CONFIG_BT_ENABLED=y
 CONFIG_BT_NIMBLE_ENABLED=y
+CONFIG_BT_NIMBLE_EXT_ADV=n
+CONFIG_BT_NIMBLE_HCI_EVT_BUF_SIZE=70
+CONFIG_USE_BLE_ONLY_FOR_COMMISSIONING=n
 
-#disable BT connection reattempt
-CONFIG_BT_NIMBLE_ENABLE_CONN_REATTEMPT=n
+# FreeRTOS should use legacy API
+CONFIG_FREERTOS_ENABLE_BACKWARD_COMPATIBILITY=y
 
-#enable lwip ipv6 autoconfig
-CONFIG_LWIP_IPV6_AUTOCONFIG=y
+# Enable OpenThread and Optimize Reliability
+# Device role: Full Thread Device (FTD), radio always on (non-sleepy).
+# FTD is stable here as long as a healthy border router (Apple TV/HomePod)
+# is present. The old "detaches -> leader -> isolated partition" behavior
+# came from a stale/misbuilt sdkconfig and an unsynchronized OpenThread
+# access, NOT from FTD itself. If leader-partition drops ever recur, switch
+# to a Minimal End Device by setting FTD=n / MTD=y (keep RX_ON_WHEN_IDLE=y).
+CONFIG_OPENTHREAD_ENABLED=y
+CONFIG_OPENTHREAD_FTD=y
+# CONFIG_OPENTHREAD_MTD is not set
+CONFIG_OPENTHREAD_RADIO=n
+CONFIG_OPENTHREAD_RX_ON_WHEN_IDLE=y
+CONFIG_OPENTHREAD_NUM_MESSAGE_BUFFERS=100
+CONFIG_OPENTHREAD_SRP_CLIENT=y
+CONFIG_OPENTHREAD_DNS_CLIENT=y
+CONFIG_OPENTHREAD_LOG_LEVEL_DYNAMIC=n
+CONFIG_OPENTHREAD_LOG_LEVEL_NOTE=y
+CONFIG_OPENTHREAD_CLI=n
+
+# Disable lwip ipv6 autoconfig
+CONFIG_LWIP_IPV6_AUTOCONFIG=n
 
 # Use a custom partition table
 CONFIG_PARTITION_TABLE_CUSTOM=y
-CONFIG_PARTITION_TABLE_FILENAME="partitions.csv"
-CONFIG_PARTITION_TABLE_OFFSET=0xC000
+CONFIG_PARTITION_TABLE_CUSTOM_FILENAME="partitions.csv"
 
-# Enable chip shell
-CONFIG_ENABLE_CHIP_SHELL=y
+# LwIP config for OpenThread
+CONFIG_LWIP_IPV6_NUM_ADDRESSES=8
+CONFIG_LWIP_MULTICAST_PING=y
 
-#enable lwIP route hooks
-CONFIG_LWIP_HOOK_IP6_ROUTE_DEFAULT=y
-CONFIG_LWIP_HOOK_ND6_GET_GW_DEFAULT=y
+# MDNS platform
+CONFIG_ENABLE_EXTENDED_DISCOVERY=y
+
+# Enable OTA Requestor
+CONFIG_ENABLE_OTA_REQUESTOR=y
+
+# Disable Wi-Fi for C6 when running in Thread mode
+CONFIG_ENABLE_WIFI_STATION=n
+CONFIG_ENABLE_WIFI_AP=n
 
 # Button
 CONFIG_BUTTON_PERIOD_TIME_MS=20
 CONFIG_BUTTON_LONG_PRESS_TIME_MS=5000
-CONFIG_BUTTON_LONG_PRESS_HOLD_SERIAL_TIME_MS=1000
 
-# disable softap by default
-CONFIG_ESP_WIFI_SOFTAP_SUPPORT=n
+# Enable chip shell
+CONFIG_ENABLE_CHIP_SHELL=y
 
-# Disable DS Peripheral
-CONFIG_ESP_SECURE_CERT_DS_PERIPHERAL=n
+# Enable persist subscriptions
+CONFIG_ENABLE_PERSIST_SUBSCRIPTIONS=y
 
-# Enable HKDF in mbedtls
-CONFIG_MBEDTLS_HKDF_C=y
+# MRP configs
+# NOTE: The previous build forced all retry intervals to 2000ms and MAX_RETRANS=3.
+# Those long intervals widened the recovery window after a lost packet, which is
+# consistent with the ~9-minute silent parent-loss gap seen in the runtime log.
+# We now fall back to the SDK/Matter defaults for Thread, which recover faster.
+# If you need to tune these later, re-add the CONFIG_MRP_* lines deliberately.
 
-# Increase LwIP IPv6 address number to 6 (MAX_FABRIC + 1)
-# unique local addresses for fabrics(MAX_FABRIC), a link local address(1)
-CONFIG_LWIP_IPV6_NUM_ADDRESSES=6
+# ESP32-C6-DevKitC-1 Settings
+# Buttons
+CONFIG_BSP_BUTTONS_NUM=1
+CONFIG_BSP_BUTTON_1_TYPE_GPIO=y
+CONFIG_BSP_BUTTON_1_GPIO=9
+CONFIG_BSP_BUTTON_1_LEVEL=0
+
