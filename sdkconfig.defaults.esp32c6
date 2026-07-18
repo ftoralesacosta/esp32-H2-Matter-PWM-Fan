@@ -33,6 +33,12 @@ CONFIG_LWIP_IPV6_AUTOCONFIG=n
 CONFIG_PARTITION_TABLE_CUSTOM=y
 CONFIG_PARTITION_TABLE_CUSTOM_FILENAME="partitions.csv"
 
+# XIAO ESP32-C6 has 4MB flash. This was previously only set in the committed
+# sdkconfig (never in this defaults file), so removing that stale sdkconfig
+# silently reverted the build to the 2MB IDF default and broke the partition
+# table (partitions.csv sizes to ~3.9MB).
+CONFIG_ESPTOOLPY_FLASHSIZE_4MB=y
+
 # LwIP config for OpenThread
 CONFIG_LWIP_IPV6_NUM_ADDRESSES=8
 CONFIG_LWIP_MULTICAST_PING=y
