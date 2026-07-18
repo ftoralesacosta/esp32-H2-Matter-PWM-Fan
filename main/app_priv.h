@@ -29,6 +29,17 @@ typedef void *app_driver_handle_t;
  */
 app_driver_handle_t app_driver_fan_init();
 
+/** Initialize the fan tachometer input
+ *
+ * Configures the tach GPIO with a pull-up and a falling-edge interrupt, and
+ * starts a periodic timer that converts the pulse count into an RPM figure
+ * logged via ESP_LOGI. Diagnostic only - not exposed as a Matter attribute.
+ *
+ * @return ESP_OK on success.
+ * @return error in case of failure.
+ */
+esp_err_t app_driver_tach_init();
+
 /** Initialize the button driver
  *
  * This initializes the button driver associated with the selected board.

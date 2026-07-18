@@ -34,7 +34,17 @@ extern uint16_t fan_endpoint_id;
 #define PWM_LEDC_RESOLUTION     LEDC_TIMER_10_BIT // 10-bit resolution (0 to 1023)
 #define PWM_LEDC_FREQ           25000             // 25 kHz PWM frequency for Noctua fan
 
+// Tachometer input. Physical pin D4 on Seeed Studio XIAO ESP32-C6. Noctua-style
+// 4-pin fans drive this as an open-collector signal pulled low twice per
+// revolution, hence the internal pull-up and the /2 in the RPM calculation.
+// See https://dronebotworkshop.com/esp32-pwm-fan/
+#define TACH_GPIO               GPIO_NUM_22
+#define TACH_PULSES_PER_REV     2
+#define TACH_SAMPLE_INTERVAL_MS 2000
+
 static uint8_t current_speed_percentage = 0;
+static volatile uint32_t tach_pulse_count = 0;
+static volatile uint32_t tach_last_rpm = 0;
 
 
 static esp_err_t app_driver_fan_set_speed(uint8_t speed_percentage)
@@ -263,6 +273,77 @@ app_driver_handle_t app_driver_fan_init()
 
 
     return (app_driver_handle_t)1; // Return non-null handle to indicate success
+}
+
+static void IRAM_ATTR tach_isr_handler(void *arg)
+{
+    tach_pulse_count++;
+}
+
+static esp_timer_handle_t tach_sample_timer = NULL;
+
+static void tach_sample_timer_callback(void *arg)
+{
+    // Snapshot and reset the counter. A pulse landing between the read and
+    // the reset would be lost, but at a 2s sample window against a fan's
+    // pulse rate that's negligible for a diagnostic RPM reading.
+    uint32_t pulses = tach_pulse_count;
+    tach_pulse_count = 0;
+
+    uint32_t rpm = (pulses * 60000) / (TACH_SAMPLE_INTERVAL_MS * TACH_PULSES_PER_REV);
+    tach_last_rpm = rpm;
+
+    ESP_LOGI(TAG, "Tachometer: %lu RPM (%lu pulses / %dms)", rpm, pulses, TACH_SAMPLE_INTERVAL_MS);
+}
+
+esp_err_t app_driver_tach_init()
+{
+    gpio_config_t io_conf = {};
+    io_conf.intr_type = GPIO_INTR_NEGEDGE; // open-collector signal pulses low
+    io_conf.mode = GPIO_MODE_INPUT;
+    io_conf.pin_bit_mask = (1ULL << TACH_GPIO);
+    io_conf.pull_up_en = GPIO_PULLUP_ENABLE;
+    io_conf.pull_down_en = GPIO_PULLDOWN_DISABLE;
+    esp_err_t err = gpio_config(&io_conf);
+    if (err != ESP_OK) {
+        ESP_LOGE(TAG, "Tach GPIO config failed: %s", esp_err_to_name(err));
+        return err;
+    }
+
+    // May already be installed by another driver (e.g. the button component)
+    // sharing the same ISR service - that's fine, we just hook our own pin.
+    err = gpio_install_isr_service(0);
+    if (err != ESP_OK && err != ESP_ERR_INVALID_STATE) {
+        ESP_LOGE(TAG, "Failed to install GPIO ISR service: %s", esp_err_to_name(err));
+        return err;
+    }
+
+    err = gpio_isr_handler_add(TACH_GPIO, tach_isr_handler, NULL);
+    if (err != ESP_OK) {
+        ESP_LOGE(TAG, "Failed to add tach ISR handler: %s", esp_err_to_name(err));
+        return err;
+    }
+
+    esp_timer_create_args_t timer_args = {
+        .callback = tach_sample_timer_callback,
+        .arg = NULL,
+        .dispatch_method = ESP_TIMER_TASK,
+        .name = "tach_sample_timer"
+    };
+    err = esp_timer_create(&timer_args, &tach_sample_timer);
+    if (err != ESP_OK) {
+        ESP_LOGE(TAG, "Failed to create tach sample timer: %s", esp_err_to_name(err));
+        return err;
+    }
+
+    err = esp_timer_start_periodic(tach_sample_timer, TACH_SAMPLE_INTERVAL_MS * 1000);
+    if (err != ESP_OK) {
+        ESP_LOGE(TAG, "Failed to start tach sample timer: %s", esp_err_to_name(err));
+        return err;
+    }
+
+    ESP_LOGI(TAG, "Tachometer initialized on physical pin D4 (GPIO %d)", TACH_GPIO);
+    return ESP_OK;
 }
 
 app_driver_handle_t app_driver_button_init()

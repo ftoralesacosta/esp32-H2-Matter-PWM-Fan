@@ -164,6 +164,11 @@ extern "C" void app_main()
     app_driver_handle_t button_handle = app_driver_button_init();
     app_reset_button_register(button_handle);
 
+    esp_err_t tach_err = app_driver_tach_init();
+    if (tach_err != ESP_OK) {
+        ESP_LOGE(TAG, "Failed to initialize fan tachometer: %s", esp_err_to_name(tach_err));
+    }
+
     /* Create a Matter node and add the mandatory Root Node device type on endpoint 0 */
     node::config_t node_config;
     node_t *node = node::create(&node_config, app_attribute_update_cb, app_identification_cb);
