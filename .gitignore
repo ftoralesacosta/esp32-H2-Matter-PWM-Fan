@@ -62,3 +62,11 @@ sdkconfig.old
 .esphome/
 venv/
 .cache/
+
+# clean_build_and_flash.sh tees build/flash/monitor output to these. Debug
+# artifacts, not source - never commit them (they were previously tracked
+# and pushed via push_logs.sh, which is why this rule exists now).
+build_log.txt
+monitor_log.txt
+extra_monitor_log.txt
+overnight_log.txt
