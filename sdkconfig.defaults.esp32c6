@@ -53,6 +53,25 @@ CONFIG_LWIP_MULTICAST_PING=y
 # MDNS platform
 CONFIG_ENABLE_EXTENDED_DISCOVERY=y
 
+# CONFIG_USE_MINIMAL_MDNS defaults to y in CHIP's Kconfig. Commit d17ea4d set
+# it explicitly (mistakenly believing it helped Thread SRP discovery), and
+# f980c23 tried to "revert" that by just removing the line - but since the
+# Kconfig default is also y, that revert was a no-op and minimal mDNS stayed
+# active the whole time. Minimal mDNS (Advertiser_ImplMinimalMdns.cpp) only
+# broadcasts on the local Thread mesh and has no SRP integration at all
+# (verified: zero references to SRP in that file), so it never reaches
+# HomeKit on the WiFi side - Apple's Thread border routers rely on SRP
+# registration + their Advertising Proxy, not raw multicast reflection. This
+# was silently causing every commissioning attempt to hang after Thread
+# attach: credentials all succeed, the device thinks it "published" mDNS
+# locally, but the operational record never reaches the LAN, so the
+# commissioner can never open a CASE session and commissioning times out via
+# the fail-safe timer. Setting this to n switches the build to chip_mdns=
+# "platform", which compiles ESP32's DnssdImpl.cpp + OpenThreadDnssdImpl.cpp
+# and actually registers via the OpenThread SRP client (AddSrpService) -
+# already enabled via CONFIG_OPENTHREAD_SRP_CLIENT=y above.
+CONFIG_USE_MINIMAL_MDNS=n
+
 # Enable OTA Requestor
 CONFIG_ENABLE_OTA_REQUESTOR=y
 

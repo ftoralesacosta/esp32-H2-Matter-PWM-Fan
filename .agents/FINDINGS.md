@@ -9,6 +9,76 @@ the "Corrected Root Cause" section first.
 
 ---
 
+## -1. 2026-07-18 session: commissioning never completes (mDNS/SRP root cause)
+
+> [!IMPORTANT]
+> Two more real bugs found and fixed this session, on top of everything below. Also: several
+> "fixed" items elsewhere in this doc (sdkconfig untracking, MRP removal, minimal mDNS revert)
+> turned out NOT to actually be applied in the repo despite being documented as done. Verify
+> against the actual current file contents, not just this doc's prose.
+
+### Bug 1: duplicate `main/app driver.cpp` (space in filename) broke every build
+Commit `67a8a35` added the debounce re-entrancy fix to a *new* file `main/app driver.cpp`
+(note the space) instead of editing the tracked `main/app_driver.cpp`. `idf_component_register
+(SRC_DIRS ".")` globbed both, producing ninja error `multiple rules generate ...
+app_driver.cpp.obj`. Fixed by merging the fix into the correctly-named file and deleting the
+duplicate. While fixing this, also discovered `sdkconfig`/`sdkconfig.old` were still tracked in
+git despite Section 5 below claiming `git rm --cached` had been run - it hadn't. Untracking them
+exposed two more config gaps that only ever lived in that stale committed `sdkconfig` and were
+never captured in `sdkconfig.defaults.esp32c6`: `CONFIG_ESPTOOLPY_FLASHSIZE_4MB` (board has 4MB
+flash; IDF's 2MB default doesn't fit `partitions.csv`) and `CONFIG_MBEDTLS_HKDF_C` (CHIP's crypto
+layer calls `mbedtls_hkdf` directly; link fails without it). Both are now pinned in the defaults
+file with comments.
+
+### Bug 2: minimal mDNS has no SRP integration - commissioning hangs after Thread attach
+**This is very likely the real explanation for the long-standing "connects, then drops and never
+self-heals (No Response)" complaint, not just today's failed pairing.**
+
+Symptom: every commissioning attempt completed PASE, attestation, CSR, and AddNOC successfully,
+joined Thread cleanly, logged `mDNS service published: _matter._tcp`... and then nothing. The
+commissioner just idled (BLE keepalive, occasional `ArmFailSafe` re-arms) until the device's own
+120s fail-safe timer expired. `dns-sd -B _matter._tcp` from a Mac on the same LAN never showed
+the current attempt's operational record, even though several *stale* records from earlier failed
+attempts sat there indefinitely.
+
+Root cause: `CONFIG_USE_MINIMAL_MDNS` defaults to `y` in CHIP's own Kconfig
+(`connectedhomeip/config/esp32/components/chip/Kconfig`). This repo's history has a confusing
+flip-flop on it - commit `d17ea4d` set it explicitly to `y` ("for proper Thread SRP discovery" -
+backwards; minimal mDNS has *no* SRP code at all, verified by grep), then `f980c23` "reverted"
+that by deleting the line. But because the Kconfig default is also `y`, deleting the override
+did nothing - minimal mDNS silently stayed active in every build since, including the one running
+in production. `chip_mdns=minimal` compiles `Advertiser_ImplMinimalMdns.cpp`, which only
+broadcasts on the local Thread mesh via raw multicast. Apple's Thread border routers don't bridge
+that to WiFi; they rely on the device doing real SRP registration, which they reflect via their
+own Advertising Proxy. Minimal mDNS never does that, so the device is structurally invisible to
+HomeKit on WiFi every time - **including after a normal Thread re-attach following any
+disconnect**, not just at initial commissioning.
+
+Fix: explicitly set `CONFIG_USE_MINIMAL_MDNS=n` in `sdkconfig.defaults.esp32c6`, which switches
+the build to `chip_mdns=platform` (ESP32's `DnssdImpl.cpp` + `OpenThreadDnssdImpl.cpp`), which
+calls the real OpenThread SRP client (`AddSrpService`) - already enabled via
+`CONFIG_OPENTHREAD_SRP_CLIENT=y`. Confirmed via BUILD.gn that this is fully wired up for a
+Thread-only (no WiFi/Ethernet) ESP32 target.
+
+Also fixed as part of chasing this: esp_matter's own `device_callback_internal()`
+(`esp_matter_core.cpp`) only restarts DNS-SD advertising on `kInterfaceIpAddressChanged`, gated
+behind `#if CHIP_DEVICE_CONFIG_ENABLE_WIFI || CHIP_DEVICE_CONFIG_ENABLE_ETHERNET` - dead code on
+a Thread-only build. Thread instead posts `kThreadStateChange`
+(`GenericThreadStackManagerImpl_OpenThread::OnOpenThreadStateChange`), which nothing was
+listening for. Added a handler in `app_main.cpp`'s `app_event_cb` that calls
+`chip::app::DnssdServer::Instance().StartServer()` on `kThreadStateChange` - this is what fixed
+the very first advertise failure (`CHIP_ERROR_INVALID_ADDRESS` racing the interface's IPv6
+address assignment right after attach) and is also what actually re-triggers the new SRP-backed
+publish path above whenever Thread's role or address changes (e.g. after a reconnect).
+
+### Status as of this session
+Bug 1 confirmed fixed (clean build succeeds). Bug 2's fix (`CONFIG_USE_MINIMAL_MDNS=n`) has been
+written to defaults but **not yet build-and-pairing-tested** - verify a fresh commissioning
+attempt actually completes before considering this closed, and check FINDINGS Section 5 for
+whether `sdkconfig`/`sdkconfig.old` need `git rm --cached` again (verify, don't trust this doc).
+
+---
+
 ## 0. Corrected Root Cause (supersedes earlier EMI / data-race conclusions)
 
 > [!IMPORTANT]
