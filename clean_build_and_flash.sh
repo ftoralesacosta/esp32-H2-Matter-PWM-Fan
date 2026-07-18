@@ -2,6 +2,10 @@
 set -e
 set -o pipefail
 
+echo "🔧 Sourcing ESP-IDF and ESP-Matter environments..."
+source "$HOME/Projects/esp32-H2/esp-idf/export.sh"
+source "$HOME/Projects/esp32-H2/esp-matter/export.sh"
+
 echo "==========================================="
 echo " Matter Fan - Clean Build & Flash Script"
 echo "==========================================="
