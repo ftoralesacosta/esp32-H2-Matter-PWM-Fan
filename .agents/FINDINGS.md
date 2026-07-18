@@ -71,11 +71,45 @@ the very first advertise failure (`CHIP_ERROR_INVALID_ADDRESS` racing the interf
 address assignment right after attach) and is also what actually re-triggers the new SRP-backed
 publish path above whenever Thread's role or address changes (e.g. after a reconnect).
 
+### Bug 3 (cosmetic, found after pairing worked): misleading FanMode ESP_FAIL on every debounce firing
+Once commissioning succeeded, adjusting the fan speed logged `WriteAttribute failed with status:
+Status<240>` / `Failed to update FanMode in debounce: ESP_FAIL` on every debounce firing, even
+though the fan itself worked correctly (`PercentCurrent`/LEDC duty always applied fine). Status
+240 (`0xF0`) is `Status::WriteIgnored`, a CHIP-internal, non-spec status code (see
+`StatusCodeList.h`, marked "use only internally"). CHIP's own `FanControlCluster.cpp`
+`PreAttributeChangedCallback` treats a raw write of `FanModeEnum::kOn` (4) as a convenience value:
+it auto-substitutes the concrete `FanModeEnum::kHigh` (3) and reports `WriteIgnored` for the
+original write to signal the substitution. esp-matter's generic `set_val_via_write_attribute()`
+treats any non-Success status as a hard failure and logs `ESP_LOGE`, so this benign,
+spec-compliant substitution was being reported as an error every single time.
+
+`app_driver.cpp`'s debounce callback was writing `FanMode = 4` (kOn) whenever `target_speed > 0`.
+Changed it to write `FanMode = 3` (kHigh) directly - the concrete value the cluster already
+substitutes to - which produces the identical stored state without going through the
+`WriteIgnored` path. Purely a log-noise fix; no functional change. **Committed but not yet
+flashed** (didn't want to interrupt a working paired device to test a cosmetic fix) - apply on the
+next natural rebuild.
+
 ### Status as of this session
-Bug 1 confirmed fixed (clean build succeeds). Bug 2's fix (`CONFIG_USE_MINIMAL_MDNS=n`) has been
-written to defaults but **not yet build-and-pairing-tested** - verify a fresh commissioning
-attempt actually completes before considering this closed, and check FINDINGS Section 5 for
-whether `sdkconfig`/`sdkconfig.old` need `git rm --cached` again (verify, don't trust this doc).
+**All three bugs confirmed fixed. The device paired successfully** after Bug 1 + Bug 2 fixes were
+flashed - `monitor_log.txt` shows `GeneralCommissioning: Received CommissioningComplete` /
+`Commissioning completed successfully`. Bug 3's fix is a follow-on cosmetic change, committed but
+not yet flashed as of this writing.
+
+**Still open / worth watching:** the original long-standing complaint was that the device
+connects fine via HomeKit but later drops and shows "No Response" without self-healing. Bug 2's
+fix (the `kThreadStateChange` handler in `app_main.cpp`) should also cause the device to
+re-announce itself via SRP after any future Thread re-attach, not just at initial commissioning -
+which is exactly the mechanism that was almost certainly missing before and causing the
+non-self-healing behavior. This has NOT yet been observed through an actual disconnect/reconnect
+cycle in the field. If "No Response" recurs, check `monitor_log.txt` for `Thread role/address
+changed, restarting DNS-SD advertising` around the reconnect, and confirm the device becomes
+resolvable again via `dns-sd -B _matter._tcp` from a Mac on the same LAN, before assuming this is
+a new/different bug.
+
+Also verify: check FINDINGS Section 5 for whether `sdkconfig`/`sdkconfig.old` need `git rm
+--cached` again (verify against `git ls-files`, don't trust doc prose - that's exactly how Bug 1
+was compounded).
 
 ---
 
