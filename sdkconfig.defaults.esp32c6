@@ -39,6 +39,13 @@ CONFIG_PARTITION_TABLE_CUSTOM_FILENAME="partitions.csv"
 # table (partitions.csv sizes to ~3.9MB).
 CONFIG_ESPTOOLPY_FLASHSIZE_4MB=y
 
+# CHIP's crypto layer (CHIPCryptoPALmbedTLS) calls mbedtls_hkdf directly, but
+# mbedtls only builds it in if HKDF_C is enabled. Same story as the flash
+# size above: this was only ever set in the committed sdkconfig, never here,
+# so removing that stale sdkconfig broke the final link step with
+# "undefined reference to `mbedtls_hkdf'".
+CONFIG_MBEDTLS_HKDF_C=y
+
 # LwIP config for OpenThread
 CONFIG_LWIP_IPV6_NUM_ADDRESSES=8
 CONFIG_LWIP_MULTICAST_PING=y

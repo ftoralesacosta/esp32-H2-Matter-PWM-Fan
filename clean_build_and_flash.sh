@@ -1,5 +1,6 @@
 #!/bin/bash
 set -e
+set -o pipefail
 
 echo "==========================================="
 echo " Matter Fan - Clean Build & Flash Script"
