@@ -27,18 +27,29 @@ using namespace esp_matter;
 static const char *TAG = "app_driver";
 extern uint16_t fan_endpoint_id;
 
-#define PWM_FAN_GPIO            GPIO_NUM_21       // Physical pin D3 on Seeed Studio XIAO ESP32-C6
+#if CONFIG_IDF_TARGET_ESP32H2
+// Waveshare ESP32-H2-Zero (pin-compatible with Espressif's ESP32-H2-DevKitM-1).
+// GPIO12 and GPIO22 are plain, unshared GPIOs on this board. Deliberately NOT
+// using GPIO13/14 (32.768kHz crystal per Espressif's official DevKitM-1 guide)
+// or GPIO23/24 (UART0 TX/RX - the serial console this project's whole
+// monitor_log.txt workflow depends on).
+#define PWM_FAN_GPIO            GPIO_NUM_12
+#define TACH_GPIO               GPIO_NUM_22
+#else
+// Seeed Studio XIAO ESP32-C6 (default/original target).
+#define PWM_FAN_GPIO            GPIO_NUM_21       // Physical pin D3
+#define TACH_GPIO               GPIO_NUM_22       // Physical pin D4
+#endif
+
 #define PWM_LEDC_CHANNEL        LEDC_CHANNEL_0
 #define PWM_LEDC_TIMER          LEDC_TIMER_0
 #define PWM_LEDC_MODE           LEDC_LOW_SPEED_MODE
 #define PWM_LEDC_RESOLUTION     LEDC_TIMER_10_BIT // 10-bit resolution (0 to 1023)
 #define PWM_LEDC_FREQ           25000             // 25 kHz PWM frequency for Noctua fan
 
-// Tachometer input. Physical pin D4 on Seeed Studio XIAO ESP32-C6. Noctua-style
-// 4-pin fans drive this as an open-collector signal pulled low twice per
-// revolution, hence the internal pull-up and the /2 in the RPM calculation.
-// See https://dronebotworkshop.com/esp32-pwm-fan/
-#define TACH_GPIO               GPIO_NUM_22
+// Tachometer input. Noctua-style 4-pin fans drive this as an open-collector
+// signal pulled low twice per revolution, hence the internal pull-up and the
+// /2 in the RPM calculation. See https://dronebotworkshop.com/esp32-pwm-fan/
 #define TACH_PULSES_PER_REV     2
 #define TACH_SAMPLE_INTERVAL_MS 2000
 
@@ -269,7 +280,7 @@ app_driver_handle_t app_driver_fan_init()
         return NULL;
     }
 
-    ESP_LOGI(TAG, "Noctua Fan LEDC PWM initialized at 25kHz on physical pin D3 (GPIO %d)", PWM_FAN_GPIO);
+    ESP_LOGI(TAG, "Noctua Fan LEDC PWM initialized at 25kHz on GPIO %d", PWM_FAN_GPIO);
 
 
     return (app_driver_handle_t)1; // Return non-null handle to indicate success
@@ -342,7 +353,7 @@ esp_err_t app_driver_tach_init()
         return err;
     }
 
-    ESP_LOGI(TAG, "Tachometer initialized on physical pin D4 (GPIO %d)", TACH_GPIO);
+    ESP_LOGI(TAG, "Tachometer initialized on GPIO %d", TACH_GPIO);
     return ESP_OK;
 }
 
@@ -352,7 +363,14 @@ app_driver_handle_t app_driver_button_init()
     memset(&config, 0, sizeof(button_config_t));
 
     config.type = BUTTON_TYPE_GPIO;
+#if CONFIG_IDF_TARGET_ESP32H2
+    // Waveshare ESP32-H2-Zero: external button on a clean, unshared GPIO.
+    // Deliberately not reusing the onboard BOOT button (GPIO9) - holding it
+    // low at power-on enters the bootloader instead of running the app.
+    config.gpio_button_config.gpio_num = GPIO_NUM_10;
+#else
     config.gpio_button_config.gpio_num = GPIO_NUM_2; // Changed back to GPIO 2 for consistency with original repo
+#endif
     config.gpio_button_config.active_level = 1;      // Active high (1)
 
     button_handle_t handle = iot_button_create(&config);

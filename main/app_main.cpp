@@ -127,7 +127,9 @@ static esp_err_t app_attribute_update_cb(callback_type_t type, uint16_t endpoint
     return ESP_OK;
 }
 
-#if CONFIG_OPENTHREAD_ENABLED
+#if CONFIG_OPENTHREAD_ENABLED && !CONFIG_IDF_TARGET_ESP32H2
+// The Waveshare ESP32-H2-Zero has a ceramic antenna with no RF-switch chip
+// (unlike the XIAO C6), so there's nothing for this to do on that target.
 static void init_rf_switch()
 {
     ESP_LOGI("RF_SWITCH", "Initializing RF Switch for Seeed Studio XIAO board...");
@@ -151,7 +153,7 @@ extern "C" void app_main()
 {
     esp_err_t err = ESP_OK;
 
-#if CONFIG_OPENTHREAD_ENABLED
+#if CONFIG_OPENTHREAD_ENABLED && !CONFIG_IDF_TARGET_ESP32H2
     init_rf_switch();
 #endif
 
