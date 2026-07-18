@@ -126,8 +126,16 @@ static void debounce_timer_callback(void *arg)
         ESP_LOGE(TAG, "Failed to update PercentCurrent in debounce: %s", esp_err_to_name(err));
     }
     
-    // Update FanMode to match target_speed (4 for On, 0 for Off)
-    uint8_t mode = (target_speed > 0) ? 4 : 0;
+    // Update FanMode to match target_speed (3/High for On, 0 for Off).
+    // CHIP's FanControlCluster PreAttributeChangedCallback treats a raw write of
+    // FanModeEnum::kOn (4) as a convenience value: it auto-substitutes the concrete
+    // FanModeEnum::kHigh (3) and reports back Status::WriteIgnored (240) for the
+    // original write, which esp-matter's WriteAttribute wrapper logs as a hard
+    // ESP_FAIL even though the substituted value is applied correctly. Writing the
+    // concrete kHigh value directly here produces the identical stored state
+    // without going through that substitution path, so the ESP_FAIL log next to
+    // every debounce firing was misleading, not a real failure.
+    uint8_t mode = (target_speed > 0) ? 3 : 0;
     esp_matter_attr_val_t mode_val = esp_matter_enum8(mode);
     err = attribute::update(endpoint_id, FanControl::Id, FanControl::Attributes::FanMode::Id, &mode_val);
     if (err != ESP_OK) {
