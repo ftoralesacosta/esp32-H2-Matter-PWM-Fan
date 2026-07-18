@@ -98,6 +98,12 @@ static esp_timer_handle_t debounce_timer = NULL;
 static uint8_t target_speed = 0;
 static uint16_t target_endpoint_id = 0;
 static bool timer_created = false;
+// Set while the debounce callback pushes PercentCurrent/FanMode back into the
+// Matter data model. attribute::update() re-enters the attribute-update
+// callback path; without this guard a driver-initiated write would reschedule
+// the very timer whose callback is running, re-arming it forever. This is why
+// the debounce "never fired" in practice.
+static bool driver_initiated_update = false;
 
 static void debounce_timer_callback(void *arg)
 {
@@ -106,8 +112,12 @@ static void debounce_timer_callback(void *arg)
 
     // 2. Update database attributes (PercentCurrent and FanMode)
     uint16_t endpoint_id = target_endpoint_id;
-    
+
     chip::DeviceLayer::PlatformMgr().LockChipStack();
+
+    // Mark these writes as driver-initiated so the attribute-update callback
+    // does not treat them as a fresh user request and reschedule the timer.
+    driver_initiated_update = true;
 
     // Update PercentCurrent to match target_speed
     esp_matter_attr_val_t current_val = esp_matter_uint8(target_speed);
@@ -124,6 +134,8 @@ static void debounce_timer_callback(void *arg)
         ESP_LOGE(TAG, "Failed to update FanMode in debounce: %s", esp_err_to_name(err));
     }
 
+    driver_initiated_update = false;
+
     chip::DeviceLayer::PlatformMgr().UnlockChipStack();
 
     ESP_LOGI(TAG, "Debounce timer fired: Fan speed applied and database synchronized to %d%%", target_speed);
@@ -135,6 +147,12 @@ esp_err_t app_driver_attribute_update(app_driver_handle_t driver_handle, uint16_
     esp_err_t err = ESP_OK;
     if (endpoint_id == fan_endpoint_id) {
         if (cluster_id == FanControl::Id) {
+            // Ignore writes that this driver itself issued from the debounce
+            // callback (PercentCurrent/FanMode sync). Only genuine user-driven
+            // PercentSetting writes should (re)arm the debounce timer.
+            if (driver_initiated_update) {
+                return ESP_OK;
+            }
             if (attribute_id == FanControl::Attributes::PercentSetting::Id) {
                 uint8_t speed = val->val.u8;
                 
