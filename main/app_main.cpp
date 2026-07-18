@@ -15,6 +15,8 @@
 #include <esp_matter_ota.h>
 #include <esp_matter_providers.h>
 
+#include <app/server/Dnssd.h>
+
 #include <common_macros.h>
 #include <app_priv.h>
 #include <app_reset.h>
@@ -49,6 +51,24 @@ static void app_event_cb(const ChipDeviceEvent *event, intptr_t arg)
         ESP_LOGI(TAG, "Interface IP Address Changed");
         break;
 
+    case chip::DeviceLayer::DeviceEventType::kThreadStateChange:
+        // esp_matter's own device_callback_internal() only restarts the DNS-SD
+        // (mDNS) advertiser on kInterfaceIpAddressChanged, which is gated behind
+        // `#if CHIP_DEVICE_CONFIG_ENABLE_WIFI || CHIP_DEVICE_CONFIG_ENABLE_ETHERNET`.
+        // On a Thread-only build that event never fires at all - Thread instead
+        // posts kThreadStateChange (see GenericThreadStackManagerImpl_OpenThread::
+        // OnOpenThreadStateChange), which nothing in esp_matter listens for. That
+        // leaves a real gap: the very first operational mDNS broadcast races the
+        // Thread interface's IPv6 address assignment right after attach, fails
+        // with CHIP_ERROR_INVALID_ADDRESS, and is never retried - the device goes
+        // permanently unreachable via mDNS (commissioning hangs / "No Response")
+        // until a reboot. Restart DNS-SD ourselves whenever Thread's role or
+        // address set changes, matching what esp_matter already does for WiFi.
+        if (event->ThreadStateChange.RoleChanged || event->ThreadStateChange.AddressChanged) {
+            ESP_LOGI(TAG, "Thread role/address changed, restarting DNS-SD advertising");
+            chip::app::DnssdServer::Instance().StartServer();
+        }
+        break;
 
     case chip::DeviceLayer::DeviceEventType::kCommissioningComplete:
         ESP_LOGI(TAG, "Commissioning complete");
