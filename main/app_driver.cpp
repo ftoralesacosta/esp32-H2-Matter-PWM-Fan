@@ -25,230 +25,155 @@ using namespace chip::app::Clusters;
 using namespace esp_matter;
 
 static const char *TAG = "app_driver";
-extern uint16_t fan_endpoint_id;
+extern uint16_t light_endpoint_id;
 
-#define PWM_FAN_GPIO            GPIO_NUM_21       // Physical pin D3 on Seeed Studio XIAO ESP32-C6
-#define PWM_LEDC_CHANNEL        LEDC_CHANNEL_0
-#define PWM_LEDC_TIMER          LEDC_TIMER_0
-#define PWM_LEDC_MODE           LEDC_LOW_SPEED_MODE
-#define PWM_LEDC_RESOLUTION     LEDC_TIMER_10_BIT // 10-bit resolution (0 to 1023)
-#define PWM_LEDC_FREQ           25000             // 25 kHz PWM frequency for Noctua fan
+// Drives a 5V LED through an opto-isolated MOSFET switch module (signal in,
+// V+/V- to the LED + external 5V supply). Pin choice differs by board:
+#if CONFIG_IDF_TARGET_ESP32H2
+// Waveshare ESP32-H2-Zero (pin-compatible with Espressif's ESP32-H2-DevKitM-1).
+// GPIO11 is a plain, unshared GPIO. Deliberately NOT using GPIO13/14
+// (32.768kHz crystal per Espressif's official DevKitM-1 guide), GPIO23/24
+// (UART0 TX/RX - the serial console this whole project's monitor_log.txt
+// workflow depends on), or GPIO9 (onboard BOOT button/strapping pin).
+#define LED_PWM_GPIO             GPIO_NUM_11
+#define BUTTON_GPIO              GPIO_NUM_10
+#else
+// Seeed Studio XIAO ESP32-C6 (default/original target). Physical pin D3 -
+// same pin number the separate fan-controller branch uses, but this is an
+// independent build/device, not running alongside a fan on the same chip.
+#define LED_PWM_GPIO             GPIO_NUM_21
+#define BUTTON_GPIO              GPIO_NUM_2
+#endif
 
-static uint8_t current_speed_percentage = 0;
+#define LED_PWM_LEDC_CHANNEL     LEDC_CHANNEL_0
+#define LED_PWM_LEDC_TIMER       LEDC_TIMER_0
+#define LED_PWM_LEDC_MODE        LEDC_LOW_SPEED_MODE
+#define LED_PWM_LEDC_RESOLUTION  LEDC_TIMER_10_BIT // 10-bit resolution (0 to 1023)
+#define LED_PWM_LEDC_FREQ        1000              // 1 kHz - flicker-free, well within
+                                                    // the opto-isolator's switching speed
 
+static bool current_on_off = false;
+static uint8_t current_level = DEFAULT_LED_LEVEL; // Matter CurrentLevel range: 0-254
 
-static esp_err_t app_driver_fan_set_speed(uint8_t speed_percentage)
+// Applies current_on_off/current_level to the physical PWM output. Matter's
+// CurrentLevel is a nullable<uint8_t> with a 0-254 range (not 0-100 like
+// FanControl's PercentSetting), hence the /254 here.
+static esp_err_t app_driver_light_apply()
 {
-    if (speed_percentage > 100) {
-        speed_percentage = 100;
-    }
+    uint32_t duty = current_on_off ? ((uint32_t)current_level * 1023) / 254 : 0;
 
-    // Map speed percentage (0-100) to LEDC duty cycle (0-1023)
-    uint32_t duty = (speed_percentage * 1023) / 100;
-
-    esp_err_t err = ledc_set_duty(PWM_LEDC_MODE, PWM_LEDC_CHANNEL, duty);
+    esp_err_t err = ledc_set_duty(LED_PWM_LEDC_MODE, LED_PWM_LEDC_CHANNEL, duty);
     if (err != ESP_OK) {
         ESP_LOGE(TAG, "Failed to set LEDC duty: %s", esp_err_to_name(err));
         return err;
     }
 
-    err = ledc_update_duty(PWM_LEDC_MODE, PWM_LEDC_CHANNEL);
+    err = ledc_update_duty(LED_PWM_LEDC_MODE, LED_PWM_LEDC_CHANNEL);
     if (err != ESP_OK) {
         ESP_LOGE(TAG, "Failed to update LEDC duty: %s", esp_err_to_name(err));
         return err;
     }
 
-    current_speed_percentage = speed_percentage;
-    ESP_LOGI(TAG, "Fan speed updated to %d%% (Duty: %ld)", speed_percentage, duty);
+    ESP_LOGI(TAG, "LED updated: on=%d level=%d (Duty: %lu)", current_on_off, current_level, duty);
     return ESP_OK;
 }
 
 static void app_driver_button_toggle_cb(void *arg, void *data)
 {
     ESP_LOGI(TAG, "Toggle button pressed");
-    uint16_t endpoint_id = fan_endpoint_id;
-    uint32_t cluster_id = FanControl::Id;
-    uint32_t attribute_id = FanControl::Attributes::PercentSetting::Id;
+    uint16_t endpoint_id = light_endpoint_id;
+    uint32_t cluster_id = OnOff::Id;
+    uint32_t attribute_id = OnOff::Attributes::OnOff::Id;
 
     chip::DeviceLayer::PlatformMgr().LockChipStack();
 
     attribute_t *attribute = attribute::get(endpoint_id, cluster_id, attribute_id);
     if (!attribute) {
-        ESP_LOGE(TAG, "Failed to get PercentSetting attribute");
+        ESP_LOGE(TAG, "Failed to get OnOff attribute");
         chip::DeviceLayer::PlatformMgr().UnlockChipStack();
         return;
     }
 
     esp_matter_attr_val_t val = esp_matter_invalid(NULL);
     attribute::get_val(attribute, &val);
-
-    // Toggle: if running, turn off; if off, turn on at DEFAULT_FAN_SPEED
-    if (val.val.u8 > 0) {
-        val.val.u8 = 0;
-    } else {
-        val.val.u8 = DEFAULT_FAN_SPEED;
-    }
-
+    val.val.b = !val.val.b;
     attribute::update(endpoint_id, cluster_id, attribute_id, &val);
 
     chip::DeviceLayer::PlatformMgr().UnlockChipStack();
 }
 
-static esp_timer_handle_t debounce_timer = NULL;
-static uint8_t target_speed = 0;
-static uint16_t target_endpoint_id = 0;
-static bool timer_created = false;
-// Set while the debounce callback pushes PercentCurrent/FanMode back into the
-// Matter data model. attribute::update() re-enters the attribute-update
-// callback path; without this guard a driver-initiated write would reschedule
-// the very timer whose callback is running, re-arming it forever. This is why
-// the debounce "never fired" in practice.
-static bool driver_initiated_update = false;
-
-static void debounce_timer_callback(void *arg)
-{
-    // 1. Update physical fan speed
-    app_driver_fan_set_speed(target_speed);
-
-    // 2. Update database attributes (PercentCurrent and FanMode)
-    uint16_t endpoint_id = target_endpoint_id;
-
-    chip::DeviceLayer::PlatformMgr().LockChipStack();
-
-    // Mark these writes as driver-initiated so the attribute-update callback
-    // does not treat them as a fresh user request and reschedule the timer.
-    driver_initiated_update = true;
-
-    // Update PercentCurrent to match target_speed
-    esp_matter_attr_val_t current_val = esp_matter_uint8(target_speed);
-    esp_err_t err = attribute::update(endpoint_id, FanControl::Id, FanControl::Attributes::PercentCurrent::Id, &current_val);
-    if (err != ESP_OK) {
-        ESP_LOGE(TAG, "Failed to update PercentCurrent in debounce: %s", esp_err_to_name(err));
-    }
-    
-    // Update FanMode to match target_speed (3/High for On, 0 for Off).
-    // CHIP's FanControlCluster PreAttributeChangedCallback treats a raw write of
-    // FanModeEnum::kOn (4) as a convenience value: it auto-substitutes the concrete
-    // FanModeEnum::kHigh (3) and reports back Status::WriteIgnored (240) for the
-    // original write, which esp-matter's WriteAttribute wrapper logs as a hard
-    // ESP_FAIL even though the substituted value is applied correctly. Writing the
-    // concrete kHigh value directly here produces the identical stored state
-    // without going through that substitution path, so the ESP_FAIL log next to
-    // every debounce firing was misleading, not a real failure.
-    uint8_t mode = (target_speed > 0) ? 3 : 0;
-    esp_matter_attr_val_t mode_val = esp_matter_enum8(mode);
-    err = attribute::update(endpoint_id, FanControl::Id, FanControl::Attributes::FanMode::Id, &mode_val);
-    if (err != ESP_OK) {
-        ESP_LOGE(TAG, "Failed to update FanMode in debounce: %s", esp_err_to_name(err));
-    }
-
-    driver_initiated_update = false;
-
-    chip::DeviceLayer::PlatformMgr().UnlockChipStack();
-
-    ESP_LOGI(TAG, "Debounce timer fired: Fan speed applied and database synchronized to %d%%", target_speed);
-}
-
 esp_err_t app_driver_attribute_update(app_driver_handle_t driver_handle, uint16_t endpoint_id, uint32_t cluster_id,
                                       uint32_t attribute_id, esp_matter_attr_val_t *val)
 {
-    esp_err_t err = ESP_OK;
-    if (endpoint_id == fan_endpoint_id) {
-        if (cluster_id == FanControl::Id) {
-            // Ignore writes that this driver itself issued from the debounce
-            // callback (PercentCurrent/FanMode sync). Only genuine user-driven
-            // PercentSetting writes should (re)arm the debounce timer.
-            if (driver_initiated_update) {
-                return ESP_OK;
-            }
-            if (attribute_id == FanControl::Attributes::PercentSetting::Id) {
-                uint8_t speed = val->val.u8;
-                
-                // Store the target speed and endpoint
-                target_speed = speed;
-                target_endpoint_id = endpoint_id;
-
-                // Create the timer if it doesn't exist yet
-                if (!timer_created) {
-                    esp_timer_create_args_t timer_args = {
-                        .callback = debounce_timer_callback,
-                        .arg = NULL,
-                        .dispatch_method = ESP_TIMER_TASK,
-                        .name = "fan_debounce_timer"
-                    };
-                    esp_err_t timer_err = esp_timer_create(&timer_args, &debounce_timer);
-                    if (timer_err == ESP_OK) {
-                        timer_created = true;
-                    } else {
-                        ESP_LOGE(TAG, "Failed to create debounce timer: %s", esp_err_to_name(timer_err));
-                        // Fallback to immediate update if timer creation fails
-                        return app_driver_fan_set_speed(speed);
-                    }
-                }
-
-                // Stop the timer if it's already running (reset the debounce window)
-                esp_timer_stop(debounce_timer);
-
-                // Start the timer with a 300ms delay (300,000 microseconds)
-                esp_timer_start_once(debounce_timer, 300000);
-                
-                ESP_LOGD(TAG, "Debounce timer scheduled for speed %d%%", speed);
-            }
-        }
+    if (endpoint_id != light_endpoint_id) {
+        return ESP_OK;
     }
-    return err;
+
+    // No debounce timer here (unlike the separate fan-controller branch's
+    // PercentSetting handling, which exists to work around a FanMode
+    // auto-substitution quirk - see that branch's FINDINGS.md). LevelControl's
+    // CurrentLevel has no equivalent quirk, so writes are applied directly.
+    if (cluster_id == OnOff::Id && attribute_id == OnOff::Attributes::OnOff::Id) {
+        current_on_off = val->val.b;
+        return app_driver_light_apply();
+    }
+    if (cluster_id == LevelControl::Id && attribute_id == LevelControl::Attributes::CurrentLevel::Id) {
+        current_level = val->val.u8;
+        return app_driver_light_apply();
+    }
+    return ESP_OK;
 }
 
 esp_err_t app_driver_attribute_post_update(app_driver_handle_t driver_handle, uint16_t endpoint_id, uint32_t cluster_id,
                                            uint32_t attribute_id, esp_matter_attr_val_t *val)
 {
-    // Database updates for PercentCurrent and FanMode are now handled in the debounce timer callback
     return ESP_OK;
 }
 
-esp_err_t app_driver_fan_set_defaults(uint16_t endpoint_id)
+esp_err_t app_driver_light_set_defaults(uint16_t endpoint_id)
 {
-    esp_err_t err = ESP_OK;
     esp_matter_attr_val_t val = esp_matter_invalid(NULL);
- 
-    attribute_t *attribute = attribute::get(endpoint_id, FanControl::Id, FanControl::Attributes::PercentSetting::Id);
-    if (attribute) {
-        attribute::get_val(attribute, &val);
-        err = app_driver_fan_set_speed(val.val.u8);
+
+    attribute_t *on_off_attribute = attribute::get(endpoint_id, OnOff::Id, OnOff::Attributes::OnOff::Id);
+    if (on_off_attribute) {
+        attribute::get_val(on_off_attribute, &val);
+        current_on_off = val.val.b;
     }
-    return err;
+
+    attribute_t *level_attribute = attribute::get(endpoint_id, LevelControl::Id, LevelControl::Attributes::CurrentLevel::Id);
+    if (level_attribute) {
+        attribute::get_val(level_attribute, &val);
+        current_level = val.val.u8;
+    }
+
+    return app_driver_light_apply();
 }
 
-
-
-app_driver_handle_t app_driver_fan_init()
+app_driver_handle_t app_driver_light_init()
 {
-    // Release the pin from JTAG/strapping and route it to the GPIO matrix
-    gpio_reset_pin(PWM_FAN_GPIO);
-    gpio_set_direction(PWM_FAN_GPIO, GPIO_MODE_OUTPUT);
+    gpio_reset_pin(LED_PWM_GPIO);
+    gpio_set_direction(LED_PWM_GPIO, GPIO_MODE_OUTPUT);
 
-    // 1. Configure LEDC Timer
     ledc_timer_config_t ledc_timer = {
-        .speed_mode       = PWM_LEDC_MODE,
-        .duty_resolution  = PWM_LEDC_RESOLUTION,
-        .timer_num        = PWM_LEDC_TIMER,
-        .freq_hz          = PWM_LEDC_FREQ,
-        .clk_cfg          = LEDC_AUTO_CLK  // Automatically select best clock source
+        .speed_mode       = LED_PWM_LEDC_MODE,
+        .duty_resolution  = LED_PWM_LEDC_RESOLUTION,
+        .timer_num        = LED_PWM_LEDC_TIMER,
+        .freq_hz          = LED_PWM_LEDC_FREQ,
+        .clk_cfg          = LEDC_AUTO_CLK
     };
-    
+
     esp_err_t err = ledc_timer_config(&ledc_timer);
     if (err != ESP_OK) {
         ESP_LOGE(TAG, "LEDC timer config failed: %s", esp_err_to_name(err));
         return NULL;
     }
 
-    // 2. Configure LEDC Channel
     ledc_channel_config_t ledc_channel = {
-        .gpio_num       = PWM_FAN_GPIO,
-        .speed_mode     = PWM_LEDC_MODE,
-        .channel        = PWM_LEDC_CHANNEL,
+        .gpio_num       = LED_PWM_GPIO,
+        .speed_mode     = LED_PWM_LEDC_MODE,
+        .channel        = LED_PWM_LEDC_CHANNEL,
         .intr_type      = LEDC_INTR_DISABLE,
-        .timer_sel      = PWM_LEDC_TIMER,
+        .timer_sel      = LED_PWM_LEDC_TIMER,
         .duty           = 0,
         .hpoint         = 0
     };
@@ -259,10 +184,9 @@ app_driver_handle_t app_driver_fan_init()
         return NULL;
     }
 
-    ESP_LOGI(TAG, "Noctua Fan LEDC PWM initialized at 25kHz on physical pin D3 (GPIO %d)", PWM_FAN_GPIO);
+    ESP_LOGI(TAG, "LED PWM initialized at 1kHz on GPIO %d", LED_PWM_GPIO);
 
-
-    return (app_driver_handle_t)1; // Return non-null handle to indicate success
+    return (app_driver_handle_t)1;
 }
 
 app_driver_handle_t app_driver_button_init()
@@ -271,7 +195,7 @@ app_driver_handle_t app_driver_button_init()
     memset(&config, 0, sizeof(button_config_t));
 
     config.type = BUTTON_TYPE_GPIO;
-    config.gpio_button_config.gpio_num = GPIO_NUM_2; // Changed back to GPIO 2 for consistency with original repo
+    config.gpio_button_config.gpio_num = BUTTON_GPIO;
     config.gpio_button_config.active_level = 1;      // Active high (1)
 
     button_handle_t handle = iot_button_create(&config);

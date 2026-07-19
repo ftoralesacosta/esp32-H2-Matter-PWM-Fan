@@ -33,7 +33,7 @@
 #endif
 
 static const char *TAG = "app_main";
-uint16_t fan_endpoint_id = 0;
+uint16_t light_endpoint_id = 0;
 
 using namespace esp_matter;
 using namespace esp_matter::attribute;
@@ -127,7 +127,9 @@ static esp_err_t app_attribute_update_cb(callback_type_t type, uint16_t endpoint
     return ESP_OK;
 }
 
-#if CONFIG_OPENTHREAD_ENABLED
+#if CONFIG_OPENTHREAD_ENABLED && !CONFIG_IDF_TARGET_ESP32H2
+// The Waveshare ESP32-H2-Zero has a ceramic antenna with no RF-switch chip
+// (unlike the XIAO C6), so there's nothing for this to do on that target.
 static void init_rf_switch()
 {
     ESP_LOGI("RF_SWITCH", "Initializing RF Switch for Seeed Studio XIAO board...");
@@ -151,7 +153,7 @@ extern "C" void app_main()
 {
     esp_err_t err = ESP_OK;
 
-#if CONFIG_OPENTHREAD_ENABLED
+#if CONFIG_OPENTHREAD_ENABLED && !CONFIG_IDF_TARGET_ESP32H2
     init_rf_switch();
 #endif
 
@@ -160,7 +162,7 @@ extern "C" void app_main()
     nvs_flash_init();
 
     /* Initialize driver */
-    app_driver_handle_t fan_handle = app_driver_fan_init();
+    app_driver_handle_t light_handle = app_driver_light_init();
     app_driver_handle_t button_handle = app_driver_button_init();
     app_reset_button_register(button_handle);
 
@@ -169,26 +171,17 @@ extern "C" void app_main()
     node_t *node = node::create(&node_config, app_attribute_update_cb, app_identification_cb);
     ABORT_APP_ON_FAILURE(node != nullptr, ESP_LOGE(TAG, "Failed to create Matter node"));
 
-    // Configure the Matter Fan endpoint
-    fan::config_t fan_config;
-    fan_config.fan_control.fan_mode = 0; // Off
-    fan_config.fan_control.percent_setting = DEFAULT_FAN_SPEED;
-    fan_config.fan_control.percent_current = DEFAULT_FAN_SPEED;
+    // Configure the Matter Dimmable Light endpoint (5V LED via opto-isolated
+    // MOSFET module)
+    endpoint::dimmable_light::config_t light_config;
+    light_config.on_off.on_off = false;
+    light_config.level_control.current_level = DEFAULT_LED_LEVEL;
 
-    // Create the Fan device endpoint
-    endpoint_t *endpoint = fan::create(node, &fan_config, ENDPOINT_FLAG_NONE, fan_handle);
-    ABORT_APP_ON_FAILURE(endpoint != nullptr, ESP_LOGE(TAG, "Failed to create Matter Fan endpoint"));
+    endpoint_t *endpoint = endpoint::dimmable_light::create(node, &light_config, ENDPOINT_FLAG_NONE, light_handle);
+    ABORT_APP_ON_FAILURE(endpoint != nullptr, ESP_LOGE(TAG, "Failed to create Matter Light endpoint"));
 
-    fan_endpoint_id = endpoint::get_id(endpoint);
-    ESP_LOGI(TAG, "Fan created with endpoint_id %d", fan_endpoint_id);
-
-    // Set FeatureMap attribute (0xFFFC) to 1 (MultiSpeed) to satisfy HomeKit and enable the speed slider
-    attribute_t *feature_map_attribute = attribute::get(fan_endpoint_id, FanControl::Id, 0xFFFC);
-    if (feature_map_attribute) {
-        esp_matter_attr_val_t val = esp_matter_uint32(1);
-        attribute::set_val(feature_map_attribute, &val);
-        ESP_LOGI(TAG, "Fan Control FeatureMap set to 1 (MultiSpeed)");
-    }
+    light_endpoint_id = endpoint::get_id(endpoint);
+    ESP_LOGI(TAG, "Light created with endpoint_id %d", light_endpoint_id);
 
 #if CHIP_DEVICE_CONFIG_ENABLE_THREAD
     /* Set OpenThread platform config */
@@ -210,7 +203,7 @@ extern "C" void app_main()
     ABORT_APP_ON_FAILURE(err == ESP_OK, ESP_LOGE(TAG, "Failed to start Matter, err:%d", err));
 
     /* Starting driver with default values */
-    app_driver_fan_set_defaults(fan_endpoint_id);
+    app_driver_light_set_defaults(light_endpoint_id);
 
 }
 

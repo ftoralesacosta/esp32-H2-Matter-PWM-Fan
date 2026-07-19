@@ -16,18 +16,31 @@
 #endif
 
 /** Default attribute values used during initialization */
-#define DEFAULT_FAN_SPEED 50 // Starts at 50% speed
+#define DEFAULT_LED_LEVEL 128 // ~50% brightness (Matter CurrentLevel range is 0-254)
 
 typedef void *app_driver_handle_t;
 
-/** Initialize the fan driver
+/** Initialize the LED driver
  *
- * This initializes the fan driver (LEDC PWM at 25kHz).
+ * This initializes the LED driver (LEDC PWM at 1kHz, driving an
+ * opto-isolated MOSFET module).
  *
  * @return Handle on success.
  * @return NULL in case of failure.
  */
-app_driver_handle_t app_driver_fan_init();
+app_driver_handle_t app_driver_light_init();
+
+/** Set defaults for the LED driver
+ *
+ * Applies the on/off + brightness attribute values from the created data
+ * model to the physical PWM output.
+ *
+ * @param[in] endpoint_id Endpoint ID of the driver.
+ *
+ * @return ESP_OK on success.
+ * @return error in case of failure.
+ */
+esp_err_t app_driver_light_set_defaults(uint16_t endpoint_id);
 
 /** Initialize the button driver
  *
@@ -62,17 +75,6 @@ esp_err_t app_driver_attribute_update(app_driver_handle_t driver_handle, uint16_
  */
 esp_err_t app_driver_attribute_post_update(app_driver_handle_t driver_handle, uint16_t endpoint_id, uint32_t cluster_id,
                                            uint32_t attribute_id, esp_matter_attr_val_t *val);
-
-/** Set defaults for fan driver
- *
- * Set the attribute drivers to their default values from the created data model.
- *
- * @param[in] endpoint_id Endpoint ID of the driver.
- *
- * @return ESP_OK on success.
- * @return error in case of failure.
- */
-esp_err_t app_driver_fan_set_defaults(uint16_t endpoint_id);
 
 #if CHIP_DEVICE_CONFIG_ENABLE_THREAD
 #define ESP_OPENTHREAD_DEFAULT_RADIO_CONFIG()                                           \
