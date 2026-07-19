@@ -96,20 +96,23 @@ flashed - `monitor_log.txt` shows `GeneralCommissioning: Received CommissioningC
 `Commissioning completed successfully`. Bug 3's fix is a follow-on cosmetic change, committed but
 not yet flashed as of this writing.
 
-**Still open / worth watching:** the original long-standing complaint was that the device
-connects fine via HomeKit but later drops and shows "No Response" without self-healing. Bug 2's
-fix (the `kThreadStateChange` handler in `app_main.cpp`) should also cause the device to
-re-announce itself via SRP after any future Thread re-attach, not just at initial commissioning -
-which is exactly the mechanism that was almost certainly missing before and causing the
-non-self-healing behavior. This has NOT yet been observed through an actual disconnect/reconnect
-cycle in the field. If "No Response" recurs, check `monitor_log.txt` for `Thread role/address
-changed, restarting DNS-SD advertising` around the reconnect, and confirm the device becomes
-resolvable again via `dns-sd -B _matter._tcp` from a Mac on the same LAN, before assuming this is
-a new/different bug.
+**Self-heal CONFIRMED in the field (2026-07-18, later same day/session).** The original
+long-standing complaint was that the device connects fine via HomeKit but later drops and shows
+"No Response" without self-healing. Bug 2's fix (the `kThreadStateChange` handler in
+`app_main.cpp`) was theorized to also fix this, since it re-announces the device via SRP after
+*any* Thread re-attach, not just at initial commissioning - not just tested at that point though.
+It has now been verified with a real test: physically unplugged the device's power (not a serial
+reset), Apple Home showed "No Response" as expected while it was off, then on plugging power back
+in the device rejoined Thread and became reachable in Apple Home again **on its own, with no
+manual intervention** (no re-pairing, no reboot-via-serial). This is the actual real-world
+scenario the whole day's investigation was aimed at fixing, and it worked. Consider this bug
+closed pending longer-term observation - if "No Response" ever recurs, check for `Thread
+role/address changed, restarting DNS-SD advertising` in the log around the reconnect and confirm
+the device resolves via `dns-sd -B _matter._tcp` from a Mac on the same LAN before assuming this
+is a new/different bug rather than a regression of this one.
 
-Also verify: check FINDINGS Section 5 for whether `sdkconfig`/`sdkconfig.old` need `git rm
---cached` again (verify against `git ls-files`, don't trust doc prose - that's exactly how Bug 1
-was compounded).
+`sdkconfig`/`sdkconfig.old` untracking is done (verified via `git ls-files` as part of the repo
+cleanup later this session) - no longer an open item.
 
 ---
 
